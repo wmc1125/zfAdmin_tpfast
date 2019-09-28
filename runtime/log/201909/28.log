@@ -1157,3 +1157,28 @@
 )
 [ info ] [ VIEW ] ./template/admin/login/index.html [ array (
 ) ]
+---------------------------------------------------------------
+
+[2019-09-28T19:37:27+08:00] 192.168.240.1 GET 192.168.240.182:1000/admin/login/index.html
+[运行时间：0.382064s] [吞吐率：2.62req/s] [内存消耗：2,315.88kb] [文件加载：137]
+[ info ] [ LANG ] /mnt/hgfs/wwwroot/php/zfAdmin_tpfast/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'order=id%20desc; memSize=972; uploadSize=1073741824; rank=a; layers=1; aceEditor=%7B%22fontSize%22%3A%2212px%22%2C%22theme%22%3A%22monokai%22%7D; SetName=; backup_path=/www/backup; serverType=nginx; BT_PANEL_6=3c7f52a1-38fb-4cf7-8955-f5edfde60cfa.3it-5PD7sQJ73gyza7li0hWupcM; request_token=VyOMatbq9Rb18RZN7OU7A9TeNx9aD7WB5nTTKZy1sVfvt1ux; load_search=undefined; sites_path=/mnt/hgfs/wwwroot/php; vcodesum=13; Path=/mnt/hgfs/wwwroot/php; force=0; pnull=6; p7=2; depType=0; softType=0; load_type=0; p0=4; load_page=4; ChangePath=6; PHPSESSID=i5fmapb6v868gu5ga03oqsgpp4; _pk_ses.8.bbc8=1; _pk_id.8.bbc8=718f669b1386be2c.1569669088.1.1569669118.1569669088.',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://192.168.240.182:1000/admin',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => '192.168.240.182:1000',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] ./template/admin/login/index.html [ array (
+) ]
