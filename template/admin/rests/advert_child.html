@@ -1,0 +1,145 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        <div style="padding-bottom: 10px;">
+          <button class="layui-btn layui-btn-sm" onclick="zfAdminShow('添加广告','{:url("rests/advert_add",["pid"=>$pid,"type"=>"child"])}')"><i class="layui-icon"></i>添加</button>
+        </div>
+        <table class="layui-table">
+            <colgroup>
+              <col width="30">
+              <col width="60">
+              <col width="50">
+              <col width="50">
+              <col width="50">
+
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>链接</th>          
+                <th>状态</th>
+                <th>操作</th>
+
+              </tr> 
+            </thead>
+            <tbody>
+              {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo['id']}</td>
+                  <td>{$vo['name']}</td>
+                  <td>{$vo['url']}</td>
+                  <td> 
+                    <div class=" layui-form" lay-filter="component-form-element">        
+                       <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
+                    </div>
+                  </td>
+                  <td>
+                    <a class="layui-btn layui-btn-sm btn_del layui-btn-danger" rel="{$vo['id']}" href="#">删除</a> 
+                    <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('rests/advert_edit',['id' => $vo['id'],'type'=>'child','pid'=>$vo['pid']] )}")'>编辑</button> 
+                  </td>
+                </tr>
+              {/volist}         
+            </tbody>
+          </table>
+
+      </div>
+    </div>
+  </div>
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script src="__STATIC__/system/common.js"></script>  
+
+  <script>
+ layui.use([ 'table','element'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,element = layui.element
+    ,table = layui.table;
+
+    // 删除
+    $(".btn_del").on("click",function(){
+      var id = $(this).attr("rel");
+      layer.confirm('确认删除？', {
+        btn: ['删除','取消'] //按钮
+      }, function(){
+        //执行删除操作
+        $.get("{:url('common/del_post')}",{id:id,db:'advert'},function(res){
+          if(res.result==1){
+            layer.msg("删除成功", {icon: 1});
+            setTimeout(function() {
+              location.reload(true);
+            }, 1000);
+          }else{
+            layer.msg(res.msg, {icon: 2});
+            setTimeout(function() {
+              location.reload(true);
+            }, 1000);
+          }
+        },"json");
+
+      }, function(){
+          //取消的操作
+      });
+    })
+
+    // 新增
+    $(".create_tijiao").on("click",function(){
+      // alert(11)
+      var data = $(".create_info input,.create_info select").serialize();      
+      $.ajax({
+          type:'post',
+          url:"{:url('category/category_add')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            // console.log(res)
+            if(res.result==1){
+              layer.msg("添加成功", {icon: 1});
+              setTimeout(function() {
+                window.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+              
+            }
+            
+          }
+      })
+
+    })
+    form.on('switch(status_change)', function(data){
+      var id = $(this).attr("item")
+      var dbname = 'advert'
+      var status = this.checked ? '1' : '0'
+      console.log(id)
+      $.get("{:url('common/is_switch')}",{id:id,dbname:dbname,status:status},function(res){
+          if(res.result==1){
+            layer.msg(res.msg, {icon: 1});
+          }else{
+            layer.msg(res.msg, {icon: 2});
+          }
+        },"json");
+    });
+ 
+   
+  });
+  </script>
+</body>
+</html>

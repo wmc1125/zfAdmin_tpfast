@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-form-role" id="layuiadmin-form-role" style="padding: 20px 30px 0 0;">
+    <form  class="info_tj" onclick="return false;">
+      <input type="hidden" name="id" value="{$res['id']}">
+      <div class="layui-form-item">
+        <label class="layui-form-label">分类名</label>
+        <div class="layui-input-inline">
+          <input type="text" name="name"  autocomplete="off" class="layui-input" value="{$res['name']}" readonly>
+        </div>
+      </div>
+ 
+      <div class="layui-form-item">
+        <label class="layui-form-label">权限范围</label>
+        <div class="layui-input-block">
+          <?php foreach($list as $k=>$vo): ?>
+            <input type="checkbox" name="role[]" value="{$vo['id']}" lay-skin="primary" title="{$vo['name']}" <?php echo in_array($vo['id'],$role_list)?'checked':''; ?> >
+          <?php   endforeach; ?>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn tijiao" type="submit" lay-submit lay-filter="LAY-auth-tree-submit">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+
+<script>
+layui.config({
+  base: '__STATIC__/system/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index',
+  }).use(['jquery', 'form', 'layer'], function(){
+    var $ = layui.$
+    ,form = layui.form ;
+
+    $(".tijiao").on("click",function(){
+      var data = $(".info_tj input,.info_tj textarea").serialize();      
+      $.ajax({
+          type:'post',
+          url:"{:url('config/admin_group_role')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            // console.log(res)
+            if(res.result==1){
+              layer.msg("修改成功", {icon: 1});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }
+            
+          }
+      })
+
+    })
+    
+  })
+</script>
+</body>
+</html>

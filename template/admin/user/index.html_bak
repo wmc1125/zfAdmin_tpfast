@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+        <form method="get">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">ID</label>
+              <div class="layui-input-block">
+                <input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">用户名</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">手机</label>
+              <div class="layui-input-block">
+                <input type="text" name="tel" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            
+            <div class="layui-inline">
+              <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="layui-card-body">
+        <div style="padding-bottom: 10px;">
+          <button class="layui-btn" onclick="zfAdminShow('添加用户','{:url("user/add")}')">添加</button>
+          <a class="layui-btn" href="{:url('user/export')}" >导出</a>
+
+        </div>
+        
+        <table class="layui-table">
+            <colgroup>
+              <col width="30">
+              <col width="30">
+              <col width="30">
+              <col width="60">
+              <col width="60">
+              <col width="60">
+              <col width="30">
+              <col width="60">
+              <col width="60">
+              <col width="60">
+
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>昵称</th>
+                <th>分组</th>
+                <th>头像</th>
+                <th>手机</th>
+                <th>性别</th>
+                <th>IP</th>
+                <th>加入时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              {volist name='user_list' id='vo'}
+                <tr>
+                  <td>{$vo['id']}</td>
+                  <td>{$vo['name']}</td>
+                  <td><?php echo user_group_name($vo['user_group_id']); ?></td>
+                  <td><img src="{$vo['pic']}"></td>
+                  <td>{$vo['tel']}</td>
+                  <td><?php echo $vo['sex']==1?'男':'女';?></td>
+                  <td>{$vo['ip']} </td>
+                  <td><?php echo date("Y-m-d H:i:s",$vo['create_time']); ?></td>
+                  <td>
+                     <div class=" layui-form" lay-filter="component-form-element">        
+                         <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
+                      </div>
+                  </td>
+                  <td> <a class="layui-btn  layui-btn-danger" onclick="btn_del('common/del_post',{$vo['id']},'user')"  href="#">删除</a> <button class="layui-btn" onclick='zfAdminShow("编辑用户","{:url('user/edit',['id' => $vo['id']] )}")'>编辑</button></td>
+                </tr>
+              {/volist}
+           
+              
+            </tbody>
+          </table>
+          {$page|raw}
+
+      </div>
+    </div>
+  </div>
+
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script type="text/javascript" src="__STATIC__/system/common.js"></script>  
+
+
+  <script>
+ layui.use([ 'table'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,table = layui.table;
+     form.on('switch(status_change)', function(data){
+          var id = $(this).attr("item")
+          var dbname = 'user'
+          var status = this.checked ? '1' : '0'
+          console.log(id)
+          $.get("{:url('common/is_switch')}",{id:id,dbname:dbname,status:status},function(res){
+              if(res.result==1){
+              layer.msg(res.msg, {icon: 1});
+            }else{
+              layer.msg(res.msg, {icon: 1});
+            }
+          },"json");
+      });
+   
+  });
+  </script>
+</body>
+</html>

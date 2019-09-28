@@ -1,0 +1,129 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+          <div class="layui-card">
+            <div class="layui-card-header">信息</div>
+            <div class="layui-card-body">
+              <form class="layui-form info_tj"  >
+                <input type="hidden" name="pid" value="{$pid}">
+                <div class="layui-row layui-col-space10 layui-form-item">
+                  <div class="layui-col-lg6">
+                    <label class="layui-form-label">名称:</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="name" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-col-lg6">
+                   
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">描述:</label>
+                  <div class="layui-input-block">
+                    <textarea name="summary" placeholder="" class="layui-textarea"></textarea>
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">链接:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="url"  placeholder="" autocomplete="off" class="layui-input" >
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">图片:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="pic"  id="main_pic" placeholder="" autocomplete="off" class="layui-input" >
+                    <span type="button" class="layui-btn" id="up_img">上传图片</span>
+
+                  </div>
+                </div>
+                
+                <div class="layui-form-item">
+                  <label class="layui-form-label">状态:</label>
+                  <div class="layui-input-block">
+                    <input type="radio" name="status" value="1" title="开启" checked ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+                    <input type="radio" name="status" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+                    
+                  </div>
+                </div>
+                
+                
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <input class="layui-btn tijiao layui-btn-sm" type="button"  lay-filter="component-form-element" value="提交" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        
+          
+          
+        </div>
+        
+      </div>
+    </div>
+
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script>
+ layui.use(['form', 'upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,upload = layui.upload ;
+
+    upload.render({
+      elem: '#up_img'
+      ,url: "{:url('common/upload_one')}"
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_pic").val(res.msg);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      }
+    });
+
+    $(".tijiao").on("click",function(){
+      var data = $(".info_tj input,.info_tj textarea,.info_tj radio").serialize();      
+      $.ajax({
+          type:'post',
+          url:"{:url('rests/advert_add')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            // console.log(res)
+            if(res.result==1){
+              layer.msg(res.msg, {icon: 1});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+            }
+            
+          }
+      })
+
+    })
+    
+    
+  })
+  </script>
+</body>
+</html>

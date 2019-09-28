@@ -1,0 +1,23 @@
+
+<?php if(1==1){  ?>
+<script id="container" name="content" type="text/plain" ><?php echo isset($res['content'])?$res['content']:''; ?></script>
+<?php if(config()['img']['pic_save_type']=='3'){  ?>
+<!-- 阿里云oss-editor专用 -->
+    {js href="__STATIC__/style/ueditor_aliyunoss/ueditor.config.js" /}
+    {js href="__STATIC__/style/ueditor_aliyunoss/ueditor.all.js" /}
+  	{css href="__STATIC__/style/ueditor_aliyunoss/themes/default/css/ueditor.css" }
+<?php }else{ ?>
+	{js href="__STATIC__/style/ueditor/ueditor.config.js" /}
+    {js href="__STATIC__/style/ueditor/ueditor.all.js" /}
+  	{css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
+<?php } ?>
+<script type="text/javascript"> 
+    var ue = UE.getEditor('container',{
+    initialFrameHeight:350,//设置编辑器高度
+    scaleEnabled:false//设置不自动调整高度
+    });
+</script>
+<?php }else{ ?>
+
+
+<?php }?>
