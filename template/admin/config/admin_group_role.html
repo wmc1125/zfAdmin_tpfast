@@ -23,8 +23,10 @@
       <div class="layui-form-item">
         <label class="layui-form-label">权限范围</label>
         <div class="layui-input-block">
+          <input type="checkbox" lay-skin="primary"  id="c_all" lay-filter="c_all" title="全部">
+          <input type="checkbox" lay-skin="primary"  id="f_all" lay-filter="f_all" title="反选"><br>
           <?php foreach($list as $k=>$vo): ?>
-            <input type="checkbox" name="role[]" value="{$vo['id']}" lay-skin="primary" title="{$vo['name']}" <?php echo in_array($vo['id'],$role_list)?'checked':''; ?> >
+            <input type="checkbox" name="role[]" value="{$vo['id']}" lay-skin="primary"  class="zf_role" title="<?php echo '┃'.str_repeat('━━', substr_count($vo['value'],'  '));?> {$vo['name']}({$vo['control']}/{$vo['act']})" <?php echo in_array($vo['id'],$role_list)?'checked':''; ?> ><br>
           <?php   endforeach; ?>
 
 
@@ -50,6 +52,55 @@ layui.config({
   }).use(['jquery', 'form', 'layer'], function(){
     var $ = layui.$
     ,form = layui.form ;
+
+    form.on('checkbox(c_all)', function (data) {
+      var a = data.elem.checked;
+      if (a == true) {
+        $(".zf_role").prop("checked", true);
+        form.render('checkbox');
+      } else {
+        $(".zf_role").prop("checked", false);
+        form.render('checkbox');
+      }
+
+    });
+    //反选
+    form.on('checkbox(f_all)', function (data) {
+      var item = $(".zf_role");
+      item.each(function () {
+        if ($(this).prop("checked")) {
+          $(this).prop("checked", false);
+        } else {
+          $(this).prop("checked", true);
+        }
+      })
+      form.render('checkbox');
+
+
+    });
+    //有一个未选中全选取消选中
+    form.on('checkbox(c_one)', function (data) {
+      var item = $(".zf_role");
+      for (var i = 0; i < item.length; i++) {
+        if (item[i].checked == false) {
+          $("#c_all").prop("checked", false);
+          form.render('checkbox');
+          break;
+        }
+      }
+      //如果都勾选了  勾上全选
+      var  all=item.length;
+      for (var i = 0; i < item.length; i++) {
+        if (item[i].checked == true) {
+          all--;
+        }
+      }
+      if(all==0){
+        $("#c_all").prop("checked", true);
+        form.render('checkbox');}
+    });
+
+
 
     $(".tijiao").on("click",function(){
       var data = $(".info_tj input,.info_tj textarea").serialize();      

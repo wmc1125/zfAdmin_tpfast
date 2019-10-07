@@ -22,7 +22,7 @@ class Mysql extends Admin
 
     /**
      * 数据库管理
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
      public function index($group = 'export')
@@ -116,7 +116,7 @@ class Mysql extends Admin
      * 备份数据库 [参考原作者 麦当苗儿 <zuojiazi@vip.qq.com>]
      * @param string|array $id 表名
      * @param integer $start 起始行数
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
     public function export($id = '', $start = 0)
@@ -192,7 +192,7 @@ class Mysql extends Admin
      * 恢复数据库 [参考原作者 麦当苗儿 <zuojiazi@vip.qq.com>]
      * @param string|array $ids 表名
      * @param integer $start 起始行数
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
     public function import($id = '')
@@ -247,7 +247,7 @@ class Mysql extends Admin
 
     /**
      * 优化数据表
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
     public function optimize($id = '')
@@ -273,7 +273,7 @@ class Mysql extends Admin
 
     /**
      * 修复数据表
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
     public function repair($id = '')
@@ -300,7 +300,7 @@ class Mysql extends Admin
 
     /**
      * 删除备份
-     * @author 橘子俊 <364666827@qq.com>
+     * @author
      * @return mixed
      */
     public function del($id = '')

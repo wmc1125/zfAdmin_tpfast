@@ -48,6 +48,7 @@ class Config extends Admin
         $data = input('post.');
         $data = array_merge($data,$this->common_tag);
         $data['pwd'] = md5($data['pwd']);
+        $data['ctime'] = time();
         $res =Db::name('admin')->insert($data); 
         if($res){
             return jssuccess("新增成功");
@@ -105,7 +106,8 @@ class Config extends Admin
         } 
         $data = input('post.');
         $data = array_merge($data,$this->common_tag);
-        $res =Db::name('admin_group')->insert($data); 
+        $data['ctime'] = time();
+        $res =Db::name('admin_group')->insert($data);
         if($res){
             return jssuccess("新增成功");
         }else{
@@ -136,11 +138,12 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res = Db::name('admin_role')->where(['status'=>1])->select();
+            $res = Db::name('admin_role')->where(['status'=>1])->order('sort asc,id asc')->select();
             $cat = new category(array('id', 'pid', 'name', 'value')); //初始化无限分类
             $list = $cat->getTree($res); //获取分类数据树结构
             $this->assign("list",$list);
-            // dd($list);
+//             dd($list);
+
             $res = Db::name('admin_group')->where(['id'=>input('id')])->find(); 
             $this->assign("res",$res);
             $role_list = explode(',',$res['role']);

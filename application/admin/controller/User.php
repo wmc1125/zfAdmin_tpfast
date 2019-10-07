@@ -65,6 +65,12 @@ class User extends Admin
             $data['pwd'] = md5($data['pwd']);
         }
         $data = array_merge($data,$this->common_tag);
+        //判断是否存在
+        $is_user =  Db::name('user')->where(['name'=>$data['name']])->find();
+        if($is_user){
+            return jserror('用户名已存在');exit;
+        }
+
         $res = Db::name('user')->insert($data);
         if($res)
         {
@@ -87,9 +93,18 @@ class User extends Admin
         } 
         if(request()->isPost()){
             $data = input('post.');
-            if($data['pwd']!=''){
+            if($data['pwd']!= ''){
                 $data['pwd'] = md5($data['pwd']);
+            }else{
+                unset($data["pwd"]);
             }
+            $is_user =  Db::name('user')->where(['name'=>$data['name']])->find();
+            if($is_user){
+                if($is_user['id']!=$data['id']){
+                    return jserror('用户名已存在');exit;
+                }
+            }
+
             $res = Db::name('user')->where(['id'=>$data['id']])->update($data);
               if($res)
               {

@@ -23,7 +23,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">分组</label>
         <div class="layui-input-inline">
-          <select name="user_group_id">
+          <select name="gid">
             <?php if(is_array($glist)): ?>
             <?php foreach($glist as $k=>$vo):?>
               <option value="{$vo['id']}">{$vo['name']}</option>
