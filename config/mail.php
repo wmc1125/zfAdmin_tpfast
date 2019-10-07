@@ -4,10 +4,11 @@
  * 2019/08/05 15:55:01
  */
 return [
-	'host' => env('mail.host'),
-	'send_email' => env('mail.send_email'),
-	'password' => env('mail.password'),
-	'send_nickname' => env('mail.send_nickname'),
-	'e_number' => env('mail.e_number'),
+	'host' => 'smtp.qq.com',
+	'send_email' => '287851074@qq.com',
+	'password' => 'ukagcolswspzcbdg1212',
+	'send_nickname' => 'zf',
+	'e_number' =>'587',
 	'ee' => ''
 ];
+

@@ -26,6 +26,9 @@
           <?php foreach($list as $k=>$vo): ?>
             <input type="checkbox" name="role[]" value="{$vo['id']}" lay-skin="primary" title="{$vo['name']}" <?php echo in_array($vo['id'],$role_list)?'checked':''; ?> >
           <?php   endforeach; ?>
+
+
+
         </div>
       </div>
       <div class="layui-form-item">

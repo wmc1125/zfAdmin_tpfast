@@ -67,6 +67,7 @@ class Cate extends Base
         // dd($)
         $seo['keywords'] = '搜索 "' . $keyword . '" 的结果';
         $seo['title'] = $seo['keywords'] . ' - ' . config()['web']['site_name'];
+        $seo['description'] = config()['web']['site_description'];
         $this->assign('seo', $seo);
 
         return view($this->tpl);

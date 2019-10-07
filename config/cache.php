@@ -44,11 +44,12 @@ return [
     ],  
     // redis缓存
     'redis'   =>  [
-        'type'   => env('redis.type'),// 驱动方式
-	    'host'	=>	env('redis.host'), // 服务器地址
-	    'port' 	=>	env('redis.port'),//端口号
-	    'expire'=> env('redis.expire'), // 全局缓存有效期（0为永久有效）
-	    'prefix'=>  env('redis.prefix'),// 缓存前缀
-	    'password' =>env('redis.password')//密码
-    ],     
+        'type'   => 'redis',// 驱动方式
+	    'host'	=>	'127.0.0.1', // 服务器地址
+	    'port' 	=>	'6379',//端口号
+	    'expire'=> 0, // 全局缓存有效期（0为永久有效）
+	    'prefix'=>  '',// 缓存前缀
+	    'password' =>''//密码
+    ],
 ];
+

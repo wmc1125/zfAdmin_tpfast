@@ -47,6 +47,7 @@ class Config extends Admin
         }  
         $data = input('post.');
         $data = array_merge($data,$this->common_tag);
+        $data['pwd'] = md5($data['pwd']);
         $res =Db::name('admin')->insert($data); 
         if($res){
             return jssuccess("新增成功");

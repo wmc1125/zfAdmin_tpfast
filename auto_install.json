@@ -1,0 +1,17 @@
+
+{
+  "php_ext":"pathinfo",
+  "chmod":[
+    {"mode":777,"path":"/runtime"},
+    {"mode":777,"path":"/upload"},
+    {"mode":777,"path":"/backuo"}
+  ],
+  "success_url":"/index.php",
+  "php_versions":"56,70,71,72,73",
+  "db_config":"/config/database.php",
+  "admin_username":"admin",
+  "admin_password":"111111",
+  "run_path":"/",
+  "remove_file":["/index.html","/404.html"],
+  "enable_functions":[]
+}

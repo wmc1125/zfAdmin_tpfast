@@ -10,15 +10,15 @@
 // +----------------------------------------------------------------------
 
  return [
-       'connector'  => env('queue.connector'),		// Redis 驱动
-       'expire'     => env('queue.expire'),		// 任务的过期时间，默认为60秒; 若要禁用，则设置为 null 
-       'default'    => env('queue.default'),		// 默认的队列名称
-       'host'       => env('queue.host'),	// redis 主机ip
-       'port'       => env('queue.port'),		// redis 端口
-       'password'   => env('queue.password'),		// redis 密码
-       'select'     => env('queue.select'),		// 使用哪一个 db，默认为 db0
-       'timeout'    => env('queue.timeout'),		// redis连接的超时时间
-       'persistent' => env('queue.persistent'),		// 是否是长连接
+       'connector'  => '',		// Redis 驱动
+       'expire'     => '',		// 任务的过期时间，默认为60秒; 若要禁用，则设置为 null
+       'default'    => '',		// 默认的队列名称
+       'host'       => '',	// redis 主机ip
+       'port'       => '',		// redis 端口
+       'password'   => '',		// redis 密码
+       'select'     => '',		// 使用哪一个 db，默认为 db0
+       'timeout'    => '',		// redis连接的超时时间
+       'persistent' => '',		// 是否是长连接
      
    //    'connector' => 'Database',   // 数据库驱动
    //    'expire'    => 60,           // 任务的过期时间，默认为60秒; 若要禁用，则设置为 null
