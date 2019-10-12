@@ -2,8 +2,7 @@
 namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
-
-
+use zf\Category as cat;
 class Cate extends Base
 {
 	public function __construct ( Request $request = null ){
@@ -20,10 +19,22 @@ class Cate extends Base
     {
         $cid = input('cid',1);
         $this->assign('cid',$cid);
-        // $cate_res = Db::name('category')->field('cid,name,tpl_category,tpl_post')->where(['status'=>1,'cid'=>$cid])->find();
+        $top_cid_now = $this->get_top_category($cid);
+        $this->assign('top_cid_now',$top_cid_now);
         $cate_res = Db::name('category')->where(['status'=>1,'cid'=>$cid])->find();
-        $list = Db::name('post')->where(['status'=>1,'cid'=>$cid,'is_product'=>0])->order('ctime desc,id desc')->paginate(15);
+        $where[] = ['status','=',1];
+        $where[] = ['is_product','=',0];
+        if($cid==$top_cid_now['cid']){
+            $where[] = ['cid','in',$this->get_child_id($cid)];
+        }else{
+            $where[] = ['cid','=',$cid];
+        }
+        $list = Db::name('post')->where($where)->order('ctime desc,id desc')->paginate($cate_res['page']);
+        if($cate_res['url']!=''){
+            return redirect($cate_res['url']);
+        }
         $this->assign('list',$list);
+        $this->assign('page',$list->render());
         $this->assign('cate_res',$cate_res);
         $tpl = $this->tpl_suffix .'/'.$this->controller.'/'.$cate_res['tpl_category'];
         $seo['title'] = $cate_res['name'].'-'.config()['web']['site_name'];
@@ -115,6 +126,28 @@ class Cate extends Base
         $seo['description'] = config()['web']['site_description'];
         $this->assign('seo', $seo);
         return view($this->tpl);
+    }
+     //返回当前最顶层栏目
+    protected function get_top_category($cid = 0) {
+        $data = Db::name('category')->field('cid,pid,name,cname,icon,tpl_category,tpl_post,mid,sort,menu')->where(['status'=>1])->order("sort asc,cid asc")->select();
+        $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
+        $list = $cat->getPath($data, $cid); //获取分类数据树结构
+        return $list[0];
+    }
+    //子栏目所有CID
+    protected function get_child_id($pid = 0, $condition = '1=1') {
+        //查询分类信息
+        $data = Db::name('category')->field('cid,pid,name')->where($condition)->order("sort asc,cid asc")->select();
+        $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
+        $child_array = $cat->getTree($data, $pid);//获取分类数据树结构
+        if(is_array($child_array) && !empty($child_array)){
+            foreach($child_array as $vo){
+                $child_cid[] = $vo['cid'];
+            }
+        }else{
+            return $pid;
+        }
+        return implode(',', $child_cid);//获取所有子分类cid字符串
     }
    
 

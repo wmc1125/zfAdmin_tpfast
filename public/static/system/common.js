@@ -218,44 +218,47 @@ layui.define(['jquery', 'form', 'layer', 'element','table'], function(exports) {
      */
     $(document).on('click', '.j-page-btns,.zf-page-btns', function(){
         var that = $(this),
-            query = '',
-            code = function(that) {
-                var href = that.attr('href') ? that.attr('href') : that.attr('data-href');
-                var tableObj = that.attr('data-table') ? that.attr('data-table') : 'dataTable';
-                if (!href) {
-                    layer.msg('请设置data-href参数');
-                    return false;
-                }
+		query = '',
+		code = function(that) {
+			var href = that.attr('href') ? that.attr('href') : that.attr('data-href');
+			var tableObj = that.attr('data-table') ? that.attr('data-table') : 'dataTable';
+			if (!href) {
+				layer.msg('请设置data-href参数');
+				return false;
+			}
 
-                if ($('.checkbox-ids:checked').length <= 0) {
-                    var checkStatus = table.checkStatus(tableObj);
-                    if (checkStatus.data.length <= 0) {
-                        layer.msg('请选择要操作的数据');
-                        return false;
-                    }
-                    for (var i in checkStatus.data) {
-                        if (i > 0) {
-                            query += '&';
-                        }
-                        query += 'id[]='+checkStatus.data[i].id;
-                    }
-                } else {
-                    if (that.parents('form')[0]) {
-                        query = that.parents('form').serialize();
-                    } else {
-                        query = $('#pageListForm').serialize();
-                    }
-                }
+			if ($('.checkbox-ids:checked').length <= 0) {
+				var checkStatus = table.checkStatus(tableObj);
+				if (checkStatus.data.length <= 0) {
+					layer.msg('请选择要操作的数据');
+					return false;
+				}
+				for (var i in checkStatus.data) {
+					if (i > 0) {
+						query += '&';
+					}
+					query += 'id[]='+checkStatus.data[i].id;
+				}
+			} else {
+				if (that.parents('form')[0]) {
+					query = that.parents('form').serialize();
+				} else {
+					query = $('#pageListForm').serialize();
+				}
+			}
 
-                layer.msg('数据提交中...',{time:500000});
-                $.post(href, query, function(res) {
-                    layer.msg(res.msg, {}, function(){
-                        if (res.code != 0) {
-                            location.reload();
-                        } 
-                    });
-                });
-            };
+			layer.msg('数据提交中...',{time:500000});
+			$.post(href, query, function(res) {
+				layer.msg(res.msg, {}, function(){
+					if (res.result != 0) {
+						location.reload();
+					}else{
+						location.reload();
+					}
+				});
+
+			});
+		};
         if (that.hasClass('confirm')) {
             var tips = that.attr('tips') ? that.attr('tips') : '您确定要执行此操作吗？';
             layer.confirm(tips, {title:false, closeBtn:0}, function(index){
@@ -263,7 +266,7 @@ layui.define(['jquery', 'form', 'layer', 'element','table'], function(exports) {
                 layer.close(index);
             });
         } else {
-           code(that); 
+           code(that);
         }
         return false;
     });

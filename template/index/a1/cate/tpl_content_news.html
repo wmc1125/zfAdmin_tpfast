@@ -1,0 +1,32 @@
+{include file="a1/public/header"}
+
+<body>
+  <!-- nav部分 -->
+  <div class="nav">
+{include file="a1/public/menu"}
+    
+  </div>
+  <!-- main部分 -->
+  <div class="main-newsdate">
+    <div class="layui-container">
+      <p class="news"><a href="news.html">{$cate_res['name']}</a> > {$content['title']}</p>
+      <h1>{$content['title']}</h1>
+      <p class="pushtime">发布时间：<span>{:date("Y-m-d",$content['ctime'])}</span></p>
+      {$content['content']|raw}
+    </div> 
+  </div>
+{include file="a1/public/footer"}
+  
+<script src="__STATIC__/style/layui/layui.js"></script>
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+  layui.config({
+    base: '{$tpl_static}/js/' 
+  }).use('firm'); 
+</script>
+
+</body>
+</html>

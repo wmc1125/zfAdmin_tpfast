@@ -14,7 +14,7 @@ class Base extends Controller
             $this->error('站点已关闭','http://www.wangmingchang.com');
         }
         $this->assign('home',session('home'));
-        $this->assign('web_config',config());
+        $this->assign('web_config',config()['web']);
 
        	$zf_tpl_suffix = Db::name('config')->where(['key'=>'zf_tpl_suffix'])->value('value');
         $this->tpl = ($zf_tpl_suffix==''?'':$zf_tpl_suffix.'/').strtolower(Request::controller()).'/'.strtolower(Request::action());
@@ -35,13 +35,13 @@ class Base extends Controller
 
        //通用导航
        $this->assign('menu',Db::name('category')->where(['status'=>1,'menu'=>1])->order('sort asc,cid asc')->select());
-       $this->assign('links',Db::name('link')->where(['status'=>1])->select());
+       $this->assign('link',Db::name('link')->where(['status'=>1])->select());
         //推荐文章
-        $this->assign('post_sort',Db::name('post')->where(['status'=>1,'relevan_id'=>0])->order('sort desc,id desc')->select());
+        // $this->assign('post_sort',Db::name('post')->where(['status'=>1,'relevan_id'=>0])->order('sort desc,id desc')->select());
         //点击排行
-        $post_hits = Db::name('post')->where(['status'=>1,'relevan_id'=>0])->order('hits desc,id desc')->select();
-        $this->assign('post_hits',$post_hits);
-        $this->assign('hot_post',$post_hits);
+        // $post_hits = Db::name('post')->where(['status'=>1,'relevan_id'=>0])->order('hits desc,id desc')->select();
+        // $this->assign('post_hits',$post_hits);
+        // $this->assign('hot_post',$post_hits);
         $this->assign('cid',0);
         
     }

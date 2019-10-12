@@ -10,14 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
-    <script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-  <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <script src="__STATIC__/style/bootstrap/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="__STATIC__/style/bootstrap/bootstrap-3.3.4.css">
 </head>
 <body>
 
   <div class="layui-fluid">
     <div class="layui-card">
-      
+      <div class="layui-card-header layuiadmin-card-header-auto">
+        <a class="layui-btn layui-btn-sm" href="{:url('index/db_clear',['t'=>'log'])}"></i>清空日志</a>
+      </div>
       <div class="layui-card-body">
         <div style="padding-bottom: 10px;">
         </div>
@@ -29,7 +31,6 @@
               <col width="60">
               <col width="60">
               <col width="60">
-              <!-- <col width="30"> -->
               <col width="60">
               <col>
             </colgroup>
@@ -40,7 +41,6 @@
                 <th>时间</th>
                 <th>IP</th>
                 <th>uid</th>
-                <!-- <th>查看数据</th> -->
                 <th>操作</th>
               </tr> 
             </thead>
@@ -52,9 +52,7 @@
                   <td><?php echo date("Y-m-d H:i:s",$vo['ctime']); ?></td>
                   <td>{$vo['ip']}</td>
                   <td>{$vo['uid']}</td>
-                  <!-- <td><a href="">请到数据库查看</a></td> -->
                   <td> 
-                    <!-- <a class="layui-btn layui-btn-danger layui-btn-sm" onclick="btn_del('common/del_post',{$vo['id']},'admin')"  href="#">删除</a>  -->
                   </td>
                 </tr>
               {/volist}

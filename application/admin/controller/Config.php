@@ -49,6 +49,11 @@ class Config extends Admin
         $data = array_merge($data,$this->common_tag);
         $data['pwd'] = md5($data['pwd']);
         $data['ctime'] = time();
+        //判断是否存在
+        $is_user =  Db::name('admin')->where(['name'=>$data['name']])->find();
+        if($is_user){
+            return jserror('用户名已存在');exit;
+        }
         $res =Db::name('admin')->insert($data); 
         if($res){
             return jssuccess("新增成功");
@@ -76,6 +81,12 @@ class Config extends Admin
                 $data['pwd'] = md5($data['pwd']);
             }else{
                 unset($data['pwd']);
+            }
+            $is_user =  Db::name('admin')->where(['name'=>$data['name']])->find();
+            if($is_user){
+                if($is_user['id']!=$data['id']){
+                    return jserror('用户名已存在');exit;
+                }
             }
             $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
               if($res){
@@ -315,7 +326,7 @@ class Config extends Admin
     {
 
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('admin_log')->where("status!=9")->order("id desc")->paginate(10);
+        $list = Db::name('admin_log')->where(['status'=>1])->order("id desc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);

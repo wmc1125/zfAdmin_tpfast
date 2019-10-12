@@ -27,6 +27,7 @@ class Mysql extends Admin
      */
      public function index($group = 'export')
     {
+        admin_role_check($this->z_role_list,$this->mca,1);
         if ($this->request->isAjax()) {
 
             $group = $this->request->param('group');
@@ -55,6 +56,7 @@ class Mysql extends Admin
     // 备份列表
     public function index2($group = 'import')
     {
+        admin_role_check($this->z_role_list,$this->mca,1);
         if ($this->request->isAjax()) {
 
             $group = $this->request->param('group');
@@ -121,7 +123,7 @@ class Mysql extends Admin
      */
     public function export($id = '', $start = 0)
     {
-
+        admin_role_check($this->z_role_list,$this->mca,1);
         if ($this->request->isPost()) {
 
             if (empty($id)) {
@@ -197,6 +199,7 @@ class Mysql extends Admin
      */
     public function import($id = '')
     {
+        admin_role_check($this->z_role_list,$this->mca,1);
         if (empty($id)) {
             return $this->error('请选择您要恢复的备份文件');
         }
@@ -252,6 +255,7 @@ class Mysql extends Admin
      */
     public function optimize($id = '')
     {
+        admin_role_check($this->z_role_list,$this->mca,1);
         if (empty($id)) {
             return $this->error('请选择您要优化的数据表');
         }
@@ -278,6 +282,7 @@ class Mysql extends Admin
      */
     public function repair($id = '')
     {
+        admin_role_check($this->z_role_list,$this->mca,1);
         if (empty($id)) {
             return $this->error('请选择您要修复的数据表');
         }
@@ -305,6 +310,7 @@ class Mysql extends Admin
      */
     public function del($id = '')
     {
+        admin_role_check($this->z_role_list,$this->mca);
         if (empty($id)) {
             return $this->error('请选择您要删除的备份文件');
         }

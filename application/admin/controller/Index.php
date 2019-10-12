@@ -62,16 +62,23 @@ class Index extends Admin
     // 清除数据库的垃圾箱文件
     public function db_clear(){
         admin_role_check($this->z_role_list,$this->mca);
-        $config=array(
-            'path'     => './db/',//数据库备份路径
-        );
+        $t = input('t','');
+        if($t=='log'){
+                Db::name('admin_log')->where(['status'=>1])->update(['status'=>9]);
+                $this->success('清除完毕');
+        }else{
+            $config=array(
+                'path'     => './db/',//数据库备份路径
+            );
 
-        $tables = Db::query("SHOW TABLE STATUS");
+            $tables = Db::query("SHOW TABLE STATUS");
 
-        foreach($tables as $k=>$vo){
-            Db::table($vo['Name'])->where(['status'=>9])->delete();
+            foreach($tables as $k=>$vo){
+                Db::table($vo['Name'])->where(['status'=>9])->delete();
+            }
+            $this->success('清除完毕');
         }
-        $this->success('清除完毕');
+        
     }
     
 

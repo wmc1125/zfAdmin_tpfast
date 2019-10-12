@@ -9,12 +9,9 @@ class Index extends Controller
 {
     public function index($step = 0)
     {
-        // echo 11;die;
-        if (is_file(Env::get('APP_PATH').'/../install/install.lock')) {// 兼容版本号 < 1.0.8
-            return $this->error('如需重新安装，请手动删除/application/install/install.lock文件');
-        }
-        if (is_file(Env::get('APP_PATH').'install.lock')) {
-            return $this->error('如需重新安装，请手动删除/application/install.lock文件');
+       
+        if (is_file('./install.lock')) {
+            return $this->error('如需重新安装，请手动删除install.lock文件');
         }
 
         switch ($step) {
@@ -81,7 +78,7 @@ class Index extends Controller
     private function step4()
     {
         if ($this->request->isPost()) {
-            if (!is_writable(Env::get('APP_PATH').'database.php')) {
+            if (!is_writable('./config//database.php')) {
                 return $this->error('[app/database.php]无读写权限！');
             }
             $data = input('post.');
@@ -100,7 +97,7 @@ class Index extends Controller
             }
             $cover = $data['cover'];
             unset($data['cover']);
-            $config = include Env::get('APP_PATH').'database.php';
+            $config = include './config/database.php';
             foreach ($data as $k => $v) {
                 if (array_key_exists($k, $config) === false) {
                     return $this->error('参数'.$k.'不存在！');
@@ -147,7 +144,7 @@ class Index extends Controller
         $account = input('post.account');//用户名
         $password = input('post.password');//密码
 
-        $config = include Env::get('APP_PATH').'database.php';
+        $config = include './config/database.php';
         if (empty($config['hostname']) || empty($config['database']) || empty($config['username'])) {
             return $this->error('请先点击测试数据库连接！');
         }
@@ -164,7 +161,7 @@ class Index extends Controller
         }
         // 导入系统初始数据库结构
         // 导入SQL
-        $sql_file = Env::get('APP_PATH').'install/sql/install.sql';
+        $sql_file = './backup/install.sql';
         if (file_exists($sql_file)) {
             $sql = file_get_contents($sql_file);
             $sql_list = parse_sql($sql, 0, ['zf_' => $config['prefix']]);
@@ -182,14 +179,20 @@ class Index extends Controller
         // 注册管理员账号
         $map['gid'] = 1;
         $map['name'] = $account;
-        $map['create_time'] = time();
+        $map['ctime'] = time();
         $map['pwd'] = md5($password);
-
+        //
+        $is_admin = Db::name('admin')->where(['name'=>$map['name']])->find();
+        if($is_admin){
+            $res = Db::name('admin')->where(['name'=>$map['name']])->update(['pwd'=>$map['pwd']]);
+        }else{
+            $res = Db::name('admin')->insert($map);
+        }
         $res = Db::name('admin')->insert($map);
         if (!$res) {
             return $this->error($user->getError() ? $user->getError() : '管理员账号设置失败！');
         }
-        file_put_contents(Env::get('APP_PATH').'install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
+        file_put_contents('./install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
         
         //站点密匙
         $auth = password_hash(request()->time(), PASSWORD_DEFAULT);//网站秘钥
@@ -200,11 +203,11 @@ class Index extends Controller
 // +----------------------------------------------------------------------
 return ['key' => '{$auth}'];
 INFO;
-        file_put_contents(Env::get('APP_PATH').'extra/hs_auth.php', $hs_auth);
+        file_put_contents('./config/zf_auth.php', $hs_auth);
         // 获取站点根目录
         $root_dir = request()->baseFile();
         $root_dir  = preg_replace(['/index.php$/'], [''], $root_dir);
-        return $this->success('系统安装成功，欢迎您使用', $root_dir.'admin.php');
+        return $this->success('系统安装成功，欢迎您使用', $root_dir.'admin');
     }
     
     /**
@@ -242,13 +245,12 @@ INFO;
     {
         $items = [
             ['dir', './application', '读写', '读写', 'ok'],
-            // ['dir', './extend', '读写', '读写', 'ok'],
-            // ['dir', './backup', '读写', '读写', 'ok'],
+            ['dir', './extend', '读写', '读写', 'ok'],
+            ['dir', './backup', '读写', '读写', 'ok'],
+            ['dir', './upload', '读写', '读写', 'ok'],
             ['dir', './public/static', '读写', '读写', 'ok'],
             ['dir', './runtime', '读写', '读写', 'ok'],
             ['file', './config/database.php', '读写', '读写', 'ok'],
-            // ['file', './version.php', '读写', '读写', 'ok'],
-            // ['file', './admin.php', '读写', '读写', 'ok'],
         ];
         // dd($items);
         foreach ($items as &$v) {
@@ -361,10 +363,10 @@ return [
     'query'           => '\\think\\db\\Query',
 ];
 INFO;
-        file_put_contents(Env::get('APP_PATH').'../config/database.php', $code);
+        file_put_contents('./config/database.php', $code);
 
         // 判断写入是否成功
-        $config = include Env::get('APP_PATH').'database.php';
+        $config = include './config/database.php';
          
         if (empty($config['database']) || $config['database'] != $data['database']) {
             return $this->error('[condig/database.php]数据库配置写入失败！');

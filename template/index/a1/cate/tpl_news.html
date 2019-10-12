@@ -1,0 +1,50 @@
+{include file="a1/public/header"}
+
+<body>
+  <!-- nav部分 -->
+  <div class="nav">
+{include file="a1/public/menu"}
+    
+  </div>
+  <!-- banner部分 -->
+  <div class="banner news">
+    <div class="title">
+      <p>{$cate_res['name']}</p>
+      <p class="en">{$cate_res['ename']}</p>
+    </div>
+  </div>
+  <!-- main -->
+  <div class="main-news">
+    <div class="layui-container">
+      <div class="layui-row layui-col-space20">
+        <?php foreach($list as $k=>$vo){ ?>
+        <div class="layui-col-lg6 content">
+          <div>
+            <div class="news-img"><a href="{:url('cate/detail',['id'=>$vo['id']])}"><img src="{$vo['pic']}"></a></div><div class="news-panel">
+              <strong><a href="{:url('cate/detail',['id'=>$vo['id']])}">{$vo['title']}</a></strong>
+              <p class="detail"><span>{$vo['summary']}</span><a href="{:url('cate/detail',['id'=>$vo['id']])}">[详细]</a></p>
+              <p class="read-push">阅读 <span>{$vo['hits']}</span>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<span>{:date('Y-m-d',$vo['ctime'])}</span></p>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+        
+      </div>
+      <div style="text-align: center">{$page|raw}</div>
+    </div>
+  </div>
+{include file="a1/public/footer"}
+ 
+<script src="__STATIC__/style/layui/layui.js"></script>
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+  layui.config({
+    base: '{$tpl_static}/js/' 
+  }).use('firm'); 
+</script>
+
+</body>
+</html>

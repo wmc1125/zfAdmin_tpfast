@@ -98,6 +98,7 @@ class User extends Admin
             }else{
                 unset($data["pwd"]);
             }
+            $data['ctime'] = time();
             $is_user =  Db::name('user')->where(['name'=>$data['name']])->find();
             if($is_user){
                 if($is_user['id']!=$data['id']){

@@ -13,180 +13,74 @@
   
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <blockquote class="layui-elem-quote layui-bg-green">
+          <div id="nowTime">亲爱的{$Think.session.admin.name} 欢迎使用子枫后台管理系统(TpFast系列)模版,在使用过程中有什么问题,可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mc技术论坛</a>留言。当前时间为： <span id="datetime"></span> </div>
+        </blockquote>
+      </div>
+      
       <div class="layui-col-md8">
         <div class="layui-row layui-col-space15">
-          <div class="layui-col-md6">
-            <div class="layui-card">
-              <div class="layui-card-header">快捷方式</div>
-              <div class="layui-card-body">
-                <div class="layui-carousel layadmin-carousel layadmin-shortcut">
-                  <div carousel-item>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs3">
-                        <a href="home/homepage1.html">
-                          <i class="layui-icon layui-icon-console"></i>
-                          <cite>主页一</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="home/homepage2.html">
-                          <i class="layui-icon layui-icon-chart"></i>
-                          <cite>主页二</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="component/layer/list.html">
-                          <i class="layui-icon layui-icon-template-1"></i>
-                          <cite>弹层</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a layadmin-event="im">
-                          <i class="layui-icon layui-icon-chat"></i>
-                          <cite>聊天</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="component/progress/index.html">
-                          <i class="layui-icon layui-icon-find-fill"></i>
-                          <cite>进度条</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="app/workorder/list.html">
-                          <i class="layui-icon layui-icon-survey"></i>
-                          <cite>工单</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="user/user/list.html">
-                          <i class="layui-icon layui-icon-user"></i>
-                          <cite>用户</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/system/website.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>设置</cite>
-                        </a>
-                      </li>
-                    </ul>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                    </ul>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="layui-col-md6">
-            <div class="layui-card">
-              <div class="layui-card-header">待办事项</div>
-              <div class="layui-card-body">
 
-                <div class="layui-carousel layadmin-carousel layadmin-backlog">
-                  <div carousel-item>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs6">
-                        <a href="app/content/comment.html" class="layadmin-backlog-body">
-                          <h3>待审评论</h3>
-                          <p><cite>66</cite></p>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs6">
-                        <a href="app/forum/list.html" class="layadmin-backlog-body">
-                          <h3>待审帖子</h3>
-                          <p><cite>12</cite></p>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs6">
-                        <a href="template/goodslist.html" class="layadmin-backlog-body">
-                          <h3>待审商品</h3>
-                          <p><cite>99</cite></p>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs6">
-                        <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
-                          <h3>待发货</h3>
-                          <p><cite>20</cite></p>
-                        </a>
-                      </li>
-                    </ul>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs6">
-                        <a href="javascript:;" class="layadmin-backlog-body">
-                          <h3>待审友情链接</h3>
-                          <p><cite style="color: #FF5722;">5</cite></p>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+
+          <div class="layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+              <div class="layui-card-header">
+                访问量
+                <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
+              </div>
+              <div class="layui-card-body layuiadmin-card-list">
+                <p class="layuiadmin-big-font">9,999,666</p>
+                <p>
+                  总计访问量
+                  <span class="layuiadmin-span-color">88万 <i class="layui-inline layui-icon layui-icon-flag"></i></span>
+                </p>
               </div>
             </div>
           </div>
+          <div class="layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+              <div class="layui-card-header">
+                访问量
+                <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
+              </div>
+              <div class="layui-card-body layuiadmin-card-list">
+                <p class="layuiadmin-big-font">9,999,666</p>
+                <p>
+                  总计访问量
+                  <span class="layuiadmin-span-color">88万 <i class="layui-inline layui-icon layui-icon-flag"></i></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+              <div class="layui-card-header">
+                访问量
+                <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
+              </div>
+              <div class="layui-card-body layuiadmin-card-list">
+                <p class="layuiadmin-big-font">9,999,666</p>
+                <p>
+                  总计访问量
+                  <span class="layuiadmin-span-color">88万 <i class="layui-inline layui-icon layui-icon-flag"></i></span>
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div class="layui-col-md12">
 
             <div class="layui-card">
               <div class="layui-tab layui-tab-brief layadmin-latestData">
                 <ul class="layui-tab-title">
-                  <li class="layui-this">今日热搜</li>
-                  <li>今日热帖</li>
+                  <li class="layui-this">产品介绍</li>
                 </ul>
                 <div class="layui-tab-content">
                   <div class="layui-tab-item layui-show">
-                    <table id="LAY-index-topSearch"></table>
-                  </div>
-                  <div class="layui-tab-item">
-                    <table id="LAY-index-topCard"></table>
+                    <blockquote class="layui-elem-quote main_btn">
+                      <p class="layui-blue">子枫后台管理系统免费提供大家使用,有什么问题可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mcj技术论坛</a>提出异议,有什么好用的功能也可以写出建议,只为不断完善后台系统,后台可免费使用,但必须保留版权声明</p>
+                    </blockquote>
                   </div>
                 </div>
               </div>
@@ -209,29 +103,25 @@
                 <tr>
                   <td>当前版本</td>
                   <td>
-                    <script type="text/html" template>
-                     v1.0.1
-                      <a href="http://fly.layui.com/docs/3/" target="_blank" style="padding-left: 15px;">更新日志</a>
-                    </script>
+                     
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(TpFast系列)v1.0.1</a>
                   </td>
                 </tr>
                 <tr>
                   <td>基于框架</td>
                   <td>
-                    <script type="text/html" template>
-                     Tp5.1+layuiadmin
-                    </script>
+                     <a href="http://www.thinkphp.cn">Tp5.1</a> + <a href="https://www.layui.com">layui</a> + <a href="https://gitee.com/yinqi/Light-Year-Admin-Template">光年后台模板</a>
                  </td>
                 </tr>
                 <tr>
                   <td>主要特色</td>
-                  <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                  <td>零门槛 / 响应式 / 清爽 / 极简 / 快速开发</td>
                 </tr>
                 <tr>
                   <td>获取渠道</td>
                   <td style="padding-bottom: 0;">
                     <div class="layui-btn-container">
-                      <a href="http://demo.zf.90ckm.com" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
                     </div>
                   </td>
                 </tr>
@@ -240,20 +130,8 @@
           </div>
         </div>
 
-        <div class="layui-card">
-          <div class="layui-card-header">产品动态</div>
-          <div class="layui-card-body">
-            <div class="layui-carousel layadmin-carousel layadmin-news" data-autoplay="true" data-anim="fade" lay-filter="news">
-              <div carousel-item>
-                <div><a href="http://fly.layui.com/docs/2/" target="_blank" class="layui-bg-red">layuiAdmin 快速上手文档</a></div>
-                <div><a href="http://fly.layui.com/vipclub/list/layuiadmin/" target="_blank" class="layui-bg-green">layuiAdmin 会员讨论专区</a></div> 
-                <div><a href="http://www.layui.com/admin/#get" target="_blank" class="layui-bg-blue">获得 layui 官方后台模板系统</a></div>
-              </div>
-            </div>
-          </div>
-        </div> 
 
-        <div class="layui-card aaaaa">
+        <!-- <div class="layui-card aaaaa">
           <div class="layui-card-header">
             提示消息
           </div>
@@ -263,7 +141,7 @@
             <p>子曰：君子不用防，小人防不住。请务必通过官网正规渠道，获得 <a href="http://www.layui.com/admin/" target="_blank">layuiAdmin</a>！</p>
             <p>—— 贤心（<a href="http://www.layui.com/" target="_blank">layui.com</a>）</p>
           </div>
-        </div> 
+        </div>  -->
       </div>
       
     </div>
@@ -272,21 +150,13 @@
 
   <script src="__STATIC__/style/layui/layui.js?t=1"></script>  
   <script>
- layui.use(['console'],function(){
-    var $ = layui.$
+   layui.use(['layer'],function(){
+      var $ = layui.$
 
 
-    layer.open({
-      type: 1,
-      shade: false,
-      title: false, //不显示标题
-      content: $('.aaaaa'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-      cancel: function(){
-        // layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
-      }
+
     });
-
-  });
+ setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
 
   </script>
 </body>

@@ -1,136 +1,25 @@
-<!--底部 col-md-offset-2 -->
-<div class="container back">
-    <div class="row">
-        <div class="col-md-12 ">
-            <p></p>
-            <p class="text-center">
-                <span>{$web_config['web']['site_copyright']} </span>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank">{$web_config['web']['site_icp']}</a>
-            </p>
-            <p class="text-center"><span>联系方式：<a href="/"><span>{$web_config['web']['site_mail']}</span></a></span> </p>
+<!-- footer部分 -->
+  <div class="footer">
+    <div class="layui-container">
+      <p class="footer-web">
+        <?php foreach($link as $k=>$vo){ ?>
+        <a href="{$vo['url']}" target="_blank">{$vo['name']}</a>
+        <?php } ?>
+      </p>
+      <div class="layui-row footer-contact">
+        <div class="layui-col-sm2 layui-col-lg1"><img src="{$tpl_static}/img/erweima.jpg"></div>
+        <div class="layui-col-sm10 layui-col-lg11">
+          <div class="layui-row">
+            <div class="layui-col-sm6 layui-col-md8 layui-col-lg9">
+              <p class="contact-top"><i class="layui-icon layui-icon-cellphone"></i>&nbsp;{$web_config['site_hotline']}&nbsp;&nbsp;&nbsp;</p>
+              <p class="contact-bottom"><i class="layui-icon layui-icon-home"></i>&nbsp;{$web_config['site_mail']}</span></p>
+            </div>
+            <div class="layui-col-sm6 layui-col-md4 layui-col-lg3">
+              <p class="contact-top"><span class="right">该模板版权归 <a href="https://www.layui.com/" target="_blank">layui.com</a> 所有</span></p>
+              <p class="contact-bottom"><span class="right">{$web_config['site_copyright']}&nbsp;&nbsp;{$web_config['site_icp']}</span></p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div><!--底部 end-->
-
-<script src="{$tpl_static}js/jquery.min.js"></script>
-<script src="{$tpl_static}js/bootstrap.min.js"></script>
-<script src="{$tpl_static}js/holder.min.js"></script>
-<script src="{$tpl_static}style/layer/layer.js"></script>
-
-<style>
-.navbar {
-		position: relative;
-		min-height: 50px;
-		margin-bottom: 0;
-		border: 1px solid transparent;
-	}
-	.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-		background: #009999;
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		-webkit-transform: scale(0);
-		-ms-transform: scale(0);
-		transform: scale(0);
-		-webkit-transform-origin: left top;
-		-ms-transform-origin: left top;
-		transform-origin: left top;
-	}
-	.img-responsive {
-		display: block;
-		height: auto;
-		max-width: 100%;
-		margin: 0 auto;
-	}
-	.swiper-container {
-		margin: 0 auto;
-		position: relative;
-		overflow: hidden;
-		list-style: none;
-		padding: 0;
-		z-index: 1;
-		background: #000;
-	}
-</style>
-<script src="{$tpl_static}js/swiper.min.js"></script>
-<script>
-var mySwiper = new Swiper ('.swiper-container', {
-    direction: 'horizontal', // 垂直切换选项 vertical
-    loop:true, // 循环模式选项 
-    autoplay: false,  // 自动切换
-    effect : 'fade', // 切换效果 默认为"slide"（位移切换），可设置为'slide'（普通切换、默认）,"fade"（淡入）"cube"（方块）"coverflow"（3d流）"flip"（3d翻转）。
-    // 如果需要分页器
-    pagination: {
-        el: '.swiper-pagination',
-        type: 'progressbar'
-
-    },
-    // 如果需要前进后退按钮
- /*   navigation: {
-        nextEl: '.swiper-button-next',
-        progressbarFillClass : 'my-bullet-active',
-    }*/
-});
-function page(page){
-	//加载层
-	layer.msg('数据加载中', {
-		icon: 16,
-		time: 1000,
-		shade: 0.01
-	});
-	// 发异步请求完成分页
-	$.ajax({
-		type: "POST",
-		url: 'http://.cn/pages',
-		dataType: 'json',
-		cache: false,
-		data: { page: page, _token: "pFM77yRU1PUINSIvkvU1gm60QeqRiFBLxCsS6jjB"},
-		success: function(msg) {
-			if(msg){
-				$('.ul-list').html(msg);
-					 $(document).ready(function() {
-						$(function() {
-							// 异步数据加载完成  回到文章列表顶部
-								$('html,body').animate({
-									scrollTop:230
-								},200);
-								return false;
-						});
-				});
-			}
-		}
-	});
-}
-</script>
-
-
-
-<!--返回顶部 start-->
-<script>
-    $(document).ready(function() {
-        //首先将.last 隐藏
-        $(".last").hide();
-        //当滚动条的位置处于距顶部150像素以下时，返回顶部按钮显示，否则隐藏
-        $(function() {
-            $(window).scroll(function() {
-                if ($(window).scrollTop() > 150) {
-                    $(".last").fadeIn(1500);
-                } else {
-                    $(".last").fadeOut(1500);
-                }
-            });
-            // 点击返回顶部
-            $('.last').on('click',function(){
-                $('html,body').animate({
-                    scrollTop:0
-                },500);
-                return false;
-            });
-        });
-    });
-</script>
-
-</body>
-</html>
+  </div>

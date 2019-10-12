@@ -1,17 +1,17 @@
 <?php
 /**
  * 站点信息最后修改于 
- * 2019/09/20 11:58:16
+ * 2019/10/09 16:27:15
  */
 return [
 	'site_name' => '测试站点',
-	'site_url' => 'http://demo.zf.90ckm.com',
-	'site_mail' => 'wangmingchang1125@gmail.com',
-	'site_hotline' => '1111211',
+	'site_url' => 'http://v1.zf.90ckm.com',
+	'site_mail' => '287851074@qq.com',
+	'site_hotline' => '88888888888',
 	'site_fax' => '1111',
 	'site_address' => '上海',
-	'site_copyright' => '© 2018 wangmingchang.com ',
-	'site_icp' => '1111',
+	'site_copyright' => '© 2019 90ckm.com ',
+	'site_icp' => '鲁ICP 888888888',
 	'site_title' => '测试站点',
 	'site_keywords' => '子枫,测试站点',
 	'site_description' => '子枫 通用后台管理模板系统子枫 通用后台管理模板系统子枫 通用后台管理模板系统子枫 通用后台管理模板系统',

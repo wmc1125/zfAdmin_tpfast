@@ -1,23 +1,28 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+//子枫后台管理系统
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
-
 return [
-
+    // 数据库类型
+    'type'            => 'mysql',
+    // 服务器地址
+    'hostname'        => '127.0.0.1',
+    // 数据库名
+    'database'        => 'v1_fast_zf_90ckm',
+    // 用户名
+    'username'        => 'v1_fast_zf_90ckm',
+    // 密码
+    'password'        => 'XsE3en27mZsRNhjs',
+    // 端口
+    'hostport'        => '3306',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
     'params'          => [],
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
-    
+    // 数据库表前缀
+    'prefix'          => 'zf_',
     // 数据库调试模式
     'debug'           => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
@@ -28,8 +33,6 @@ return [
     'master_num'      => 1,
     // 指定从服务器序号
     'slave_no'        => '',
-    // 自动读取主库数据
-    'read_master'     => false,
     // 是否严格检查字段是否存在
     'fields_strict'   => true,
     // 数据集返回类型
@@ -42,52 +45,6 @@ return [
     'sql_explain'     => false,
     // Builder类
     'builder'         => '',
-    
-    // 是否需要断线重连
-    'break_reconnect' => false,
-    // 断线标识字符串
-    'break_match_str' => [],
-// --------mongodb----------
-
-        // 数据库类型
-    'type'            => 'mysql',
-    // 服务器地址
-    'hostname'        => '127.0.0.1',
-
-    'database'        => 'v1_fast_zf_90ckm',
-    'username'        => 'v1_fast_zf_90ckm',
-    'password'        => 'XsE3en27mZsRNhjs',
-
-
-//    'database'        => 'BT_DB_NAME',
-//    'username'        => 'BT_DB_USERNAME',
-//    'password'        => 'BT_DB_PASSWORD',
-
-    // 端口
-    'hostport'        => '',
     // Query类
-    'query'           => '\\think\\db\\Query',
-    // // 数据库表前缀
-    'prefix'          => 'zf_',
-
-// --------mongodb----------
-    // // 数据库类型
-    // 'type'           => '\think\mongo\Connection',
-    // // 设置查询类
-    // 'query'          => '\think\mongo\Query',
-    // // 服务器地址
-    // 'hostname'       => '127.0.0.1',
-    // // 集合名
-    // 'database'       => 'zf_demo',
-    // // 用户名
-    // 'username'       => '',
-    // // 密码
-    // 'password'       => '',
-    // // 端口
-    // 'hostport'       => '27017',
-    // // // 数据库表前缀
-    // 'prefix'          => '',
-    // // 强制把_id转换为id
-    // 'pk_convert_id'  => true,
-
+    'query'           => '\think\db\Query',
 ];

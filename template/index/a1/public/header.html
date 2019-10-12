@@ -1,117 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="cn">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>{$seo['title']}</title>
-    <meta name="keywords" content="{$seo['keywords']}" />
-    <meta name="description" content="{$seo['description']}" />
-	<link href="{$tpl_static}css/swiper.min.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="{$tpl_static}css/bootstrap.min.css" rel="stylesheet">
-    <link href="{$tpl_static}css/carousel.css" rel="stylesheet">
-	<style>.margin-width{
-			margin-bottom: 8px;
-			margin-top: 1px;
-		}
-		.font-size{
-			font-size: 16px;
-		}
-		.ul-li li{
-			margin:0 0 5px 0;
-		}
-		.a-color{
-			color: #333;
-			font-weight:400;
-			font-family: Georgia;
-			margin:0 0 5px 0;
-		
-		}
-		.a-color:hover{
-			color: #33ccff;
-			text-decoration: none;
-		}
-		.list-group a:hover{
-			background: #33ccff;
-			color: #fff;
-		}
-		.modal-dialog {
-			width: 600px;
-			margin: 190px auto;
-		}
-		.last span{
-			position: fixed;
-			z-index: 110;
-			width: 70px;
-			height: 70px;
-			right: 25px;
-			bottom: 55px;
-			cursor: pointer;
-			text-align: center;
-			line-height: 70px;
-			background-color: #00b7ee;
-			border-radius: 50%;
-			opacity: 0.8;
-			color: #fff;
-		}
-		.last:hover{
-			background-color: #1fb5ad;
-			color: #fff;
-		}
-		body {
-			color: #5a5a5a;
-			padding-bottom: 0;
-		}
-
-		.back,.back a{
-		   background-color: #000;
-			color: #999;
-			padding-bottom: 10px;
-			padding-top: 5px;
-			width: 100%;
-		}
-	</style>
-	<!-- Matomo -->
-<script type="text/javascript">
-  var _paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://tongji.wangmingchang.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '8']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+  <title>{$seo['title']}</title>
+  <meta name="keywords" content="{$seo['keywords']}" />
+  <meta name="description" content="{$seo['description']}" />
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css">
+  <link rel="stylesheet" href="{$tpl_static}/css/index.css">
+  <script src="__STATIC__/style/bootstrap/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="__STATIC__/style/bootstrap/bootstrap-3.3.4.css">
 </head>
-<body>
-<nav class="navbar navbar-inverse" >  
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/" title="{$web_config['web']['site_name']}">{$web_config['web']['site_name']}</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/" title="/">首页 </a>
-                </li>
-                <?php foreach($menu as $k=>$vo){ ?>
-                <li class="<?php echo $cid==$vo['cid']?'active':''; ?>"><a href="{:url('cate/list',['cid'=>$vo['cid']])}" title="{$vo['name']}">{$vo['name']}</a></li>
-                <?php } ?>
-                <!-- <li class="<?php echo $cid==$vo['cid']?'active':''; ?>"><a href="{:url('cate/liuyan')}" title="{$vo['name']}">留言</a></li> -->
-
-            </ul>
-        </div>
-    </div>
-</nav>

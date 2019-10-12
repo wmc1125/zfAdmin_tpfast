@@ -1,7 +1,8 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../../../') . '/vendor/aliyuncs/oss-sdk-php/autoload.php';
 use OSS\OssClient as AliOssClient;
-
+require_once realpath(dirname(__FILE__) . '/../../../../../') . '/extend//zf/GetConfig.php';
+use zf\GetConfig;
 /**
  * Created by JetBrains PhpStorm.
  * User: taoqili
@@ -111,26 +112,9 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
-
-        // //创建目录失败
-        // if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-        //     $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-        //     return;
-        // } else if (!is_writeable($dirname)) {
-        //     $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-        //     return;
-        // }
-
-        // //移动文件
-        // if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
-        //     $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
-        // } else { //移动成功
-        //     $this->stateInfo = $this->stateMap[0];
-        // }
-        // //********************新增
-        // if($this->water){
-        //     $this->watermark($this->filePath,$this->filePath);
-        // }
+        $GetConfig = new GetConfig();
+    var_dump($GetConfig->img());
+        var_dump(1);die;
          //oss设置
         $ossconfig = [
             'KeyId'      => 'LTAI356wrww4PrUs',  //您的Access Key ID

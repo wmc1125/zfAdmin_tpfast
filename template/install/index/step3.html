@@ -1,7 +1,7 @@
 {include file="index/head" /}
 <style type="text/css">
-.layui-table td, .layui-table th{text-align:left;}
-.layui-table tbody tr.no{background-color:#f00;color:#fff;}
+    .layui-table td, .layui-table th{text-align:left;}
+    .layui-table tbody tr.no{background-color:#f00;color:#fff;}
 </style>
 <div class="header">
     <h1>感谢您选择{:config('hisiphp.name')}</h1>
@@ -55,7 +55,7 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">覆盖数据库</label>
-            <div class="layui-input-inline w200">
+            <div class="layui-input-inline " style="width: 200px">
                 <input type="radio" name="cover" value="1" title="覆盖">
                 <input type="radio" name="cover" value="0" title="不覆盖" checked>
             </div>

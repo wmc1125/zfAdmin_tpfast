@@ -148,7 +148,8 @@ class Common extends Admin
         $file = $_FILES['file'];
         $img_config = config()['img'];
         if($img_config['file_save_type']==0){
-            $info = $file->move( './upload/file');
+            $file2 = request()->file('file');
+            $info = $file2->move('./upload/file');
             $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
             $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
         }else{

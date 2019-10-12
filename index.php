@@ -14,16 +14,9 @@ namespace think;
 
 // 加载基础文件
 require __DIR__ . '/thinkphp/base.php';
-// 插件目录
-define('ADDON_PATH', __DIR__ . '/addons/');
-// 开启系统行为
-define('APP_HOOK', true);
-// 支持事先使用静态方法设置Request对象和Config对象
+
 //安装程序
-if( !is_file('./application/install.lock')) {
-    define('BIND_MODULE','install');
-   
-}
+!is_file('./install.lock')?define('BIND_MODULE','install'):define('BIND_MODULE','index');
 // 执行应用并响应
 Container::get('app')->run()->send();
  
