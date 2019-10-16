@@ -7,12 +7,19 @@
  * @Last Modified time: 2019-09-27 17:04:10
  */
 namespace zf;
-use \think\facade\Config;
+use think\Controller;
+use think\facade\Request;
+use think\Db;
+use think\facade\Config;
 
-class GetConfig{
+class GetConfig
+{
     public function img(){
+        $r = Db::name('admin')->select();
+
+        var_dump($r);die;
 //        return config('app.');
-        return Config::get('app.');
+//        return Config::get('app.');
     }
 
 

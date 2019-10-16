@@ -22,7 +22,6 @@ Route::get('api/:version/:controller/:function','api/:version.:controller/:funct
 
 
 
-
 //demo
 // Route::get('Dtest1', 'demo/test/test1');
 Route::get('Dtest2', 'demo/test/test2');

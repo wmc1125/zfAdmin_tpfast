@@ -1,8 +1,6 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../../../') . '/vendor/aliyuncs/oss-sdk-php/autoload.php';
 use OSS\OssClient as AliOssClient;
-require_once realpath(dirname(__FILE__) . '/../../../../../') . '/extend//zf/GetConfig.php';
-use zf\GetConfig;
 /**
  * Created by JetBrains PhpStorm.
  * User: taoqili
@@ -112,9 +110,8 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
-        $GetConfig = new GetConfig();
-    var_dump($GetConfig->img());
-        var_dump(1);die;
+
+
          //oss设置
         $ossconfig = [
             'KeyId'      => 'LTAI356wrww4PrUs',  //您的Access Key ID

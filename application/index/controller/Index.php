@@ -3,7 +3,7 @@ namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
 use app\common\behavior\Hooks;
-
+use zf\GetConfig;
 class Index extends Base
 {
 	public function __construct ( Request $request = null ){
@@ -27,8 +27,8 @@ class Index extends Base
    
     public function test()
     {
-        $data =  hook('demo', ['p'=>'page']);
-        dd($data);
+        $r = new GetConfig();
+        dd($r->img());
     }
 
    
