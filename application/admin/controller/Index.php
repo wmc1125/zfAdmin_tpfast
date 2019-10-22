@@ -6,7 +6,7 @@ use think\facade\Cache;
 use think\facade\Request;
 use think\Db;
 use zf\Database as dbOper;
-
+use zf\ZfConfig;
 
 use app\admin\controller\Common;
 
@@ -79,6 +79,11 @@ class Index extends Admin
             $this->success('清除完毕');
         }
         
+    }
+
+    public  function test(){
+//        $r = new ZfConfig();
+        dd(\zf\ZfConfig::test());
     }
     
 

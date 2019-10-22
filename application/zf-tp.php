@@ -181,15 +181,7 @@ function jserror($msg, $url = 'back') {
 	// zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
   	echo json_encode(array("msg" => $msg, "url" => $url, "result" => '0'));exit;
 }
-function dd($msg=''){
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-	echo "<pre>";
-  	var_dump($msg);die;
-}
-function d($t='user'){
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-  echo DB::table($t)->getlastsql();
-}
+
 /**
 * 数组 转 对象
 *

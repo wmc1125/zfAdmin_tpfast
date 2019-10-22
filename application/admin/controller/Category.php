@@ -240,7 +240,7 @@ class Category extends Admin
                 $data['ctime'] =  time();
             }
             $res = Db::name('post')->insertGetId($data);
-            $this->get_content_pic_list($res);
+            // $this->get_content_pic_list($res);
             if($res){
                  return jssuccess('新增成功');
             }else{
