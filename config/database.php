@@ -12,7 +12,7 @@ return [
     // 用户名
     'username'        => 'v1_fast_zf_90ckm',
     // 密码
-    'password'        => 'XsE3en27mZsRNhjs',
+    'password'        => '3yTxA63HS3iWC67Y',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
