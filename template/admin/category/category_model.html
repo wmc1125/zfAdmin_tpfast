@@ -73,7 +73,10 @@
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
                     </div>
                   </td>
-                  <td>  <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑权限","{:url('category/category_model_edit',['id' => $vo['id']] )}")'>编辑</button> </td>
+                  <td>  
+                      <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑权限","{:url('category/category_model_edit',['id' => $vo['id']] )}")'>编辑</button> 
+                      <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑权限","{:url('category/category_model_edit',['id' => $vo['id']] )}")'>设置参数</button> 
+                  </td>
                 </tr>
               {/volist}         
             </tbody>
