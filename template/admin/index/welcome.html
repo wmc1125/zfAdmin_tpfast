@@ -129,6 +129,58 @@
             </table>
           </div>
         </div>
+        <div class="layui-card">
+          <div class="layui-card-header">服务器信息</div>
+          <div class="layui-card-body layui-text">
+            <table class="layui-table">
+              <colgroup>
+                <col width="400">
+                <col width="300">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>站点信息:</td>
+                  <td>
+                      <?php echo $_SERVER["SERVER_NAME"];?>(IP:<?php echo $_SERVER["SERVER_ADDR"];?>)
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>服务器：</td>
+                  <td>
+                    <?php echo php_uname('s').' '.php_uname('r');?>
+                  </td>
+                </tr>
+                <tr>
+                  <td>站点物理路径：</td>
+                  <td>
+                    <?php echo $_SERVER['DOCUMENT_ROOT'];?>
+                  </td>
+                </tr>
+                <tr>
+                  <td>POST大小：</td>
+                  <td>
+                    <?php echo ini_get('max_execution_time').'M';?>
+                  </td>
+                </tr>
+                  <tr>
+                  <td>上传大小：</td>
+                  <td>
+                    <?php echo ini_get('upload_max_filesize');?>
+                  </td>
+                </tr>
+                  <tr>
+                  <td>服务器时间：</td>
+                  <td>
+                    <?php echo date('Y-m-d H:i:s');?>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
 
 
         <!-- <div class="layui-card aaaaa">
