@@ -406,6 +406,10 @@ class Category extends Admin
     public function category_model_parm()
     {
         admin_role_check($this->z_role_list,$this->mca);
+        $all_list = Db::query("SHOW FULL COLUMNS FROM zf_post");
+        $this->assign("all_list",$all_list);
+
+        // dd($all_list);
          //读取
         $mid = input('mid',0);
         $where[] = ['status','<>',9];
@@ -450,6 +454,8 @@ class Category extends Admin
          } 
          $res = Db::name('category_model_parm')->where(['id'=>input('id')])->find();
          $this->assign("res",$res);
+         $all_list = Db::query("SHOW FULL COLUMNS FROM zf_post");
+         $this->assign("all_list",$all_list);
          return view();
      }
     

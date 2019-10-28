@@ -13,15 +13,26 @@
     <form class="info_tj" onclick="return false">
       <input type="hidden" name="id" value="{$res.id}">
       <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-inline">
+          <input type="text" name="name"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.name}">
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">键</label>
         <div class="layui-input-inline">
-          <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.name}">
+            <select name="key" lay-filter="key">
+              <option value="{$res.key}" selected="">{$res.key}</option>
+              <?php foreach($all_list as $k=>$vo){  if($vo['Field']!='id'){ ?>
+                <option value="{$vo['Field']}" >{$vo['Field']}</option>
+              <?php }}?>
+            </select>
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">值</label>
         <div class="layui-input-inline">
-            <input type="text" name="value" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.value}">
+            <input type="text" name="value"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.value}">
         </div>
       </div>
       
@@ -36,9 +47,14 @@
         <label class="layui-form-label">类型</label>
         <div class="layui-input-inline">
             <select name="type" lay-filter="type">
-                <option value="input" selected="">input</option>
+                <option value="{$res.type}" selected="">{$res.type}</option>
+                <option value="input" >input</option>
                 <option value="radio">radio</option>
                 <option value="select">select</option>
+                <option value="album">album</option>
+                <option value="time">time</option>
+                <option value="pic">pic</option>
+                <option value="file">file</option>
                 <option value="textarea">textarea</option>
                 <option value="ueditor">ueditor</option>
             </select>

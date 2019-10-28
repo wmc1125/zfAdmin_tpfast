@@ -17,9 +17,19 @@
           <div class="layui-form-item">
             <input type="hidden" name="mid" id="" value="{$mid}">
             <div class="layui-inline">
-              <label class="layui-form-label">键</label>
+              <label class="layui-form-label">名称</label>
               <div class="layui-input-block">
                 <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">键</label>
+              <div class="layui-input-block">
+                  <select name="type" lay-filter="type">
+                    <?php foreach($all_list as $k=>$vo){ if($vo['Field']!='id'){ ?>
+                      <option value="{$vo['Field']}" >{$vo['Field']}</option>
+                    <?php }}?>
+                  </select>
               </div>
             </div>
             <div class="layui-inline">
@@ -46,6 +56,7 @@
               <col width="30">
               <col width="60">
               <col width="60">
+              <col width="60">
               <col width="50">
               <col width="50">
               <col width="50">
@@ -59,6 +70,7 @@
             <thead>
               <tr>
                 <th>ID</th>
+                <th>名称</th>
                 <th>键</th>
                 <th>默认值</th>          
                 <th>双排</th>
@@ -76,6 +88,7 @@
                 <tr>
                   <td>{$vo['id']}</td>
                   <td>{$vo['name']}</td>
+                  <td><?php echo \zf\ZfTool::str_in_two_array($vo['key'],$all_list)?$vo['key']:$vo['key'].'不存在,请关闭'; ?></td>
                   <td>{$vo['value']}</td>
                   <td>{$vo['is_two']}</td>
                   <td>{$vo['position']}</td>
