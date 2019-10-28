@@ -12,20 +12,20 @@
 <body>
   <div class="layui-fluid">
     <div class="layui-card">
-      <form onclick="return false;" class="info_tj">
+      <form class="info_tj">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
           <div class="layui-form-item">
-            
+            <input type="hidden" name="mid" id="" value="{$mid}">
             <div class="layui-inline">
-              <label class="layui-form-label">名称</label>
+              <label class="layui-form-label">键</label>
               <div class="layui-input-block">
                 <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
               </div>
             </div>
             <div class="layui-inline">
-              <label class="layui-form-label">Model</label>
+              <label class="layui-form-label">值</label>
               <div class="layui-input-inline">
-                <input type="text" name="model" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="value" placeholder="请输入" autocomplete="off" class="layui-input">
               </div>
             </div>
              <div class="layui-inline">
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="layui-inline">
-                <button class="layui-btn layui-btn-sm " onclick="tijiao_data('category/category_model_add',0)"  >新增</button>
+                <a class="layui-btn layui-btn-sm tj_btn"  >新增</a>
             </div>
           </div>
         </div>
@@ -49,13 +49,23 @@
               <col width="50">
               <col width="50">
               <col width="50">
+              <col width="60">
+              <col width="50">
+              <col width="50">
+              <col width="50">
+              <col width="50">
               <col>
             </colgroup>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>名称</th>
-                <th>Model</th>          
+                <th>键</th>
+                <th>默认值</th>          
+                <th>双排</th>
+                <th>位置(默认左)</th>
+                <th>类型</th>
+                <th>只读</th>
+                <th>隐藏</th>
                 <th>排序</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -66,7 +76,12 @@
                 <tr>
                   <td>{$vo['id']}</td>
                   <td>{$vo['name']}</td>
-                  <td>{$vo['model']}</td>
+                  <td>{$vo['value']}</td>
+                  <td>{$vo['is_two']}</td>
+                  <td>{$vo['position']}</td>
+                  <td>{$vo['type']}</td>
+                  <td>{$vo['readonly']}</td>
+                  <td>{$vo['hidden']}</td>
                   <td>{$vo['sort']}</td>
                   <td> 
                     <div class=" layui-form" lay-filter="component-form-element">        
@@ -74,9 +89,9 @@
                     </div>
                   </td>
                   <td>  
-                      <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/category_model_edit',['id' => $vo['id']] )}")'>编辑</button> 
-                      <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("参数列表","{:url('category/category_model_parm',['mid' => $vo['id']] )}")'>设置参数</button> 
-                  </td>
+                      <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/category_model_parm_edit',['id' => $vo['id']] )}")'>编辑</button> 
+                      <a class="layui-btn btn_del layui-btn-danger layui-btn-xs" rel="{$vo['cid']}" href="#">删除</a> 
+                    </td>
                 </tr>
               {/volist}         
             </tbody>
@@ -107,6 +122,50 @@
             layer.msg(res.msg, {icon: 2});
           }
         },"json");
+    });
+    $(".tj_btn").on("click",function(){
+        var index = layer.load(2);
+		var data = $(".info_tj input,.info_tj select,.info_tj textarea,.info_tj option,.info_tj radio").serialize();      
+      	$.ajax({
+          type:'post',
+          url:"{:url('category/category_model_parm_add')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            if(res.result==1){
+              layer.msg(res.msg, {icon: 1});
+              layer.close()
+              setTimeout(function() {
+					window.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+              layer.close(index)
+            }   
+          }
+      	})
+    })
+    // 删除
+    $(".btn_del").on("click",function(){
+      var id = $(this).attr("rel");
+      layer.confirm('确认删除？', {
+        btn: ['删除','取消'] //按钮
+      }, function(){
+        //执行删除操作
+        $.get("{:url('common/del_post')}",{id:id,db:'category_model_parm'},function(res){
+          if(res.result==1){
+            layer.msg("删除成功", {icon: 1});
+            setTimeout(function() {
+              location.reload(true);
+            }, 1000);
+          }else{
+            layer.msg(res.msg, {icon: 2});
+          }
+        },"json");
+
+      }, function(){
+          //取消的操作
+      });
     });
 
 

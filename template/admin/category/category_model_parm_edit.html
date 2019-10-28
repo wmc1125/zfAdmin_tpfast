@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+</head>
+<body>
+  <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+    <form class="info_tj" onclick="return false">
+      <input type="hidden" name="id" value="{$res.id}">
+      <div class="layui-form-item">
+        <label class="layui-form-label">键</label>
+        <div class="layui-input-inline">
+          <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.name}">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">值</label>
+        <div class="layui-input-inline">
+            <input type="text" name="value" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.value}">
+        </div>
+      </div>
+      
+      <div class="layui-form-item">
+        <label class="layui-form-label">位置</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="position" value="1" title="左" <?php echo $res['position']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+            <input type="radio" name="position" value="2" title="右" <?php echo $res['position']==2?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+            <select name="type" lay-filter="type">
+                <option value="input" selected="">input</option>
+                <option value="radio">radio</option>
+                <option value="select">select</option>
+                <option value="textarea">textarea</option>
+                <option value="ueditor">ueditor</option>
+            </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">只读</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="readonly" value="1" title="是" <?php echo $res['readonly']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+            <input type="radio" name="readonly" value="0" title="否" <?php echo $res['readonly']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">隐藏</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="hidden" value="1" title="是" <?php echo $res['hidden']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+            <input type="radio" name="hidden" value="0" title="否" <?php echo $res['hidden']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-inline">
+          <input type="text" name="sort"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.sort}">
+        </div>
+      </div>
+      
+      <div class="layui-form-item">
+        <label class="layui-form-label">状态:</label>
+        <div class="layui-input-block">
+          <input type="radio" name="status" value="1" title="开启" <?php echo $res['status']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+          <input type="radio" name="status" value="0" title="关闭" <?php echo $res['status']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+          
+        </div>
+      </div>
+      <div class="layui-form-item" >
+        <div class="layui-input-block">
+          <button class="layui-btn layui-btn-sm" onclick="tijiao_data('ategory/category_model_parm_edit')"  lay-submit lay-filter="formDemo">立即提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="__STATIC__/style/layui/layui.js"></script>
+  <script type="text/javascript" src="__STATIC__/system/common.js"></script>  
+
+  <script>
+ layui.use(['form', 'upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,upload = layui.upload ;
+
+    
+
+    
+  })
+  </script>
+</body>
+</html>

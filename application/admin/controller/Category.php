@@ -98,6 +98,8 @@ class Category extends Admin
         return view();
 
     }
+    
+    
      //增加
     public function category_model_add()
     {
@@ -215,10 +217,14 @@ class Category extends Admin
         if(request()->isGet()){
             $cid = input("cid");
             $mid = input("mid");
-            $m_res =Db::name('category_model')->field('model')->where(['id'=>$mid])->find();
-            $tpl = 'category/'.$m_res['model'].'/add';
+            $m_res =Db::name('category_model')->field('model,is_two')->where(['id'=>$mid])->find();
+            $tpl = 'category/zf_tpl/add';
             $this->assign('cid',$cid);
             $this->assign('mid',$mid);
+            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
+            $this->assign('m_list',$m_list);
+            $this->assign('m_res',$m_res);
+
             return view($tpl);
         } 
         if(request()->isPost()){
@@ -394,6 +400,58 @@ class Category extends Admin
         return jssuccess('已保存');
 
     }
+    /**
+     *模型的参数列表
+     */
+    public function category_model_parm()
+    {
+        admin_role_check($this->z_role_list,$this->mca);
+         //读取
+        $mid = input('mid',0);
+        $where[] = ['status','<>',9];
+        $where[] = ['mid','=',$mid];
+        $list = Db::name('category_model_parm')->where($where)->order("sort asc, id asc")->select();
+        $this->assign("list",$list);
+        $this->assign("mid",$mid);
+        return view();
+
+    }
+     //增加
+     public function category_model_parm_add()
+     {
+         admin_role_check($this->z_role_list,$this->mca,1);
+         if(request()->isPost()){ 
+             $data = input('post.');
+             if($data['name']==''){
+                 return jserror('请填写信息');exit;
+             }
+             $data = array_merge($data,$this->common_tag);
+             $res =Db::name('category_model_parm')->insert($data);
+             if($res){
+                 return jssuccess('新增成功');
+             }else{
+                 return jserror('新增失败');exit;
+             } 
+         }  
+         return view();   
+     }
+     //修改
+     public function category_model_parm_edit()
+     {
+         admin_role_check($this->z_role_list,$this->mca,1);
+         if(request()->isPost()){
+             $data = input('post.');
+             $res =  Db::name('category_model_parm')->where(['id'=>$data['id']])->update($data);
+             if($res){
+                 return jssuccess('修改成功');
+             }else{
+                 return jserror('修改失败');
+             }   
+         } 
+         $res = Db::name('category_model_parm')->where(['id'=>input('id')])->find();
+         $this->assign("res",$res);
+         return view();
+     }
     
     
 }

@@ -25,6 +25,13 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label">是否双栏</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="is_two" value="1" title="是" <?php echo $res['is_two']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+            <input type="radio" name="is_two" value="0" title="否" <?php echo $res['is_two']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">排序</label>
         <div class="layui-input-inline">
           <input type="text" name="sort"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.sort}">
