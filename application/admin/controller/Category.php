@@ -1,12 +1,12 @@
 <?php
 namespace app\admin\controller;
-use zf\Category as cat;
+use zf\Category as cat; 
 use think\Db;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use zf\GetImgSrc;
-
+use zf\GetImgSrc; 
+ 
 class Category extends Admin
 {
     public function __construct (){
@@ -224,7 +224,6 @@ class Category extends Admin
             $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
             $this->assign('m_list',$m_list);
             $this->assign('m_res',$m_res);
-
             return view($tpl);
         } 
         if(request()->isPost()){
@@ -233,11 +232,20 @@ class Category extends Admin
                 unset($data['keyword']);
             }
             $data = array_merge($data,$this->common_tag);
-            if(isset($data['album_list']) && is_array($data['album_list'])){
-                $data['album'] = implode(",", $data['album_list']);
-                unset($data['album_list']);
+            $key_list = array_keys($data);
+            $_temp_list = [];
+            foreach($key_list as $k=>$vo){
+                if(strpos($vo,'zf_list_') === 0){
+                    $_temp_list_[] = $vo;  
+                }
             }
-            if($data['pic']==''){
+            foreach($_temp_list_ as $k=>$vo){
+                if(isset($data[$vo]) && is_array($data[$vo])){
+                    $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                    unset($data[$vo]);
+                }
+            }
+            if($data['pic']=='' && $data['content']!=''){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
             if($data['ctime']!=''){
@@ -259,16 +267,24 @@ class Category extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isGet()){
-            $res = Db::name('post')->where(['id'=>input('id')])->find();
-            $this->assign("res",$res);
+            $data_res = Db::name('post')->where(['id'=>input('id')])->find();
+            $this->assign("data_res",$data_res);
             $cid = input("cid",$res['cid']);
             $mid = input("mid",'');
-            if($mid==0){
-                $mid = Db::name('category')->where(['cid'=>$cid])->value('mid');
-            }
-            $this->assign("cid",$cid);
-            $m_res =  Db::name('category_model')->where(['id'=>$mid])->find();;
-            $tpl = 'category/'.$m_res['model'].'/edit';
+            // if($mid==0){
+            //     $mid = Db::name('category')->where(['cid'=>$cid])->value('mid');
+            // }
+            // $this->assign("cid",$cid);
+            // $m_res =  Db::name('category_model')->where(['id'=>$mid])->find();;
+            // $tpl = 'category/'.$m_res['model'].'/edit';
+            $m_res =Db::name('category_model')->field('model,is_two')->where(['id'=>$mid])->find();
+            $tpl = 'category/zf_tpl/add';
+            $this->assign('cid',$cid);
+            $this->assign('mid',$mid);
+            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
+            $this->assign('m_list',$m_list);
+            $this->assign('m_res',$m_res);
+            // 
             return view($tpl);
         } 
         if(request()->isPost()){
@@ -276,9 +292,18 @@ class Category extends Admin
             if(isset($data['relevan_id'])){
                 unset($data['keyword']);
             }
-            if(isset($data['album_list']) && is_array($data['album_list'])){
-                $data['album'] = implode(",", $data['album_list']);
-                unset($data['album_list']);
+            $key_list = array_keys($data);
+            $_temp_list = [];
+            foreach($key_list as $k=>$vo){
+                if(strpos($vo,'zf_list_') === 0){
+                    $_temp_list_[] = $vo;  
+                }
+            }
+            foreach($_temp_list_ as $k=>$vo){
+                if(isset($data[$vo]) && is_array($data[$vo])){
+                    $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                    unset($data[$vo]);
+                }
             }
             if($data['ctime']!=''){
                 $data['ctime'] =  strtotime($data['ctime']);
@@ -414,7 +439,7 @@ class Category extends Admin
         $mid = input('mid',0);
         $where[] = ['status','<>',9];
         $where[] = ['mid','=',$mid];
-        $list = Db::name('category_model_parm')->where($where)->order("sort asc, id asc")->select();
+        $list = Db::name('category_model_parm')->where($where)->order("position asc,sort asc, id asc")->select();
         $this->assign("list",$list);
         $this->assign("mid",$mid);
         return view();
@@ -429,6 +454,12 @@ class Category extends Admin
              if($data['name']==''){
                  return jserror('请填写信息');exit;
              }
+             //判断是否存在
+             $is_res =Db::name('category_model_parm')->where([['status','<>',9],['mid','=',$data['mid'],['key','=',$data['key']]]])->find();
+             if($is_res){
+                return jserror('该字段已存在');exit;
+             }
+
              $data = array_merge($data,$this->common_tag);
              $res =Db::name('category_model_parm')->insert($data);
              if($res){
@@ -444,13 +475,18 @@ class Category extends Admin
      {
          admin_role_check($this->z_role_list,$this->mca,1);
          if(request()->isPost()){
-             $data = input('post.');
-             $res =  Db::name('category_model_parm')->where(['id'=>$data['id']])->update($data);
-             if($res){
-                 return jssuccess('修改成功');
-             }else{
-                 return jserror('修改失败');
-             }   
+            $data = input('post.');
+            //判断是否存在
+            $is_res =Db::name('category_model_parm')->where([['status','<>',9],['mid','=',$data['mid'],['key','=',$data['key']]]])->find();
+            if($is_res){
+                return jserror('该字段已存在');exit;
+            }
+            $res =  Db::name('category_model_parm')->where(['id'=>$data['id']])->update($data);
+            if($res){
+                return jssuccess('修改成功');
+            }else{
+                return jserror('修改失败');
+            }   
          } 
          $res = Db::name('category_model_parm')->where(['id'=>input('id')])->find();
          $this->assign("res",$res);

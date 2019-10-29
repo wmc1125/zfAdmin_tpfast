@@ -1,0 +1,209 @@
+
+          <?php if($vo['type']=='input'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <input type="text" name="{$vo['key']}" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+              </div>
+            </div>
+          <?php }elseif($vo['type']=='textarea'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <textarea name="{$vo['key']}" placeholder="请输入" class="layui-textarea">{$data_res[$vo['key']]|default=$vo['value']}</textarea>
+              </div>
+            </div>
+          <?php }elseif($vo['type']=='album'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <div class = "row">
+                    <div class="btns col-sm-2">
+                      <div id="picker-{$vo['key']}">选择文件</div>
+                    </div>
+                  <!--用来存放文件信息-->
+                    <div id="zf-{$vo['key']}" class="uploader-list col-sm-10">
+                      <?php if($data_res[$vo['key']]!=''){ $pics=explode(',',$data_res[$vo['key']]);
+                          $count=count($pics);
+                          for($i=0;$i<$count;$i++){?>
+                            <div id="WU_FILE_{$i}" class="file-item thumbnail layui-col-md3" style="width:150px;margin-left:10px;"><img src="{$pics[$i]}" style="width: 150px;height:150px"/><span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span><div class=""><input type="hidden" name="zf_list_{$vo['key']}[]" value="{$pics[$i]}"></div></div>
+                      <?php }} ?>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+<script>
+$(function(){
+var uploader = WebUploader.create({
+auto: true,// 选完文件后，是否自动上传。
+server: "{:url('common/upload_one')}",// 文件接收服务端。
+pick: "#picker-{$vo['key']}",
+resize: false,// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+// 只允许选择图片文件。
+accept: {
+title: 'Images',
+extensions: 'gif,jpg,jpeg,bmp,png',
+mimeTypes: 'image/*'
+},
+/* fileSizeLimit :10, //验证文件总大小是否超出限制, 超出则不允许加入队列
+fileSingleSizeLimit :10,   //验证单个文件大小是否超出限制, 超出则不允许加入队列。 */
+duplicate :true //去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
+});
+// 当文件被加入队列之前触发，此事件的handler返回值为false，则此文件不会被添加进入队列。
+uploader.on( 'beforeFileQueued', function( file ) {
+// 限制图片数量
+img_length = $("#zf-{$vo['key']} img").length;
+if (img_length >= 6) {
+layer.msg("图片最多上传6张");
+return false;
+}
+});
+// 当有文件添加进来的时候
+uploader.on( 'fileQueued', function( file ) {
+var $li = $(
+'<div id="' + file.id + '" class="file-item thumbnail layui-col-md3" style="width:150px;margin-left:10px;">' +
+'<img>' +
+'<span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span>' +
+'</div>'
+),
+$img = $li.find('img');
+// $list为容器jQuery实例
+$("#zf-{$vo['key']}").append( $li );
+// 创建缩略图
+// 如果为非图片文件，可以不用调用此方法。
+// thumbnailWidth x thumbnailHeight 为 100 x 100
+uploader.makeThumb( file, function( error, src ) {
+if ( error ) {
+$img.replaceWith('<span>不能预览</span>');
+return;
+}
+$img.attr( 'src', src );
+}, 150, 150 );
+});
+// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+uploader.on( 'uploadSuccess', function( file,response ) {
+$( '#'+file.id ).addClass('upload-state-done');
+var $li = $( '#'+file.id ),
+$done = $li.find('div.upload-state-done');
+console.log(response);
+// 避免重复创建
+if ( !$done.length ) {
+$done = $('<div class=""></div>').appendTo( $li );
+}
+$done.html('<input type="hidden" name="zf_list_{$vo["key"]}[]" value="'+response.msg+'" />');
+});
+// 文件上传失败，显示上传出错。
+uploader.on( 'uploadError', function( file ) {
+var $li = $( '#'+file.id ),
+$error = $li.find('div.error');
+// 避免重复创建
+if ( !$error.length ) {
+$error = $('<div class="error"></div>').appendTo( $li );
+}
+$error.html('<font color="red">上传失败</font>');
+});
+})
+function deleteFile(obj) {
+$(obj).parent().remove();
+}
+</script>
+          <?php }elseif($vo['type']=='ueditor'){ ?>
+            <div class="layui-card-header">
+              <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="quickstart">{$vo['name']}</a></legend>
+              </fieldset>
+            </div>
+            <div class="layui-card-body">
+                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
+            </div>
+{js href="__STATIC__/style/ueditor/ueditor.config.js" /}
+{js href="__STATIC__/style/ueditor/ueditor.all.js" /}
+{css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
+<script type="text/javascript"> 
+var ue = UE.getEditor("zf-editor-{$vo['key']}",{
+initialFrameHeight:350,//设置编辑器高度
+scaleEnabled:false//设置不自动调整高度
+});
+</script>
+          <?php }elseif($vo['type']=='time'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <input type="text" name="{$vo['key']}" id="zf-date-{$vo['key']}" lay-verify="date" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" lay-key="1" value="<?php if($data_res[$vo['key']]){ echo date('Y-m-d H:i:s',$data_res[$vo['key']]);  }else{ echo date('Y-m-d H:i:s',time()); } ?>">
+              </div>
+            </div>
+<script>
+layui.use(['laydate'], function(){
+var $ = layui.$
+,element = layui.element
+,laydate = layui.laydate;
+laydate.render({
+elem: "#zf-date-{$vo['key']}"
+,type: 'datetime'
+});
+});
+</script>
+          <?php }elseif($vo['type']=='pic'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space8">
+              <div class="layui-col-md12">
+                <input  id="upload-pic-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+              </div>
+                <span type="button" class="layui-btn layui-btn-sm" id="up-img-btn-{$vo['key']}">上传图片</span>
+            </div>
+<script>
+layui.use(['upload'], function(){
+var $ = layui.$
+,element = layui.element
+,upload = layui.upload;
+upload.render({
+elem: "#up-img-btn-{$vo['key']}"
+,url: "{:url('common/upload_one')}"
+,done: function(res){
+console.log(res)
+if(res.result==1){
+  layer.msg("上传成功", {icon: 1});
+  $("#upload-pic-{$vo['key']}").val(res.msg);
+}else{
+layer.msg(res.msg, {icon: 2});
+}
+}
+});
+});
+</script>
+          <?php }elseif($vo['type']=='file'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space8">
+              <div class="layui-col-md12">
+                <input  id="upload-file-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+              </div>
+                <span type="button" class="layui-btn layui-btn-sm" id="up-file-{$vo['key']}">上传文件</span>
+            </div>
+<script>
+layui.use(['upload'], function(){
+var $ = layui.$
+,element = layui.element
+,upload = layui.upload;
+upload.render({
+elem: "#up-file-{$vo['key']}"
+,url: "{:url('common/upload_one_file')}"
+,accept: 'file' //普通文件
+,done: function(res){
+console.log(res)
+if(res.result==1){
+  layer.msg("上传成功", {icon: 1});
+  $("#upload-file-{$vo['key']}").val(res.msg);
+}else{
+layer.msg(res.msg, {icon: 2});
+}
+}
+});
+});
+</script>
+          <?php }elseif($vo['type']==''){ ?>
+
+
+
+          <?php } ?>
+       

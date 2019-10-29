@@ -25,7 +25,7 @@
             <div class="layui-inline">
               <label class="layui-form-label">键</label>
               <div class="layui-input-block">
-                  <select name="type" lay-filter="type">
+                  <select name="key" lay-filter="key">
                     <?php foreach($all_list as $k=>$vo){ if($vo['Field']!='id'){ ?>
                       <option value="{$vo['Field']}" >{$vo['Field']}</option>
                     <?php }}?>
@@ -59,7 +59,6 @@
               <col width="60">
               <col width="50">
               <col width="50">
-              <col width="50">
               <col width="60">
               <col width="50">
               <col width="50">
@@ -73,7 +72,6 @@
                 <th>名称</th>
                 <th>键</th>
                 <th>默认值</th>          
-                <th>双排</th>
                 <th>位置(默认左)</th>
                 <th>类型</th>
                 <th>只读</th>
@@ -87,15 +85,20 @@
               {volist name='list' id='vo'}
                 <tr>
                   <td>{$vo['id']}</td>
-                  <td>{$vo['name']}</td>
+                  <td>
+                    <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="name"  value="{$vo['name']}" item_id="{$vo['id']}"  >
+                  </td>
                   <td><?php echo \zf\ZfTool::str_in_two_array($vo['key'],$all_list)?$vo['key']:$vo['key'].'不存在,请关闭'; ?></td>
-                  <td>{$vo['value']}</td>
-                  <td>{$vo['is_two']}</td>
-                  <td>{$vo['position']}</td>
+                  <td>
+                    <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="value"  value="{$vo['value']}" item_id="{$vo['id']}"  >                  
+                  </td>
+                  <td>{$vo['position']==1?'左':'右'}</td>
                   <td>{$vo['type']}</td>
-                  <td>{$vo['readonly']}</td>
-                  <td>{$vo['hidden']}</td>
-                  <td>{$vo['sort']}</td>
+                  <td>{$vo['readonly']==1?'是':'否'}</td>
+                  <td>{$vo['hidden']==1?'是':'否'}</td>
+                  <td>
+                    <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="sort"  value="{$vo['sort']}" item_id="{$vo['id']}"  >                                      
+                  </td>
                   <td> 
                     <div class=" layui-form" lay-filter="component-form-element">        
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
@@ -103,7 +106,7 @@
                   </td>
                   <td>  
                       <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/category_model_parm_edit',['id' => $vo['id']] )}")'>编辑</button> 
-                      <a class="layui-btn btn_del layui-btn-danger layui-btn-xs" rel="{$vo['cid']}" href="#">删除</a> 
+                      <a class="layui-btn btn_del layui-btn-danger layui-btn-sm" rel="{$vo['id']}" href="#">删除</a> 
                     </td>
                 </tr>
               {/volist}         
@@ -125,7 +128,7 @@
 
     form.on('switch(status_change)', function(data){
       var id = $(this).attr("item")
-      var dbname = 'category_model'
+      var dbname = 'category_model_parm'
       var status = this.checked ? '1' : '0'
       console.log(id)
       $.get("{:url('common/is_switch')}",{id:id,dbname:dbname,status:status},function(res){
@@ -149,7 +152,7 @@
               layer.msg(res.msg, {icon: 1});
               layer.close()
               setTimeout(function() {
-					window.location.reload();
+					      // window.location.reload();
               }, 2000);
             }else{
               layer.msg(res.msg, {icon: 2});
@@ -180,6 +183,20 @@
           //取消的操作
       });
     });
+
+    $('.edit_sort').on('blur',function(){
+      var id = $(this).attr('item_id')
+      var field = $(this).attr('item_f')
+      var dbname = 'category_model_parm'
+      var value = $(this).val(); //得到修改后的值
+      $.get("{:url('common/value_edit')}",{id:id,dbname:dbname,field:field,value:value},function(res){
+          if(res.result==1){
+          //layer.msg(res.msg, {icon: 1});
+          window.location.reload();
+        }
+      },"json");
+
+    })
 
 
     

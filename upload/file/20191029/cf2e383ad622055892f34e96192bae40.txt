@@ -1,0 +1,26 @@
+1. 个人中心-我的评论中的分享
+2. 个人中心-我的收藏中的图片样式和 编辑后效果
+3. 首页-底部学习资料 固定高
+4. 医案学习 回答的样式  http://localhost/index/cate/listt/cid/448.html
+5.文章中的分享到  http://localhost/index/cate/detail/id/277.html
+6. 缺少写答案框 http://localhost/index/cate/dz_detail/id/280.html
+7. 发表文章页面
+8. 首页banner文章图片大小固定
+
+
+
+
+
+
+后台  http://zyyzn.cgonet.com/admin/index/index.html    admin    111111
+
+前台  
+普通用户
+17621542555    111111
+
+医师用户
+17621542556   111111
+
+
+zyyzn.cgonet.com
+
