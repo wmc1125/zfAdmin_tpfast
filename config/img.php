@@ -1,7 +1,7 @@
 <?php
 /**
  * 站点信息最后修改于 
- * 2019/10/28 13:22:33
+ * 2019/10/29 20:45:31
  */
 return [
 	'save_path' => '/upload/file',
@@ -14,7 +14,7 @@ return [
 	'water_position' => '6',
 	'pic_save_type' => '0',
 	'file_save_type' => '0',
-	'is_water' => '2',
+	'is_water' => '0',
 	'qn_ACCESSKEY' => '',
 	'qn_SECRETKEY' => '',
 	'qn_BUCKET' => '',
