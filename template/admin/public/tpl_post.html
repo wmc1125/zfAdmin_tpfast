@@ -108,24 +108,7 @@ function deleteFile(obj) {
 $(obj).parent().remove();
 }
 </script>
-          <?php }elseif($vo['type']=='ueditor'){ ?>
-            <div class="layui-card-header">
-              <fieldset class="layui-elem-field layui-field-title site-title">
-                <legend><a name="quickstart">{$vo['name']}</a></legend>
-              </fieldset>
-            </div>
-            <div class="layui-card-body">
-                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
-            </div>
-{js href="__STATIC__/style/ueditor/ueditor.config.js" /}
-{js href="__STATIC__/style/ueditor/ueditor.all.js" /}
-{css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
-<script type="text/javascript"> 
-var ue = UE.getEditor("zf-editor-{$vo['key']}",{
-initialFrameHeight:350,//设置编辑器高度
-scaleEnabled:false//设置不自动调整高度
-});
-</script>
+
           <?php }elseif($vo['type']=='layui-time'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
@@ -264,5 +247,46 @@ var $ = layui.$
   
 });
 </script>
+          <?php }elseif($vo['type']=='ueditor'){ ?>
+            <div class="layui-card-header">
+              <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="quickstart">{$vo['name']}</a></legend>
+              </fieldset>
+            </div>
+            <div class="layui-card-body">
+                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
+            </div>
+{js href="__STATIC__/style/ueditor/ueditor.config.js" /}
+{js href="__STATIC__/style/ueditor/ueditor.all.js" /}
+{css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
+<script type="text/javascript"> 
+var ue = UE.getEditor("zf-editor-{$vo['key']}",{
+initialFrameHeight:350,//设置编辑器高度
+scaleEnabled:false//设置不自动调整高度
+});
+</script>
+          <?php }elseif($vo['type']=='ueditor-oss'){ ?>
+<!-- 阿里云oss-editor专用 -->
+            <div class="layui-card-header">
+              <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="quickstart">{$vo['name']}</a></legend>
+              </fieldset>
+            </div>
+            <div class="layui-card-body">
+                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
+            </div>
+{js href="__STATIC__/style/ueditor_aliyunoss/ueditor.config.js" /}
+{js href="__STATIC__/style/ueditor_aliyunoss/ueditor.all.js" /}
+{css href="__STATIC__/style/ueditor_aliyunoss/themes/default/css/ueditor.css" }
+<script type="text/javascript"> 
+var ue = UE.getEditor("zf-editor-{$vo['key']}",{
+initialFrameHeight:350,//设置编辑器高度
+scaleEnabled:false//设置不自动调整高度
+});
+</script>
+          <?php }elseif($vo['type']=='wangeditor'){ ?>
+
+          <?php }elseif($vo['type']=='md'){ ?>
+
           <?php } ?>
        

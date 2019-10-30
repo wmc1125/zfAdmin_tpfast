@@ -49,11 +49,16 @@
                 <option value="layui-pic">layui-pic</option>
                 <option value="layui-file">layui-file</option>
                 <option value="layui-textarea">layui-textarea</option>
-                <option value="ueditor">ueditor</option>
                 <option value="layui-checkbox">layui-checkbox</option>
                 <option value="layui-switch">layui-switch</option>
                 <option value="layui-radio">layui-radio</option>
+                <option value="ueditor">ueditor</option>
+                <option value="ueditor-oss">ueditor-oss</option>
+                <option value="wangeditor">wangeditor(待添加)</option>
+                <option value="mdeditor">mdeditor(待添加)</option>
             </select>
+        </div>
+        <div class="layui-input-inline append_show">
         </div>
       </div>
       <div class="layui-form-item">
@@ -111,7 +116,12 @@
     ,form = layui.form
     ,upload = layui.upload ;
 
-    
+    form.on("select(type)", function(data){
+      console.log(data.value)
+      if(data.value=='ueditor-oss'){
+        $('.append_show').html('<a href="http://www.baidu.com" target="_blank" style="line-height: 35px;">使用前需先检查是否配置</a>');
+      }
+    });
 
     
   })

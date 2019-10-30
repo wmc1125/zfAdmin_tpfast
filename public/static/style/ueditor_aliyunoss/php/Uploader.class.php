@@ -114,8 +114,8 @@ class Uploader
 
          //oss设置
         $ossconfig = [
-            'KeyId'      => 'LTAI356wrww4PrUs',  //您的Access Key ID
-            'KeySecret'  => 'VZlH4Qfsi7Vsj7sJ130iFZPEvgpgnr',  //您的Access Key Secret
+            'KeyId'      => 'LTAI*****w4PrUs',  //您的Access Key ID
+            'KeySecret'  => 'VZlH4Qfsi7******iFZPEvgpgnr',  //您的Access Key Secret
             'Endpoint'   => 'oss-cn-beijing.aliyuncs.com',  //阿里云oss 外网地址endpoint
             'Bucket'     => 'zf-demo-test',  //Bucket名称
 
