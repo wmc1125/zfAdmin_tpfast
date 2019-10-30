@@ -240,12 +240,12 @@ if (!function_exists('dd')) {
     }
 }
 /**
- * 打印sql
+ * 打印sql 
  */
 if (!function_exists('d')) {
     function d($t='user'){
         zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error');
-        echo DB::table($t)->getlastsql();
+        echo Db::table($t)->getlastsql();
     }
 }
 /**

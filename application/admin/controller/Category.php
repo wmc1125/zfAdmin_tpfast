@@ -228,10 +228,19 @@ class Category extends Admin
         } 
         if(request()->isPost()){
             $data = input('post.');
+            $data = array_merge($data,$this->common_tag);
+            if($data['ctime']!=''){
+                $data['ctime'] =  strtotime($data['ctime']);
+            }else{
+                $data['ctime'] =  time();
+            }
+            if($data['pic']==''){
+                $data['pic'] = GetImgSrc::src($data['content'], 1);
+            }
+            
             if(isset($data['relevan_id'])){
                 unset($data['keyword']);
             }
-            $data = array_merge($data,$this->common_tag);
             $key_list = array_keys($data);
             $_temp_list = [];
             foreach($key_list as $k=>$vo){
@@ -239,19 +248,27 @@ class Category extends Admin
                     $_temp_list[] = $vo;  
                 }
             }
-            foreach($_temp_list as $k=>$vo){
-                if(isset($data[$vo]) && is_array($data[$vo])){
-                    $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
-                    unset($data[$vo]);
+            if($_temp_list){
+                foreach($_temp_list as $k=>$vo){
+                    if(isset($data[$vo]) && is_array($data[$vo])){
+                        $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                        unset($data[$vo]);
+                    }
                 }
-            }
-            if($data['pic']=='' && $data['content']!=''){
-                $data['pic'] = GetImgSrc::src($data['content'], 1);
-            }
-            if($data['ctime']!=''){
-                $data['ctime'] =  strtotime($data['ctime']);
             }else{
-                $data['ctime'] =  time();
+                //查询字段
+                $mid = Db::name('post p')
+                    ->where(['p.id'=>$data['id']])
+                    ->join('zf_category c','c.cid = p.cid')
+                    ->value('c.mid');
+                $tb_parm_list = Db::name('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
+                // 判断是否含有该字段,没有则为空
+                foreach($tb_parm_list as $k=>$vo){
+                    if(!$data[$vo['name']]){
+                        $data[$vo['key']] = '';
+                    }
+                }
+
             }
             $res = Db::name('post')->insertGetId($data);
             // $this->get_content_pic_list($res);
@@ -482,7 +499,10 @@ class Category extends Admin
                  return jserror('请填写信息');exit;
              }
              //判断是否存在
-             $is_res =Db::name('category_model_parm')->where([['status','<>',9],['mid','=',$data['mid'],['key','=',$data['key']]]])->find();
+             $where[] = ['status','<>',9];
+             $where[] = ['mid','=',$data['mid']];
+             $where[] = ['key','=',$data['key']];
+             $is_res =Db::name('category_model_parm')->where($where)->find();
              if($is_res){
                 return jserror('该字段已存在');exit;
              }
