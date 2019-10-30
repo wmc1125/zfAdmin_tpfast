@@ -26,7 +26,7 @@
               <label class="layui-form-label">键</label>
               <div class="layui-input-block">
                   <select name="key" lay-filter="key">
-                    <?php foreach($all_list as $k=>$vo){ if($vo['Field']!='id'){ ?>
+                    <?php foreach($key_list as $k=>$vo){ if($vo['Field']!='id'){ ?>
                       <option value="{$vo['Field']}" >{$vo['Field']}</option>
                     <?php }}?>
                   </select>
@@ -64,6 +64,7 @@
               <col width="50">
               <col width="50">
               <col width="50">
+              <col width="50">
               <col>
             </colgroup>
             <thead>
@@ -76,6 +77,7 @@
                 <th>类型</th>
                 <th>只读</th>
                 <th>隐藏</th>
+                <th>多个</th>
                 <th>排序</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -96,6 +98,7 @@
                   <td>{$vo['type']}</td>
                   <td>{$vo['readonly']==1?'是':'否'}</td>
                   <td>{$vo['hidden']==1?'是':'否'}</td>
+                  <td>{$vo['is_multi']==1?'是':'否'}</td>
                   <td>
                     <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="sort"  value="{$vo['sort']}" item_id="{$vo['id']}"  >                                      
                   </td>

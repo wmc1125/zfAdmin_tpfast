@@ -1,12 +1,12 @@
 
-          <?php if($vo['type']=='input'){ ?>
+          <?php if($vo['type']=='layui-input'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
               <div class="layui-col-md12">
                 <input type="text" name="{$vo['key']}" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
               </div>
             </div>
-          <?php }elseif($vo['type']=='textarea'){ ?>
+          <?php }elseif($vo['type']=='layui-textarea'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
               <div class="layui-col-md12">
@@ -126,7 +126,7 @@ initialFrameHeight:350,//设置编辑器高度
 scaleEnabled:false//设置不自动调整高度
 });
 </script>
-          <?php }elseif($vo['type']=='time'){ ?>
+          <?php }elseif($vo['type']=='layui-time'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
               <div class="layui-col-md12">
@@ -144,7 +144,7 @@ elem: "#zf-date-{$vo['key']}"
 });
 });
 </script>
-          <?php }elseif($vo['type']=='pic'){ ?>
+          <?php }elseif($vo['type']=='layui-pic'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space8">
               <div class="layui-col-md12">
@@ -172,7 +172,7 @@ layer.msg(res.msg, {icon: 2});
 });
 });
 </script>
-          <?php }elseif($vo['type']=='file'){ ?>
+          <?php }elseif($vo['type']=='layui-file'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space8">
               <div class="layui-col-md12">
@@ -201,9 +201,68 @@ layer.msg(res.msg, {icon: 2});
 });
 });
 </script>
-          <?php }elseif($vo['type']==''){ ?>
-
-
-
+          <?php }elseif($vo['type']=='layui-checkbox'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space8 ">
+              <div class="layui-col-md12 layui-form-item">
+                <div class="layui-input-inline" style="width: 100%">
+                    <?php if($vo['value']!=''){  $_temp_dx[$vo['value']] = explode(',',$vo['value']);  foreach($_temp_dx[$vo['value']] as $k1=>$vo1){ ?>
+                    <input type="checkbox" name="zf_list_{$vo['key']}[]" lay-skin="primary" title="{$vo1}" value="{$vo1}" 
+                    <?php 
+                    if($data_res[$vo['key']]){
+                      $_temp_check = explode(',',$data_res[$vo['key']]);
+                      echo in_array($vo1,$_temp_check)?'checked':'';                        
+                    }
+                    ?>
+                    />
+                    <?php }}else{ echo "请在模板设置中设置参数  参数形式   参数1,参数2 "; } ?>
+                  </div>
+              </div>
+            </div>
+<script>
+layui.use(['form'], function(){
+var $ = layui.$
+,form = layui.form
+,element = layui.element;
+});
+</script>
+          <?php }elseif($vo['type']=='layui-switch'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space8 ">
+              <div class="layui-col-md12 layui-form-item">
+                <div class="layui-input-inline layui-form" style="width: 100%">
+                  <input type="checkbox" name="{$vo['key']}" lay-skin="switch" lay-text="是|否" <?php echo $data_res[$vo['key']]==1?'checked':''; ?>  lay-filter="{$vo['key']}_change"   >
+                </div>
+              </div>
+            </div>
+<script>
+layui.use(['form','element'], function(){
+var $ = layui.$
+,form = layui.form
+,element = layui.element;
+  form.on("switch({$vo['key']}_change)", function(data){
+    $(data.othis).siblings('input').remove();
+    $(data.othis).after('<input type="hidden" name='+ $(data.elem).attr('name') +' value='+ (data.elem.checked ? '1' : '0') +'>');
+  });
+});
+</script>
+          <?php }elseif($vo['type']=='layui-radio'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space8 ">
+              <div class="layui-col-md12 layui-form-item">
+                <div class="layui-input-inline layui-form" >
+                  <input type="radio" name="{$vo['key']}" value="1" title="是" {$data_res[$vo['key']]==1?'checked':''}  ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>是</div></div>
+                  <input type="radio" name="{$vo['key']}" value="0" title="否" {$data_res[$vo['key']]==0?'checked':''} ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>否</div></div>
+                </div>
+              </div>
+            </div>
+<script>
+layui.use(['form','element'], function(){
+var $ = layui.$
+,form = layui.form
+,element = layui.element;
+  
+});
+</script>
           <?php } ?>
        

@@ -21,16 +21,11 @@
       <div class="layui-form-item">
         <label class="layui-form-label">键</label>
         <div class="layui-input-inline">
-            <select name="key" lay-filter="key">
-              <option value="{$res.key}" selected="">{$res.key}</option>
-              <?php foreach($all_list as $k=>$vo){  if($vo['Field']!='id'){ ?>
-                <option value="{$vo['Field']}" >{$vo['Field']}</option>
-              <?php }}?>
-            </select>
+          <input class="layui-input"  type="text" name="key" value="{$res.key}" readonly>
         </div>
       </div>
       <div class="layui-form-item">
-        <label class="layui-form-label">值</label>
+        <label class="layui-form-label">默认值</label>
         <div class="layui-input-inline">
             <input type="text" name="value"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.value}">
         </div>
@@ -48,15 +43,16 @@
         <div class="layui-input-inline">
             <select name="type" lay-filter="type">
                 <option value="{$res.type}" selected="">{$res.type}</option>
-                <option value="input" >input</option>
-                <option value="radio">radio</option>
-                <option value="select">select</option>
+                <option value="layui-input" >layui-input</option>
                 <option value="album">album</option>
-                <option value="time">time</option>
-                <option value="pic">pic</option>
-                <option value="file">file</option>
-                <option value="textarea">textarea</option>
+                <option value="layui-time">layui-time</option>
+                <option value="layui-pic">layui-pic</option>
+                <option value="layui-file">layui-file</option>
+                <option value="layui-textarea">layui-textarea</option>
                 <option value="ueditor">ueditor</option>
+                <option value="layui-checkbox">layui-checkbox</option>
+                <option value="layui-switch">layui-switch</option>
+                <option value="layui-radio">layui-radio</option>
             </select>
         </div>
       </div>
@@ -74,8 +70,15 @@
             <input type="radio" name="hidden" value="0" title="否" <?php echo $res['hidden']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">是否多个</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="is_multi" value="1" title="是" <?php echo $res['is_multi']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+            <input type="radio" name="is_multi" value="0" title="否" <?php echo $res['is_multi']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
 
-
+      
       <div class="layui-form-item">
         <label class="layui-form-label">排序</label>
         <div class="layui-input-inline">

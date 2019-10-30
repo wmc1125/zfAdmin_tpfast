@@ -236,10 +236,10 @@ class Category extends Admin
             $_temp_list = [];
             foreach($key_list as $k=>$vo){
                 if(strpos($vo,'zf_list_') === 0){
-                    $_temp_list_[] = $vo;  
+                    $_temp_list[] = $vo;  
                 }
             }
-            foreach($_temp_list_ as $k=>$vo){
+            foreach($_temp_list as $k=>$vo){
                 if(isset($data[$vo]) && is_array($data[$vo])){
                     $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
                     unset($data[$vo]);
@@ -284,27 +284,10 @@ class Category extends Admin
             $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
             $this->assign('m_list',$m_list);
             $this->assign('m_res',$m_res);
-            // 
             return view($tpl);
         } 
         if(request()->isPost()){
             $data = input('post.');
-            if(isset($data['relevan_id'])){
-                unset($data['keyword']);
-            }
-            $key_list = array_keys($data);
-            $_temp_list = [];
-            foreach($key_list as $k=>$vo){
-                if(strpos($vo,'zf_list_') === 0){
-                    $_temp_list_[] = $vo;  
-                }
-            }
-            foreach($_temp_list_ as $k=>$vo){
-                if(isset($data[$vo]) && is_array($data[$vo])){
-                    $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
-                    unset($data[$vo]);
-                }
-            }
             if($data['ctime']!=''){
                 $data['ctime'] =  strtotime($data['ctime']);
             }else{
@@ -313,6 +296,41 @@ class Category extends Admin
             if($data['pic']==''){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
+            
+            if(isset($data['relevan_id'])){
+                unset($data['keyword']);
+            }
+            $key_list = array_keys($data);
+            $_temp_list = [];
+            foreach($key_list as $k=>$vo){
+                if(strpos($vo,'zf_list_') === 0){
+                    $_temp_list[] = $vo;  
+                }
+            }
+            if($_temp_list){
+                foreach($_temp_list as $k=>$vo){
+                    if(isset($data[$vo]) && is_array($data[$vo])){
+                        $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                        unset($data[$vo]);
+                    }
+                }
+            }else{
+                //查询字段
+                $mid = Db::name('post p')
+                    ->where(['p.id'=>$data['id']])
+                    ->join('zf_category c','c.cid = p.cid')
+                    ->value('c.mid');
+                $tb_parm_list = Db::name('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
+                // 判断是否含有该字段,没有则为空
+                foreach($tb_parm_list as $k=>$vo){
+                    if(!$data[$vo['name']]){
+                        $data[$vo['key']] = '';
+                    }
+                }
+
+            }
+            
+            // dd($data);
             $res =  Db::name('post')->where(['id'=>$data['id']])->update($data); 
             if($res)
             {
@@ -433,8 +451,7 @@ class Category extends Admin
         admin_role_check($this->z_role_list,$this->mca);
         $all_list = Db::query("SHOW FULL COLUMNS FROM zf_post");
         $this->assign("all_list",$all_list);
-
-        // dd($all_list);
+        
          //读取
         $mid = input('mid',0);
         $where[] = ['status','<>',9];
@@ -442,6 +459,16 @@ class Category extends Admin
         $list = Db::name('category_model_parm')->where($where)->order("position asc,sort asc, id asc")->select();
         $this->assign("list",$list);
         $this->assign("mid",$mid);
+        $key_list = $all_list;
+        foreach($key_list as $k1=>$vo1){
+            foreach($list as $k2=>$vo2){
+                if($vo2['key']==$vo1['Field'] || $vo1['Field']=='id'){
+                    unset($key_list[$k1]);
+                }
+            }
+        }
+        $this->assign("key_list",$key_list);
+
         return view();
 
     }
@@ -476,11 +503,6 @@ class Category extends Admin
          admin_role_check($this->z_role_list,$this->mca,1);
          if(request()->isPost()){
             $data = input('post.');
-            //判断是否存在
-            $is_res =Db::name('category_model_parm')->where([['status','<>',9],['mid','=',$data['mid'],['key','=',$data['key']]]])->find();
-            if($is_res){
-                return jserror('该字段已存在');exit;
-            }
             $res =  Db::name('category_model_parm')->where(['id'=>$data['id']])->update($data);
             if($res){
                 return jssuccess('修改成功');
@@ -490,8 +512,6 @@ class Category extends Admin
          } 
          $res = Db::name('category_model_parm')->where(['id'=>input('id')])->find();
          $this->assign("res",$res);
-         $all_list = Db::query("SHOW FULL COLUMNS FROM zf_post");
-         $this->assign("all_list",$all_list);
          return view();
      }
     
