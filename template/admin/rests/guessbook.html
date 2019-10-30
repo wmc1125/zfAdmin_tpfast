@@ -26,6 +26,7 @@
               <col width="60">
               <col width="50">
               <col width="50">
+              <col width="50">
 
               <col>
             </colgroup>
@@ -34,6 +35,7 @@
                 <th>ID</th>
                 <th>标题</th>
                 <th>姓名</th>          
+                <th>留言时间</th>          
                 <th>状态</th>
                 <th>操作</th>
 
@@ -45,6 +47,7 @@
                   <td>{$vo['id']}</td>
                   <td>{$vo['title']}</td>
                   <td>{$vo['name']}</td>
+                  <td>{:date("Y-m-d H:i:s",$vo['ctime'])}</td>
                   <td> 
                     <div class=" layui-form" lay-filter="component-form-element">        
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">

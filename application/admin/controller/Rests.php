@@ -137,7 +137,7 @@ class Rests extends Admin
      public function guessbook()
     {   
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('guessbook')->where('status!=9')->order("sort asc")->paginate(999);
+        $list = Db::name('guessbook')->where('status!=9')->order("ctime desc,sort asc")->paginate(999);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -154,6 +154,7 @@ class Rests extends Admin
         if($data['name']==''){
             return jserror('请填写信息');exit;
         }
+        $data['ctime'] = time();
         $data = array_merge($data,$this->common_tag);
         $res = Db::name('guessbook')->insert($data);
         if($res){
