@@ -67,6 +67,9 @@ class Index extends Admin
         $data['guessbook_total'] = Db::name('guessbook')->where([['status','<>','9']])->count();
         //本周留言数
         $data['guessbook_week'] = Db::name('guessbook')->where([['status','<>','9']])->whereTime('ctime','week')->count();
+
+        $data['posts'] = Db::name('post')->where([['status','<>','9']])->limit(10)->order('ctime desc')->select();
+
         $this->assign('data',$data);
         return view();
     }

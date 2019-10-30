@@ -270,7 +270,7 @@ class Category extends Admin
             $data_res = Db::name('post')->where(['id'=>input('id')])->find();
             $this->assign("data_res",$data_res);
             $cid = input("cid",$res['cid']);
-            $mid = input("mid",'');
+            $mid = input("mid",'14');
             // if($mid==0){
             //     $mid = Db::name('category')->where(['cid'=>$cid])->value('mid');
             // }

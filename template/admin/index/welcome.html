@@ -71,18 +71,56 @@
 
           <div class="layui-col-md12">
 
+            
+          </div>
+          <div class="layui-col-md12">
+            
             <div class="layui-card">
-              <div class="layui-tab layui-tab-brief layadmin-latestData">
-                <ul class="layui-tab-title">
-                  <li class="layui-this">产品介绍</li>
-                </ul>
-                <div class="layui-tab-content">
-                  <div class="layui-tab-item layui-show">
-                    <blockquote class="layui-elem-quote main_btn">
-                      <p class="layui-blue">子枫后台管理系统免费提供大家使用,有什么问题可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mcj技术论坛</a>提出异议,有什么好用的功能也可以写出建议,只为不断完善后台系统,后台可免费使用,但必须保留版权声明</p>
-                    </blockquote>
-                  </div>
-                </div>
+              <div class="layui-card-header">最新文章</div>
+              <div class="layui-card-body">
+                <table class="layui-table">
+                    <colgroup>
+                      <col width="30">
+                      <col width="120">
+                      <col width="60">
+                      <col width="100">
+                      <col width="50">
+                      <col width="50">
+                      <col width="50">
+                      <col width="20">
+                      <col>
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>标题</th>
+                        <th>图片</th>
+                        <th>链接</th>          
+                        <th>排序</th>
+                        <th>点击量</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                      </tr> 
+                    </thead>
+                    <tbody>
+                      {volist name='data.posts' id='vo'}
+                        <tr>
+                          <td>{$vo['id']}</td>
+                          <td>{$vo['title']}</td>
+                          <td><img src="{$vo['pic']}" style="width:50px;height:50px"/></td>
+                          <td>{$vo['append']}</td>
+                          <td>{$vo['sort']}</td>
+                          <td>{$vo['hits']}</td>
+                          <td> 
+                              <?php echo $vo['status']==1?'开启':'关闭'; ?>
+                          </td>                
+                          <td> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/post_edit',['id' => $vo['id'],'cid' => $vo['cid']] )}")'>编辑</button> </td>
+                        </tr>
+                      {/volist}         
+                    </tbody>
+                  </table>
+                  {$page|raw}
+        
               </div>
             </div>
           </div>
@@ -90,9 +128,84 @@
       </div>
       
       <div class="layui-col-md4">
-
         <div class="layui-card">
-          <div class="layui-card-header">服务器信息</div>
+            
+          <div class="layui-tab layui-tab-brief layadmin-latestData">
+            <ul class="layui-tab-title">
+              <li class="">产品介绍</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <blockquote class="layui-elem-quote main_btn">
+                  <p class="layui-blue">子枫后台管理系统免费提供大家使用,有什么问题可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mcj技术论坛</a>提出异议,有什么好用的功能也可以写出建议,只为不断完善后台系统,后台可免费使用,但必须保留版权声明</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card">
+          <div class="layui-card-header">快捷方式</div>
+          <div class="layui-card-body">
+            
+            <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
+              <div carousel-item="">
+                <ul class="layui-row layui-col-space10 layui-this">
+                  <li class="layui-col-xs3">
+                    <a href="{:url('category/post_all_list')}">
+                      <i class="layui-icon layui-icon-console"></i>
+                      <cite>文章列表</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('user/index')}">
+                      <i class="layui-icon layui-icon-user"></i>
+                      <cite>用户列表</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('rests/guessbook')}">
+                      <i class="layui-icon layui-icon-survey"></i>
+                      <cite>留言管理</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">
+                      <i class="layui-icon layui-icon-set"></i>
+                      <cite>使用手册</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('')}">
+                      <i class="layui-icon layui-icon-set"></i>
+                      <cite>待添加</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('')}">
+                      <i class="layui-icon layui-icon-set"></i>
+                      <cite>待添加</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('')}">
+                      <i class="layui-icon layui-icon-set"></i>
+                      <cite>待添加</cite>
+                    </a>
+                  </li>
+                  <li class="layui-col-xs3">
+                    <a href="{:url('')}">
+                      <i class="layui-icon layui-icon-set"></i>
+                      <cite>待添加</cite>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+            <!--  -->
+<!--  -->
+        <div class="layui-card">
+          <div class="layui-card-header">版本信息</div>
           <div class="layui-card-body layui-text">
             <table class="layui-table">
               <colgroup>
@@ -201,6 +314,8 @@
   
 
   <script src="__STATIC__/style/layui/layui.js?t=1"></script>  
+  <script src="__STATIC__/system/common.js"></script>  
+
   <script>
    layui.use(['layer'],function(){
       var $ = layui.$
