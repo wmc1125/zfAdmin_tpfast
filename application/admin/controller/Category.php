@@ -54,7 +54,7 @@ class Category extends Admin
             $res =Db::name('category')->where(['cid'=>input('cid')])->find();
             $this->assign("t",0);
             $this->assign("res",$res);
-            $res = Db::name('category')->where(['status'=>1])->select();
+            $res = Db::name('category')->where('status!=9')->select();
             $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
             $plist = $cat->getTree($res); //获取分类数据树结构
             if(!$plist){

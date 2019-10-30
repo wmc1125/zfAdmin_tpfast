@@ -44,16 +44,10 @@
               <div class="layui-input-inline">
                 <select name="pid">
                   <option value="0">---顶级目录---</option>
-                  <?php if(is_array($list)): ?>
-                  <?php foreach($list as $k=>$vo):?>
-                  <?php if($vo['pid']==0): ?>
-                    <option value="{$vo['cid']}">{$vo['cname']}</option>
-                    <?php foreach($list as $k2 =>$vo2): ?>
-                    <?php if($vo2['pid']==$vo['cid']): ?>
-                    <option value="{$vo2['cid']}">{$vo2['cname']}</option>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                  <?php endif; endforeach; endif; ?>
+                  <?php if(is_array($list)){ ?>
+                  <?php foreach($list as $k=>$vo){ ?>
+                    <option value="{$vo['cid']}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</option>
+                  <?php  }} ?>
                 </select>
               </div>
             </div>

@@ -182,21 +182,15 @@
                         <?php endforeach;  ?>
                       </select>
                   </div>
-                </div>
+                </div> 
                 <div class="layui-card">
                   <div class="layui-card-header">父类</div>
                   <div class="layui-card-body layui-row layui-col-space10">
                      <select name="pid" lay-verify="required" lay-filter="aihao">
                        <option value="{$res.pid}"><?php echo p_name($res['pid']); ?></option>
-                       <?php foreach($plist as $k=>$vo):?>
-                       <?php if($vo['pid']==0 && $vo['cid']!= $res['cid']): ?>
-                         <option value="{$vo['cid']}">{$vo['cname']}</option>
-                         <?php foreach($plist as $k2 =>$vo2): ?>
-                         <?php if($vo2['pid']==$vo['cid'] && $vo2['cid']!= $res['cid']): ?>
-                         <option value="{$vo2['cid']}">{$vo2['cname']}</option>
-                         <?php endif; ?>
-                         <?php endforeach; ?>
-                       <?php endif; endforeach; ?>
+                       <?php foreach($plist as $k=>$vo){ ?>
+                       <option value="{$vo['cid']}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</option>
+                       <?php } ?>
                       </select>
                   </div>
                 </div>
