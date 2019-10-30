@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
-    <form class="info_tj" onclick="return false">
+    <form class="info_tj" >
       <input type="hidden" name="id" value="{$res.id}">
       <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
@@ -101,7 +101,7 @@
       </div>
       <div class="layui-form-item" >
         <div class="layui-input-block">
-          <button class="layui-btn layui-btn-sm" onclick="tijiao_data('ategory/category_model_parm_edit')"  lay-submit lay-filter="formDemo">立即提交</button>
+          <a class="layui-btn layui-btn-sm" href="javascript:;" onclick="tijiao_data('ategory/category_model_parm_edit')"   >立即提交</a>
         </div>
       </div>
     </form>
@@ -119,7 +119,7 @@
     form.on("select(type)", function(data){
       console.log(data.value)
       if(data.value=='ueditor-oss'){
-        $('.append_show').html('<a href="http://www.baidu.com" target="_blank" style="line-height: 35px;">使用前需先检查是否配置</a>');
+        $('.append_show').html('<a href="http://bbs.wangmingchang.com/forum.php?mod=viewthread&tid=1921&extra=page=1" target="_blank" style="line-height: 35px;color:red;">使用前需先检查是否配置</a>');
       }
     });
 
