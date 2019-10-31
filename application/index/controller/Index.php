@@ -12,9 +12,18 @@ class Index extends Base
     // 首页
     public function index()
     {
+        if(input('tpl_id')){
+            if(input('tpl_id')=='-1'){
+                session('tpl_id',null);
+            }else{
+                session('tpl_id',input('tpl_id'));
+            }
+        }else{
+            session('tpl_id',null);
+        }
 // echo   11;die;
     	//banner
-       	$this->assign('banner',Db::name('advert')->where(['status'=>1,'pid'=>10])->select());
+       	$this->assign('banner',Db::name('advert')->where(['status'=>'1','pid'=>10])->select());
        	//最新文章
        	$this->assign('post_new',Db::name('post')->where(['status'=>1,'relevan_id'=>0,'is_product'=>0])->order('ctime desc,id desc')->paginate(15));
        

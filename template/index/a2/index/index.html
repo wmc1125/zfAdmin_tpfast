@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Layui - 经典模块化前端 UI 框架</title>
+  <meta name="keywords" content="layui,ui,ui框架,前端框架,JS组件">
+  <meta name="description" content="layui 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS 的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API 的每一处细节都经过精心雕琢，非常适合界面的快速开发。">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="{$tpl_static}css/global.css?t=1572350920987-12" media="all">
+</head>
+<body class="site-home" id="LAY_home" style="background-color: #eee;" data-date="10-31">
+
+
+
+<div class="layui-header header header-index" autumn>
+  <div class="layui-main">
+    <a class="logo" href="/">
+      <img src="//res.layui.com/static/images/layui/logo.png" alt="layui">
+    </a>
+    <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
+    <ul class="layui-nav">
+      <li class="layui-nav-item ">
+        <a href="/doc/">文档<!-- <span class="layui-badge-dot"></span> --></a> 
+      </li>
+      <li class="layui-nav-item ">
+        <a href="/demo/">示例<!-- <span class="layui-badge-dot"></span> --></a>
+      </li>
+      
+      
+      
+      
+      <li class="layui-nav-item layui-hide-xs">
+        <a href="//fly.layui.com/" target="_blank">社区</a>
+      </li>
+      
+      <li class="layui-nav-item">
+        <a href="javascript:;"><!--<span class="layui-badge-dot" style="margin: -5px 0 0 -15px;"></span>-->周边</a>
+        <dl class="layui-nav-child">
+          <dd lay-unselect>
+            <a href="//fly.layui.com/jump/20191111/" target="_blank" id="layui-spm-event-aliyun">阿里云双11 <span class="layui-badge-dot" style="margin-top: -15px;"></span></a>
+            <hr>
+          </dd>
+          <dd lay-unselect>
+            <a href="//fly.layui.com/extend/" target="_blank">扩展组件</a>
+          </dd>
+          <dd lay-unselect>
+            <a href="//fly.layui.com/store/" target="_blank">模板市场</a>
+            <hr>
+          </dd>
+          
+          <dd class="layui-hide-sm layui-show-xs" lay-unselect>
+            <a href="//fly.layui.com/" target="_blank">社区交流</a>
+            <hr>
+          </dd>
+          <dd lay-unselect><a href="/admin/" target="_blank">后台模板 <span class="layui-badge-dot"></span></a></dd>
+          <dd lay-unselect><a href="/layim/" target="_blank">即时聊天</a><hr></dd>
+          
+          <dd lay-unselect><a href="/alone.html" target="_blank" lay-unselect>独立组件</a></dd>
+          <dd lay-unselect><a href="https://fly.layui.com/jie/24209/" target="_blank">Axure 组件</a><hr></dd>
+          
+          <dd lay-unselect>
+            <a href="https://www.layuicdn.com/?from=layui" target="_blank" id="layui-spm-event-layuicdn" rel="nofollow">
+              layui cdn
+            </a>
+          </dd>
+          
+        </dl>
+      </li>
+      
+      
+        <li class="layui-nav-item layui-hide-xs" lay-unselect>
+          <a href="https://fly.layui.com/jump/20191111/" target="_blank"  id="layui-spm-event-aliyun11">阿里云双11 <span class="layui-badge-dot" style="margin-top: -5px;"></span></a>
+        </li>
+      
+      
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="/admin/">后台模板 <span class="layui-badge-dot" style="margin-top: -5px;"></span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]--> 
+<div class="site-banner">
+  <div class="site-banner-bg" style="background-image: url(//res.layui.com/static/images/layui/banner/autumn.jpg?v=0); background-size: cover;">
+  </div>
+  <div class="site-banner-main">
+    <div class="site-zfj">
+      <i class="layui-icon" style="color: #fff; color: rgba(255,255,255,.7);">&#xe609;</i>
+    </div>
+    <div class="layui-anim site-desc">
+      <p class="web-font-desc">经典模块化前端框架</p>
+      <cite>由职业前端倾情打造，面向全层次的前后端开发者，低门槛开箱即用的前端 UI 解决方案</cite>
+    </div>
+    <div class="site-download">
+      <a href="//res.layui.com/static/download/layui/layui-v2.5.5.zip?v=" class="layui-inline site-down" target="_blank">
+        <cite class="layui-icon">&#xe601;</cite>
+        立即下载
+      </a>
+    </div>
+    <div class="site-version">
+      <span>当前版本：<cite class="site-showv">…</cite></span>
+      <span><a href="/doc/base/changelog.html" rel="nofollow" target="_blank">更新日志</a></span>
+      <span>下载量：<em class="site-showdowns">…</em></span>
+    </div>
+    <div class="site-banner-other">
+      <a href="https://github.com/sentsin/layui/" target="_blank" class="site-star">
+        <i class="layui-icon">&#xe658;</i>
+        Star <cite id="getStars"></cite> 
+      </a>
+      <a href="https://github.com/sentsin/layui/network/members" target="_blank" rel="nofollow" class="site-fork">
+        <i class="layui-icon">&#xe62e;</i>
+        Fork 
+      </a>
+      <a href="https://gitee.com/sentsin/layui" target="_blank" rel="nofollow" class="site-fork">
+        码云
+      </a>
+    </div>
+  </div>
+</div>
+<div class="layui-main">
+  
+  
+  
+  <ul class="site-idea">
+    <li>
+      <fieldset class="layui-elem-field layui-field-title">
+        <legend>返璞归真</legend>
+        <p>身处在前端社区的繁荣之下，我们都在有意或无意地追逐。而 layui 偏偏回望当初，奔赴在返璞归真的漫漫征途，自信并勇敢着，追寻于原生态的书写指令，试图以最简单的方式诠释高效。</p>
+      </fieldset>
+    </li>
+    <li>
+      <fieldset class="layui-elem-field layui-field-title">
+        <legend>双面体验</legend>
+        <p>拥有双面的不仅是人生，还有 layui。一面极简，一面丰盈。极简是视觉所见的外在，是开发所念的简易。丰盈是倾情雕琢的内在，是信手拈来的承诺。一切本应如此，简而全，双重体验。</p>
+      </fieldset>
+    </li>
+    <li>
+      <fieldset class="layui-elem-field layui-field-title">
+        <legend>星辰大海</legend>
+        <p>如果眼下还是一团零星之火，那运筹帷幄之后，迎面东风，就是一场烈焰燎原吧，那必定会是一番尽情的燃烧。待，秋风萧瑟时，散作满天星辰，你看那四季轮回<!--海天相接-->，正是 layui 不灭的执念。</p>
+      </fieldset>
+    </li>
+  </ul>
+  
+</div>
+<div class="layui-footer footer footer-index">
+  <div class="layui-main">
+    <p>&copy; 2019 <a href="/">layui.com</a> MIT license</p>
+    <p>
+      <a href="http://fly.layui.com/case/2019/" target="_blank">案例</a>
+      <a href="http://fly.layui.com/jie/3147/" target="_blank">支持</a>
+      <!--<a href="javascript:;" site-event="contactInfo">联系</a>-->
+      <a href="https://github.com/sentsin/layui/" target="_blank" rel="nofollow">GitHub</a>
+      <a href="https://gitee.com/sentsin/layui" target="_blank" rel="nofollow">码云</a>
+      <a href="http://fly.layui.com/jie/2461/" target="_blank" class="layui-hide-xs">公众号</a>
+      <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">赣ICP备13006272号-2</a>
+    </p>
+    <div class="site-union">
+      <p class="site-union-desc">
+        <span>
+          感谢以下平台提供云加速支持
+        </span>
+      </p>
+      <p>    
+        <a href="https://console.upyun.com/register/?invite=SJ0wu6g2-" target="_blank" rel="nofollow" sponsor="upyun">
+          <img src="//res.layui.com/static/images/other/upyun.png?t=1">
+        </a>    
+        <a href="https://www.maoyuncloud.com/?from=layui" target="_blank" rel="nofollow" sponsor="maoyun">
+          <img src="//cdn.layui.com/upload/2019_5/168_1559291577683_9348.png">
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="site-tree-mobile layui-hide">
+  <i class="layui-icon">&#xe602;</i>
+</div>
+<div class="site-mobile-shade"></div>
+<script src="__STATIC__/style/layui/layui.all.js" charset="utf-8"></script>
+<script>
+window.global = {
+  pageType: 'index'
+  ,preview: function(){
+    var preview = document.getElementById('LAY_preview');
+    return preview ? preview.innerHTML : '';
+  }()
+};
+layui.config({
+  base: '//res.layui.com/static/lay/modules/layui/'
+  ,version: '1572350920987'
+}).use('global');
+</script>
+ 
+
+</body>
+</html>

@@ -15,8 +15,10 @@ class Base extends Controller
         }
         $this->assign('home',session('home'));
         $this->assign('web_config',config()['web']);
-
-       	$zf_tpl_suffix = Db::name('config')->where(['key'=>'zf_tpl_suffix'])->value('value');
+        $zf_tpl_suffix = Db::name('config')->where(['key'=>'zf_tpl_suffix'])->value('value');
+        if(session('tpl_id')){
+            $zf_tpl_suffix = session('tpl_id');
+        }   
         $this->tpl = ($zf_tpl_suffix==''?'':$zf_tpl_suffix.'/').strtolower(Request::controller()).'/'.strtolower(Request::action());
         $this->controller = strtolower(Request::controller());
         $this->action = strtolower(Request::action());
