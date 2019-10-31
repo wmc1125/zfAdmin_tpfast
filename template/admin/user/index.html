@@ -53,14 +53,14 @@
           <input type="checkbox" name="status" value="{{d.id}}" lay-skin="switch" lay-text="开|关" lay-filter="status_change" {{ d.status == 1 ? 'checked' : '' }}>
         </script>
         <script type="text/html" id="test-table-operate-barDemo">
-          <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+          <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
           <a class="layui-btn layui-btn-xs" lay-event="edit"  onclick='zfAdminShow("编辑用户","/admin/user/edit/id/{{d.id}}")'>编辑</a>
           <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="btn_del('common/del_post',{{d.id}},'user')"  href="#">删除</a>
         </script>
       </div>
     </div>
   </div>
-
+  {include file="public/common_tool"}
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script type="text/javascript" src="__STATIC__/system/common.js"></script>  
   <script>
@@ -91,8 +91,8 @@
       ,title: '用户数据表'
       // ,defaultToolbar: ['filter', 'print', 'exports']
       ,cols: [[
-        {type: 'checkbox', fixed: 'left'}
-        ,{field:'id', width:80, title: 'ID', sort: true, fixed: 'left',totalRow: true}
+        {type: 'checkbox'}
+        ,{field:'id', width:80, title: 'ID', sort: true, totalRow: true}
         ,{field:'name', width:100, title: '昵称',edit: 'text'}
         ,{field:'pic', width:125, title: '头像' , toolbar: '#test-table-operate-barDemo_pic'}
         ,{field:'gname', width:100, title: '分组'}        

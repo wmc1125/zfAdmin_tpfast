@@ -46,12 +46,11 @@
           </div>
       </div>
       <?php } ?>
-    {/volist}
-    
-    
-    
+    {/volist}    
   </div>
 </div>
+{include file="public/common_tool"}
+
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script src="__STATIC__/system/common.js"></script> 
   <script>
@@ -66,8 +65,7 @@
     ,layer = layui.layer
     ,element = layui.element
     ,upload = layui.upload;
-    
-
+  
    $('.btn_edit').on("click",function(){
       var value = $(this).attr('item');
       var key = 'zf_tpl_suffix'
@@ -90,15 +88,7 @@
         }
       })
    })
-
-
-
-  
-  
 });
-
-
-
   </script>
 </body>
 </html>

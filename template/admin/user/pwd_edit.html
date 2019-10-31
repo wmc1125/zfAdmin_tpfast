@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
 </head>
 <body>
-
   <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
     <form class="info_tj" onclick="return false">
       <input type="hidden" name="id" value="{$Think.session.admin.id}">
@@ -19,7 +18,6 @@
           <input type="password" name="pwd" lay-verify="required" placeholder="请输入用密码" autocomplete="off" class="layui-input">
         </div>
       </div>
-      
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn tijiao layui-btn-sm" lay-submit lay-filter="formDemo">立即提交</button>
@@ -27,7 +25,7 @@
       </div>
     </form>
   </div>
-
+  {include file="public/common_tool"}
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script>
  layui.use(['form', 'upload'], function(){

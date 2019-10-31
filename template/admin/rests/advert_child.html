@@ -10,9 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+  <script src="__STATIC__/style/bootstrap/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="__STATIC__/style/bootstrap/bootstrap-3.3.4.css">
 </head>
 <body>
-
   <div class="layui-fluid">
     <div class="layui-card">
       <div class="layui-card-body">
@@ -26,7 +27,6 @@
               <col width="50">
               <col width="50">
               <col width="50">
-
               <col>
             </colgroup>
             <thead>
@@ -36,7 +36,6 @@
                 <th>链接</th>          
                 <th>状态</th>
                 <th>操作</th>
-
               </tr> 
             </thead>
             <tbody>
@@ -58,10 +57,11 @@
               {/volist}         
             </tbody>
           </table>
-
+          {$page|raw}
       </div>
     </div>
   </div>
+  {include file="public/common_tool"}
   <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script src="__STATIC__/system/common.js"></script>  

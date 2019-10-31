@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+  <script src="__STATIC__/style/bootstrap/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="__STATIC__/style/bootstrap/bootstrap-3.3.4.css">
 </head>
 <body>
-
   <div class="layui-fluid">
     <div class="layui-card">
       <div class="layui-card-header layuiadmin-card-header-auto">
         <button class="layui-btn layui-btn-sm" onclick="zfAdminShow('添加分类','{:url("user/group_add")}')"><i class="layui-icon"></i>添加</button>
-
       </div>
       <table class="layui-table">
         <colgroup>
@@ -26,8 +26,6 @@
           <col width="60">
           <col width="60">
           <col width="30">
-   
-
           <col>
         </colgroup>
         <thead>
@@ -55,17 +53,14 @@
               <td> <a class="layui-btn layui-btn-sm layui-btn-danger" onclick="btn_del('common/del_post',{$vo['id']},'user_group')" href="#">删除</a> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑分类","{:url('user/group_edit',['id' => $vo['id']] )}")'>编辑</button></td>
             </tr>
           {/volist}
-       
-          
         </tbody>
       </table>
-      {$page}
+      {$page|raw}
     </div>
   </div>
-
+  {include file="public/common_tool"}
   <script src="__STATIC__/style/layui/layui.js"></script>
   <script src="__STATIC__/system/common.js"></script>  
-
   <script>
  layui.use(['contlist', 'table'], function(){
       var $ = layui.$
