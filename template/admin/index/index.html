@@ -96,6 +96,7 @@
                 <li> <a href="{:url('login/loginout')}"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
               </ul>
             </li>
+           
             <!--切换主题配色-->
 		        <!-- <li class="dropdown dropdown-skin">
   			      <span data-toggle="dropdown" class="icon-palette"><i class="mdi mdi-palette"></i></span>
@@ -213,6 +214,7 @@
             <script src="https://mctool.wangmingchang.com/public/static/layer/layer.js"></script>
             <script src="https://mctool.wangmingchang.com/public/static/api/mc_tool/index.js"></script>
 
+		
           </ul>
           
         </div>
@@ -230,6 +232,55 @@
     <!--End 页面主要内容-->
   </div>
 </div>
+
+<!--右侧-->
+<style type="text/css">
+.red-envelope {
+    position: fixed;
+    left: 0px;
+    bottom: 10px;
+  /*  width: 150px;
+    height: 104px; */
+    text-align: center;
+    display: inline-block;
+    z-index: 999;
+}
+.red-envelope .content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.red-envelope .content .img {
+    width: 200px;
+
+}
+.red-envelope .content .img-close {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 9px;
+    top: 0;
+}
+
+@media screen and (max-width:400px){
+    .red-envelope .content .img {
+        width: 130px;
+       /* height: 134px; */
+    }
+}
+
+</style>
+
+<div class="red-envelope">
+    <div class="content">
+
+   <a href="https://m.tb.cn/h.eJG1uWt" rel="noreferrer" target="_blank">
+            <img class="img" src="https://i.loli.net/2019/10/30/SnigOwCZAcLEu7q.png">
+        </a>
+        <img class="img-close" onclick="removeTbHb()" id="close-envelope" src="https://i.loli.net/2019/10/30/XhWyHlANe8MJujx.png">
+    </div>
+</div>
+
 
 <script type="text/javascript" src="__STATIC__/system/js/jquery.min.js"></script>
 <script type="text/javascript" src="__STATIC__/system/js/bootstrap.min.js"></script>
@@ -256,6 +307,11 @@ function clearPhp(obj) {
     function(){});
 }
 
+
+function removeTbHb(){
+	$('.red-envelope').hide();
+	setCookie("noTb", "1")
+}
 
 
 </script>
