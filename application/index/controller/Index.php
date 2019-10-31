@@ -40,6 +40,11 @@ class Index extends Base
         dd($r->img());
     }
 
+    public function test_case(){
+        return view($this->tpl);
+
+    }
+
    
    
 
