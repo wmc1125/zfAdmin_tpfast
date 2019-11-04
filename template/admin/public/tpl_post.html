@@ -285,7 +285,44 @@ scaleEnabled:false//设置不自动调整高度
 });
 </script>
           <?php }elseif($vo['type']=='wangeditor'){ ?>
-
+            <div id="w-editor-{$vo['key']}" class="fabu_editor"></div>
+            <textarea id="zf-con-{$vo['key']}" style="width:100%; height:200px;" name="{$vo['key']}" hidden=""></textarea>
+<script>
+$(function (){
+    var E = window.wangEditor
+    var editor = new E("#w-editor-{$vo['key']}")
+    var $text1 = $("#zf-con-{$vo['key']}")
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $text1.val(html)
+    }
+    editor.customConfig.debug = true;
+    // 关闭粘贴内容中的样式
+    editor.customConfig.pasteFilterStyle = false
+    // 忽略粘贴内容中的图片
+    editor.customConfig.pasteIgnoreImg = true
+    // 使用 base64 保存图片
+    //editor.customConfig.uploadImgShowBase64 = true
+    // 上传图片到服务器
+    editor.customConfig.uploadFileName = 'file'; //设置文件上传的参数名称
+    editor.customConfig.uploadImgServer = "{:url('common/upload_one')}"; //设置上传文件的服务器路径
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024; // 将图片大小限制为 3M
+    //自定义上传图片事件
+    editor.customConfig.uploadImgHooks = {
+      customInsert: function (insertImg, result, editor) {
+        if(result.result==1){
+          var url = result.msg
+          insertImg(url)
+        }else{
+          layer.msg(上传失败,{icon: 2})
+        }
+      }
+    }
+    editor.create()
+    // editor.txt.html("")
+    $text1.val(editor.txt.html())
+});
+</script>
           <?php }elseif($vo['type']=='md'){ ?>
 
           <?php } ?>
