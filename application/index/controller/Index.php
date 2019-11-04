@@ -36,8 +36,9 @@ class Index extends Base
    
     public function test()
     {
-        $r = new GetConfig();
-        dd($r->img());
+        // $r = new GetConfig();
+        // dd($r->img());
+        return view($this->tpl);
     }
 
     public function test_case(){
