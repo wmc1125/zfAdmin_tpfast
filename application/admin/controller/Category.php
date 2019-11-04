@@ -221,7 +221,7 @@ class Category extends Admin
             $tpl = 'category/zf_tpl/add';
             $this->assign('cid',$cid);
             $this->assign('mid',$mid);
-            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
+            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
             $this->assign('m_list',$m_list);
             $this->assign('m_res',$m_res);
             return view($tpl);
@@ -298,7 +298,7 @@ class Category extends Admin
             $tpl = 'category/zf_tpl/add';
             $this->assign('cid',$cid);
             $this->assign('mid',$mid);
-            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid])->order('sort asc,id asc')->select();
+            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
             $this->assign('m_list',$m_list);
             $this->assign('m_res',$m_res);
             return view($tpl);
