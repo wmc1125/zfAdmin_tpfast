@@ -126,7 +126,7 @@ class Common extends Admin
                 $msg = 'http://'.$_SERVER['SERVER_NAME'].$water_name;
             }else{
                 //不加
-                $info = $file->move( './upload/file');
+                $info = $file->validate(['size'=>15678,'ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
                 $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
                 $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
             }
@@ -149,7 +149,7 @@ class Common extends Admin
         $img_config = config()['img'];
         if($img_config['file_save_type']==0){
             $file2 = request()->file('file');
-            $info = $file2->move('./upload/file');
+            $info = $file2->validate(['size'=>15678,'ext'=>'txt,pdf,doc,xls,ppt'])->move('./upload/file');
             $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
             $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
         }else{
