@@ -11,7 +11,7 @@
         </button>
         <ul class="layui-nav" lay-filter="">
           <?php foreach($menu as $k=>$vo){ ?>
-          <li class="layui-nav-item"><a href="{:url('cate/list',['cid'=>$vo['cid']])}">{$vo['name']}</a></li>
+          <li class="layui-nav-item"><a href="{:url('cate/listt',['cid'=>$vo['cid']])}">{$vo['name']}</a></li>
           <?php } ?>
         </ul>
       </div>

@@ -26,7 +26,6 @@ class Index extends Base
        	$this->assign('banner',Db::name('advert')->where(['status'=>'1','pid'=>10])->select());
        	//最新文章
        	$this->assign('post_new',Db::name('post')->where(['status'=>1,'relevan_id'=>0,'is_product'=>0])->order('ctime desc,id desc')->paginate(15));
-       
         $seo['title'] = config()['web']['site_title'];
         $seo['keywords'] = config()['web']['site_keywords'];
         $seo['description'] = config()['web']['site_description'];
