@@ -19,7 +19,8 @@ function zf($zz='0'){
 			// $myfile = fopen('./auth.text','r') or $is_auth_code = false;
 			// $_file = fgets($myfile);
 			// fclose($myfile);
-			$_file = '3lfH0tLHyqJXblTLqNjRnMCRj2HGyNCmkayfXnJknMzQY8bS0oiNVqmtoshWnpLf';
+			// $_file = '3lfH0tLHyqJXblTLqNjRnMCRj2HGyNCmkayfXnJknMzQY8bS0oiNVqmtoshWnpLf';
+			$_file = '3lfH0tLHyqJXblTLqNjRnMCRj2HGyNCmkayfXnJknMzQY8bS0oiNVqmtoshWnpLf111';
 			$f = json_decode(decrypt($_file,'web_auth'));
       // echo 1;die;
       // dd($f);
@@ -36,7 +37,7 @@ function zf($zz='0'){
 			}
 		}
   		if(!$is_auth_code){
-	  		// die('error');
+	  		die('error');
   		}
   		return ['code'=>1,'auth'=>encrypt('zfadmin-'.date("Y-m-d",time()))];
 	}

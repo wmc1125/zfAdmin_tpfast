@@ -195,11 +195,12 @@ class Index extends Controller
         file_put_contents('./install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
         
         //站点密匙
-        $auth = password_hash(request()->time(), PASSWORD_DEFAULT);//网站秘钥
+        $auth = '******';//网站秘钥
         $hs_auth = <<<INFO
 <?php
 // +----------------------------------------------------------------------
 //子枫后台管理系统
+//秘钥请根据链接进行申请 http://bbs.wangmingchang.com/forum.php?mod=viewthread&tid=1923&extra=
 // +----------------------------------------------------------------------
 return ['key' => '{$auth}'];
 INFO;
