@@ -15,7 +15,7 @@ class Cate extends Base
 
     }
     //列表
-    public function list()
+    public function listt()
     {
         $cid = input('cid',1);
         $this->assign('cid',$cid);

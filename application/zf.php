@@ -44,7 +44,7 @@ function zf($zz='0'){
                 $zf_web_auth = $data;
                 $zf_web_auth['code'] = 1;
                 $zf_web_auth['auth'] = zf_encrypt(json_encode($data));
-                dd($zf_web_auth);
+                // dd($zf_web_auth);
                 session('zf_web_auth',$zf_web_auth);
             }
             return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];

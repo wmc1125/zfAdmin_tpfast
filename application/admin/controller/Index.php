@@ -23,6 +23,7 @@ class Index extends Admin
     }
     public function welcome()
     {
+        \zf\ZfTool::test();
         admin_role_check($this->z_role_list,$this->mca);
         //  用户增长曲线
         // $user_nyr_grow = Db::name('user')

@@ -14,21 +14,23 @@ use think\facade\Config;
 
 final class ZfTool
 {
-    public function __construct(){
-      //使用记录
-      // $_temp_zftool = session('')
-      
-
-    }
+    public function _initialize(){}
     /*
      * ZF权限方法
      */
-    public function auth(){}
+    static public function web_auth(){
+      if (!function_exists('zf_web_auth')) {
+        if(request()->module()=='admin'){
+          zf_web_auth();
+        }
+      }
+    }
     
     /*
      * 更新此类
      */
     static public function zf_upgrade(){
+      self::web_auth();
       $all_path =str_replace('\\','/', __FILE__);
       $web_path = $_SERVER['DOCUMENT_ROOT'];
       $temp_path = explode('ZfTool.php',explode($web_path, $all_path)[1])[0];
@@ -50,6 +52,7 @@ final class ZfTool
      * 获取信息
      */
     static public function get_info(){
+      self::web_auth();
 //获取系统类型及版本号：    php_uname()           (例：Windows NT COMPUTER 5.1 build 2600)
 //只获取系统类型：          php_uname('s')        (或：PHP_OS，例：Windows NT)
 //只获取系统版本号：        php_uname('r')        (例：5.1)
@@ -98,6 +101,7 @@ final class ZfTool
      * 定位
      */
     public function zf_location(){
+      self::web_auth();
       // $data['ip'] = request()->ip();
 
       return $data;
@@ -115,6 +119,7 @@ final class ZfTool
      * @return   [type]                              [返回结果]
      */
     static public function check_data($t='',$parm=0,$error_msg=''){
+        self::web_auth();
         switch ($t) {
             case 'tel':
                 return check_mobile_phone($parm,$error_msg);
@@ -144,6 +149,7 @@ final class ZfTool
      * @return   [type]                           [str]
      */
     static public function get_domain_urlr($domain='',$url=''){
+        self::web_auth();
         //判断url地址是否完整,不完整进行拼接
           $isurl=@get_headers($url);
           if(!$isurl){
@@ -163,7 +169,8 @@ final class ZfTool
     }
 
     static public function test(){
-        dd(2222222223232);
+      self::web_auth();
+        // dd(2222222223232);
     }
     /**
      * [zf_auth_pwd 加密/解密]
@@ -192,6 +199,7 @@ final class ZfTool
      * @return   [type]                         [description]
      */
     static public function send_email($data,$key){
+      self::web_auth();
       $ret = ['data'=>json_encode($data),'key'=>$key,'pid'=>4];
       $url = 'http://mctool.wangmingchang.com/api/tool/email';
       $ret = https_post($url,$ret);
@@ -200,6 +208,7 @@ final class ZfTool
 
 
     static public function str_in_two_array($value, $array){
+      self::web_auth();
       return deep_in_array($value, $array);
     }
    
