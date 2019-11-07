@@ -4,6 +4,9 @@ use think\Db;
 use think\facade\Request;
 use app\common\behavior\Hooks;
 use zf\GetConfig;
+use Wmc1125\Mctoolsdk\Mctool;
+
+
 class Index extends Base
 {
 	public function __construct ( Request $request = null ){
@@ -35,9 +38,11 @@ class Index extends Base
    
     public function test()
     {
-        // $r = new GetConfig();
-        // dd($r->img());
-        return view($this->tpl);
+        require 'vendor/autoload.php';
+        // $r = new Mctool();
+
+        dd(\Wmc1125\Mctoolsdk\Mctool::get_info());
+        dd(1);
     }
 
     public function test_case(){

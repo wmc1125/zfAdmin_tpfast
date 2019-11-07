@@ -54,13 +54,15 @@ function zf($zz='0'){
             break;
     }
 }
-function zf_test(){
- 	var_dump(zf()['auth']);die;
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-	return  '----';
-}
+// function zf_test(){
+//  	var_dump(zf()['auth']);die;
+// 	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+// 	return  '----';
+// }
 
-// 网站权限判断
+ /**
+  *  网站权限判断
+  */
 function zf_web_auth(){
     if(session('zf_web_auth')){
         return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];die;
@@ -69,28 +71,128 @@ function zf_web_auth(){
     }
 	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 }
-
-
-function curl_post_https($url,$data){ // 模拟提交数据函数
-    $curl = curl_init(); // 启动一个CURL会话
-    curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检查
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0); // 从证书中检查SSL加密算法是否存在
-    curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
-    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1); // 使用自动跳转
-    curl_setopt($curl, CURLOPT_AUTOREFERER, 1); // 自动设置Referer
-    curl_setopt($curl, CURLOPT_POST, 1); // 发送一个常规的Post请求
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post提交的数据包
-    curl_setopt($curl, CURLOPT_TIMEOUT, 30); // 设置超时限制防止死循环
-    curl_setopt($curl, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // 获取的信息以文件流的形式返回
-    $tmpInfo = curl_exec($curl); // 执行操作
-    if (curl_errno($curl)) {
-        echo 'Errno'.curl_error($curl);//捕抓异常
+###########----重点----################
+//加密
+function zf_encrypt($data, $key='zf'){
+    $key    =    md5($key);
+    $x        =    0;
+    $len    =    strlen($data);
+    $l        =    strlen($key);
+    $char = '';
+    $str = '';
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l) 
+        {
+            $x = 0;
+        }
+        $char .= $key{$x};
+        $x++;
     }
-    curl_close($curl); // 关闭CURL会话
-    return $tmpInfo; // 返回数据，json格式
+    for ($i = 0; $i < $len; $i++)
+    {
+        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+    }
+    return base64_encode($str);
 }
+//解密
+function zf_decrypt($data, $key='zf'){
+    $key = md5($key);
+    $x = 0;
+    $data = base64_decode($data);
+    $len = strlen($data);
+    $l = strlen($key);
+    $char = '';
+    $str = '';
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l) 
+        {
+            $x = 0;
+        }
+        $char .= substr($key, $x, 1);
+        $x++;
+    }
+    for ($i = 0; $i < $len; $i++)
+    {
+        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
+        {
+            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+        }
+        else
+        {
+            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+        }
+    }
+    return $str;
+}
+
+###########----权限----################
+/**
+* 修改扩展配置文件
+* @param array  $arr  需要更新或添加的配置
+* @param string $file 配置文件名(不需要后辍)
+* @return bool
+*/
+function extraconfig($arr = [], $file = ''){
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+   if (is_array($arr)) {
+      $filename = $file . '.php';
+
+      $filepath ='./config/' . $filename;
+      if (!file_exists($filepath)) {
+          $conf = "<?php return [];";
+          file_put_contents($filepath, $conf);
+      }
+
+      $conf = include $filepath;
+      foreach ($arr as $key => $value) {
+          $conf[$key] = $value;
+      }
+
+      $time = date('Y/m/d H:i:s');
+      $str = "<?php\r\n/**\r\n * 站点信息最后修改于 \r\n * $time\r\n */\r\nreturn [\r\n";
+      foreach ($conf as $key => $value) {
+          $str .= "\t'$key' => '$value',";
+          $str .= "\r\n";
+      }
+      $str .= '];';
+
+      file_put_contents($filepath, $str);
+      
+      return true;
+  	} else {
+      return false;
+  	}
+}
+
+/**
+*获取某个目录下的php文件名的函数
+*/
+function getControllers($dir) {
+    zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+    $pathList = glob($dir . '/*.php');
+    $res = [];
+    foreach($pathList as $key => $value) {
+      $res[] = basename($value, '.php');
+    }
+    return $res;
+}
+/**
+*获取某个控制器的方法名的函数
+*此方法过滤父级Base控制器的方法，只保留自己的
+*/
+function getActions($className, $base='\app\admin\controller\Admin') {
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+    $methods = get_class_methods(new $className());//当前控制器方法
+    $baseMethods = get_class_methods(new $base());//通用方法
+    $res = array_diff($methods, $baseMethods);
+    return $res;
+}
+
+
+
+###########----通用----################
 /*
 * 发起POST网络提交
 * @params string $url : 网络地址
@@ -128,63 +230,6 @@ function https_get($url)
     else{$result=curl_exec($curl);}
     curl_close($curl);
     return $result;
-}
-//加密
-function zf_encrypt($data, $key='zf')
-{
-    $key    =    md5($key);
-    $x        =    0;
-    $len    =    strlen($data);
-    $l        =    strlen($key);
-    $char = '';
-    $str = '';
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l) 
-        {
-            $x = 0;
-        }
-        $char .= $key{$x};
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
-    }
-    return base64_encode($str);
-}
-
-//解密
-function zf_decrypt($data, $key='zf')
-{
-    $key = md5($key);
-    $x = 0;
-    $data = base64_decode($data);
-    $len = strlen($data);
-    $l = strlen($key);
-    $char = '';
-    $str = '';
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l) 
-        {
-            $x = 0;
-        }
-        $char .= substr($key, $x, 1);
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
-        {
-            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
-        }
-        else
-        {
-            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
-        }
-    }
-    return $str;
 }
 
 //成功之后返回json
@@ -237,73 +282,10 @@ function object_to_array($obj) {
 }
 
 
-/**
-* 修改扩展配置文件
-* @param array  $arr  需要更新或添加的配置
-* @param string $file 配置文件名(不需要后辍)
-* @return bool
-*/
-function extraconfig($arr = [], $file = '')
-{
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-   if (is_array($arr)) {
-      $filename = $file . '.php';
 
-      $filepath ='./config/' . $filename;
-      if (!file_exists($filepath)) {
-          $conf = "<?php return [];";
-          file_put_contents($filepath, $conf);
-      }
-
-      $conf = include $filepath;
-      foreach ($arr as $key => $value) {
-          $conf[$key] = $value;
-      }
-
-      $time = date('Y/m/d H:i:s');
-      $str = "<?php\r\n/**\r\n * 站点信息最后修改于 \r\n * $time\r\n */\r\nreturn [\r\n";
-      foreach ($conf as $key => $value) {
-          $str .= "\t'$key' => '$value',";
-          $str .= "\r\n";
-      }
-      $str .= '];';
-
-      file_put_contents($filepath, $str);
-      
-      return true;
-  	} else {
-      return false;
-  	}
-}
-
-
-/**
-*获取某个目录下的php文件名的函数
-*/
-function getControllers($dir) {
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-  $pathList = glob($dir . '/*.php');
-  $res = [];
-  foreach($pathList as $key => $value) {
-      $res[] = basename($value, '.php');
-  }
-  return $res;
-}
-/**
-*获取某个控制器的方法名的函数
-*此方法过滤父级Base控制器的方法，只保留自己的
-*/
-function getActions($className, $base='\app\admin\controller\Admin') {
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-  $methods = get_class_methods(new $className());//当前控制器方法
-  $baseMethods = get_class_methods(new $base());//通用方法
-  $res = array_diff($methods, $baseMethods);
-  return $res;
-}
 
 // 输出日志
 function logOutput($data) {
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     //数据类型检测
     if (is_array($data)) {
         $data = json_encode($data);
@@ -322,7 +304,6 @@ function logOutput($data) {
  * 
  */
 function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){ 
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     //保存路径
     $d = date('Ymd', time());
     $dirslsitss = './upload/'.$keyword.'/'.$d;//分类是否存在
@@ -356,7 +337,6 @@ function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){
     return $xstr;
 }
 function rand_post_first_pic($content){
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 	
     $pattern="/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg|\.png]))[\'|\"].*?[\/]?>/"; 
     preg_match_all($pattern,$content,$matchContent); 
     if(isset($matchContent[1][0])){ 
@@ -366,12 +346,12 @@ function rand_post_first_pic($content){
     } 
 }
 
-
-function dd($msg){
-    echo "<pre>";
-    var_dump($msg);die;
+if (!function_exists('dd')) {
+    function dd($msg){
+        echo "<pre>";
+        var_dump($msg);die;
+    }
 }
-
 
 
 

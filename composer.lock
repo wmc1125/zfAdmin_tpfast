@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "23a67e0e3efe115389a5f75b0f52bfc2",
+    "content-hash": "d4c4d63eaeb34dcd4ddd3d4b3ed0c63f",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -753,6 +753,42 @@
             ],
             "description": "Implement the database backup restore",
             "time": "2017-12-29T05:36:58+00:00"
+        },
+        {
+            "name": "wmc1125/mctoolsdk",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wmc1125/mctoolsdk.git",
+                "reference": "d69866dcca70df484615c7d41221d16b417824b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wmc1125/mctoolsdk/zipball/d69866dcca70df484615c7d41221d16b417824b0",
+                "reference": "d69866dcca70df484615c7d41221d16b417824b0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wmc1125\\Mctoolsdk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "wmc1125",
+                    "email": "287851074@qq.com"
+                }
+            ],
+            "description": "mctool常用工具",
+            "time": "2019-11-07T11:32:12+00:00"
         },
         {
             "name": "yurunsoft/yurun-http",
