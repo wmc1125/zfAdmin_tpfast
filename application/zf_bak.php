@@ -1,58 +1,73 @@
 <?php
 function zf($zz='0'){
-	if($zz=='afsvdv123dsa'){
-		$data['domain'] = request()->domain();//domain
-  		$data['ip'] = request()->ip();//访问ip
-  		$data['type'] = 1; //1 单域名  2 根域名  
-		$auth_ret = https_post('http://mctool.wangmingchang.com/api/auth/web',['data'=>encrypt(json_encode($data),"web_auth")]);
-		//判断是否通讯成功
-		if(json_decode($auth_ret)){
-			//判断是否认证
-			if(json_decode($auth_ret)->code==1){
-  				$is_auth_code = true;
-			}else{
-  				$is_auth_code = false;
-			}
-		}else{
-			// 通讯失败,使用本地文件校验
-			error_reporting(0);
-			// $myfile = fopen('./auth.text','r') or $is_auth_code = false;
-			// $_file = fgets($myfile);
-			// fclose($myfile);
-			// $_file = '3lfH0tLHyqJXblTLqNjRnMCRj2HGyNCmkayfXnJknMzQY8bS0oiNVqmtoshWnpLf';
-			$_file = '3lfH0tLHyqJXblTLqNjRnMCRj2HGyNCmkayfXnJknMzQY8bS0oiNVqmtoshWnpLf111';
-			$f = json_decode(decrypt($_file,'web_auth'));
-      // echo 1;die;
-      // dd($f);
-			if($f){
-				if($f->type==1){
-					$is_auth_code = $f->domain!=request()->domain()?false:true;
-				}elseif($f->type==2){
-					$is_auth_code = $f->domain!=request()->rootDomain()?false:true;
-				}else{
-  					$is_auth_code = false;
-				}
-			}else{
-  				$is_auth_code = false;
-			}
-		}
-  		if(!$is_auth_code){
-	  		die('error');
-  		}
-  		return ['code'=>1,'auth'=>encrypt('zfadmin-'.date("Y-m-d",time()))];
-	}
-
-  	die('php是最好的语言,不接受反驳!');
+    switch ($zz) {
+        case 'zfadmin-fast':
+            $data['domain'] = request()->domain();//domain
+            $data['ip'] = request()->ip();//访问ip
+            $data['type'] = 2; //1 单域名  2 根域名  
+            $data['zfadmin'] = 'fast'; //版本类型  
+            $data['version'] = '1.0'; //版本号  
+            $data['time'] = time(); //版本号  
+            $auth_ret = https_post('http://mctool.wangmingchang.com/api/auth/web',['data'=>zf_encrypt(json_encode($data),"web_auth")]);
+            //判断是否通讯成功
+            if(json_decode($auth_ret)){
+                //判断是否认证
+                if(json_decode($auth_ret)->code==1){
+                    $is_auth_code = true;
+                }else{
+                    $is_auth_code = false;
+                }
+            }else{
+                // 通讯失败,使用本地文件校验
+                error_reporting(0);
+                $_file = config()['zf_auth']['key'];
+                // $_file = '3lfH0tLHyqJXblScZMfMz5LFop+Ej4Wr3KKeUnNmZYPdm8TH0s/PVm9WmMSn2IPf';//90ckm.com
+                $f = json_decode(zf_decrypt($_file,'web_auth'));
+                if($f && $_file){
+                    if($f->type == '1'){
+                        // dd(request()->domain());//http://v1.fast.zf.90ckm.com//单域名
+                        $is_auth_code = ($f->domain!=request()->domain()?false:true);
+                    }elseif($f->type == '2'){
+                        // dd(request()->rootDomain());//90ckm.com//根域名
+                        $is_auth_code = ($f->domain!=request()->rootDomain()?false:true);
+                    }else{
+                        $is_auth_code = false;
+                    }
+                }else{
+                    $is_auth_code = false;
+                }        
+            }
+            if(!$is_auth_code){
+                die("<a target='_blank' href='http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77&page=1'> 认证文件失效,请参考如下操作</a>");
+            }else{
+                //认证成功,设置个session
+                $zf_web_auth = $data;
+                $zf_web_auth['code'] = 1;
+                $zf_web_auth['auth'] = zf_encrypt(json_encode($data));
+                // dd($zf_web_auth);
+                session('zf_web_auth',$zf_web_auth);
+            }
+            return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];
+            break;
+        default:
+            die("<a target='_blank' href='http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77&page=1'> 获取授权</a>");        
+            break;
+    }
 }
 function zf_test(){
  	var_dump(zf()['auth']);die;
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 	return  '----';
 }
 
 // 网站权限判断
 function zf_web_auth(){
-	// zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+    if(session('zf_web_auth')){
+        return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];die;
+    }else{
+        zf('zfadmin-fast')['auth'];
+    }
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 }
 
 
@@ -115,7 +130,7 @@ function https_get($url)
     return $result;
 }
 //加密
-function encrypt($data, $key='zf')
+function zf_encrypt($data, $key='zf')
 {
     $key    =    md5($key);
     $x        =    0;
@@ -140,7 +155,7 @@ function encrypt($data, $key='zf')
 }
 
 //解密
-function decrypt($data, $key='zf')
+function zf_decrypt($data, $key='zf')
 {
     $key = md5($key);
     $x = 0;
@@ -174,12 +189,10 @@ function decrypt($data, $key='zf')
 
 //成功之后返回json
 function jssuccess($msg, $url = 'back') {
-	// zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
   	echo json_encode(array("msg" => $msg, "url" => $url, "result" => '1'));exit;
 }
 //失败之后返回json
 function jserror($msg, $url = 'back') {
-	// zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
   	echo json_encode(array("msg" => $msg, "url" => $url, "result" => '0'));exit;
 }
 
@@ -190,7 +203,7 @@ function jserror($msg, $url = 'back') {
 * @return object
 */
 function array_to_object($arr) {
-	  zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	  zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 	  if (gettype($arr) != 'array') {
 	      return;
 	  }
@@ -209,7 +222,7 @@ function array_to_object($arr) {
 * @return array
 */
 function object_to_array($obj) {
-	  zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	  zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 	  $obj = (array)$obj;
 	  foreach ($obj as $k => $v) {
 	      if (gettype($v) == 'resource') {
@@ -232,7 +245,7 @@ function object_to_array($obj) {
 */
 function extraconfig($arr = [], $file = '')
 {
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
    if (is_array($arr)) {
       $filename = $file . '.php';
 
@@ -268,7 +281,7 @@ function extraconfig($arr = [], $file = '')
 *获取某个目录下的php文件名的函数
 */
 function getControllers($dir) {
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
   $pathList = glob($dir . '/*.php');
   $res = [];
   foreach($pathList as $key => $value) {
@@ -281,7 +294,7 @@ function getControllers($dir) {
 *此方法过滤父级Base控制器的方法，只保留自己的
 */
 function getActions($className, $base='\app\admin\controller\Admin') {
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
   $methods = get_class_methods(new $className());//当前控制器方法
   $baseMethods = get_class_methods(new $base());//通用方法
   $res = array_diff($methods, $baseMethods);
@@ -290,7 +303,7 @@ function getActions($className, $base='\app\admin\controller\Admin') {
 
 // 输出日志
 function logOutput($data) {
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     //数据类型检测
     if (is_array($data)) {
         $data = json_encode($data);
@@ -309,7 +322,7 @@ function logOutput($data) {
  * 
  */
 function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){ 
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     //保存路径
     $d = date('Ymd', time());
     $dirslsitss = './upload/'.$keyword.'/'.$d;//分类是否存在
@@ -343,7 +356,7 @@ function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){
     return $xstr;
 }
 function rand_post_first_pic($content){
-	zf('afsvdv123dsa')['auth']==encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 	
+	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 	
     $pattern="/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg|\.png]))[\'|\"].*?[\/]?>/"; 
     preg_match_all($pattern,$content,$matchContent); 
     if(isset($matchContent[1][0])){ 
@@ -354,7 +367,10 @@ function rand_post_first_pic($content){
 }
 
 
-
+function dd($msg){
+    echo "<pre>";
+    var_dump($msg);die;
+}
 
 
 
