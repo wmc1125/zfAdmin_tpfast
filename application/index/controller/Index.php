@@ -4,17 +4,14 @@ use think\Db;
 use think\facade\Request;
 use app\common\behavior\Hooks;
 use zf\GetConfig;
-use Wmc1125\Mctoolsdk\Mctool;
-
-
+use OSS\OssClient;
 class Index extends Base
 {
 	public function __construct ( Request $request = null ){
         parent::__construct();
     }
     // 首页
-    public function index()
-    {
+    public function index(){
         if(input('tpl_id')){
             if(input('tpl_id')=='-1'){
                 session('tpl_id',null);
@@ -24,7 +21,7 @@ class Index extends Base
         }else{
             session('tpl_id',null);
         }
-// echo   11;die;
+        // echo   11;die;
     	//banner
        	$this->assign('banner',Db::name('advert')->where(['status'=>'1','pid'=>10])->select());
        	//最新文章
@@ -38,11 +35,8 @@ class Index extends Base
    
     public function test()
     {
-        require 'vendor/autoload.php';
-        // $r = new Mctool();
-
-        dd(\Wmc1125\Mctoolsdk\Mctool::get_info());
-        dd(1);
+        $auth2 = new \Wmc1125\Mctoolsdk\McTool();
+        $auth2->index();
     }
 
     public function test_case(){

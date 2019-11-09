@@ -14,7 +14,6 @@ namespace think;
 
 // 加载基础文件
 require __DIR__ . '/thinkphp/base.php';
-include './vendor/wmc1125/mctoolsdk/src/McTool.php';
 //安装程序
 !is_file('./install.lock')?define('BIND_MODULE','install'):define('BIND_MODULE','index');
 // 执行应用并响应
