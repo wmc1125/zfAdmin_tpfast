@@ -5,7 +5,7 @@ use think\facade\Session;
 use think\facade\Cache;
 use think\facade\Request;
 use think\Db;
-use zf\Database as dbOper;
+use Wmc1125\Mctoolsdk\Database as dbOper;
 
 use app\admin\controller\Common;
 
@@ -23,7 +23,6 @@ class Index extends Admin
     }
     public function welcome()
     {
-        \zf\ZfTool::test();
         admin_role_check($this->z_role_list,$this->mca);
         //  用户增长曲线
         // $user_nyr_grow = Db::name('user')

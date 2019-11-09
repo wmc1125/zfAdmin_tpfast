@@ -1,11 +1,11 @@
 <?php
 namespace app\admin\controller;
-use zf\Category as cat; 
+use Wmc1125\Mctoolsdk\Category as cat; 
 use think\Db;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use zf\GetImgSrc; 
+use Wmc1125\Mctoolsdk\GetImgSrc; 
  
 class Category extends Admin
 {

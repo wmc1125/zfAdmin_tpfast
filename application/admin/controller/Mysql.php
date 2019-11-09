@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
-use zf\Dir;
-use zf\Database as dbOper;
+use Wmc1125\Mctoolsdk\Dir;
+use Wmc1125\Mctoolsdk\Database as dbOper;
 use think\Db;
 use Env;
 

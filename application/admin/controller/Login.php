@@ -4,7 +4,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\facade\Request;
 use think\Db;
-use zf\GoogleAuthenticator;
+use Wmc1125\Mctoolsdk\GoogleAuthenticator;
 
 class Login extends Controller
 {

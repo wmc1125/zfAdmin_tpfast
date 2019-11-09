@@ -2,7 +2,7 @@
 namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
-use zf\Category as cat;
+use Wmc1125\Mctoolsdk\Category as cat;
 class Cate extends Base
 {
 	public function __construct ( Request $request = null ){

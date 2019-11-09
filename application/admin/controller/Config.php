@@ -3,7 +3,7 @@ namespace app\admin\controller;
 use think\facade\Request;
 use think\Db;
 use think\facade\Config as TConfig;
-use zf\Category;
+use Wmc1125\Mctoolsdk\Category;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 class Config extends Admin

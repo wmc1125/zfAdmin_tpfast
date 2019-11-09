@@ -3,7 +3,7 @@ namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
 use app\common\behavior\Hooks;
-use zf\GetConfig;
+use Wmc1125\Mctoolsdk\GetConfig;
 use OSS\OssClient;
 class Index extends Base
 {

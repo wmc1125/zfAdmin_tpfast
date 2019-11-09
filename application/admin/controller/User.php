@@ -5,7 +5,7 @@ use think\Db;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use zf\GoogleAuthenticator;
+use Wmc1125\Mctoolsdk\GoogleAuthenticator;
 
 class User extends Admin
 {
