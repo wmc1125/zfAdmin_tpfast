@@ -1,10 +1,18 @@
 
-          <?php if($vo['type']=='layui-input'){ 
-            echo zf_form('layui-input',$vo,$data_res);
-          }elseif($vo['type']=='layui-textarea'){ 
-            echo zf_form('layui-textarea',$vo,$data_res);
-
-            ?>
+          <?php if($vo['type']=='layui-input'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <input type="text" name="{$vo['key']}" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+              </div>
+            </div>
+          <?php }elseif($vo['type']=='layui-textarea'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <textarea name="{$vo['key']}" placeholder="请输入" class="layui-textarea">{$data_res[$vo['key']]|default=$vo['value']}</textarea>
+              </div>
+            </div>
           <?php }elseif($vo['type']=='album'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">

@@ -90,7 +90,7 @@
                   <td>
                     <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="name"  value="{$vo['name']}" item_id="{$vo['id']}"  >
                   </td>
-                  <td><?php echo \zf\ZfTool::str_in_two_array($vo['key'],$all_list)?$vo['key']:$vo['key'].'不存在,请关闭'; ?></td>
+                  <td><?php echo \Wmc1125\Mctoolsdk\ZfTool::str_in_two_array($vo['key'],$all_list)?$vo['key']:$vo['key'].'不存在,请关闭'; ?></td>
                   <td>
                     <input type="text" autocomplete="off" class="layui-input edit_sort" item_f="value"  value="{$vo['value']}" item_id="{$vo['id']}"  >                  
                   </td>

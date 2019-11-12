@@ -10,6 +10,8 @@ class Login extends Controller
 {
     public function __construct (){
         parent::__construct();
+        $this->assign('web_config',config());
+
     }
     /**
      * 显示资源列表

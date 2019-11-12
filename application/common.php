@@ -18,6 +18,11 @@ include_once './application/zf.php';
 include_once './application/common_db.php';
 // 应用公共文件
 
+//邮箱
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 /**
  * 循环删除目录和文件
  * @param string $dir_name
@@ -350,5 +355,72 @@ if (!function_exists('get_domain')) {
 
         return $host;
     }
+}
+
+
+
+// excel
+function zf_excel_export($head,$keys,$data,$name){
+    $count = count($head);  //计算表头数量
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    for ($i = 65; $i < $count + 65; $i++) {     //数字转字母从65开始，循环设置表头：
+        $sheet->setCellValue(strtoupper(chr($i)) . '1', $head[$i - 65]);
+    }
+    /*--------------开始从数据库提取信息插入Excel表中------------------*/
+    foreach ($data as $key => $item) {             //循环设置单元格：
+        //$key+2,因为第一行是表头，所以写到表格时   从第二行开始写 
+        for ($i = 65; $i < $count + 65; $i++) {     //数字转字母从65开始：
+            $sheet->setCellValue(strtoupper(chr($i)) . ($key + 2), $item[$keys[$i - 65]]);
+            $spreadsheet->getActiveSheet()->getColumnDimension(strtoupper(chr($i)))->setWidth(20); //固定列宽
+        }
+    } 
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="' . $name . '.xlsx"');
+    header('Cache-Control: max-age=0');
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('php://output');
+    //删除清空：
+    $spreadsheet->disconnectWorksheets();
+    unset($spreadsheet);
+    exit;
+}
+// 导入
+// function zf_excel_import($head,$keys,$data,$name){
+
+// }
+
+//form插件
+
+function zf_form($type='layui-input',$vo,$data_res){
+    switch($type) {
+        case "layui-input":
+            $_html='
+            <div class="layui-card-header">'.$vo['name'].'</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+            <div class="layui-col-md12">
+                <input type="text" name="'.$vo['key'].'" placeholder="请输入" autocomplete="off" class="layui-input" value="'.$data_res[$vo['key']].'">
+            </div>
+            </div>';
+            break;
+        case "layui-textarea":
+            $_html='
+            <div class="layui-card-header">'.$vo["name"].'</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <textarea name="'.$vo["key"].'" placeholder="请输入" class="layui-textarea">'.$data_res[$vo['key']].'</textarea>
+              </div>
+            </div>
+            ';
+            break;
+        case "1":
+            break;
+        case "2":
+            break;
+        default:
+            break;
+    }
+    print($_html);
+
 }
 

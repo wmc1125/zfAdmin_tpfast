@@ -305,12 +305,12 @@ class Category extends Admin
         } 
         if(request()->isPost()){
             $data = input('post.');
-            if($data['ctime']!=''){
+            if(isset($data['ctime']) && $data['ctime']!=''){
                 $data['ctime'] =  strtotime($data['ctime']);
             }else{
                 $data['ctime'] =  time();
             }
-            if($data['pic']==''){
+            if(isset($data['pic']) &&$data['pic']==''){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
             
