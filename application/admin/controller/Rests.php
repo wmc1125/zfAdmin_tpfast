@@ -21,7 +21,15 @@ class Rests extends Admin
     public function __construct (){
         parent::__construct();
     }
-    //广告总列表
+
+    /**
+     * @Notes:广告总列表
+     * @Interface advert
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:59 下午
+     */
     public function advert()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -40,7 +48,13 @@ class Rests extends Admin
         return view($tpl);
     }
 
-    //添加
+    /**
+     * @Notes:广告添加
+     * @Interface advert_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:59 下午
+     */
     public function advert_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -65,7 +79,19 @@ class Rests extends Admin
             return jserror('新增失败');exit;
         }  
     }
-    //修改
+
+    /**
+     * @Notes:广告修改
+     * @Interface advert_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:59 下午
+     */
     public function advert_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -93,8 +119,16 @@ class Rests extends Admin
                 return jserror('修改失败');
             }   
         } 
-    } 
-    //link
+    }
+
+    /**
+     * @Notes:友情链接
+     * @Interface link
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:59 下午
+     */
      public function link()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -105,7 +139,13 @@ class Rests extends Admin
         return view();
     }
 
-    //添加
+    /**
+     * @Notes:友情链接-增加
+     * @Interface link_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   11:00 下午
+     */
     public function link_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -124,7 +164,19 @@ class Rests extends Admin
             return jserror('新增失败');exit;
         }  
     }
-    //修改
+
+    /**
+     * @Notes:友情链接-修改
+     * @Interface link_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:00 下午
+     */
     public function link_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -145,7 +197,14 @@ class Rests extends Admin
         } 
     }
 
-    //guessbook
+    /**
+     * @Notes:留言列表
+     * @Interface guessbook
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:00 下午
+     */
      public function guessbook()
     {   
         admin_role_check($this->z_role_list,$this->mca);
@@ -155,7 +214,14 @@ class Rests extends Admin
         $this->assign("page",$page);
         return view();
     }
-    //添加
+
+    /**
+     * @Notes:留言增加
+     * @Interface guessbook_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   11:01 下午
+     */
     public function guessbook_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -175,7 +241,19 @@ class Rests extends Admin
             return jserror('新增失败');exit;
         }  
     }
-    //修改
+
+    /**
+     * @Notes:留言修改
+     * @Interface guessbook_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:01 下午
+     */
     public function guessbook_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);

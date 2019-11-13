@@ -24,10 +24,13 @@ class Login extends Controller
         parent::__construct();
         $this->assign('web_config',config());
     }
+
     /**
-     * 显示资源列表
-     *
-     * @return \think\facade\Response
+     * @Notes:登录页
+     * @Interface index
+     * @return \think\response\View
+     * @author: 子枫
+     * @Time: 2019/11/13   10:56 下午
      */
     public function index()
     {
@@ -37,7 +40,16 @@ class Login extends Controller
             return view();
         }
     }
-    // 后台登录
+
+    /**
+     * @Notes:后台登录
+     * @Interface login
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:56 下午
+     */
     public function login()
     {
         if(request()->isPost()){
@@ -62,7 +74,6 @@ class Login extends Controller
                         return jserror('谷歌验证错误');die;
                     }
                 }
-                
                 //3.将用户信息存入到session中
                 $admin  = $userInfo;
                 session('admin', $admin);
@@ -73,7 +84,13 @@ class Login extends Controller
         }
         
     }
-    //后台管理员退出
+
+    /**
+     * @Notes:后台管理员退出
+     * @Interface loginout
+     * @author: 子枫
+     * @Time: 2019/11/13   10:57 下午
+     */
     public function loginout(){
         session('admin',null);
         $url_tmp = Request::instance()->domain().'/admin/login/loginout';

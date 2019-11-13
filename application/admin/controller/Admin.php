@@ -54,7 +54,13 @@ class Admin extends Controller
         Db::name('admin_log')->insert($log);
         
     }
-    
+
+    /**
+     * @Notes:空方法
+     * @Interface _empty
+     * @author: 子枫
+     * @Time: 2019/11/13   10:38 下午
+     */
     public function _empty(){
         echo "没有此方法";
     }

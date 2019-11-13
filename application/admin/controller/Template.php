@@ -21,7 +21,14 @@ class Template extends Admin
     public function __construct (){
         parent::__construct();
     }
-    //模版列表
+
+    /**
+     * @Notes:模版列表
+     * @Interface tpl_list
+     * @return \think\response\View
+     * @author: 子枫
+     * @Time: 2019/11/13   11:01 下午
+     */
      public function tpl_list()
     {
         admin_role_check($this->z_role_list,$this->mca);

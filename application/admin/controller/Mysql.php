@@ -20,11 +20,11 @@ use Env;
 
 class Mysql extends Admin
 {
-    // public function __construct (){
-    //     parent::__construct();
-    // }
-	 /**
-     * 初始化方法
+    /**
+     * @Notes:初始化方法
+     * @Interface initialize
+     * @author: 子枫
+     * @Time: 2019/11/13   10:57 下午
      */
     protected function initialize()
     {
@@ -34,9 +34,12 @@ class Mysql extends Admin
     }
 
     /**
-     * 数据库管理
-     * @author
-     * @return mixed
+     * @Notes:数据库管理
+     * @Interface index
+     * @param string $group
+     * @return mixed|\think\response\Json
+     * @author: 子枫
+     * @Time: 2019/11/13   10:57 下午
      */
      public function index($group = 'export')
     {
@@ -65,8 +68,15 @@ class Mysql extends Admin
         $this->assign('hisiTabType', 3);
         return $this->fetch($group);
     }
-    
-    // 备份列表
+
+    /**
+     * @Notes:备份列表
+     * @Interface index2
+     * @param string $group
+     * @return mixed|\think\response\Json
+     * @author: 子枫
+     * @Time: 2019/11/13   10:57 下午
+     */
     public function index2($group = 'import')
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -113,7 +123,6 @@ class Mysql extends Admin
                 }
 
             }
-            // dd($dataList);
 
             $data['data'] = $dataList;
             $data['code'] = 0;
@@ -128,11 +137,12 @@ class Mysql extends Admin
     }
 
     /**
-     * 备份数据库 [参考原作者 麦当苗儿 <zuojiazi@vip.qq.com>]
-     * @param string|array $id 表名
-     * @param integer $start 起始行数
-     * @author
-     * @return mixed
+     * @Notes:备份数据库
+     * @Interface export
+     * @param string $id
+     * @param int $start
+     * @author: 子枫
+     * @Time: 2019/11/13   10:58 下午
      */
     public function export($id = '', $start = 0)
     {
@@ -204,11 +214,11 @@ class Mysql extends Admin
     }
 
     /**
-     * 恢复数据库 [参考原作者 麦当苗儿 <zuojiazi@vip.qq.com>]
-     * @param string|array $ids 表名
-     * @param integer $start 起始行数
-     * @author
-     * @return mixed
+     * @Notes:恢复数据库
+     * @Interface import
+     * @param string $id
+     * @author: 子枫
+     * @Time: 2019/11/13   10:58 下午
      */
     public function import($id = '')
     {
@@ -262,9 +272,11 @@ class Mysql extends Admin
     }
 
     /**
-     * 优化数据表
-     * @author
-     * @return mixed
+     * @Notes:优化数据表
+     * @Interface optimize
+     * @param string $id
+     * @author: 子枫
+     * @Time: 2019/11/13   10:58 下午
      */
     public function optimize($id = '')
     {
@@ -289,9 +301,11 @@ class Mysql extends Admin
     }
 
     /**
-     * 修复数据表
-     * @author
-     * @return mixed
+     * @Notes:修复数据表
+     * @Interface repair
+     * @param string $id
+     * @author: 子枫
+     * @Time: 2019/11/13   10:58 下午
      */
     public function repair($id = '')
     {
@@ -317,9 +331,11 @@ class Mysql extends Admin
     }
 
     /**
-     * 删除备份
-     * @author
-     * @return mixed
+     * @Notes:删除备份
+     * @Interface del
+     * @param string $id
+     * @author: 子枫
+     * @Time: 2019/11/13   10:58 下午
      */
     public function del($id = '')
     {

@@ -26,6 +26,17 @@ class Index extends Admin
     public function __construct (){
         parent::__construct();
     }
+
+    /**
+     * @Notes:首页
+     * @Interface index
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:55 下午
+     */
     public function index()
     {
         //导航的一级菜单
@@ -33,6 +44,17 @@ class Index extends Admin
         $this->assign("menu",$menu);
         return view("index");
     }
+
+    /**
+     * @Notes:欢迎页
+     * @Interface welcome
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:55 下午
+     */
     public function welcome()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -86,7 +108,14 @@ class Index extends Admin
         return view();
     }
 
-    // 清除数据库的垃圾箱文件
+    /**
+     * @Notes:清除数据库的垃圾箱文件
+     * @Interface db_clear
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:56 下午
+     */
     public function db_clear(){
         admin_role_check($this->z_role_list,$this->mca);
         $t = input('t','');
@@ -108,14 +137,5 @@ class Index extends Admin
         
     }
 
-    public  function test(){
-//     
-    }
-    
-
-
-
-   
-    
 
 }

@@ -24,6 +24,14 @@ class Config extends Admin
     public function __construct (){
         parent::__construct();
     }
+
+    /**
+     * @Notes:网站设置
+     * @Interface index
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:47 下午
+     */
     public function index()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -39,7 +47,15 @@ class Config extends Admin
         $this->assign("config",config()['web']);
         return view();
     }
-    //管理员列表
+
+    /**
+     * @Notes:管理员列表
+     * @Interface admin_index
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:48 下午
+     */
     public function admin_index()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -50,6 +66,16 @@ class Config extends Admin
         return view();
     }
 
+    /**
+     * @Notes:管理员增加
+     * @Interface admin_add
+     * @return \think\response\View|void
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:48 下午
+     */
     public function admin_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -74,7 +100,19 @@ class Config extends Admin
             return jserror('新增失败');exit;
         }  
     }
-    //管理员修改
+
+    /**
+     * @Notes:管理员修改
+     * @Interface admin_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:48 下午
+     */
     public function admin_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -108,9 +146,16 @@ class Config extends Admin
                   return jserror('更新失败');
               }   
         } 
-    } 
+    }
 
-    //管理员分类
+    /**
+     * @Notes:管理员分类
+     * @Interface admin_group
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:48 下午
+     */
     public function admin_group()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -121,7 +166,13 @@ class Config extends Admin
         return view();
     }
 
-    //添加分类
+    /**
+     * @Notes:添加分类
+     * @Interface admin_group_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:48 下午
+     */
     public function admin_group_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -138,7 +189,19 @@ class Config extends Admin
             return jserror('新增失败');exit;
         }  
     }
-    //分类修改
+
+    /**
+     * @Notes:分类修改
+     * @Interface admin_group_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:49 下午
+     */
     public function admin_group_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -156,8 +219,20 @@ class Config extends Admin
                   return jserror('更新失败');
               }  
         } 
-    } 
-    //权限设置
+    }
+
+    /**
+     * @Notes:权限设置
+     * @Interface admin_group_role
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:49 下午
+     */
     public function admin_group_role()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -166,9 +241,7 @@ class Config extends Admin
             $cat = new category(array('id', 'pid', 'name', 'value')); //初始化无限分类
             $list = $cat->getTree($res); //获取分类数据树结构
             $this->assign("list",$list);
-//             dd($list);
-
-            $res = Db::name('admin_group')->where(['id'=>input('id')])->find(); 
+            $res = Db::name('admin_group')->where(['id'=>input('id')])->find();
             $this->assign("res",$res);
             $role_list = explode(',',$res['role']);
             $this->assign("role_list",$role_list);
@@ -184,21 +257,40 @@ class Config extends Admin
                   return jserror('更新失败');
               }    
         } 
-    } 
+    }
+
+    /**
+     * @Notes:权限列表
+     * @Interface admin_role
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:50 下午
+     */
     public function admin_role()
     {
         admin_role_check($this->z_role_list,$this->mca);
         //读取权限数据
         $res = Db::name('admin_role')->where(['status'=>1])->order('menu desc,sort asc, id asc')->select(); 
-
         $cat = new category(array('id', 'pid', 'name', 'cname')); //初始化无限分类
         $list = $cat->getTree($res); //获取分类数据树结构
         $this->assign("list",$list);
-        // 控制器
-        $controllers = getControllers('./application/admin/controller');
+        $controllers = getControllers('./application/admin/controller');// 控制器
         $this->assign("controllers",$controllers);
         return view();
     }
+
+    /**
+     * @Notes:获取方法
+     * @Interface get_action
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:51 下午
+     */
     public function get_action()
     {
         $control = input('get.control');
@@ -216,6 +308,16 @@ class Config extends Admin
         }        
         echo json_encode($fin_act);
     }
+
+    /**
+     * @Notes:权限增加
+     * @Interface admin_role_add
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:52 下午
+     */
     public function admin_role_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -237,6 +339,18 @@ class Config extends Admin
         }   
     }
 
+    /**
+     * @Notes:权限修改
+     * @Interface admin_role_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:52 下午
+     */
     public function admin_role_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -258,10 +372,15 @@ class Config extends Admin
                   return jserror('更新失败');
               }   
         } 
-    } 
+    }
 
-
-    //其他设置
+    /**
+     * @Notes:email设置
+     * @Interface email
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:53 下午
+     */
     public function email()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -278,6 +397,13 @@ class Config extends Admin
         return view();die;
         
     }
+
+    /**
+     * @Notes:测试邮箱
+     * @Interface test_email
+     * @author: 子枫
+     * @Time: 2019/11/13   10:53 下午
+     */
     public function test_email()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -310,18 +436,19 @@ class Config extends Admin
             }
         } 
     }
+
+    /**
+     * @Notes:图片参数设置
+     * @Interface img_config
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:54 下午
+     */
     public function img_config(){
         $this->assign('res',[]);
-        // 水印
-        // 水印位置
-        // 图片水印  文字水印
-        // https://www.kancloud.cn/manual/thinkphp5_1/354123
-        // 是否生成缩略图,大小尺寸
-        // 
         if(request()->isPost()){
             admin_role_check($this->z_role_list,$this->mca);
             $data = input('post.');
-            // dd($data);
             $res = extraconfig(input('post.'),'img');
             if($res){
                return jssuccess('保存成功');die;
@@ -332,12 +459,17 @@ class Config extends Admin
         $this->assign("res",config()['img']);
         return view();
     }
-    
-   
-    // 操作日志
+
+    /**
+     * @Notes:操作日志
+     * @Interface action_log
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:54 下午
+     */
     public function action_log()
     {
-
         admin_role_check($this->z_role_list,$this->mca);
         $list = Db::name('admin_log')->where(['status'=>1])->order("id desc")->paginate(10);
         $page = $list->render();

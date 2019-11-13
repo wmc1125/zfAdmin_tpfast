@@ -25,6 +25,17 @@ class Category extends Admin
     public function __construct (){
         parent::__construct();
     }
+
+    /**
+     * @Notes:栏目列表
+     * @Interface index
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:28 下午
+     */
     public function index()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -42,7 +53,13 @@ class Category extends Admin
         $this->assign("mlist",$mlist);
     	return view();
     }
-    //增加栏目
+
+    /**
+     * @Notes:增加栏目
+     * @Interface category_add
+     * @author: 子枫
+     * @Time: 2019/11/13   10:32 下午
+     */
     public function category_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -59,7 +76,19 @@ class Category extends Admin
             return jserror('新增失败');exit;
         } 
     }
-    //修改栏目
+
+    /**
+     * @Notes:修改栏目
+     * @Interface category_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:32 下午
+     */
     public function category_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -89,7 +118,6 @@ class Category extends Admin
                 $msg['code']=0;
             }
             unset($data['t']);
-            // dd($data);
             $res = Db::name('category')->where(['cid'=>$data['cid']])->update($data);
             if($res){
                 $msg['msg'] = '修改成功';
@@ -101,7 +129,16 @@ class Category extends Admin
         }
     }
 
-    //模型列表
+    /**
+     * @Notes:模型列表
+     * @Interface category_model
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:33 下午
+     */
     public function category_model()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -111,9 +148,15 @@ class Category extends Admin
         return view();
 
     }
-    
-    
-     //增加
+
+
+    /**
+     * @Notes:模型列表-增加
+     * @Interface category_model_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   10:33 下午
+     */
     public function category_model_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -132,7 +175,19 @@ class Category extends Admin
         }  
         return view();   
     }
-    //修改
+
+    /**
+     * @Notes:模型列表-修改
+     * @Interface category_model_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:33 下午
+     */
     public function category_model_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -150,7 +205,16 @@ class Category extends Admin
         return view();
     }
 
-    // 根据mid跳转相应页面
+    /**
+     * @Notes:根据mid跳转相应页面
+     * @Interface post_list
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:34 下午
+     */
     public function post_list()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -173,7 +237,6 @@ class Category extends Admin
         //如果是单页,加载编辑页面
         if($mid==1){
             $this->assign("m_res",$m_res);
-
             $pres =Db::name('category')->where(['status'=>1])->select();
             $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
             $plist = $cat->getTree($pres); //获取分类数据树结构
@@ -210,7 +273,17 @@ class Category extends Admin
             return view($tpl);
         }
     }
-    // 内容列表(主页面)
+
+    /**
+     * @Notes:内容列表(主页面)
+     * @Interface post_all_list
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:34 下午
+     */
     public function post_all_list()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -223,7 +296,17 @@ class Category extends Admin
         }  
 
     }
-    // 内容增加
+
+    /**
+     * @Notes:内容增加
+     * @Interface post_add
+     * @return \think\response\View|void
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:35 下午
+     */
     public function post_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -292,7 +375,19 @@ class Category extends Admin
             }   
         } 
     }
-    // 内容修改
+
+    /**
+     * @Notes:内容修改
+     * @Interface post_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:35 下午
+     */
     public function post_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -360,8 +455,7 @@ class Category extends Admin
 
             }
             
-            // dd($data);
-            $res =  Db::name('post')->where(['id'=>$data['id']])->update($data); 
+            $res =  Db::name('post')->where(['id'=>$data['id']])->update($data);
             if($res)
             {
                  return jssuccess('修改成功');
@@ -370,7 +464,16 @@ class Category extends Admin
             }   
         } 
     }
-    // 导入内容
+
+    /**
+     * @Notes:导入内容
+     * @Interface import
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:35 下午
+     */
     public function import(){
         admin_role_check($this->z_role_list,$this->mca);
         $cid = input("cid");
@@ -432,12 +535,20 @@ class Category extends Admin
                   return jserror("error");
             }
         }
-
     }
+
+    /**
+     * @Notes:根据关键字搜索内容
+     * @Interface search_post
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:36 下午
+     */
     public function search_post(){
         admin_role_check($this->z_role_list,$this->mca);
         $kwd = input('key','');
-        // dd($kwd);
         $where[] = ['status','=',1];
         $where[] = ['relevan_id','=',0];
         if($kwd!='all'){
@@ -450,6 +561,14 @@ class Category extends Admin
             return jserror('error');
         }
     }
+
+    /**
+     * @Notes:获取内容中的图片并保存到 post_parm_pic
+     * @Interface get_content_pic_list
+     * @param $id
+     * @author: 子枫
+     * @Time: 2019/11/13   10:36 下午
+     */
     public function get_content_pic_list($id){
         admin_role_check($this->z_role_list,$this->mca);
         $id = input('id',$id);
@@ -473,8 +592,16 @@ class Category extends Admin
         return jssuccess('已保存');
 
     }
+
     /**
-     *模型的参数列表
+     * @Notes:模型的参数列表
+     * @Interface category_model_parm
+     * @return \think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:37 下午
      */
     public function category_model_parm()
     {
@@ -502,7 +629,17 @@ class Category extends Admin
         return view();
 
     }
-     //增加
+
+    /**
+     * @Notes:模型的参数-增加
+     * @Interface category_model_parm_add
+     * @return \think\response\View|void
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:37 下午
+     */
      public function category_model_parm_add()
      {
          admin_role_check($this->z_role_list,$this->mca,1);
@@ -530,7 +667,19 @@ class Category extends Admin
          }  
          return view();   
      }
-     //修改
+
+    /**
+     * @Notes:模型的参数-修改
+     * @Interface category_model_parm_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:38 下午
+     */
      public function category_model_parm_edit()
      {
          admin_role_check($this->z_role_list,$this->mca,1);

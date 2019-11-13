@@ -20,8 +20,6 @@ class Index
     public function index()
     {
         echo "api首页";
-        
-
     }
 
 

@@ -24,14 +24,19 @@ class Common extends Admin
     public function __construct(){
         parent::__construct();
     }
-    //显示是与否的转换
-    //dbname status id 
+    /**
+     * @Notes:显示是与否的转换 (dbname status id )
+     * @Interface is_switch
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:39 下午
+     */
     public function is_switch(){
         admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
         $is_show = input('status');
         $id = input('id');
-        //执行转换 
         if($dbname=='category' || $dbname=='product_cate'){
             $res = db($dbname)->where('cid', $id)->update(['status' => $is_show]);
         }else{
@@ -43,12 +48,20 @@ class Common extends Admin
             return jserror('更新失败');
         }
     }
+
+    /**
+     * @Notes:菜单的转换
+     * @Interface is_menu
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:41 下午
+     */
     public function is_menu(){
         admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
         $is_show = input('menu');
         $id = input('id');
-        //执行转换
         if($dbname=='category' || $dbname=='product_cate'){
             $res = db($dbname)->where('cid', $id)->update(['menu' => $is_show]);
         }else{
@@ -60,11 +73,18 @@ class Common extends Admin
             return jserror('更新失败');
         }
     }
+    /**
+     * @Notes:删除内容
+     * @Interface del_post
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:41 下午
+     */
     public function del_post(){
         admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('db');
         $id = input('id');
-        //执行转换
         if($dbname=='category' || $dbname=='product_cate'){
             $res = db($dbname)->where('cid', $id)->update(['status' => 9]);
         }else{
@@ -76,11 +96,19 @@ class Common extends Admin
             return jserror('删除失败');
         }
     }
+
+    /**
+     * @Notes:批量删除
+     * @Interface more_del
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:43 下午
+     */
     public function more_del(){
         admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
         $ids = input('ids');
-        // dd($ids);
         $ids_list = explode(',',$ids);
         foreach($ids_list as $k=>$vo){
             if($dbname=='category' || $dbname=='product_cate'){
@@ -88,10 +116,18 @@ class Common extends Admin
             }else{
                 db($dbname)->where('id', $vo)->update(['status' => 9]);            
             }
-
         }
         return jssuccess('更新成功');
     }
+
+    /**
+     * @Notes:修改值
+     * @Interface value_edit
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:42 下午
+     */
     public function value_edit(){
         admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
@@ -111,6 +147,12 @@ class Common extends Admin
         }
     }
 
+    /**
+     * @Notes:上传图片
+     * @Interface upload_one
+     * @author: 子枫
+     * @Time: 2019/11/13   10:43 下午
+     */
     public function upload_one(){
         admin_role_check($this->z_role_list,$this->mca);
         $file = request()->file('file');
@@ -155,6 +197,13 @@ class Common extends Admin
         }
 
     }
+
+    /**
+     * @Notes:上传文件
+     * @Interface upload_one_file
+     * @author: 子枫
+     * @Time: 2019/11/13   10:43 下午
+     */
     public function upload_one_file(){
         admin_role_check($this->z_role_list,$this->mca);
         $file = $_FILES['file'];
@@ -176,6 +225,18 @@ class Common extends Admin
             return jserror("error");
         }
     }
+
+    /**
+     * @Notes:阿里云oss
+     * @Interface aliyunoss
+     * @param $img_config
+     * @param $file
+     * @param $tmp_name
+     * @return string
+     * @throws \OSS\Core\OssException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:44 下午
+     */
     public function aliyunoss($img_config,$file,$tmp_name){
         $ossconfig = [
             'KeyId'      => $img_config['ali_ACCESSKEY'],  //您的Access Key ID
@@ -199,7 +260,14 @@ class Common extends Admin
         }
     }
 
-
+    /**
+     * @Notes:config配置修改
+     * @Interface config_edit
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   10:44 下午
+     */
     public function config_edit(){
         admin_role_check($this->z_role_list,$this->mca);
         $key = input('key');

@@ -25,7 +25,17 @@ class User extends Admin
     public function __construct (){
         parent::__construct();
     }
-	// 用户列表
+
+    /**
+     * @Notes:用户列表
+     * @Interface index
+     * @return \think\response\Json|\think\response\View
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:02 下午
+     */
     public function index()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -63,7 +73,16 @@ class User extends Admin
         return view();
     }
 
-    // 添加新用户
+    /**
+     * @Notes:添加新用户
+     * @Interface add
+     * @return \think\response\View|void
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:02 下午
+     */
     public function add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -93,7 +112,18 @@ class User extends Admin
         }  
     }
 
-    //用户修改
+    /**
+     * @Notes:用户修改
+     * @Interface edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:02 下午
+     */
     public function edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -127,9 +157,16 @@ class User extends Admin
                   return jserror('修改失败');
               }   
         } 
-    } 
-   
-    //用户分类
+    }
+
+    /**
+     * @Notes:用户分类
+     * @Interface group
+     * @return \think\response\View
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:03 下午
+     */
     public function group()
     {
         admin_role_check($this->z_role_list,$this->mca);
@@ -139,8 +176,14 @@ class User extends Admin
         $this->assign("page",$page);
         return view();
     }
-    
-    //添加分类
+
+    /**
+     * @Notes:添加分类
+     * @Interface group_add
+     * @return \think\response\View|void
+     * @author: 子枫
+     * @Time: 2019/11/13   11:03 下午
+     */
     public function group_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -160,7 +203,19 @@ class User extends Admin
 
          
     }
-    //分类修改
+
+    /**
+     * @Notes:分类修改
+     * @Interface group_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:03 下午
+     */
     public function group_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);   
@@ -177,8 +232,17 @@ class User extends Admin
         $res =  Db::name('user_group')->where(['id'=>input('id')])->find();
         $this->assign("res",$res);
         return view();
-    } 
-    // 密码修改
+    }
+
+    /**
+     * @Notes:密码修改
+     * @Interface pwd_edit
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:03 下午
+     */
     public function pwd_edit()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -196,6 +260,19 @@ class User extends Admin
             return view();
         }
     }
+
+    /**
+     * @Notes:后台用户信息
+     * @Interface admin_info
+     * @return \think\response\View|void
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:04 下午
+     */
     public function admin_info()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
@@ -211,23 +288,27 @@ class User extends Admin
         $id = session('admin.id');
         $res = Db::name('admin')->where(['id'=>$id])->find();
         $this->assign('res',$res);
-        // dd($res);
         $ga = new GoogleAuthenticator();
         if($res['google_secret']!=''){
             $secret = $res['google_secret'];
         }else{
             $secret = $ga->createSecret();
         }
-        // $qrCodeUrl = $ga->getQRCodeGoogleUrl('zf-'.$id, $secret);
-        //otpauth://totp/zf-1?secret=Y67N442CU2G4CIAG
         $qrCodeUrl = 'http://mctool.wangmingchang.com/api/tool/create_qr_code?t=google&name=zf-'.$id.'&secret='.$secret;
-        // $oneCode = $ga->getCode($secret);
         $this->assign('secret',$secret);
         $this->assign('qrCodeUrl',$qrCodeUrl);
         return view();
     }
 
-    //导出
+    /**
+     * @Notes:导出
+     * @Interface export
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author: 子枫
+     * @Time: 2019/11/13   11:04 下午
+     */
     public function export(){
         admin_role_check($this->z_role_list,$this->mca);
         $name='用户表'.date("Y-m-d H-i-s",time());
@@ -238,17 +319,7 @@ class User extends Admin
         //数据中对应的字段，用于读取相应数据：
         $keys = ['id','name', 'sex', 'address', 'ctime'];     
         zf_excel_export($head,$keys,$data,$name) ;
-        
     }
-
-    
-
-
-    
-
-
-  
-    
 
 
 }
