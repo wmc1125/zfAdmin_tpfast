@@ -4,7 +4,6 @@ use think\Controller;
 use think\facade\Request;
 use think\Db;
 
-
 class Base extends Controller
 {
     public function __construct ( Request $request = null )

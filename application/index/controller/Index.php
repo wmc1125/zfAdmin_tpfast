@@ -2,9 +2,7 @@
 namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
-use app\common\behavior\Hooks;
 use Wmc1125\Mctoolsdk\GetConfig;
-use OSS\OssClient;
 class Index extends Base
 {
 	public function __construct ( Request $request = null ){
@@ -33,20 +31,9 @@ class Index extends Base
         return view($this->tpl);
     }
    
-    public function test()
-    {
-        $auth2 = new \Wmc1125\Mctoolsdk\McTool();
-        $auth2->index();
-    }
-
-    public function test_case(){
-        return view($this->tpl);
-
-    }
-
+    
    
    
 
 
 }
-// https://www.jq22.com/jquery/jquery.html
