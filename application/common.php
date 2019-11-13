@@ -17,8 +17,6 @@ use Qiniu\Storage\UploadManager;
 include_once './application/zf.php';
 include_once './application/common_db.php';
 // 应用公共文件
-
-//邮箱
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
