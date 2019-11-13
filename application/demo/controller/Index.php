@@ -7,9 +7,7 @@ class Index extends Base
 {
     public function index()
     {
-        var_dump(zf_web_auth());
-        // var_dump(zf());
-        // dd(zf2());
+        echo "index";
     }
 
     public function hello($name = 'ThinkPHP5')

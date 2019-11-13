@@ -1,132 +1,4 @@
 <?php
-function zf($zz='0'){
-    switch ($zz) {
-        case 'zfadmin-fast':
-            $data['domain'] = request()->domain();//domain
-            $data['ip'] = request()->ip();//访问ip
-            $data['type'] = 2; //1 单域名  2 根域名  
-            $data['zfadmin'] = 'fast'; //版本类型  
-            $data['version'] = '1.0'; //版本号  
-            $data['time'] = time(); //版本号  
-            $auth_ret = https_post('http://mctool.wangmingchang.com/api/auth/web',['data'=>zf_encrypt(json_encode($data),"web_auth")]);
-            //判断是否通讯成功
-            if(json_decode($auth_ret)){
-                //判断是否认证
-                if(json_decode($auth_ret)->code==1){
-                    $is_auth_code = true;
-                }else{
-                    $is_auth_code = false;
-                }
-            }else{
-                // 通讯失败,使用本地文件校验
-                error_reporting(0);
-                $_file = config()['zf_auth']['key'];
-                // $_file = '3lfH0tLHyqJXblScZMfMz5LFop+Ej4Wr3KKeUnNmZYPdm8TH0s/PVm9WmMSn2IPf';//90ckm.com
-                $f = json_decode(zf_decrypt($_file,'web_auth'));
-                if($f && $_file){
-                    if($f->type == '1'){
-                        // dd(request()->domain());//http://v1.fast.zf.90ckm.com//单域名
-                        $is_auth_code = ($f->domain!=request()->domain()?false:true);
-                    }elseif($f->type == '2'){
-                        // dd(request()->rootDomain());//90ckm.com//根域名
-                        $is_auth_code = ($f->domain!=request()->rootDomain()?false:true);
-                    }else{
-                        $is_auth_code = false;
-                    }
-                }else{
-                    $is_auth_code = false;
-                }        
-            }
-            if(!$is_auth_code){
-                die("<a target='_blank' href='http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77&page=1'> 认证文件失效,请参考如下操作</a>");
-            }else{
-                //认证成功,设置个session
-                $zf_web_auth = $data;
-                $zf_web_auth['code'] = 1;
-                $zf_web_auth['auth'] = zf_encrypt(json_encode($data));
-                // dd($zf_web_auth);
-                session('zf_web_auth',$zf_web_auth);
-            }
-            return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];
-            break;
-        default:
-            die("<a target='_blank' href='http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77&page=1'> 获取授权</a>");        
-            break;
-    }
-}
-// function zf_test(){
-//  	var_dump(zf()['auth']);die;
-// 	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-// 	return  '----';
-// }
-
- /**
-  *  网站权限判断
-  */
-function zf_web_auth(){
-    if(session('zf_web_auth')){
-        return ['code'=>1,'auth'=>zf_encrypt('zfadmin-'.date("Y-m-d",time()))];die;
-    }else{
-        zf('zfadmin-fast')['auth'];
-    }
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
-}
-###########----重点----################
-//加密
-function zf_encrypt($data, $key='zf'){
-    $key    =    md5($key);
-    $x        =    0;
-    $len    =    strlen($data);
-    $l        =    strlen($key);
-    $char = '';
-    $str = '';
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l) 
-        {
-            $x = 0;
-        }
-        $char .= $key{$x};
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
-    }
-    return base64_encode($str);
-}
-//解密
-function zf_decrypt($data, $key='zf'){
-    $key = md5($key);
-    $x = 0;
-    $data = base64_decode($data);
-    $len = strlen($data);
-    $l = strlen($key);
-    $char = '';
-    $str = '';
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l) 
-        {
-            $x = 0;
-        }
-        $char .= substr($key, $x, 1);
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
-        {
-            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
-        }
-        else
-        {
-            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
-        }
-    }
-    return $str;
-}
-
 ###########----权限----################
 /**
 * 修改扩展配置文件
@@ -135,7 +7,6 @@ function zf_decrypt($data, $key='zf'){
 * @return bool
 */
 function extraconfig($arr = [], $file = ''){
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
    if (is_array($arr)) {
       $filename = $file . '.php';
 
@@ -170,7 +41,6 @@ function extraconfig($arr = [], $file = ''){
 *获取某个目录下的php文件名的函数
 */
 function getControllers($dir) {
-    zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     $pathList = glob($dir . '/*.php');
     $res = [];
     foreach($pathList as $key => $value) {
@@ -183,7 +53,6 @@ function getControllers($dir) {
 *此方法过滤父级Base控制器的方法，只保留自己的
 */
 function getActions($className, $base='\app\admin\controller\Admin') {
-	zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
     $methods = get_class_methods(new $className());//当前控制器方法
     $baseMethods = get_class_methods(new $base());//通用方法
     $res = array_diff($methods, $baseMethods);
@@ -248,7 +117,6 @@ function jserror($msg, $url = 'back') {
 * @return object
 */
 function array_to_object($arr) {
-	  zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 	  if (gettype($arr) != 'array') {
 	      return;
 	  }
@@ -267,7 +135,6 @@ function array_to_object($arr) {
 * @return array
 */
 function object_to_array($obj) {
-	  zf('zfadmin-fast')['auth']==zf_encrypt('zfadmin-'.date("Y-m-d",time()))? 'ok':die('error'); 
 	  $obj = (array)$obj;
 	  foreach ($obj as $k => $v) {
 	      if (gettype($v) == 'resource') {

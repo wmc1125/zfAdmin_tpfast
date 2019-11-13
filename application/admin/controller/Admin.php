@@ -8,7 +8,6 @@ class Admin extends Controller
     public function __construct ( Request $request = null )
     {
         parent::__construct();
-        zf_web_auth();
         $this->assign('admin',session('admin'));
         $this->assign('web_config',config());
 
