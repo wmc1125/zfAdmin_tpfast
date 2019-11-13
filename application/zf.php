@@ -37,8 +37,9 @@ function extraconfig($arr = [], $file = ''){
 
       $time = date('Y/m/d H:i:s');
 //      $str = "<?php\r\n/**\r\n * 站点信息最后修改于 \r\n * $time\r\n */\r\nreturn [\r\n";
-       $str = '<?php\r\n
-       // +----------------------------------------------------------------------
+       $str = '
+<?php
+// +----------------------------------------------------------------------
 // | 子枫后台管理系统(TpFast系列)[基于ThinkPHP5.1开发]
 // +----------------------------------------------------------------------
 // | Copyright (c)  http://v1.fast.zf.90ckm.com/
@@ -50,8 +51,8 @@ function extraconfig($arr = [], $file = ''){
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-       ';
-       $str .= "/**\r\n * 站点信息最后修改于 \r\n * $time\r\n */\r\nreturn [\r\n";
+// 站点信息最后修改于 '.$time;
+       $str .= "  \r\n  \r\n return [\r\n";
 
        foreach ($conf as $key => $value) {
           $str .= "\t'$key' => '$value',";
