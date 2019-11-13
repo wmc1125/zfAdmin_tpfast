@@ -1,7 +1,7 @@
 <?php
 /**
  * 站点信息最后修改于 
- * 2019/10/29 20:45:31
+ * 2019/11/13 22:11:51
  */
 return [
 	'save_path' => '/upload/file',
@@ -11,7 +11,7 @@ return [
 	'water_text_size' => '20',
 	'water_text_color' => '#1849bb',
 	'water_font_path' => './upload/1.ttf',
-	'water_position' => '6',
+	'water_position' => '9',
 	'pic_save_type' => '0',
 	'file_save_type' => '0',
 	'is_water' => '0',
