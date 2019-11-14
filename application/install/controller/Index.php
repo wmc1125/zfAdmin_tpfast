@@ -16,7 +16,6 @@ namespace app\install\controller;
 use \think\Controller;
 use think\Db;
 use Env;
-use app\admin\model\adminUserModel as UserModel;
 
 class Index extends Controller
 {
