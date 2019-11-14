@@ -33,7 +33,7 @@ class Mctool extends Base
         $str = 'http://v1.fast.zf.90ckm.com/public/static/style/layui/css/layui.css';
         $path = '.'.parse_url($str)['path'];
         $file = basename($path);
-        $r = \Wmc1125\Mctoolsdk\Download::output_file_download( $path,$file);
+        $r = \Wmc1125\TpFast\Download::output_file_download( $path,$file);
     }
     /**
      * 无限级分类
@@ -56,7 +56,7 @@ class Mctool extends Base
           $data[]=array('cid'=>10,'pid'=>2,'name'=>'纽约');
           $data[]=array('cid'=>11,'pid'=>2,'name'=>'华盛顿');
           $data[]=array('cid'=>12,'pid'=>3,'name'=>'首尔');
-          $cat=new \Wmc1125\Mctoolsdk\Category(array('cid','pid','name','cname'));
+          $cat=new \Wmc1125\TpFast\Category(array('cid','pid','name','cname'));
           $s=$cat->getTree($data);//获取分类数据树结构
           $s=$cat->getTree($data,1);//获取pid=1所有子类数据树结构
           foreach($s as $vo)
@@ -90,7 +90,7 @@ class Mctool extends Base
                  * @param string $model 默认为字符串模式;可取值 string  preg；string模式处理效率高，PHP版本越高速度越快，可比正则快几倍
                  * @return false | null | src  当data为空时返回 false ， src不存在时返回 null ，反之返回src
                  */
-        $src = \Wmc1125\Mctoolsdk\GetImgSrc::src($str, 1);  
+        $src = \Wmc1125\TpFast\GetImgSrc::src($str, 1);  
         dd($src);
     }
     /**
@@ -105,7 +105,7 @@ class Mctool extends Base
         $t = input('t','');
         $id = time();//用户ID(自定义)
         if($t=='create'){
-            $ga = new \Wmc1125\Mctoolsdk\GoogleAuthenticator;
+            $ga = new \Wmc1125\TpFast\GoogleAuthenticator;
             $secret = $ga->createSecret();
             //1. 默认生成的二维码(国外服务器,可能会不显示)
             // $qrCodeUrl = $ga->getQRCodeGoogleUrl('zf-'.$id, $secret);
@@ -118,7 +118,7 @@ class Mctool extends Base
         }elseif($t=='check'){
             $google_secret = input('google_secret');//传入secret
             $google_code = input('google_code');//传入code
-            $ga = new \Wmc1125\Mctoolsdk\GoogleAuthenticator;
+            $ga = new \Wmc1125\TpFast\GoogleAuthenticator;
             $secret = $userInfo['google_secret'];
             $qrCodeUrl = $ga->getQRCodeGoogleUrl('zf-'.$id, $secret);
             $oneCode = $google_code;

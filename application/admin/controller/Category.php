@@ -13,12 +13,12 @@
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
-use Wmc1125\Mctoolsdk\Category as cat; 
+use Wmc1125\TpFast\Category as cat; 
 use think\Db;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use Wmc1125\Mctoolsdk\GetImgSrc; 
+use Wmc1125\TpFast\GetImgSrc; 
  
 class Category extends Admin
 {

@@ -18,7 +18,7 @@ use think\facade\Session;
 use think\facade\Cache;
 use think\facade\Request;
 use think\Db;
-use Wmc1125\Mctoolsdk\Database as dbOper;
+use Wmc1125\TpFast\Database as dbOper;
 use app\admin\controller\Common;
 
 class Index extends Admin

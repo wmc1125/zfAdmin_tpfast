@@ -13,8 +13,8 @@
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
-use Wmc1125\Mctoolsdk\Dir;
-use Wmc1125\Mctoolsdk\Database as dbOper;
+use Wmc1125\TpFast\Dir;
+use Wmc1125\TpFast\Database as dbOper;
 use think\Db;
 use Env;
 

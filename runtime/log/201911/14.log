@@ -1,7 +1,7 @@
 ---------------------------------------------------------------
 
-[2019-11-14T15:31:29+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/admin/index/index.html
-[运行时间：0.115009s] [吞吐率：8.69req/s] [内存消耗：5,012.21kb] [文件加载：149]
+[2019-11-14T22:12:05+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin
+[运行时间：0.101791s] [吞吐率：9.82req/s] [内存消耗：5,012.67kb] [文件加载：149]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
@@ -10,11 +10,11 @@
   'connection' => 'keep-alive',
   'cache-control' => 'max-age=0',
   'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
   'content-type' => '',
   'content-length' => '',
 )
@@ -26,173 +26,77 @@
   1 => 'web_config',
   2 => 'menu',
 ) ]
-[ sql ] [ DB ] CONNECT:[ UseTime:0.000477s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000897s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000297s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000721s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000321s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000263s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000243s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000262s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000238s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000328s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000234s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000259s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000236s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000313s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000257s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000243s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000250s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000247s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000234s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000259s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000238s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000247s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000246s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000267s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000243s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000312s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000293s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000255s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000251s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000270s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000312s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000290s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000303s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000291s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000287s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000265s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000300s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000243s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000932s ]
-[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573716689 , '58.39.19.183' , 1 , '[]') [ RunTime:0.000429s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000387s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.001792s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000277s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000308s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000258s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000261s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000296s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000258s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000282s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000277s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000343s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000280s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000299s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000326s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000268s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000269s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000287s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000289s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000291s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000250s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000294s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000255s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000257s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000258s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000251s ]
----------------------------------------------------------------
-
-[2019-11-14T15:31:33+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/admin/index/index.html
-[运行时间：0.087551s] [吞吐率：11.42req/s] [内存消耗：4,793.80kb] [文件加载：147]
-[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
-[ info ] [ ROUTE ] array (
-)
-[ info ] [ HEADER ] array (
-  'host' => 'v1.fast.zf.90ckm.com',
-  'connection' => 'keep-alive',
-  'cache-control' => 'max-age=0',
-  'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-  'referer' => 'http://v1.fast.zf.90ckm.com/admin/login/index.html',
-  'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
-  'content-type' => '',
-  'content-length' => '',
-)
-[ info ] [ PARAM ] array (
-)
-[ info ] [ DB ] INIT mysql
-[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
-  0 => 'admin',
-  1 => 'web_config',
-  2 => 'menu',
-) ]
-[ sql ] [ DB ] CONNECT:[ UseTime:0.000427s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000839s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000278s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000755s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000248s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000241s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000228s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000256s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000228s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000315s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000395s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000841s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000683s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000455s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000226s ]
 [ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000230s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000226s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000231s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000224s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000272s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000251s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000225s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000219s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000230s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000220s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000275s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000226s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000278s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000226s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000223s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000235s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000223s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000267s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000233s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000265s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000232s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000234s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000332s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000217s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000250s ]
 [ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000225s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000245s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000221s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000226s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000227s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000229s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000782s ]
-[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573716693 , '58.39.19.183' , 1 , '[]') [ RunTime:0.000338s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000350s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000348s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000249s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000261s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000241s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000286s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000237s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000243s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000262s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000260s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000287s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000292s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000258s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000234s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000251s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000265s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000244s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000237s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573740725 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000334s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000762s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000314s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000295s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000312s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000308s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000313s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000288s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000321s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000297s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000346s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:31:33+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/admin/index/welcome
-[运行时间：0.134323s] [吞吐率：7.44req/s] [内存消耗：4,925.50kb] [文件加载：148]
+[2019-11-14T22:12:06+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/welcome
+[运行时间：0.105537s] [吞吐率：9.48req/s] [内存消耗：4,925.74kb] [文件加载：148]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
@@ -200,12 +104,336 @@
   'host' => 'v1.fast.zf.90ckm.com',
   'connection' => 'keep-alive',
   'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-  'referer' => 'http://v1.fast.zf.90ckm.com/admin/index/index.html',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/welcome.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'data',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000423s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000874s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000300s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000692s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000312s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000890s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573740726 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000331s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000751s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000867s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000757s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000380s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:12:08+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin
+[运行时间：0.087463s] [吞吐率：11.43req/s] [内存消耗：4,793.24kb] [文件加载：147]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'menu',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000383s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000901s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000727s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000779s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573740728 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000328s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000334s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000322s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000248s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:12:13+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/login/index.html
+[运行时间：0.044853s] [吞吐率：22.30req/s] [内存消耗：3,424.55kb] [文件加载：142]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'cookie' => 'PHPSESSID=dvf5lqtfhnpksdlgd7kt7mopa5',
+  'upgrade-insecure-requests' => '1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] ./template/admin/login/index.html [ array (
+  0 => 'web_config',
+) ]
+---------------------------------------------------------------
+
+[2019-11-14T22:12:17+08:00] 112.64.62.241 POST v1.fast.zf.90ckm.com/admin/login/login.html
+[运行时间：0.055098s] [吞吐率：18.15req/s] [内存消耗：4,376.18kb] [文件加载：140]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '34',
+  'origin' => 'http://v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin/login/index.html',
+  'cookie' => 'PHPSESSID=dvf5lqtfhnpksdlgd7kt7mopa5',
+)
+[ info ] [ PARAM ] array (
+  'name' => 'admin',
+  'pwd' => '123456',
+  'google_code' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000417s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin` [ RunTime:0.001063s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin` WHERE  `name` = 'admin'  AND `pwd` = 'e10adc3949ba59abbe56e057f20f883e'  AND `status` = 1  AND `status` = 1 LIMIT 1 [ RunTime:0.000766s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:12:18+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/index.html
+[运行时间：0.085754s] [吞吐率：11.66req/s] [内存消耗：4,791.95kb] [文件加载：147]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin/login/index.html',
+  'cookie' => 'PHPSESSID=dvf5lqtfhnpksdlgd7kt7mopa5',
+  'upgrade-insecure-requests' => '1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'menu',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000387s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000871s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000679s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000276s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000874s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573740738 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000373s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000364s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000304s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000267s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:12:20+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/welcome
+[运行时间：0.084088s] [吞吐率：11.89req/s] [内存消耗：4,700.16kb] [文件加载：146]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin/index/index.html',
+  'cookie' => 'PHPSESSID=dvf5lqtfhnpksdlgd7kt7mopa5',
+  'upgrade-insecure-requests' => '1',
   'content-type' => '',
   'content-length' => '',
 )
@@ -218,223 +446,1344 @@
   2 => 'data',
 ) ]
 [ sql ] [ DB ] CONNECT:[ UseTime:0.000409s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000924s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000343s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000725s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000255s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000262s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000233s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000262s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000263s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000943s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000235s ]
 [ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000267s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000289s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000267s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000273s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000229s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000294s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000238s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000248s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000234s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000292s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000291s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000264s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000308s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000285s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000263s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000267s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000227s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000232s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000522s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000284s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000262s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000256s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000237s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000247s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000228s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000317s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000240s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000286s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000890s ]
-[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573716693 , '58.39.19.183' , 1 , '[]') [ RunTime:0.000360s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000838s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000270s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000259s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000947s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000245s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000277s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000704s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000217s ]
-[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000294s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000325s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000296s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000878s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573740740 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000362s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000784s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000444s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.001218s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000754s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000218s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000319s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:31:35+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/admin/index/favicon.ico
-[运行时间：0.102877s] [吞吐率：9.72req/s] [内存消耗：4,450.72kb] [文件加载：142]
+[2019-11-14T22:12:20+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/favicon.ico
+[运行时间：0.070678s] [吞吐率：14.15req/s] [内存消耗：4,448.84kb] [文件加载：142]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
 [ info ] [ HEADER ] array (
   'host' => 'v1.fast.zf.90ckm.com',
-  'connection' => 'keep-alive',
-  'pragma' => 'no-cache',
-  'cache-control' => 'no-cache',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
-  'referer' => 'http://v1.fast.zf.90ckm.com/admin/index/index.html',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'image/webp,*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'connection' => 'keep-alive',
+  'cookie' => 'PHPSESSID=dvf5lqtfhnpksdlgd7kt7mopa5',
   'content-type' => '',
   'content-length' => '',
 )
 [ info ] [ PARAM ] array (
 )
 [ info ] [ DB ] INIT mysql
-[ sql ] [ DB ] CONNECT:[ UseTime:0.000603s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.001170s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000403s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000942s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000385s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000322s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000329s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000337s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000325s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000342s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000327s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000320s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000337s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000320s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000347s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000364s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000323s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000380s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000326s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000331s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000335s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000328s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000338s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000325s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000320s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000325s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000317s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000327s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000351s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000326s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000354s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000318s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000313s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000318s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000319s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000357s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000324s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000372s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000344s ]
-[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000313s ]
-[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.001140s ]
-[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/favicon.ico' , 1573716695 , '58.39.19.183' , 1 , '[]') [ RunTime:0.000429s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000384s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000891s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000719s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000276s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000837s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/favicon.ico' , 1573740740 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000329s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:32:08+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/demo/test/c_view
-[运行时间：0.045515s] [吞吐率：21.97req/s] [内存消耗：3,306.79kb] [文件加载：138]
+[2019-11-14T22:16:42+08:00] 163.177.13.2 HEAD v1.fast.zf.90ckm.com/
+[运行时间：0.068195s] [吞吐率：14.66req/s] [内存消耗：5,083.81kb] [文件加载：151]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
 [ info ] [ HEADER ] array (
+  'user-agent' => 'libcurl-agent/7.19.0',
+  'accept' => '*/*',
   'host' => 'v1.fast.zf.90ckm.com',
-  'connection' => 'keep-alive',
-  'pragma' => 'no-cache',
-  'cache-control' => 'no-cache',
-  'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-  'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
   'content-type' => '',
   'content-length' => '',
 )
 [ info ] [ PARAM ] array (
 )
-[ info ] [ VIEW ] ./template/demo/test/c_view.html [ array (
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/index/a1/index/index.html [ array (
+  0 => 'home',
+  1 => 'web_config',
+  2 => 'tpl_static',
+  3 => 'menu',
+  4 => 'link',
+  5 => 'cid',
+  6 => 'banner',
+  7 => 'post_new',
+  8 => 'seo',
 ) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000413s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_config` [ RunTime:0.000913s ]
+[ sql ] [ SQL ] SELECT `value` FROM `zf_config` WHERE  `key` = 'zf_tpl_suffix' LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category` [ RunTime:0.000791s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_category` WHERE  `status` = 1  AND `menu` = 1 ORDER BY `sort` ASC,`cid` ASC [ RunTime:0.000365s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_link` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_link` WHERE  `status` = 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_advert` [ RunTime:0.000698s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_advert` WHERE  `status` = '1'  AND `pid` = 10 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000815s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` = 1  AND `relevan_id` = 0  AND `is_product` = 0 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` = 1  AND `relevan_id` = 0  AND `is_product` = 0 ORDER BY `ctime` DESC,`id` DESC LIMIT 0,15 [ RunTime:0.000313s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:35:01+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/install
-[运行时间：0.057178s] [吞吐率：17.49req/s] [内存消耗：3,335.76kb] [文件加载：138]
+[2019-11-14T22:18:46+08:00] 163.177.13.2 HEAD v1.fast.zf.90ckm.com/
+[运行时间：0.066675s] [吞吐率：15.00req/s] [内存消耗：4,881.23kb] [文件加载：149]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'libcurl-agent/7.19.0',
+  'accept' => '*/*',
+  'host' => 'v1.fast.zf.90ckm.com',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/index/a1/index/index.html [ array (
+  0 => 'home',
+  1 => 'web_config',
+  2 => 'tpl_static',
+  3 => 'menu',
+  4 => 'link',
+  5 => 'cid',
+  6 => 'banner',
+  7 => 'post_new',
+  8 => 'seo',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000440s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_config` [ RunTime:0.000861s ]
+[ sql ] [ SQL ] SELECT `value` FROM `zf_config` WHERE  `key` = 'zf_tpl_suffix' LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category` [ RunTime:0.000858s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_category` WHERE  `status` = 1  AND `menu` = 1 ORDER BY `sort` ASC,`cid` ASC [ RunTime:0.000419s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_link` [ RunTime:0.000757s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_link` WHERE  `status` = 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_advert` [ RunTime:0.000752s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_advert` WHERE  `status` = '1'  AND `pid` = 10 [ RunTime:0.000298s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000883s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` = 1  AND `relevan_id` = 0  AND `is_product` = 0 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` = 1  AND `relevan_id` = 0  AND `is_product` = 0 ORDER BY `ctime` DESC,`id` DESC LIMIT 0,15 [ RunTime:0.000334s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:37:45+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin
+[运行时间：0.086456s] [吞吐率：11.57req/s] [内存消耗：4,793.91kb] [文件加载：147]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
 [ info ] [ HEADER ] array (
   'host' => 'v1.fast.zf.90ckm.com',
   'connection' => 'keep-alive',
-  'pragma' => 'no-cache',
-  'cache-control' => 'no-cache',
+  'cache-control' => 'max-age=0',
   'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
   'content-type' => '',
   'content-length' => '',
 )
 [ info ] [ PARAM ] array (
 )
-[ info ] [ VIEW ] public/tpl/jump.tpl [ array (
-  0 => 'code',
-  1 => 'msg',
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'menu',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000430s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000852s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000288s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000691s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000361s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000327s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000296s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000944s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573742265 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000345s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000338s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000366s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000324s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000241s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:37:45+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.woff2?v=2.0.46
+[运行时间：0.037029s] [吞吐率：27.01req/s] [内存消耗：2,493.39kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:45+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/welcome
+[运行时间：0.077687s] [吞吐率：12.87req/s] [内存消耗：4,701.90kb] [文件加载：146]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/welcome.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
   2 => 'data',
-  3 => 'url',
-  4 => 'wait',
 ) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000427s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000830s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000312s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000671s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000691s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573742265 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000322s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000818s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000824s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000216s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000696s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000327s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:35:05+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/demo/test/c_view
-[运行时间：0.042552s] [吞吐率：23.50req/s] [内存消耗：3,120.61kb] [文件加载：136]
+[2019-11-14T22:37:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.032142s] [吞吐率：31.11req/s] [内存消耗：2,493.35kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:48+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin
+[运行时间：0.092517s] [吞吐率：10.81req/s] [内存消耗：4,793.91kb] [文件加载：147]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
 [ info ] [ HEADER ] array (
   'host' => 'v1.fast.zf.90ckm.com',
   'connection' => 'keep-alive',
-  'pragma' => 'no-cache',
-  'cache-control' => 'no-cache',
+  'cache-control' => 'max-age=0',
   'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
   'content-type' => '',
   'content-length' => '',
 )
 [ info ] [ PARAM ] array (
 )
-[ info ] [ VIEW ] ./template/demo/test/c_view.html [ array (
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'menu',
 ) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000421s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000863s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000829s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000318s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000441s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000298s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000750s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573742268 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000340s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000404s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000290s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000267s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000276s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000463s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
 ---------------------------------------------------------------
 
-[2019-11-14T15:35:45+08:00] 58.39.19.183 GET v1.fast.zf.90ckm.com/install/index/step2
-[运行时间：0.096783s] [吞吐率：10.33req/s] [内存消耗：3,203.50kb] [文件加载：137]
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.woff2?v=2.0.46
+[运行时间：0.068077s] [吞吐率：14.69req/s] [内存消耗：2,493.30kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/welcome
+[运行时间：0.119720s] [吞吐率：8.35req/s] [内存消耗：4,701.90kb] [文件加载：146]
 [ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
 [ info ] [ ROUTE ] array (
 )
 [ info ] [ HEADER ] array (
   'host' => 'v1.fast.zf.90ckm.com',
   'connection' => 'keep-alive',
-  'pragma' => 'no-cache',
-  'cache-control' => 'no-cache',
   'upgrade-insecure-requests' => '1',
-  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
   'accept-encoding' => 'gzip, deflate',
-  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
-  'cookie' => 'BDTUJIAID=06db05366b8328885e81e4004195c349; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570589876%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=ee87f4dadd8f97f7.1569579515.5.1570591103.1570589876.; UM_distinctid=16e680d548e274-0b881bd5c89f7-43450521-15f900-16e680d548f6fc; CNZZDATA1254310986=919583198-1573703627-%7C1573703627; PHPSESSID=i289vckgoghn2klos52s6uqii2',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
   'content-type' => '',
   'content-length' => '',
 )
 [ info ] [ PARAM ] array (
 )
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/welcome.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'data',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000386s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000916s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000686s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000409s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000389s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000708s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573742269 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000358s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000760s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000787s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000702s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000314s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.woff?v=2.0.46
+[运行时间：0.033466s] [吞吐率：29.88req/s] [内存消耗：2,493.25kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.ttf?v=2.0.46
+[运行时间：0.034094s] [吞吐率：29.33req/s] [内存消耗：2,493.29kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.035165s] [吞吐率：28.44req/s] [内存消耗：2,493.18kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.033924s] [吞吐率：29.48req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:49+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.033856s] [吞吐率：29.54req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:51+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/category/index.html
+[运行时间：0.077547s] [吞吐率：12.90req/s] [内存消耗：4,737.61kb] [文件加载：148]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000437s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000829s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000320s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000665s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000447s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000298s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000722s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/category/index' , 1573742271 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000325s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category` [ RunTime:0.000822s ]
+[ sql ] [ SQL ] SELECT `cid`,`pid`,`name`,`cname`,`icon`,`tpl_category`,`tpl_post`,`mid`,`sort`,`status`,`menu` FROM `zf_category` WHERE  ( status!=9 ) ORDER BY `sort` ASC,`cid` ASC [ RunTime:0.000694s ]
+[ error ] [1]Class 'Wmc1125\Mctoolsdk\Category' not found[/www/wwwroot/v1.fast.zf.90ckm.com/application/admin/controller/Category.php:43]
+---------------------------------------------------------------
+
+[2019-11-14T22:37:54+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/category/category_model.html
+[运行时间：0.096378s] [吞吐率：10.38req/s] [内存消耗：4,920.38kb] [文件加载：149]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/category/category_model.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'list',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000431s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000901s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000707s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000460s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000320s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000217s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000292s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000298s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000270s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000790s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/category/category_model' , 1573742274 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category_model` [ RunTime:0.000733s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_category_model` WHERE  ( status!=9 ) ORDER BY `id` ASC [ RunTime:0.000626s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:37:55+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.033471s] [吞吐率：29.88req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:55+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.032685s] [吞吐率：30.60req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:55+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.034325s] [吞吐率：29.13req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:37:55+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/category/post_all_list.html
+[运行时间：0.078336s] [吞吐率：12.77req/s] [内存消耗：4,755.75kb] [文件加载：147]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000404s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000870s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000311s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000695s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000612s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000233s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000392s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/category/post_all_list' , 1573742275 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category` [ RunTime:0.000809s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_category` WHERE  `status` = 1 [ RunTime:0.000397s ]
+[ error ] [1]Class 'Wmc1125\Mctoolsdk\Category' not found[/www/wwwroot/v1.fast.zf.90ckm.com/application/admin/controller/Category.php:292]
+---------------------------------------------------------------
+
+[2019-11-14T22:38:02+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/template/tpl_list.html
+[运行时间：0.083270s] [吞吐率：12.01req/s] [内存消耗：4,763.88kb] [文件加载：148]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/template/tpl_list.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'list',
+  3 => 'tpl_name',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000441s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.001053s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000344s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000974s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000303s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000257s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000414s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000345s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000335s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000304s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000282s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000695s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000335s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000861s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/template/tpl_list' , 1573742282 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000485s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_config` [ RunTime:0.000804s ]
+[ sql ] [ SQL ] SELECT `value` FROM `zf_config` WHERE  `key` = 'zf_tpl_suffix' LIMIT 1 [ RunTime:0.000278s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:38:02+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.034342s] [吞吐率：29.12req/s] [内存消耗：2,493.18kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:02+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.032681s] [吞吐率：30.60req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:02+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.032482s] [吞吐率：30.79req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:04+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/user/index.html
+[运行时间：0.079000s] [吞吐率：12.66req/s] [内存消耗：4,810.75kb] [文件加载：148]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/user/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000410s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000866s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000360s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000728s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000328s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000244s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000264s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000490s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000830s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/user/index' , 1573742284 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000313s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:38:04+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.035095s] [吞吐率：28.49req/s] [内存消耗：2,493.18kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:05+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.041258s] [吞吐率：24.24req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:05+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.035547s] [吞吐率：28.13req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:05+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/user/group.html
+[运行时间：0.093735s] [吞吐率：10.67req/s] [内存消耗：5,006.02kb] [文件加载：152]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/user/group.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'group_list',
+  3 => 'page',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000472s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.001018s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000308s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000741s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000342s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000274s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000740s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/user/group' , 1573742285 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000340s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user_group` [ RunTime:0.001914s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user_group` WHERE  ( status!=9 ) [ RunTime:0.000534s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_user_group` WHERE  ( status!=9 ) ORDER BY `id` ASC LIMIT 0,10 [ RunTime:0.000339s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:38:05+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.034890s] [吞吐率：28.66req/s] [内存消耗：2,493.18kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:06+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.034990s] [吞吐率：28.58req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:38:06+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.034168s] [吞吐率：29.27req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin
+[运行时间：0.089593s] [吞吐率：11.16req/s] [内存消耗：4,793.91kb] [文件加载：147]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/index.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'menu',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000422s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000953s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000730s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000302s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000267s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000709s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/index' , 1573742566 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000341s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  ( status!=9 ) ORDER BY `sort` ASC [ RunTime:0.000348s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 40  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000783s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 41  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000256s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 46  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 50  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 79  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 80  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 15  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 14  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 32  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000302s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 54  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 55  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 60  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 64  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 37  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 68  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000272s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 115  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000253s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 1  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 2  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 84  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 4  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 19  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 10  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 3  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `pid` = 108  AND `menu` = 1 ORDER BY `sort` ASC [ RunTime:0.000279s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.woff2?v=2.0.46
+[运行时间：0.065326s] [吞吐率：15.31req/s] [内存消耗：2,493.30kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/index/welcome
+[运行时间：0.120892s] [吞吐率：8.27req/s] [内存消耗：4,701.90kb] [文件加载：146]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] ./template/admin/index/welcome.html [ array (
+  0 => 'admin',
+  1 => 'web_config',
+  2 => 'data',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000383s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000855s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000305s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000709s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000308s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000254s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000485s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000283s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000278s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000246s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000245s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000720s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/index/welcome' , 1573742566 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000344s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_user` [ RunTime:0.000779s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_user` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_post` [ RunTime:0.000831s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_post` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_guessbook` [ RunTime:0.000682s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `zf_guessbook` WHERE  `status` <> 9  AND `ctime` BETWEEN 1573401600 AND 1574006399 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_post` WHERE  `status` <> 9 ORDER BY `ctime` DESC LIMIT 10 [ RunTime:0.000335s ]
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.woff?v=2.0.46
+[运行时间：0.032961s] [吞吐率：30.34req/s] [内存消耗：2,493.25kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff2?v=250
+[运行时间：0.038798s] [吞吐率：25.77req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/system/fonts/materialdesignicons.ttf?v=2.0.46
+[运行时间：0.039294s] [吞吐率：25.45req/s] [内存消耗：2,493.29kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.woff?v=250
+[运行时间：0.032293s] [吞吐率：30.97req/s] [内存消耗：2,493.17kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:42:46+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/vendor/wmc1125/tpfast-public/public/static/style/layui/font/iconfont.ttf?v=250
+[运行时间：0.035146s] [吞吐率：28.45req/s] [内存消耗：2,493.42kb] [文件加载：124]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+
+[2019-11-14T22:46:36+08:00] 112.64.62.241 GET v1.fast.zf.90ckm.com/admin/category/index.html
+[运行时间：0.077975s] [吞吐率：12.82req/s] [内存消耗：4,737.61kb] [文件加载：148]
+[ info ] [ LANG ] /www/wwwroot/v1.fast.zf.90ckm.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'v1.fast.zf.90ckm.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://v1.fast.zf.90ckm.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,und;q=0.8',
+  'cookie' => 'UM_distinctid=16b74fab5438ba-0aef5681deacb9-37647e03-13c680-16b74fab544963; OUTFOX_SEARCH_USER_ID_NCOO=176004509.13229734; BAIDU_SSP_lcr=http://47.56.175.12:8888/site; BDTUJIAID=883bcae10818975c567ed5be12d207b8; PHPSESSID=ngvp5rrvesmr51sllhme6f1g94; _pk_ref.8.e4b5=%5B%22%22%2C%22%22%2C1570540168%2C%22http%3A%2F%2F120.78.193.246%3A8888%2Fsite%22%5D; _pk_id.8.e4b5=7c7b336ebc88a76d.1569594084.16.1570540177.1570540168.',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000401s ] mysql:host=127.0.0.1;port=3306;dbname=v1_fast_zf_90ckm;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_group` [ RunTime:0.000916s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_group` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000277s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_role` [ RunTime:0.000684s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000237s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000266s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 4 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 10 LIMIT 1 [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 19 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 84 LIMIT 1 [ RunTime:0.000275s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 8 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 9 LIMIT 1 [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 36 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 15 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 14 LIMIT 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 32 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 25 LIMIT 1 [ RunTime:0.000231s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 37 LIMIT 1 [ RunTime:0.000236s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 38 LIMIT 1 [ RunTime:0.000249s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 68 LIMIT 1 [ RunTime:0.000239s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 40 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 41 LIMIT 1 [ RunTime:0.000289s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 46 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000288s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 54 LIMIT 1 [ RunTime:0.000235s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 55 LIMIT 1 [ RunTime:0.000240s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 60 LIMIT 1 [ RunTime:0.000238s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 64 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 70 LIMIT 1 [ RunTime:0.000271s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 71 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 72 LIMIT 1 [ RunTime:0.000272s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 77 LIMIT 1 [ RunTime:0.000262s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 78 LIMIT 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 79 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 80 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 82 LIMIT 1 [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `zf_admin_role` WHERE  `id` = 83 LIMIT 1 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_admin_log` [ RunTime:0.000755s ]
+[ sql ] [ SQL ] INSERT INTO `zf_admin_log` (`action` , `ctime` , `ip` , `uid` , `post`) VALUES ('admin/category/index' , 1573742796 , '112.64.62.241' , 1 , '[]') [ RunTime:0.000393s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `zf_category` [ RunTime:0.000817s ]
+[ sql ] [ SQL ] SELECT `cid`,`pid`,`name`,`cname`,`icon`,`tpl_category`,`tpl_post`,`mid`,`sort`,`status`,`menu` FROM `zf_category` WHERE  ( status!=9 ) ORDER BY `sort` ASC,`cid` ASC [ RunTime:0.000266s ]
+[ error ] [1]Class 'Wmc1125\Mctoolsdk\Category' not found[/www/wwwroot/v1.fast.zf.90ckm.com/application/admin/controller/Category.php:43]

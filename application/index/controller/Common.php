@@ -111,8 +111,8 @@ class Common extends Base
         if($t=='email'){
             // dd($data['email']);
             //发送邮箱验证码
-            \Wmc1125\Mctoolsdk\ZfTool::check_data('emptyy',$data['email'],'邮箱不能为空');
-            \Wmc1125\Mctoolsdk\ZfTool::check_data('email',$data['email'],'邮箱格式不正确');
+            \Wmc1125\TpFast\ZfTool::check_data('emptyy',$data['email'],'邮箱不能为空');
+            \Wmc1125\TpFast\ZfTool::check_data('email',$data['email'],'邮箱格式不正确');
             $save['code'] = mt_rand(1000,9999);
             $save['email'] = $data['email'];
             session('home_email_code',$save);
@@ -157,7 +157,7 @@ class Common extends Base
         }elseif($t=='tel'){
              // dd($data['email']);
             //发送邮箱验证码
-            \Wmc1125\Mctoolsdk\ZfTool::check_data('emptyy',$data['tel'],'邮箱不能为空');
+            \Wmc1125\TpFast\ZfTool::check_data('emptyy',$data['tel'],'邮箱不能为空');
             // $save['code'] = mt_rand(1000,9999);
             $save['code'] = mt_rand(1000,9999);
             $save['tel'] = $data['tel'];

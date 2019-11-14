@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4c4d63eaeb34dcd4ddd3d4b3ed0c63f",
+    "content-hash": "3eb914329bae270c42dcfe6ddb2465d4",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -255,16 +255,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.1.1",
+            "version": "v6.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8"
+                "reference": "0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8",
-                "reference": "26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538",
+                "reference": "0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2019-09-27T21:33:43+00:00"
+            "time": "2019-11-13T20:09:28+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -755,26 +755,23 @@
             "time": "2017-12-29T05:36:58+00:00"
         },
         {
-            "name": "wmc1125/mctoolsdk",
+            "name": "wmc1125/tpfast-public",
             "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/wmc1125/mctoolsdk.git",
-                "reference": "a4d60da72db3b1d8636d88edee93925187fb82f6"
+                "url": "https://github.com/wmc1125/tpFastPublic.git",
+                "reference": "09d2fc315c07ca62466f3f789623391e6398b480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wmc1125/mctoolsdk/zipball/a4d60da72db3b1d8636d88edee93925187fb82f6",
-                "reference": "a4d60da72db3b1d8636d88edee93925187fb82f6",
+                "url": "https://api.github.com/repos/wmc1125/tpFastPublic/zipball/09d2fc315c07ca62466f3f789623391e6398b480",
+                "reference": "09d2fc315c07ca62466f3f789623391e6398b480",
                 "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Wmc1125\\Mctoolsdk\\": "src"
+                    "Wmc1125\\TpFast\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -787,8 +784,8 @@
                     "email": "287851074@qq.com"
                 }
             ],
-            "description": "mctool常用工具",
-            "time": "2019-11-09T01:39:30+00:00"
+            "description": "子枫后台管理系统(tpfast)系列 工具静态资源引用",
+            "time": "2019-11-14T14:23:09+00:00"
         },
         {
             "name": "yurunsoft/yurun-http",

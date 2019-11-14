@@ -24,16 +24,21 @@ class Test extends Base
     public function md(){
         return view();
     }
-    public function c_view(){
+    public function test(){
 
-    	// $editor = new \Wmc1125\Mctoolsdk\Editor;
-    	// dd($editor->test(0));
-    	// 
-    	// echo __ZF__;
-        // define("GREETING", "Welcome to W3School.com.cn!");
-// echo GREETING;
+        $str = '<div>
+                <p>这里是普通文字</p>
+                <p>这里是干扰元素测试"""</p>
+                <img src="src1.png"/>
+                <img src="src2.png"/>
+                <img src="src3.jpg"/>
+            </div>';
+        // $src = \Wmc1125\TpFast\GetImgSrc::src($str, 1);  
+        // dd($src);
+        $this->assign('str',$str);
         return view();
     }
+
 
   
    

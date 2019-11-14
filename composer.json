@@ -27,7 +27,7 @@
         "yurunsoft/yurun-oauth-login": "^2.0",
         "aliyuncs/oss-sdk-php": "^2.3",
         "phpoffice/phpspreadsheet": "1.6.0",
-        "wmc1125/mctoolsdk": "^1.0"
+        "wmc1125/tpfast-public": "^1.0"
     },
     "autoload": {
         "psr-4": {

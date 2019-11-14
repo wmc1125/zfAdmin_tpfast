@@ -9,10 +9,10 @@
 <meta name="keywords" content="子枫后台管理系统">
 <meta name="description" content="子枫后台管理系统">
 <meta name="author" content="yinqi">
-<link href="/vendor/wmc1125/mctoolsdk/public/static/system/css/bootstrap.min.css" rel="stylesheet">
-<link href="/vendor/wmc1125/mctoolsdk/public/static/system/css/materialdesignicons.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/vendor/wmc1125/mctoolsdk/public/static/system/js/bootstrap-multitabs/multitabs.min.css">
-<link href="/vendor/wmc1125/mctoolsdk/public/static/system/css/style.min.css" rel="stylesheet">
+<link href="/vendor/wmc1125/tpfast-public/public/static/system/css/bootstrap.min.css" rel="stylesheet">
+<link href="/vendor/wmc1125/tpfast-public/public/static/system/css/materialdesignicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/vendor/wmc1125/tpfast-public/public/static/system/js/bootstrap-multitabs/multitabs.min.css">
+<link href="/vendor/wmc1125/tpfast-public/public/static/system/css/style.min.css" rel="stylesheet">
 </head>
 
 <body data-headerbg="color_8"  data-logobg="color_8" data-sidebarbg="color_8">
@@ -23,7 +23,7 @@
       
       <!-- logo -->
       <div id="logo" class="sidebar-header">
-        <a href="/" target="_blank"><img src="/vendor/wmc1125/mctoolsdk/public/static/system/images/logo-sidebar.png" title="子枫后台管理系统" alt="子枫后台管理系统" /></a>
+        <a href="/" target="_blank"><img src="/vendor/wmc1125/tpfast-public/public/static/system/images/logo-sidebar.png" title="子枫后台管理系统" alt="子枫后台管理系统" /></a>
       </div>
       <div class="lyear-layout-sidebar-scroll"> 
         
@@ -280,11 +280,11 @@
 </div>
 
 
-<script type="text/javascript" src="/vendor/wmc1125/mctoolsdk/public/static/system/js/jquery.min.js"></script>
-<script type="text/javascript" src="/vendor/wmc1125/mctoolsdk/public/static/system/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/vendor/wmc1125/mctoolsdk/public/static/system/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="/vendor/wmc1125/mctoolsdk/public/static/system/js/bootstrap-multitabs/multitabs.js"></script>
-<script type="text/javascript" src="/vendor/wmc1125/mctoolsdk/public/static/system/js/index.min.js"></script>
+<script type="text/javascript" src="/vendor/wmc1125/tpfast-public/public/static/system/js/jquery.min.js"></script>
+<script type="text/javascript" src="/vendor/wmc1125/tpfast-public/public/static/system/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/vendor/wmc1125/tpfast-public/public/static/system/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/vendor/wmc1125/tpfast-public/public/static/system/js/bootstrap-multitabs/multitabs.js"></script>
+<script type="text/javascript" src="/vendor/wmc1125/tpfast-public/public/static/system/js/index.min.js"></script>
 </body>
 </html>
 <script>

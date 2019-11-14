@@ -7,8 +7,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="/vendor/wmc1125/mctoolsdk/public/static/style/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="/vendor/wmc1125/mctoolsdk/public/static/system/style/admin.css" media="all">
+  <link rel="stylesheet" href="/vendor/wmc1125/tpfast-public/public/static/style/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/vendor/wmc1125/tpfast-public/public/static/system/style/admin.css" media="all">
 </head> 
 <body>
   
@@ -329,8 +329,8 @@
         </div>
     </div>
 
-  <script src="/vendor/wmc1125/mctoolsdk/public/static/style/layui/layui.js?t=1"></script>  
-  <script src="/vendor/wmc1125/mctoolsdk/public/static/system/common.js"></script>  
+  <script src="/vendor/wmc1125/tpfast-public/public/static/style/layui/layui.js?t=1"></script>  
+  <script src="/vendor/wmc1125/tpfast-public/public/static/system/common.js"></script>  
 
   <script>
    layui.use(['layer'],function(){

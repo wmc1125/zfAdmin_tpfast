@@ -15,7 +15,7 @@
 namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
-use Wmc1125\Mctoolsdk\GetConfig;
+use Wmc1125\TpFast\GetConfig;
 class Index extends Base
 {
 	public function __construct ( Request $request = null ){
