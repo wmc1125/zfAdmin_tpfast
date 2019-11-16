@@ -86,6 +86,13 @@
                   </div>
                 </div>
                 <div class="layui-form-item">
+                  <label class="layui-form-label">开启日志:</label>
+                  <div class="layui-input-block">
+                    <input type="radio" name="is_log" value="0" title="关闭" <?php echo $config['is_log']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+                    <input type="radio" name="is_log" value="1" title="开启" <?php echo $config['is_log']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>                    
+                  </div>
+                </div>
+                <div class="layui-form-item">
                   <label class="layui-form-label">站点状态:</label>
                   <div class="layui-input-block">
                     <input type="radio" name="site_closed" value="1" title="关闭" <?php echo $config['site_closed']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>

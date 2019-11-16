@@ -46,12 +46,14 @@ class Admin extends Controller
         $this->mca =  ucwords($c) . '/' . $a;
 
         //插入日志
-        $log['action'] = $m.'/'.$c.'/'.$a ;
-        $log['ctime'] = time() ;
-        $log['ip'] = request()->ip();
-        $log['uid'] = session('admin')['id'] ;
-        $log['post'] = json_encode(input('param.'));
-        Db::name('admin_log')->insert($log);
+        if(config('web.is_log')==1){
+            $log['action'] = $m.'/'.$c.'/'.$a ;
+            $log['ctime'] = time() ;
+            $log['ip'] = request()->ip();
+            $log['uid'] = session('admin')['id'] ;
+            $log['post'] = json_encode(input('param.'));
+            Db::name('admin_log')->insert($log);
+        }
         
     }
 
