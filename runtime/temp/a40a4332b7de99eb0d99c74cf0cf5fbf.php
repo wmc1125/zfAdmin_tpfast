@@ -1,4 +1,4 @@
-<?php /*a:1:{s:33:"./template/admin/index/index.html";i:1573989896;}*/ ?>
+<?php /*a:1:{s:33:"./template/admin/index/index.html";i:1573994357;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -207,7 +207,7 @@
     			    </ul>
   			     </li> -->
             <!--切换主题配色-->
-            <span class="navbar-page-title zf_zanshang" >赞赏  </span>
+            <span class="navbar-page-title zf_zanshang" >赞赏  </span> &nbsp &nbsp &nbsp
             <span class="navbar-page-title" id="zf_mctool" >快捷工具  </span>
             <script src="https://mctool.wangmingchang.com/public/static/jquery-1.8.3.min.js"></script>
             <script src="https://mctool.wangmingchang.com/public/static/layer/layer.js"></script>
@@ -273,8 +273,8 @@
 <div class="red-envelope">
     <div class="content">
 
-   <a href="https://m.tb.cn/h.eJG1uWt" rel="noreferrer" target="_blank">
-            <img class="img" src="https://i.loli.net/2019/10/30/SnigOwCZAcLEu7q.png">
+   <a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=cbkerf3s" rel="noreferrer" target="_blank">
+            <img class="img" src="https://i.loli.net/2019/11/17/6pMNQoyxXL3PufO.jpg">
         </a>
         <img class="img-close" onclick="removeTbHb()" id="close-envelope" src="https://i.loli.net/2019/10/30/XhWyHlANe8MJujx.png">
     </div>
