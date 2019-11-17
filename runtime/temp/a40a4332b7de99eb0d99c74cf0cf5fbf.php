@@ -1,4 +1,4 @@
-<?php /*a:1:{s:33:"./template/admin/index/index.html";i:1572481616;}*/ ?>
+<?php /*a:1:{s:33:"./template/admin/index/index.html";i:1573989254;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -208,11 +208,7 @@
   			     </li> -->
             <!--切换主题配色-->
             <span class="navbar-page-title" id="zf_mctool" >快捷工具  </span>
-            <script src="https://mctool.wangmingchang.com/public/static/jquery-1.8.3.min.js"></script>
-            <script src="https://mctool.wangmingchang.com/public/static/layer/layer.js"></script>
             <script src="https://mctool.wangmingchang.com/public/static/api/mc_tool/index.js"></script>
-
-		
           </ul>
           
         </div>

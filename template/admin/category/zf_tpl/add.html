@@ -17,7 +17,7 @@
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
       <form class="layui-form info_tj" method="post"  >
-          <?php if($data_res){ ?>
+          <?php if(isset($data_res)){ ?>
           <input type="hidden" name="id" value="{$data_res['id']}">
           <?php }else{ ?>
           <input type="hidden" name="cid" value="{$cid}">
