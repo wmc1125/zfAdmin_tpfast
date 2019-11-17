@@ -68,6 +68,7 @@
               </div>
             </div>
           </div>
+          
           <div class="layui-col-md12">
             <div class="layui-card">
               <div class="layui-card-header">最新文章</div>
@@ -116,176 +117,191 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <div class="layui-col-md4">
-        <div class="layui-card">
-            
-          <div class="layui-tab layui-tab-brief layadmin-latestData">
-            <ul class="layui-tab-title">
-              <li class="">产品介绍</li>
-            </ul>
-            <div class="layui-tab-content">
-              <div class="layui-tab-item layui-show">
-                <blockquote class="layui-elem-quote main_btn">
-                  <p class="layui-blue">子枫后台管理系统免费提供大家使用,有什么问题可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mc技术论坛</a>提出异议,有什么好用的功能也可以写出建议,只为不断完善后台系统,后台可免费使用,但必须保留版权声明</p>
-                </blockquote>
+          <div class="layui-col-sm12 layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-header">版本信息</div>
+              <div class="layui-card-body layui-text">
+                <table class="layui-table">
+                  <colgroup>
+                    <col width="100">
+                    <col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <td>当前版本</td>
+                      <td>
+                        
+                          <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(TpFast系列)v1.0.1</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>基于框架</td>
+                      <td>
+                        <a href="http://www.thinkphp.cn">Tp5.1</a> + <a href="https://www.layui.com">layui</a> + <a href="https://gitee.com/yinqi/Light-Year-Admin-Template">光年后台模板</a>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>主要特色</td>
+                      <td>零门槛 / 响应式 / 清爽 / 极简 / 快速开发</td>
+                    </tr>
+                    <tr>
+                      <td>获取渠道</td>
+                      <td style="padding-bottom: 0;">
+                        <div class="layui-btn-container">
+                          <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="layui-card">
+              <div class="layui-card-header">服务器信息</div>
+              <div class="layui-card-body layui-text">
+                <table class="layui-table">
+                  <colgroup>
+                    <col width="400">
+                    <col width="300">
+                    <col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <td>站点信息:</td>
+                      <td>
+                          <?php echo $_SERVER["SERVER_NAME"];?>(IP:<?php echo $_SERVER["SERVER_ADDR"];?>)
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>服务器：</td>
+                      <td>
+                        <?php echo php_uname('s').' '.php_uname('r');?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>站点物理路径：</td>
+                      <td>
+                        <?php echo $_SERVER['DOCUMENT_ROOT'];?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>POST大小：</td>
+                      <td>
+                        <?php echo ini_get('max_execution_time').'M';?>
+                      </td>
+                    </tr>
+                      <tr>
+                      <td>上传大小：</td>
+                      <td>
+                        <?php echo ini_get('upload_max_filesize');?>
+                      </td>
+                    </tr>
+                      <tr>
+                      <td>服务器时间：</td>
+                      <td>
+                        <?php echo date('Y-m-d H:i:s');?>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-        <div class="layui-card">
-          <div class="layui-card-header">快捷方式</div>
-          <div class="layui-card-body">
-            
-            <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
-              <div carousel-item="">
-                <ul class="layui-row layui-col-space10 layui-this">
-                  <li class="layui-col-xs3">
-                    <a href="{:url('category/post_all_list')}">
-                      <i class="layui-icon layui-icon-console"></i>
-                      <cite>文章列表</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('user/index')}">
-                      <i class="layui-icon layui-icon-user"></i>
-                      <cite>用户列表</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('rests/guessbook')}">
-                      <i class="layui-icon layui-icon-survey"></i>
-                      <cite>留言管理</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">
-                      <i class="layui-icon layui-icon-set"></i>
-                      <cite>使用手册</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('')}">
-                      <i class="layui-icon layui-icon-set"></i>
-                      <cite>待添加</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('')}">
-                      <i class="layui-icon layui-icon-set"></i>
-                      <cite>待添加</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('')}">
-                      <i class="layui-icon layui-icon-set"></i>
-                      <cite>待添加</cite>
-                    </a>
-                  </li>
-                  <li class="layui-col-xs3">
-                    <a href="{:url('')}">
-                      <i class="layui-icon layui-icon-set"></i>
-                      <cite>待添加</cite>
-                    </a>
-                  </li>
-                </ul>
+      </div>
+      
+      <div class="layui-col-md4">
+          <div class="layui-card">
+            <div class="layui-tab layui-tab-brief layadmin-latestData">
+              <ul class="layui-tab-title">
+                <li class="">产品介绍</li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                  <blockquote class="layui-elem-quote main_btn">
+                    <p class="layui-blue">子枫后台管理系统免费提供大家使用,有什么问题可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mc技术论坛</a>提出异议,有什么好用的功能也可以写出建议,只为不断完善后台系统,后台可免费使用,但必须保留版权声明</p>
+                  </blockquote>
+                </div>
               </div>
+            </div>
+            <div class="layui-card-header">快捷方式</div>
+            <div class="layui-card-body">
+              
+              <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
+                <div carousel-item="">
+                  <ul class="layui-row layui-col-space10 layui-this">
+                    <li class="layui-col-xs3">
+                      <a href="{:url('category/post_all_list')}">
+                        <i class="layui-icon layui-icon-console"></i>
+                        <cite>文章列表</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('user/index')}">
+                        <i class="layui-icon layui-icon-user"></i>
+                        <cite>用户列表</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('rests/guessbook')}">
+                        <i class="layui-icon layui-icon-survey"></i>
+                        <cite>留言管理</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">
+                        <i class="layui-icon layui-icon-set"></i>
+                        <cite>使用手册</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('')}">
+                        <i class="layui-icon layui-icon-set"></i>
+                        <cite>待添加</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('')}">
+                        <i class="layui-icon layui-icon-set"></i>
+                        <cite>待添加</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('')}">
+                        <i class="layui-icon layui-icon-set"></i>
+                        <cite>待添加</cite>
+                      </a>
+                    </li>
+                    <li class="layui-col-xs3">
+                      <a href="{:url('')}">
+                        <i class="layui-icon layui-icon-set"></i>
+                        <cite>待添加</cite>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
           </div>
         </div>
+
+        <div class="layui-card">
+          <div class="layui-tab layui-tab-brief layadmin-latestData">
+            <ul class="layui-tab-title">
+              <li class="">打赏列表</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <iframe src="http://mctool.wangmingchang.com/index/jspay/dashang" width="100%" height="850" ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        
             <!--  -->
 <!--  -->
-        <div class="layui-card">
-          <div class="layui-card-header">版本信息</div>
-          <div class="layui-card-body layui-text">
-            <table class="layui-table">
-              <colgroup>
-                <col width="100">
-                <col>
-              </colgroup>
-              <tbody>
-                <tr>
-                  <td>当前版本</td>
-                  <td>
-                     
-                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(TpFast系列)v1.0.1</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>基于框架</td>
-                  <td>
-                     <a href="http://www.thinkphp.cn">Tp5.1</a> + <a href="https://www.layui.com">layui</a> + <a href="https://gitee.com/yinqi/Light-Year-Admin-Template">光年后台模板</a>
-                 </td>
-                </tr>
-                <tr>
-                  <td>主要特色</td>
-                  <td>零门槛 / 响应式 / 清爽 / 极简 / 快速开发</td>
-                </tr>
-                <tr>
-                  <td>获取渠道</td>
-                  <td style="padding-bottom: 0;">
-                    <div class="layui-btn-container">
-                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="layui-card">
-          <div class="layui-card-header">服务器信息</div>
-          <div class="layui-card-body layui-text">
-            <table class="layui-table">
-              <colgroup>
-                <col width="400">
-                <col width="300">
-                <col>
-              </colgroup>
-              <tbody>
-                <tr>
-                  <td>站点信息:</td>
-                  <td>
-                      <?php echo $_SERVER["SERVER_NAME"];?>(IP:<?php echo $_SERVER["SERVER_ADDR"];?>)
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td>服务器：</td>
-                  <td>
-                    <?php echo php_uname('s').' '.php_uname('r');?>
-                  </td>
-                </tr>
-                <tr>
-                  <td>站点物理路径：</td>
-                  <td>
-                    <?php echo $_SERVER['DOCUMENT_ROOT'];?>
-                  </td>
-                </tr>
-                <tr>
-                  <td>POST大小：</td>
-                  <td>
-                    <?php echo ini_get('max_execution_time').'M';?>
-                  </td>
-                </tr>
-                  <tr>
-                  <td>上传大小：</td>
-                  <td>
-                    <?php echo ini_get('upload_max_filesize');?>
-                  </td>
-                </tr>
-                  <tr>
-                  <td>服务器时间：</td>
-                  <td>
-                    <?php echo date('Y-m-d H:i:s');?>
-                  </td>
-                </tr>
-                
-              </tbody>
-            </table>
-          </div>
-        </div>
+       
 
 
         <!-- <div class="layui-card aaaaa">
@@ -299,7 +315,6 @@
             <p>—— 贤心（<a href="http://www.layui.com/" target="_blank">layui.com</a>）</p>
           </div>
         </div>  -->
-      </div>
       
     </div>
   </div>
