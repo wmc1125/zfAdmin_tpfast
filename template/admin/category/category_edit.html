@@ -127,8 +127,17 @@
                     </fieldset>
                   </div>
                   <div class="layui-card-body">
-                    {include file="public/editor"}
+                    <script id="zf-editor-content" name="content" type="text/plain" >{$res['content']|raw}</script>
                   </div>
+                  {js href="__STATIC__/style/ueditor/ueditor.config.js" /}
+                  {js href="__STATIC__/style/ueditor/ueditor.all.js" /}
+                  {css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
+                  <script type="text/javascript"> 
+                  var ue = UE.getEditor("zf-editor-content",{
+                    initialFrameHeight:350,//设置编辑器高度
+                    scaleEnabled:false//设置不自动调整高度
+                  });
+                  </script>
                 </div>
               </div>
               <div class="layui-col-sm3">
