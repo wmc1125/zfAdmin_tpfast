@@ -25,12 +25,14 @@
               <col width="50">
               <col width="50">
               <col width="50">
+              <col width="50">
               <col>
             </colgroup>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>名称</th>
+                <th>图片</th>
                 <th>链接</th>          
                 <th>状态</th>
                 <th>操作</th>
@@ -41,6 +43,7 @@
                 <tr>
                   <td>{$vo['id']}</td>
                   <td>{$vo['name']}</td>
+                  <td><img src="{$vo['pic']}" /></td>
                   <td>{$vo['url']}</td>
                   <td> 
                     <div class=" layui-form" lay-filter="component-form-element">        
