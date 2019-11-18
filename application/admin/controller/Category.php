@@ -330,10 +330,10 @@ class Category extends Admin
             }else{
                 $data['ctime'] =  time();
             }
-            if($data['pic']==''){
+            if($data['pic']=='' && isset($data['content'])){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
-            
+            // 关联
             if(isset($data['relevan_id'])){
                 unset($data['keyword']);
             }
@@ -351,6 +351,8 @@ class Category extends Admin
                         unset($data[$vo]);
                     }
                 }
+            }elseif(count($_temp_list)==0){
+                //数组为空,不做操作
             }else{
                 //查询字段
                 $mid = Db::name('post p')

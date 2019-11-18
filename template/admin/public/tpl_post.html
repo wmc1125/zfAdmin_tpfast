@@ -1,10 +1,18 @@
 
-          <?php if($vo['type']=='layui-input'){ 
-            echo zf_form('layui-input',$vo,$data_res);
-          }elseif($vo['type']=='layui-textarea'){ 
-            echo zf_form('layui-textarea',$vo,$data_res);
-
-            ?>
+          <?php if($vo['type']=='layui-input'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <input type="text" name="{$vo['key']}" placeholder="请输入" autocomplete="off" class="layui-input" value="<?php echo isset($data_res[$vo['key']])?$data_res[$vo['key']]:$vo['value'];?>">
+              </div>
+            </div>
+          <?php }elseif($vo['type']=='layui-textarea'){ ?>
+            <div class="layui-card-header">{$vo['name']}</div>
+            <div class="layui-card-body layui-row layui-col-space12">
+              <div class="layui-col-md12">
+                <textarea name="{$vo['key']}" placeholder="请输入" class="layui-textarea"><?php echo isset($data_res[$vo['key']])?$data_res[$vo['key']]:$vo['value'];?></textarea>
+              </div>
+            </div>
           <?php }elseif($vo['type']=='album'){ ?>
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
@@ -105,7 +113,7 @@ $(obj).parent().remove();
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space12">
               <div class="layui-col-md12">
-                <input type="text" name="{$vo['key']}" id="zf-date-{$vo['key']}" lay-verify="date" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" lay-key="1" value="<?php if($data_res[$vo['key']]){ echo date('Y-m-d H:i:s',$data_res[$vo['key']]);  }else{ echo date('Y-m-d H:i:s',time()); } ?>">
+                <input type="text" name="{$vo['key']}" id="zf-date-{$vo['key']}" lay-verify="date" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" lay-key="1" value="<?php if(isset($data_res[$vo['key']])){ echo date('Y-m-d H:i:s',$data_res[$vo['key']]);  }else{ echo date('Y-m-d H:i:s',time()); } ?>">
               </div>
             </div>
 <script>
@@ -123,7 +131,7 @@ elem: "#zf-date-{$vo['key']}"
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space8">
               <div class="layui-col-md12">
-                <input  id="upload-pic-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+                <input  id="upload-pic-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="<?php echo isset($data_res[$vo['key']])?$data_res[$vo['key']]:$vo['value'];?>">
               </div>
                 <span type="button" class="layui-btn layui-btn-sm" id="up-img-btn-{$vo['key']}">上传图片</span>
             </div>
@@ -151,7 +159,7 @@ layer.msg(res.msg, {icon: 2});
             <div class="layui-card-header">{$vo['name']}</div>
             <div class="layui-card-body layui-row layui-col-space8">
               <div class="layui-col-md12">
-                <input  id="upload-file-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$data_res[$vo['key']]|default=$vo['value']}">
+                <input  id="upload-file-{$vo['key']}" type="text" name="{$vo['key']}" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="<?php echo isset($data_res[$vo['key']])?$data_res[$vo['key']]:$vo['value'];?>">
               </div>
                 <span type="button" class="layui-btn layui-btn-sm" id="up-file-{$vo['key']}">上传文件</span>
             </div>
@@ -206,7 +214,7 @@ var $ = layui.$
             <div class="layui-card-body layui-row layui-col-space8 ">
               <div class="layui-col-md12 layui-form-item">
                 <div class="layui-input-inline layui-form" style="width: 100%">
-                  <input type="checkbox" name="{$vo['key']}" lay-skin="switch" lay-text="是|否" <?php echo $data_res[$vo['key']]==1?'checked':''; ?>  lay-filter="{$vo['key']}_change"   >
+                  <input type="checkbox" name="{$vo['key']}" lay-skin="switch" lay-text="是|否" <?php echo isset($data_res) && $data_res[$vo['key']]==1?'checked':''; ?>  lay-filter="{$vo['key']}_change"   >
                 </div>
               </div>
             </div>
@@ -246,7 +254,7 @@ var $ = layui.$
               </fieldset>
             </div>
             <div class="layui-card-body">
-                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
+                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" ><?php echo isset($data_res)?$data_res[$vo['key']]:''; ?></script>
             </div>
 {js href="__STATIC__/style/ueditor/ueditor.config.js" /}
 {js href="__STATIC__/style/ueditor/ueditor.all.js" /}
@@ -316,8 +324,6 @@ $(function (){
 });
 </script>
           <?php }elseif($vo['type']=='md'){ ?>
-
-
 
           <?php } ?>
        

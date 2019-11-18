@@ -64,7 +64,7 @@
     $(".tijiao").on("click",function(){
       // var index = layer.load(2);
       var data = $(".info_tj input,.info_tj textarea,.info_tj select").serialize();   
-      <?php if($data_res){ ?>
+      <?php if(isset($data_res)){ ?>
         var url = "{:url('category/post_edit')}"
       <?php }else{ ?>
         var url = "{:url('category/post_add')}"
