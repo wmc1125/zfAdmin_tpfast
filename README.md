@@ -67,10 +67,5 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
 
  ## 捐献列表
 
- <iframe  
- height=850 
- width=90% 
- src="http://mctool.wangmingchang.com/index/jspay/dashang"  
- frameborder=0  
- allowfullscreen>
- </iframe>
+[![](https://i.loli.net/2019/11/20/ZmYdvRWryXi9PD6.jpg)](http://mctool.wangmingchang.com/index/jspay/dashang)
+ 
