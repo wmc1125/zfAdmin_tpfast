@@ -23,7 +23,7 @@
                     </div>
                   <!--用来存放文件信息-->
                     <div id="zf-{$vo['key']}" class="uploader-list col-sm-10">
-                      <?php if($data_res[$vo['key']]!=''){ $pics=explode(',',$data_res[$vo['key']]);
+                      <?php if( isset($data_res) && $data_res[$vo['key']]!=''){ $pics=explode(',',$data_res[$vo['key']]);
                           $count=count($pics);
                           for($i=0;$i<$count;$i++){?>
                             <div id="WU_FILE_{$i}" class="file-item thumbnail layui-col-md3" style="width:150px;margin-left:10px;"><img src="{$pics[$i]}" style="width: 150px;height:150px"/><span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span><div class=""><input type="hidden" name="zf_list_{$vo['key']}[]" value="{$pics[$i]}"></div></div>
