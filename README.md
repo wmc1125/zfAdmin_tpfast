@@ -65,7 +65,7 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
  + bootstrap
  + Light Year Admin
 
- ## 捐献列表(每天更新一次)
+ ## 捐献列表
 
 [![](https://mctool.wangmingchang.com/api/api/rand_pic)](http://mctool.wangmingchang.com/index/jspay/dashang)
  
