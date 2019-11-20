@@ -4,7 +4,7 @@
 
 ![](https://i.loli.net/2019/11/20/cWHMdTeRrqiZo41.jpg)
 ## 系统要求
- + php5.6+
+ + php5.6+ (推荐使用php7.1+)
  + gd2
  + 伪静态（隐藏入口文件index.php）
 
