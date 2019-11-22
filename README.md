@@ -36,6 +36,11 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
   
   "phpoffice/phpspreadsheet": "1.8.0" 需要在大于php7.1版本,如果你要使用,可在composer.json require 中加入"phpoffice/phpspreadsheet": "1.8.0"
 
++ "johnlui/aliyun-oss": "^2.2"
++ "tp5er/tp5-databackup": "^1.0"
++ "phpmailer/phpmailer": "^6.0"
++ "yurunsoft/yurun-oauth-login": "^2.0"
++ "aliyuncs/oss-sdk-php": "^2.3"
 
 ## 后台管理模块
  + 内容管理
