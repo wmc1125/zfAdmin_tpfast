@@ -1,0 +1,19 @@
+{
+    "name": "wmc1125/tpfast-public",
+    "description": "子枫后台管理系统(tpfast)系列 工具静态资源引用",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wmc1125",
+            "email": "287851074@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Wmc1125\\TpFast\\": "src"
+        }
+    }
+}
+
