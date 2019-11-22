@@ -23,6 +23,11 @@
             <div class="layui-tab-content" style="height: 100%;">
               <div class="layui-tab-item layui-show">
                 <form class="layui-form info_tj" onclick="return false;" >
+                  <?php if(!is_dir('./vendor/aliyuncs/oss-sdk-php')){ ?>
+                  <blockquote class="layui-elem-quote" style="text-align: center;">
+                    阿里云oss扩展未安装,请先安装后使用
+                  </blockquote>
+                  <?php } ?>
                   <div class="layui-row layui-col-space10 layui-form-item">
                     <div class="layui-col-lg5">
                       <label class="layui-form-label">保存路径:</label>
