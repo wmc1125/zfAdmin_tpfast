@@ -8,7 +8,7 @@
  + gd2
  + 伪静态（隐藏入口文件index.php）
  
-## 安装：
+## 安装： 
 GitHub仓库:  https://github.com/wmc1125/zfAdmin_tpfast
 
 Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
