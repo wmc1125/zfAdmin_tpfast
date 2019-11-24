@@ -11,20 +11,25 @@
 </head>
 <body>
 
-  <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-      <div class="layui-col-md12">
-        <div class="layui-card">
-          <div class="layui-card-header">邮件服务</div>
-          <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-            <ul class="layui-tab-title">
-              <li class="layui-this">邮箱设置</li>
-              <!-- <li>邮箱模板</li> -->
-            </ul>
-            <div class="layui-tab-content" style="height: 100%;">
-              <div class="layui-tab-item layui-show">
-                <form class="info_tj">
-                  <div class="layui-form" wid100 lay-filter="">
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <!--<div class="layui-card-header">邮件服务</div>-->
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+          <ul class="layui-tab-title">
+            <li class="layui-this">邮箱设置</li>
+            <!-- <li>邮箱模板</li> -->
+          </ul>
+          <div class="layui-tab-content" style="height: 100%;">
+            <div class="layui-tab-item layui-show">
+              <form class="info_tj">
+                <?php if(!is_dir('./vendor/phpmailer/phpmailer')){ ?>
+                <blockquote class="layui-elem-quote" style="text-align: center;">
+                  邮箱扩展(phpmailer/phpmailer)未安装,请先安装后使用
+                </blockquote>
+                <?php } ?>
+                <div class="layui-form" wid100 lay-filter="">
                   <div class="layui-form-item">
                     <label class="layui-form-label">SMTP服务器</label>
                     <div class="layui-input-inline">
@@ -69,60 +74,60 @@
                       <input type="button" value="确认保存" class="layui-btn layui-btn-sm"  onclick="tijiao_data('config/email',0)">
                     </div>
                   </div>
-                  </div>
-                </form>
-              </div>
-              <!-- <div class="layui-tab-item"> .......</div> -->
+                </div>
+              </form>
             </div>
+            <!-- <div class="layui-tab-item"> .......</div> -->
           </div>
-
         </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <script src="__STATIC__/style/layui/layui.js"></script>    
-  <script type="text/javascript" src="__STATIC__/system/common.js"></script>  
+<script src="__STATIC__/style/layui/layui.js"></script>
+<script type="text/javascript" src="__STATIC__/system/common.js"></script>
 
-  <script>
-   layui.define(['form', 'upload'], function(exports){
-  var $ = layui.$
-  ,layer = layui.layer
-  ,laytpl = layui.laytpl
-  ,setter = layui.setter
-  ,view = layui.view
-  ,admin = layui.admin
-  ,form = layui.form
-  ,upload = layui.upload;
+<script>
+  layui.define(['form', 'upload'], function(exports){
+    var $ = layui.$
+            ,layer = layui.layer
+            ,laytpl = layui.laytpl
+            ,setter = layui.setter
+            ,view = layui.view
+            ,admin = layui.admin
+            ,form = layui.form
+            ,upload = layui.upload;
 
-  $(".send_mail").on("click",function(){
-    var ee = $('.ee').val();
-    if(ee==''){
-      layer.msg('请填写邮箱')
-      return 
-    }
-    var index = layer.load(2);
-    $.ajax({
+    $(".send_mail").on("click",function(){
+      var ee = $('.ee').val();
+      if(ee==''){
+        layer.msg('请填写邮箱')
+        return
+      }
+      var index = layer.load(2);
+      $.ajax({
         type:'post',
         url:'../config/test_email',
         data:{ee:ee},
         dataType:'json',
         success:function(res){
           if(res.result==1){
-            layer.msg(res.msg, {icon: 1});               
+            layer.msg(res.msg, {icon: 1});
           }else{
-            layer.msg(res.msg, {icon: 1});               
+            layer.msg(res.msg, {icon: 1});
           }
           layer.close(index)
-          
+
 
         }
+      })
     })
+
+
+
   })
-
-  
-
- })
-  </script>
+</script>
 </body>
 </html>
