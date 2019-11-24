@@ -12,7 +12,7 @@
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-// 站点信息最后修改于 2019/11/16 18:12:48  
+// 站点信息最后修改于 2019/11/24 12:52:25  
   
  return [
 	'save_path' => '/upload/file',
@@ -23,7 +23,7 @@
 	'water_text_color' => '#1849bb',
 	'water_font_path' => './upload/1.ttf',
 	'water_position' => '6',
-	'pic_save_type' => '0',
+	'pic_save_type' => '3',
 	'file_save_type' => '0',
 	'is_water' => '0',
 	'qn_ACCESSKEY' => '',
@@ -34,10 +34,10 @@
 	'upyun_SECRETKEY' => '',
 	'upyun_BUCKET' => '',
 	'upyun_DOMAIN' => '',
-	'ali_ACCESSKEY' => '1',
+	'ali_ACCESSKEY' => '121',
 	'ali_SECRETKEY' => 'sasasa',
 	'ali_BUCKET' => 'dasdsa',
-	'ali_DOMAIN' => '',
+	'ali_DOMAIN' => '212',
 	'qn_type' => 'qny',
 	'type' => 'qny',
 ];
