@@ -420,7 +420,7 @@ class Category extends Admin
             }else{
                 $data['ctime'] =  time();
             }
-            if(isset($data['pic']) &&$data['pic']==''){
+            if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
             
@@ -450,7 +450,7 @@ class Category extends Admin
                 $tb_parm_list = Db::name('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
                 // 判断是否含有该字段,没有则为空
                 foreach($tb_parm_list as $k=>$vo){
-                    if(!$data[$vo['name']]){
+                    if(!isset($data[$vo['key']])){
                         $data[$vo['key']] = '';
                     }
                 }
