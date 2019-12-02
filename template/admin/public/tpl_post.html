@@ -273,7 +273,7 @@ var ue = UE.getEditor("zf-editor-{$vo['key']}",{
               </fieldset>
             </div>
             <div class="layui-card-body">
-                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" >{$data_res[$vo['key']]|raw}</script>
+                <script id="zf-editor-{$vo['key']}" name="{$vo['key']}" type="text/plain" ><?php echo isset($data_res)?$data_res[$vo['key']]:''; ?></script>
             </div>
 {js href="__STATIC__/style/ueditor_aliyunoss/ueditor.config.js" /}
 {js href="__STATIC__/style/ueditor_aliyunoss/ueditor.all.js" /}
