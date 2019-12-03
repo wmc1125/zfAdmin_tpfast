@@ -12,4 +12,5 @@ return array(
     'think\\' => array($vendorDir . '/topthink/think-image/src'),
     'app\\' => array($baseDir . '/application'),
     'Wmc1125\\TpFast\\' => array($vendorDir . '/wmc1125/tpfast-public/src'),
+    'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
 );

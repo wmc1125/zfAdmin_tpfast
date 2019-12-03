@@ -27,6 +27,10 @@ class ComposerStaticInit0cfbf6093c314c7b51eb2b952d023ea3
         array (
             'Wmc1125\\TpFast\\' => 15,
         ),
+        'O' => 
+        array (
+            'OSS\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -53,6 +57,10 @@ class ComposerStaticInit0cfbf6093c314c7b51eb2b952d023ea3
         'Wmc1125\\TpFast\\' => 
         array (
             0 => __DIR__ . '/..' . '/wmc1125/tpfast-public/src',
+        ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
         ),
     );
 
