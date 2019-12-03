@@ -296,19 +296,17 @@ CREATE TABLE `zf_category_model` (
   `sort` tinyint(255) NOT NULL DEFAULT '0',
   `status` tinyint(5) NOT NULL DEFAULT '0',
   `is_two` tinyint(1) NOT NULL DEFAULT '0',
+  `is_parm` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='分类模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='分类模型表';
 
 -- ----------------------------
 -- Records of zf_category_model
 -- ----------------------------
 BEGIN;
-INSERT INTO `zf_category_model` VALUES (1, '单页模型', 'simple', 2, 1, 1);
-INSERT INTO `zf_category_model` VALUES (2, '新闻模型', 'news', 2, 1, 1);
-INSERT INTO `zf_category_model` VALUES (4, '内容模型', 'article', 3, 1, 0);
-INSERT INTO `zf_category_model` VALUES (13, '图片模型', 'pic', 10, 1, 0);
-INSERT INTO `zf_category_model` VALUES (12, '关联模型', 'relevan', 9, 1, 0);
-INSERT INTO `zf_category_model` VALUES (14, 'ZF内容模型', 'zf_tpl', 2, 1, 1);
+INSERT INTO `zf_category_model` VALUES (1, '单页模型', 'simple', 2, 1, 1, 0);
+INSERT INTO `zf_category_model` VALUES (15, '新闻模型', 'news', 0, 1, 0, 0);
+INSERT INTO `zf_category_model` VALUES (14, 'ZF内容模型', 'zf_tpl', 2, 1, 1, 1);
 COMMIT;
 
 -- ----------------------------
