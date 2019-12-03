@@ -37,6 +37,13 @@
           <input type="text" name="sort"  placeholder="请输入" autocomplete="off" class="layui-input" value="{$res.sort}">
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">是否使用参数方法</label>
+        <div class="layui-input-inline">
+          <input type="radio" name="is_parm" value="1" title="是" <?php echo $res['is_parm']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+          <input type="radio" name="is_parm" value="0" title="否" <?php echo $res['is_parm']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+        </div>
+      </div>
       
       <div class="layui-form-item">
         <label class="layui-form-label">状态:</label>
