@@ -311,6 +311,9 @@ class User extends Admin
      */
     public function export(){
         admin_role_check($this->z_role_list,$this->mca);
+        if (!is_dir('./vendor/phpoffice/phpspreadsheet')) {
+            $this->error('PhpSpreadsheet扩展(phpoffice/phpspreadsheet)未安装,请先安装后使用');
+        }
         $name='用户表'.date("Y-m-d H-i-s",time());
         // $data=[['aa','aa','cc','dd','ee'],['bb','bb','cc','dd','ee']];
         $data = Db::name('user')->where(['status'=>1])->select();
