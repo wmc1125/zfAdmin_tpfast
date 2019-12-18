@@ -41,9 +41,9 @@ class Base extends Controller
 		    $zf_tpl_suffix=='a1'时,a1/index/test
         */
        if($this->tpl_suffix!=''){
-       		 $tpl_static = get_domain()."/template/index/".$zf_tpl_suffix.'/style/';
+       		 $tpl_static = get_domain()."/public/static/".$zf_tpl_suffix.'/';
        }else{
-       		 $tpl_static = get_domain()."/template/index/style/";
+       		 $tpl_static = get_domain()."/public/static/";
        }
         $this->assign('tpl_static',$tpl_static);
 

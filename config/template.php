@@ -38,6 +38,6 @@ return [
         '__STATIC__' => '/vendor/wmc1125/tpfast-public/public/static',
     ],
     //视图分离  视图根所在路径 
-    'view_base'=>'./template/', //入口文件在根目录下
+//    'view_base'=>'./template/', //入口文件在根目录下
 
 ];
