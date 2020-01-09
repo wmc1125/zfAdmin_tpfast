@@ -173,7 +173,7 @@ class Index extends Controller
         }
         // 导入系统初始数据库结构
         // 导入SQL
-        $sql_file = './backup/install.sql';
+        $sql_file = './public/backup/install.sql';
         if (file_exists($sql_file)) {
             $sql = file_get_contents($sql_file);
             $sql_list = parse_sql($sql, 0, ['zf_' => $config['prefix']]);

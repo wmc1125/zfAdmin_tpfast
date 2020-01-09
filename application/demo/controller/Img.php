@@ -52,13 +52,13 @@ class Img extends Base
     }
     public function getimgsrc(){
       $str = '<p>
-    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/upload/image/20190910/1568093436298085.jpg" title="1568093436298085.jpg" alt="3.jpg"/>
+    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/public/upload/image/20190910/1568093436298085.jpg" title="1568093436298085.jpg" alt="3.jpg"/>
 </p>
 <p>
-    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/upload/image/20190910/1568093445931333.jpg" style="" title="1568093445931333.jpg"/>
+    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/public/upload/image/20190910/1568093445931333.jpg" style="" title="1568093445931333.jpg"/>
 </p>
 <p>
-    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/upload/image/20190910/1568093446176696.jpg" style="" title="1568093446176696.jpg"/>
+    <img src="https://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/public/upload/image/20190910/1568093446176696.jpg" style="" title="1568093446176696.jpg"/>
 </p>
 <p>
     <br/>

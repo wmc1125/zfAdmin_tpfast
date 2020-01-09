@@ -24,9 +24,9 @@ class Common extends Base
     public function upload_one(){
         $file = request()->file('file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
+        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return jssuccess($msg);
@@ -38,9 +38,9 @@ class Common extends Base
         
         $file = request()->file('editormd-image-file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
+        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return json_encode(array(
@@ -58,7 +58,7 @@ class Common extends Base
     }
     public function upload_pic_liu(){
 //目录的upload文件夹下
-        $up_dir = "upload/file/".date('Ymd', time()) . "/";  //创建目录
+        $up_dir = "public/upload/file/".date('Ymd', time()) . "/";  //创建目录
         if(!file_exists($up_dir)){
             mkdir($up_dir,0777,true);
         }
@@ -87,9 +87,9 @@ class Common extends Base
         $file = $_FILES['file'];
         $img_config = config()['img'];
         $file2 = request()->file('file');
-        $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt,mp4,flv,avi,MPEG-4'])->move('./upload/file');
+        $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt,mp4,flv,avi,MPEG-4'])->move('./public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return jssuccess($msg);

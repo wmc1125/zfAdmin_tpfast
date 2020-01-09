@@ -206,7 +206,7 @@ function logOutput($data) {
 function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){ 
     //保存路径
     $d = date('Ymd', time());
-    $dirslsitss = './upload/'.$keyword.'/'.$d;//分类是否存在
+    $dirslsitss = './public/upload/'.$keyword.'/'.$d;//分类是否存在
     if(!is_dir($dirslsitss)) {
         mkdir($dirslsitss, 0755,true);
     }
@@ -228,7 +228,7 @@ function replaceimg($xstr, $oriweb,$param_src='src',$keyword='caiji'){
               mkdir($dirslsitss);
             }
             $fanhuistr = file_put_contents( $filecachs, $img );
-            $saveimgfile = "/upload/$keyword"."/".$d."/".$fileimgname;
+            $saveimgfile = "/public/upload/$keyword"."/".$d."/".$fileimgname;
 
             
             $xstr=str_replace($imgurl,$saveimgfile,$xstr);

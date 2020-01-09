@@ -30,7 +30,7 @@ class Mysql extends Admin
     {
         parent::initialize();
         // $this->backupPath = Env::get('root_path').'backup/'.trim(config('databases.backup_path'), '/').'/';
-        $this->backupPath = Env::get('root_path').'backup/db/';
+        $this->backupPath = Env::get('root_path').'public/backup/db/';
     }
 
     /**

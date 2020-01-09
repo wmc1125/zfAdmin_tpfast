@@ -15,13 +15,13 @@
 // 站点信息最后修改于 2019/12/02 21:51:43  
   
  return [
-	'save_path' => '/upload/file',
+	'save_path' => '/public/upload/file',
 	'water_path' => '',
 	'water_clarity' => '33',
 	'water_text' => 'demo',
 	'water_text_size' => '20',
 	'water_text_color' => '#1849bb',
-	'water_font_path' => './upload/1.ttf',
+	'water_font_path' => './public/upload/1.ttf',
 	'water_position' => '6',
 	'pic_save_type' => '0',
 	'file_save_type' => '0',

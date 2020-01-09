@@ -173,9 +173,9 @@ body .layui-layout-admin .footer-demo{height: 50px; line-height: 50px; padding: 
 .site-sponsor-home{margin-top: 40px; text-align: center;}
 .site-sponsor-home .layui-btn{position: relative; width: 233px; height: 65px; line-height: 65px; background: none; border-color: #212121; font-size: 26px; border-radius: 6px; /*padding-left: 55px;*/}
 .site-sponsor-home .layui-btn:hover{background: #4A4855; color: #BAB8C3;}
-.site-sponsor-home .layui-btn:before{/*position: absolute; left: 15px; top: 15px; content: ''; width: 30px; height: 30px; background: url(http://cdn.layui.com/upload/2018_1/168_1514869467160_26113.png) center; background-repeat: no-repeat; background-size: contain;*/}
+.site-sponsor-home .layui-btn:before{/*position: absolute; left: 15px; top: 15px; content: ''; width: 30px; height: 30px; background: url(http://cdn.layui.com/public/upload/2018_1/168_1514869467160_26113.png) center; background-repeat: no-repeat; background-size: contain;*/}
 .site-sponsor-home p{position: relative; padding-top: 15px; font-size: 22px; color: #212121;}
-.site-sponsor-home p:before{content: ''; position: relative; top: -2px; display: inline-block; vertical-align: middle; width: 30px; height: 30px; margin-right: 10px; background: url(http://cdn.layui.com/upload/2018_1/168_1514869467160_26113.png) center; background-repeat: no-repeat; background-size: contain;}
+.site-sponsor-home p:before{content: ''; position: relative; top: -2px; display: inline-block; vertical-align: middle; width: 30px; height: 30px; margin-right: 10px; background: url(http://cdn.layui.com/public/upload/2018_1/168_1514869467160_26113.png) center; background-repeat: no-repeat; background-size: contain;}
 @media screen and (max-width: 750px) {
   .site-sponsor-home .layui-btn{width: 180px; height: 45px; line-height: 45px; font-size: 20px;}
   .site-sponsor-home p{font-size: 16px;}
