@@ -9,6 +9,7 @@ class ComposerStaticInit0cfbf6093c314c7b51eb2b952d023ea3
     public static $files = array (
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
+        '59c398227b77686e21aecda72dc811e6' => __DIR__ . '/..' . '/zz-studio/think-addons/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -49,6 +50,7 @@ class ComposerStaticInit0cfbf6093c314c7b51eb2b952d023ea3
         'think\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-image/src',
+            1 => __DIR__ . '/..' . '/zz-studio/think-addons/src',
         ),
         'app\\' => 
         array (
