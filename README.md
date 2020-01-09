@@ -26,7 +26,7 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
 步骤三(sql安装)
 + 直接将sql文件导入数据库,然后修改数据库文件(config/database.php)
 + 执行安装程序
-	1. 将根目录的install.lock 删除,之后打开网址,执行安装程序
+	1. 将根目录的public/install.lock 删除,之后打开网址,执行安装程序
 	2. 填写数据库名称/密码等执行安装
 + 选择宝塔方式安装此步骤可省略,直接导入
 + 后台账号密码(admin/123456) ## 测试账号秘密(test/111111)

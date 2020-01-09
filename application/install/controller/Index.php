@@ -22,8 +22,8 @@ class Index extends Controller
     public function index($step = 0)
     {
        
-        if (is_file('./install.lock')) {
-            return $this->error('如需重新安装，请手动删除install.lock文件');
+        if (is_file('./public/install.lock')) {
+            return $this->error('如需重新安装，请手动删除public/install.lock文件');
         }
 
         switch ($step) {
@@ -204,7 +204,7 @@ class Index extends Controller
         if (!$res) {
             return $this->error($user->getError() ? $user->getError() : '管理员账号设置失败！');
         }
-        file_put_contents('./install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
+        file_put_contents('./public/install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
         
         //站点密匙
         $auth = '******';//网站秘钥
