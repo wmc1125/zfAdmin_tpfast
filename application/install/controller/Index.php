@@ -269,8 +269,8 @@ INFO;
         $items = [
             ['dir', './application', '读写', '读写', 'ok'],
             ['dir', './extend', '读写', '读写', 'ok'],
-            ['dir', './backup', '读写', '读写', 'ok'],
-            ['dir', './upload', '读写', '读写', 'ok'],
+            ['dir', './public/backup', '读写', '读写', 'ok'],
+            ['dir', './public/upload', '读写', '读写', 'ok'],
             ['dir', './public/static', '读写', '读写', 'ok'],
             ['dir', './runtime', '读写', '读写', 'ok'],
             ['file', './config/database.php', '读写', '读写', 'ok'],

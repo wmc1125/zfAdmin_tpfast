@@ -74,3 +74,40 @@ function get_sku_info($data,$gid,$type=1){
 //     $menu_r =Db::name('post')->field("title,append")->where('cid',$id)->where('status','1')->order("sort asc")->select();
 //     return $menu_r;
 // }
+
+//通过父类id查询父类名称
+function  p_name($id){
+  $res =Db::name('category')->where('cid',$id)->find();
+  if($res){
+    return $res['name'];
+  }else{
+    return false;
+  }
+}
+//通过模型id查询模型名称
+function  m_name($id){
+  $res =Db::name('category_model')->where('id',$id)->find();
+  if($res){
+    return $res['name'];
+  }else{
+    return false;
+  }
+}
+//通过权限id查询权限名称
+function  r_name($id){
+  $res =Db::name('admin_role')->where('id',$id)->find();
+  if($res){
+    return $res['name'];
+  }else{
+    return false;
+  }
+}
+//通过用户组id查询用户组名称
+function  user_group_name($id){
+  $res =Db::name('user_group')->where('id',$id)->find();
+  if($res){
+    return $res['name'];
+  }else{
+    return false;
+  }
+}

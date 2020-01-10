@@ -115,6 +115,12 @@ class Template extends Admin
          return view();
     }
 
+    public function plug_x_index(){
+        $id = '1';
+       echo hook('testhook', ['id'=>1]);
+
+    }
+
 
     
 }

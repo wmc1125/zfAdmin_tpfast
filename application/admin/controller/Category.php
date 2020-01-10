@@ -19,7 +19,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Wmc1125\TpFast\GetImgSrc; 
- 
+  
 class Category extends Admin
 {
     public function __construct (){
