@@ -2,9 +2,16 @@
 namespace addons\zf_email\controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use think\Controller;
+use addons\zf_email\controller\Plugin;
 
 class Index extends Controller
 {
+//     public function __construct ( Request $request = null )
+//     {
+////         parent::__construct();
+//
+//
+//     }
     /**
      * @Notes:email设置
      * @Interface email
@@ -21,11 +28,29 @@ class Index extends Controller
                 return jssuccess('保存成功');die;
             }else{
                 return jserror('保存失败');die;
-            }   
-        } 
+            }
+        }
         $this->assign("config",config()['mail']);
         return view();die;
-        
+
+    }
+    public function setting()
+    {
+        if(request()->isPost()){
+            $res = extraconfig(input('post.'),'mail');
+            if($res)
+            {
+                return jssuccess('保存成功');die;
+            }else{
+                return jserror('保存失败');die;
+            }
+        }
+        $this->assign("config",config()['mail']);
+        return view();die;
+
+    }
+    public function help(){
+        return view();
     }
 
     /**

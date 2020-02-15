@@ -16,13 +16,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '120.78.193.246',
+    'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => 'v1_fast_zf_90ckm',
+    'database'        => 'zf_thinkphp',
     // 用户名
-    'username'        => 'v1_fast_zf_90ckm',
+    'username'        => 'root',
     // 密码
-    'password'        => '3yTxA63HS3iWC67Y',
+    'password'        => '',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

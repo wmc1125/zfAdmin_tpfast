@@ -30,20 +30,50 @@
                 </blockquote>
                 <?php } ?>
                 <div class="layui-form" wid100 lay-filter="">
-
-
                   <div class="layui-form-item">
-                    <label class="layui-form-label">测试邮箱</label>
+                    <label class="layui-form-label">SMTP服务器</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="ee" value="" autocomplete="off" class="layui-input ee">
+                      <input type="text" name="host" value="{$config['host']}" class="layui-input">
                     </div>
-                    <div class="layui-form-mid layui-word-aux"><a href="javascript:;" class="layui-btn send_mail layui-btn-sm">发信测试</a></div>
+                    <div class="layui-form-mid layui-word-aux">如：smtp.163.com</div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">SMTP端口号</label>
+                    <div class="layui-input-inline" style="width: 80px;">
+                      <input type="text" name="e_number" lay-verify="number"  class="layui-input" value="{$config['e_number']}">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">一般为 25 或 465</div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">发件人邮箱</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="send_email" value="{$config['send_email']}" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">发件人昵称</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="send_nickname" value="{$config['send_nickname']}" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱登入密码</label>
+                    <div class="layui-input-inline">
+                      <input type="password" name="password" value="{$config['password']}" autocomplete="off" class="layui-input">
+                    </div>
                   </div>
 <!--                  <div class="layui-form-item">-->
-<!--                    <div class="layui-input-block">-->
-<!--                      <input type="button" value="确认保存" class="layui-btn layui-btn-sm"  onclick="tijiao_data('zf_email.index/index',0)">-->
+<!--                    <label class="layui-form-label">测试邮箱</label>-->
+<!--                    <div class="layui-input-inline">-->
+<!--                      <input type="text" name="ee" value="" autocomplete="off" class="layui-input ee">-->
 <!--                    </div>-->
+<!--                    <div class="layui-form-mid layui-word-aux"><a href="javascript:;" class="layui-btn send_mail layui-btn-sm">发信测试</a></div>-->
 <!--                  </div>-->
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <input type="button" value="确认保存" class="layui-btn layui-btn-sm"  onclick="tijiao_data('zf_email.index/index',0)">
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

@@ -13,7 +13,7 @@
 <body>
 <div class="layui-fluid layadmin-cmdlist-fluid">
     <div style="padding-bottom: 10px;">
-        <a type="button" class="layui-btn" onclick='zfAdminShow("官方插件","{:url('template/plugs',['t' => 'gf'])}")' >官方插件</a>
+<!--        <a type="button" class="layui-btn" onclick='zfAdminShow("官方插件","{:url('template/plugs',['t' => 'gf'])}")' >官方插件</a>-->
     </div>
   <div class="layui-row layui-col-space30">
       <table class="layui-table">
@@ -37,10 +37,12 @@
                   <td>2016-11-29</td>
                   <td>{$vo['path']}</td>
                   <td>
-                      配置
-                      关闭
+
+                      <a href="javascript:;" onclick='zfAdminShow("{$vo['dir_name']}配置","{$vo["path"]}.index/setting.html")' > 配置</a>
+<!--                      关闭-->
                       <!-- http://tpfast:8888/addons/test.index/index.html -->
-                      <a href="javascript:;" onclick='zfAdminShow("{$vo['dir_name']}插件","{$vo["path"]}.index/index.html")' > 插件页面</a>
+                      <a href="javascript:;" onclick='zfAdminShow("{$vo['dir_name']}插件","{$vo["path"]}.index/index.html")' > 主页</a>
+                      <a href="javascript:;" onclick='zfAdminShow("{$vo['dir_name']}说明","{$vo["path"]}.index/help.html")' > 使用说明</a>
                   </td>
               </tr>
           {/volist}
