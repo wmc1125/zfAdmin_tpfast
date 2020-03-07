@@ -1,7 +1,9 @@
 <?php
-namespace addons\test\controller;
+namespace addons\demo\controller;
 
 use think\Addons;
+use think\App;
+
 //namespace addons\test;	// 注意命名空间规范
 
 /**
@@ -10,15 +12,26 @@ use think\Addons;
  */
 class Plugin extends Addons	// 需继承think\Addons类
 {
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->plugin_info = [
+            'name' => 'test',	// 插件标识
+            'title' => '插件测试',	// 插件名称
+            'description' => 'thinkph插件测试',	// 插件简介
+            'status' => 0,	// 状态
+            'author' => 'byron sampson',
+            'version' => '0.1'
+        ];
+
+    }
+
+    public function _empty(){
+        echo "没有此方法";die;
+    }
+
     // 该插件的基础信息
-    public $info = [
-        'name' => 'test',	// 插件标识
-        'title' => '插件测试',	// 插件名称
-        'description' => 'thinkph6插件测试',	// 插件简介
-        'status' => 0,	// 状态
-        'author' => 'byron sampson',
-        'version' => '0.1'
-    ];
+
 
     /**
      * 插件安装方法
