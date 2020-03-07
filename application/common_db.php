@@ -21,6 +21,7 @@ use think\Db;
  * @Last Modified time: 2019-09-25 11:02:05
  */
 // ------------数据库操作-----------------
+
 function get_cate_list($id){
     $menu_r =Db::name('category')->where(['pid'=>$id,'status'=>1,'menu'=>1])->order("sort asc")->select();
     return $menu_r;

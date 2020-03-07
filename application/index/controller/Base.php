@@ -22,6 +22,9 @@ class Base extends Controller
     public function __construct ( Request $request = null )
     {
         parent::__construct();
+        $this->sys = [
+          'lang'=>'',//使用:Db::name($this->>sys['lang].'config')
+        ];
         if(config()['web']['site_closed']){
             $this->error('站点已关闭','http://www.wangmingchang.com');
         }
