@@ -12,18 +12,19 @@
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-// 站点信息最后修改于 2019/11/24 12:52:25  
+
+// 站点信息最后修改于 2019/12/02 21:51:43  
   
  return [
-	'save_path' => '/upload/file',
+	'save_path' => '/public/upload/file',
 	'water_path' => '',
 	'water_clarity' => '33',
 	'water_text' => 'demo',
 	'water_text_size' => '20',
 	'water_text_color' => '#1849bb',
-	'water_font_path' => './upload/1.ttf',
+	'water_font_path' => './public/upload/1.ttf',
 	'water_position' => '6',
-	'pic_save_type' => '3',
+	'pic_save_type' => '0',
 	'file_save_type' => '0',
 	'is_water' => '0',
 	'qn_ACCESSKEY' => '',
@@ -34,10 +35,10 @@
 	'upyun_SECRETKEY' => '',
 	'upyun_BUCKET' => '',
 	'upyun_DOMAIN' => '',
-	'ali_ACCESSKEY' => '121',
-	'ali_SECRETKEY' => 'sasasa',
-	'ali_BUCKET' => 'dasdsa',
-	'ali_DOMAIN' => '212',
+	'ali_ACCESSKEY' => 'LT123AI356wrww4PrUs',
+	'ali_SECRETKEY' => 'VZlH1234Qfsi7Vsj7sJ130iFZPEvgpgnr',
+	'ali_BUCKET' => 'mc-blog',
+	'ali_DOMAIN' => 'oss-cn-beijing.aliyuncs.com',
 	'qn_type' => 'qny',
 	'type' => 'qny',
 ];

@@ -1,5 +1,6 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../../../../../') . '/vendor/aliyuncs/oss-sdk-php/autoload.php';
+require_once realpath(dirname(__FILE__) . '/../../../../../../../') . '/aliyuncs/oss-sdk-php/autoload.php';
+
 use OSS\OssClient as AliOssClient;
 /**
  * Created by JetBrains PhpStorm.
@@ -111,34 +112,33 @@ class Uploader
             return;
         }
 
+        $oss_data = require_once realpath(dirname(__FILE__) . '/../../../../../../../../') . '/config/img.php';
 
-         //oss设置
+        //oss设置
         $ossconfig = [
-            'KeyId'      => 'LTAI*****w4PrUs',  //您的Access Key ID
-            'KeySecret'  => 'VZlH4Qfsi7******iFZPEvgpgnr',  //您的Access Key Secret
-            'Endpoint'   => 'oss-cn-beijing.aliyuncs.com',  //阿里云oss 外网地址endpoint
-            'Bucket'     => 'zf-demo-test',  //Bucket名称
-
+            'KeyId'      => $oss_data['ali_ACCESSKEY'],  //您的Access Key ID
+            'KeySecret'  => $oss_data['ali_SECRETKEY'],  //您的Access Key Secret
+            'Bucket'     => $oss_data['ali_BUCKET'],  //Bucket名称
+            'Endpoint'   => $oss_data['ali_DOMAIN'],  //阿里云oss 外网地址endpoint
         ];
-
         //获取文件后缀
         $file_type = substr($this->filePath, strrpos($this->filePath, '.'));
         //得到今天日期
         $today = date('Ymd', time());
         //得到文件名
-        $file_name = 'image/'.$today.'/'.$this->fileName;
+        $file_name = 'alioss/'.$today.'/'.$this->fileName;
         //$ossconfig为获取OSS的配置信息
         //$ossconfig = $this->getOssApi();
         //实例化OSS
         $ossClient = new AliOssClient($ossconfig['KeyId'], $ossconfig['KeySecret'], $ossconfig['Endpoint']);
         try {
             //执行阿里云上传
-            $result = $ossClient->uploadFile($ossconfig['Bucket'],'demo_zf_test/upload/'. $file_name, $file["tmp_name"]);
+            $result = $ossClient->uploadFile($ossconfig['Bucket'],'zf/ueditor/'. $file_name, $file["tmp_name"]);
             //赋给图片路径（原代码）
-//          $this->fullName = $result['info']['url'];
+            $this->fullName = $result['info']['url'];
 //获得上传之后访问该图片的路径
-            $endpoint = str_replace('http://', '', $ossconfig['Endpoint']);
-            $this->ossimgurl = "https://".$ossconfig['Bucket'].".".$endpoint."/".$file_name;//ossimgurl这是自定义属性，避免以ueditor方式获得图片地址
+//            $endpoint = str_replace('http://', '', $ossconfig['Endpoint']);
+            $this->ossimgurl = $result['info']['url'];//ossimgurl这是自定义属性，避免以ueditor方式获得图片地址
             $this->stateInfo = $this->stateMap[0];
         } catch (OssException $e) {
 //          $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
@@ -231,7 +231,7 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
             return;
         }
-       
+
         //格式验证(扩展名验证和Content-Type验证)
         $fileType = strtolower(strrchr($imgUrl, '.'));
 

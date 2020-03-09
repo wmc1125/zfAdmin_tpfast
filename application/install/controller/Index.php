@@ -22,8 +22,8 @@ class Index extends Controller
     public function index($step = 0)
     {
        
-        if (is_file('./install.lock')) {
-            return $this->error('如需重新安装，请手动删除install.lock文件');
+        if (is_file('./public/install.lock')) {
+            return $this->error('如需重新安装，请手动删除public/install.lock文件');
         }
 
         switch ($step) {
@@ -173,7 +173,7 @@ class Index extends Controller
         }
         // 导入系统初始数据库结构
         // 导入SQL
-        $sql_file = './backup/install.sql';
+        $sql_file = './public/backup/install.sql';
         if (file_exists($sql_file)) {
             $sql = file_get_contents($sql_file);
             $sql_list = parse_sql($sql, 0, ['zf_' => $config['prefix']]);
@@ -204,7 +204,7 @@ class Index extends Controller
         if (!$res) {
             return $this->error($user->getError() ? $user->getError() : '管理员账号设置失败！');
         }
-        file_put_contents('./install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
+        file_put_contents('./public/install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
         
         //站点密匙
         $auth = '******';//网站秘钥
@@ -269,8 +269,8 @@ INFO;
         $items = [
             ['dir', './application', '读写', '读写', 'ok'],
             ['dir', './extend', '读写', '读写', 'ok'],
-            ['dir', './backup', '读写', '读写', 'ok'],
-            ['dir', './upload', '读写', '读写', 'ok'],
+            ['dir', './public/backup', '读写', '读写', 'ok'],
+            ['dir', './public/upload', '读写', '读写', 'ok'],
             ['dir', './public/static', '读写', '读写', 'ok'],
             ['dir', './runtime', '读写', '读写', 'ok'],
             ['file', './config/database.php', '读写', '读写', 'ok'],

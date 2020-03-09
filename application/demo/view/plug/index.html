@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{:addons_url('test://Index/link')}">link test</a>
+
+
+模板中使用钩子
+<div>{:hook('testhook', ['id'=>1])}</div>
+
+
+{include file="./addons/test/view/index/index.html" zf_data="$zf_data" /}
+
+
+</body>
+</html>

@@ -9,6 +9,7 @@ class ComposerStaticInitf59f5b78ec50c7d82e32f19afd7ac0b8
     public static $files = array (
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
+        '59c398227b77686e21aecda72dc811e6' => __DIR__ . '/..' . '/zz-studio/think-addons/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -26,6 +27,10 @@ class ComposerStaticInitf59f5b78ec50c7d82e32f19afd7ac0b8
         'W' => 
         array (
             'Wmc1125\\TpFast\\' => 15,
+        ),
+        'O' => 
+        array (
+            'OSS\\' => 4,
         ),
     );
 
@@ -45,6 +50,7 @@ class ComposerStaticInitf59f5b78ec50c7d82e32f19afd7ac0b8
         'think\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-image/src',
+            1 => __DIR__ . '/..' . '/zz-studio/think-addons/src',
         ),
         'app\\' => 
         array (
@@ -53,6 +59,10 @@ class ComposerStaticInitf59f5b78ec50c7d82e32f19afd7ac0b8
         'Wmc1125\\TpFast\\' => 
         array (
             0 => __DIR__ . '/..' . '/wmc1125/tpfast-public/src',
+        ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
         ),
     );
 

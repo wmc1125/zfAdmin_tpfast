@@ -24,9 +24,9 @@ class Common extends Base
     public function upload_one(){
         $file = request()->file('file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
+        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return jssuccess($msg);
@@ -38,9 +38,9 @@ class Common extends Base
         
         $file = request()->file('editormd-image-file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
+        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return json_encode(array(
@@ -58,7 +58,7 @@ class Common extends Base
     }
     public function upload_pic_liu(){
 //目录的upload文件夹下
-        $up_dir = "upload/file/".date('Ymd', time()) . "/";  //创建目录
+        $up_dir = "public/upload/file/".date('Ymd', time()) . "/";  //创建目录
         if(!file_exists($up_dir)){
             mkdir($up_dir,0777,true);
         }
@@ -87,9 +87,9 @@ class Common extends Base
         $file = $_FILES['file'];
         $img_config = config()['img'];
         $file2 = request()->file('file');
-        $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt,mp4,flv,avi,MPEG-4'])->move('./upload/file');
+        $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt,mp4,flv,avi,MPEG-4'])->move('./public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
         if($msg){
             return jssuccess($msg);
@@ -347,66 +347,6 @@ class Common extends Base
             return jserror('删除失败');
         }
     }
-    // 下载
-    public function file_down(){
-        if(session('home')==null){
-            return jserror('请先登录');
-        }
-        $t = input('t','');
-        if($t=='down'){
-            //执行下载
-            $id = input('id');
-            $str = Db::name('down_log')->where(['uid'=>session('home')['id'],'post_id'=>$id])->value('file');
-            $str = 'http://xinyipt.cgonet.com/upload/file/20191112/fe3d953b7406d05bcd0753e29f87df26.txt';
-            $path = '.'.parse_url($str)['path'];
-            $file = basename($path);
-            $r = \zf\Download::output_for_download( $path,$file);
-            die;
-        }
-
-        $data = Db::name('post')->field('id,file,coin,uid')->where(['id'=>input('post.id')])->find();
-        Db::startTrans();
-        try{
-            //判断是否已经购买
-            $is_gou = Db::name('down_log')->where(['uid'=>session('home')['id'],'post_id'=>$data['id']])->find();
-            if($is_gou){
-                // return jssuccess('已购买过'); 返回下载链接
-                $ret['url'] = url('common/file_down',['t'=>'down','id'=>$is_gou['id']]);
-            }else{
-                //扣除悬赏币
-                $order_data['type'] = 5;//下载
-                $order_data['order_sn'] = 'ZF-'.time().mt_rand(10000,99999);
-                $order_data['uid'] = session('home')['id'];
-                $order_data['price'] = $data['coin'];
-                $order_data['ctime'] = time();
-                $order_data['pid'] = $data['id'];
-                Db::name('order')->insert($order_data);
-                Db::name('user')->where(['id'=>session('home')['id']])->setDec('coin',$data['coin']);
-                Db::name('user')->where(['id'=>$data['uid']])->setInc('coin',$data['coin']);
-
-                //写入
-                $data_down['post_id'] = $data['id'];
-                $data_down['uid'] =  session('home')['id'];
-                $data_down['ctime'] = time();
-                $data_down['file'] = $data['file'];
-                $data_down['coin'] = $data['coin'];
-                $r = Db::name('down_log')->insert($data_down);
-                // 返回下载链接
-                $ret['url'] = url('common/file_down',['t'=>'down','id'=>$data['id']]);
-
-            }
-            $ret['msg'] = '请求成功';
-            Db::commit();
-            return jssuccess($ret);
-        } catch (\Exception $e) {
-            // 更新失败 回滚事务
-            Db::rollback();
-            $ret['msg'] = '请求失败';
-            return jserror($ret);
-        }
-
-    }
-   
 
 
 }

@@ -19,7 +19,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Wmc1125\TpFast\GetImgSrc; 
- 
+  
 class Category extends Admin
 {
     public function __construct (){
@@ -262,7 +262,7 @@ class Category extends Admin
             }
             $list = Db::name('post')->where($where)->order("id desc")->paginate(6);
             if(!$list){
-                $List = [];
+                $list = [];
             }
             $page = $list->render();
             $this->assign("list",$list);
@@ -313,13 +313,20 @@ class Category extends Admin
         if(request()->isGet()){
             $cid = input("cid");
             $mid = input("mid");
-            $m_res =Db::name('category_model')->field('model,is_two')->where(['id'=>$mid])->find();
-            $tpl = 'category/zf_tpl/add';
-            $this->assign('cid',$cid);
-            $this->assign('mid',$mid);
-            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
-            $this->assign('m_list',$m_list);
-            $this->assign('m_res',$m_res);
+            $m_res =Db::name('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
+            if($m_res['is_parm']==1){
+                $tpl = 'category/zf_tpl/add';
+                $this->assign('cid',$cid);
+                $this->assign('mid',$mid);
+                $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
+                $this->assign('m_list',$m_list);
+                $this->assign('m_res',$m_res);
+            }else{
+                $tpl = 'category/'.$m_res['model'].'/add';
+                $this->assign('cid',$cid);
+                $this->assign('mid',$mid);
+                $this->assign('m_res',$m_res);
+            }
             return view($tpl);
         } 
         if(request()->isPost()){
@@ -404,13 +411,21 @@ class Category extends Admin
             // $this->assign("cid",$cid);
             // $m_res =  Db::name('category_model')->where(['id'=>$mid])->find();;
             // $tpl = 'category/'.$m_res['model'].'/edit';
-            $m_res =Db::name('category_model')->field('model,is_two')->where(['id'=>$mid])->find();
-            $tpl = 'category/zf_tpl/add';
-            $this->assign('cid',$cid);
-            $this->assign('mid',$mid);
-            $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
-            $this->assign('m_list',$m_list);
-            $this->assign('m_res',$m_res);
+            $m_res =Db::name('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
+            if($m_res['is_parm']==1){
+                $tpl = 'category/zf_tpl/add';
+                $this->assign('cid',$cid);
+                $this->assign('mid',$mid);
+                $m_list =Db::name('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
+                $this->assign('m_list',$m_list);
+                $this->assign('m_res',$m_res);
+            }else{
+                $tpl = 'category/'.$m_res['model'].'/edit';
+                $this->assign('cid',$cid);
+                $this->assign('mid',$mid);
+                $this->assign('m_res',$m_res);
+            }
+
             return view($tpl);
         } 
         if(request()->isPost()){
@@ -420,7 +435,7 @@ class Category extends Admin
             }else{
                 $data['ctime'] =  time();
             }
-            if(isset($data['pic']) &&$data['pic']==''){
+            if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
                 $data['pic'] = GetImgSrc::src($data['content'], 1);
             }
             
@@ -450,7 +465,7 @@ class Category extends Admin
                 $tb_parm_list = Db::name('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
                 // 判断是否含有该字段,没有则为空
                 foreach($tb_parm_list as $k=>$vo){
-                    if(!$data[$vo['name']]){
+                    if(!isset($data[$vo['key']])){
                         $data[$vo['key']] = '';
                     }
                 }

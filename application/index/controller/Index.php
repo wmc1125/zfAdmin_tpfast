@@ -43,6 +43,7 @@ class Index extends Base
         $this->assign('seo', $seo);
         return view($this->tpl);
     }
+
    
     
    

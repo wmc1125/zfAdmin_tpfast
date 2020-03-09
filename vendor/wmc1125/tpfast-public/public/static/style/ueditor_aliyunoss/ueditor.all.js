@@ -24798,7 +24798,7 @@ UE.plugin.register('insertfile', function (){
                             '<a style="font-size:12px; color:#0066cc;" href="' + item.url +'" title="' + title + '">' + title + '</a>' +
                             '</p>';
                     }
-                    okUpload(html);//执行自己方法
+                    // okUpload(html);//执行自己方法
                     me.execCommand('insertHtml', html);
                 }
             }

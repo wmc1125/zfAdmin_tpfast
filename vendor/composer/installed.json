@@ -1,5 +1,54 @@
 [
     {
+        "name": "aliyuncs/oss-sdk-php",
+        "version": "v2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+            "reference": "e69f57916678458642ac9d2fd341ae78a56996c8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/e69f57916678458642ac9d2fd341ae78a56996c8",
+            "reference": "e69f57916678458642ac9d2fd341ae78a56996c8",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0",
+            "satooshi/php-coveralls": "~1.0"
+        },
+        "time": "2018-01-08T06:59:35+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "OSS\\": "src/OSS"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aliyuncs",
+                "homepage": "http://www.aliyun.com"
+            }
+        ],
+        "description": "Aliyun OSS SDK for PHP",
+        "homepage": "http://www.aliyun.com/product/oss/"
+    },
+    {
         "name": "topthink/framework",
         "version": "v5.1.39",
         "version_normalized": "5.1.39.0",
@@ -12,7 +61,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/framework/zipball/5762858f3d58faafb3a39427f8788884b2927007",
             "reference": "5762858f3d58faafb3a39427f8788884b2927007",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.6.0",
@@ -65,7 +120,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-captcha/zipball/54c8a51552f99ff9ea89ea9c272383a8f738ceee",
             "reference": "54c8a51552f99ff9ea89ea9c272383a8f738ceee",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "topthink/framework": "5.1.*"
@@ -106,7 +167,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-helper/zipball/5f92178606c8ce131d36b37a57c58eb71e55f019",
             "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2018-10-05T00:43:21+00:00",
         "type": "library",
@@ -144,7 +211,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-image/zipball/8586cf47f117481c6d415b20f7dedf62e79d5512",
             "reference": "8586cf47f117481c6d415b20f7dedf62e79d5512",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "ext-gd": "*"
@@ -186,7 +259,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-installer/zipball/f5400a12c60e513911aef41fe443fa6920952675",
             "reference": "f5400a12c60e513911aef41fe443fa6920952675",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "composer-plugin-api": "^1.0"
@@ -218,20 +297,26 @@
     },
     {
         "name": "wmc1125/tpfast-public",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wmc1125/tpFastPublic.git",
-            "reference": "09d2fc315c07ca62466f3f789623391e6398b480"
+            "reference": "113875d0c7b5e6e6c418e8d0ef280fe9bdf3487c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wmc1125/tpFastPublic/zipball/09d2fc315c07ca62466f3f789623391e6398b480",
-            "reference": "09d2fc315c07ca62466f3f789623391e6398b480",
-            "shasum": ""
+            "url": "https://api.github.com/repos/wmc1125/tpFastPublic/zipball/113875d0c7b5e6e6c418e8d0ef280fe9bdf3487c",
+            "reference": "113875d0c7b5e6e6c418e8d0ef280fe9bdf3487c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
-        "time": "2019-11-14T14:23:09+00:00",
+        "time": "2019-12-03T11:36:59+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -250,5 +335,52 @@
             }
         ],
         "description": "子枫后台管理系统(tpfast)系列 工具静态资源引用"
+    },
+    {
+        "name": "zz-studio/think-addons",
+        "version": "v1.0.4.2",
+        "version_normalized": "1.0.4.2",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zz-studio/think-addons.git",
+            "reference": "3703616320253813a3c60f67928a95c581bbc113"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zz-studio/think-addons/zipball/3703616320253813a3c60f67928a95c581bbc113",
+            "reference": "3703616320253813a3c60f67928a95c581bbc113",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "topthink/framework": "5.1.*"
+        },
+        "time": "2019-08-20T09:20:52+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "think\\": "src/"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "byron",
+                "email": "xiaobo.sun@qq.com"
+            }
+        ],
+        "description": "The ThinkPHP5.1 Addons Package"
     }
 ]

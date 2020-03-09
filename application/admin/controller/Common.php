@@ -160,7 +160,7 @@ class Common extends Admin
 
         $image = \think\Image::open($file);
         $img_config = config()['img'];
-        $img_config['save_path'] = ($img_config['save_path']==''?'/upload/file':$img_config['save_path']);
+        $img_config['save_path'] = ($img_config['save_path']==''?'/public/upload/admin/file':$img_config['save_path']);
         $water_name =  $img_config['save_path'].'/water/'.date("YmdHis",time()).'_'.mt_rand(1000,9999).'.png';
         if($img_config['pic_save_type']==0){
             // 给原图左上角添加水印并保存water_image.png
@@ -173,16 +173,16 @@ class Common extends Admin
             }elseif($img_config['is_water']==2){
                 //文字水印
                 $img_config['water_text'] = ($img_config['water_text']==''?'未设置默认文字水印':$img_config['water_text']);
-                $img_config['water_font_path'] = ($img_config['water_font_path']==''?'./upload/1.ttf':$img_config['water_font_path']);
+                $img_config['water_font_path'] = ($img_config['water_font_path']==''?'./public/upload/1.ttf':$img_config['water_font_path']);
                 $img_config['water_text_size'] = ($img_config['water_text_size']==''?'20':$img_config['water_text_size']);
                 $img_config['water_text_color'] = ($img_config['water_text_color']==''?'#000':$img_config['water_text_color']);
                 $image->text($img_config['water_text'],$img_config['water_font_path'],$img_config['water_text_size'],$img_config['water_text_color'])->save('.'.$water_name);
                 $msg = 'http://'.$_SERVER['SERVER_NAME'].$water_name;
             }else{
                 //不加
-                $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './upload/file');
+                $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/admin/image');
                 $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-                $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+                $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/image/'.$getSaveName;
             }
         }else{
             //上传到第三方
@@ -210,9 +210,9 @@ class Common extends Admin
         $img_config = config()['img'];
         if($img_config['file_save_type']==0){
             $file2 = request()->file('file');
-            $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt'])->move('./upload/file');
+            $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt'])->move('./public/upload/admin/file');
             $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-            $msg = 'http://'.$_SERVER['SERVER_NAME'].'/upload/file/'.$getSaveName;
+            $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/file/'.$getSaveName;
         }else{
             //上传到第三方
             if($img_config['file_save_type']==3){
@@ -253,7 +253,7 @@ class Common extends Admin
         $ossClient = new AliOssClient($ossconfig['KeyId'], $ossconfig['KeySecret'], $ossconfig['Endpoint']);
         try {
             //执行阿里云上传
-            $result = $ossClient->uploadFile($ossconfig['Bucket'],'demo_zf_test/upload/simple/'. $file_name, $tmp_name);
+            $result = $ossClient->uploadFile($ossconfig['Bucket'],'demo_zf_test/public/upload/simple/'. $file_name, $tmp_name);
             return $result['info']['url'];
         } catch (OssException $e) {
             return $e->getMessage();

@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     '1cfd2761b63b0a29ed23657ea394cb2d' => $vendorDir . '/topthink/think-captcha/src/helper.php',
     '9b552a3cc426e3287cc811caefa3cf53' => $vendorDir . '/topthink/think-helper/src/helper.php',
+    '59c398227b77686e21aecda72dc811e6' => $vendorDir . '/zz-studio/think-addons/src/helper.php',
 );
