@@ -16,7 +16,7 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '127.0.0.1',
+    'hostname'        => '120.78.193.246',
     // 数据库名
     'database'        => 'v1_fast_zf_90ckm',
     // 用户名

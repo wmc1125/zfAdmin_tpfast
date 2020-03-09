@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>子枫后台管理系统</title>
+  <meta name="csrf-token" content="{{csrf_token()}}">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="{{asset('static/style/layui/css/layui.css')}}" media="all">
+  <link rel="stylesheet" href="{{asset('static/system/style/admin.css')}}" media="all">
+</head>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <form method="post" class="info_tj" >
+          <input type="hidden" name="id" value="{{$res->id}}">
+        <div class="layui-col-sm12">
+          <div class="layui-row layui-col-space15">
+              <div class="layui-col-sm9">
+                <div class="layui-card">
+                    <div class="layui-row layui-col-space10 layui-form-item">
+
+                        <div class="layui-col-lg10">
+                            <div class="layui-card-header">标题</div>
+
+                            <div class="layui-card-body layui-row layui-col-space10">
+                                <div class="layui-col-md12">
+                                    <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input" value="{{$res->title}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                  <br/>
+                </div>
+                <div class="layui-card">
+                  <div class="layui-card-header">描述</div>
+                  <div class="layui-card-body layui-row layui-col-space12">
+                    <div class="layui-col-md12">
+                      <textarea name="summary" placeholder="请输入" class="layui-textarea">{{$res->summary}}</textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="layui-card">
+                  <br>
+                  <div class="layui-card-header">
+                    <fieldset class="layui-elem-field layui-field-title site-title">
+                      <legend><a name="quickstart">详情</a></legend>
+                    </fieldset>
+                  </div>
+                  <div class="layui-card-body">
+                      <textarea name="content" id="mytextarea">
+                            <?php echo isset($res->content)?$res->content:''; ?>
+                      </textarea>
+                  </div>
+
+                </div>
+              </div>
+              <div class="layui-col-sm3">
+                <div class="layui-card">
+                  <div class="layui-card-header">发布</div>
+                  <div class="layui-card-body layui-row layui-col-space10">
+                    <div class="layui-form-item">
+
+                      <div class="layui-input-block" style="margin-left: 50px;">
+                        <input class="layui-btn tj_btn layui-btn-sm"   lay-filter="component-form-element" type="button" value="发布" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="layui-card">
+                  <div class="layui-card-header">父类</div>
+                  <div class="layui-card-body layui-row layui-col-space10">
+                     <select name="cid" lay-verify="required" lay-filter="aihao">
+                         <option value="{{$res->cid}}">{{get_cate_name($tpl_config['cate_tb'],$res->cid)}}</option>
+                       @foreach($plist as $k=>$vo)
+                             <option value="{{$vo['id']}}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {{$vo['name']}}</option>
+                         @endforeach
+                      </select>
+                  </div>
+                </div>
+                  <div class="layui-card">
+                      <div class="layui-card-header">封面图</div>
+                      <div class="layui-card-body layui-row layui-col-space8">
+                          <div class="layui-col-md12">
+                              <input  id="main_pic" type="text" name="pic" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{{$res->pic}}" >
+                          </div>
+                          <span type="button" class="layui-btn" id="up_img">上传图片</span>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="{{asset('static/style/layui/layui.js')}}"></script>
+  <script type="text/javascript" src="{{asset('static/system/common.js')}}"></script>
+
+  <script>
+
+ layui.use(['form','upload'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,form = layui.form
+    ,upload = layui.upload;
+
+
+
+    upload.render({
+      elem: '#up_img'
+      ,url: "{{url('admin/common/upload_one')}}"
+        ,headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_pic").val(res.msg);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      }
+    });
+    upload.render({
+      elem: '#up_file'
+      ,url: "{{url('admin/common/upload_one_file')}}"
+      ,accept: 'file' //普通文件
+        ,headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_file").val(res.msg);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      }
+    });
+
+    $('.tj_btn').on("click",function(){
+        var index = layer.load(2);
+        var content = tinyMCE.activeEditor.getContent();
+        var data = $(".info_tj input,.info_tj select,.info_tj textarea,.info_tj select,.info_tj radio").serialize()+'&content='+encodeURIComponent(content);
+        var url = '{{url("admin/{$tpl_config['name']}/edit",["cid"=>$res->id])}}'
+        $.ajax({
+            type:'post',
+            data:data,
+            url:url,
+            dataType:'json',
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(res){
+              if(res.result==1){
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function() {
+                    if(res.msg.code==1){
+                      window.location.reload();
+                    }else{
+                      window.parent.location.reload();
+                    }
+                }, 2000);
+              }else{
+                layer.close(index);
+                layer.msg(res.msg, {icon: 2});
+              }
+            }
+        })
+    })
+
+
+
+  });
+  </script>
+</body>
+</html>
+<script type="text/javascript" src="{{asset('static/system/common.js')}}"></script>
+<!-- 引入插件 -->
+<script src="{{asset('static/style/tinymce515/tinymce.min.js')}}"></script>
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        menubar:false,
+        height: 500,
+        language: 'zh_CN',
+        convert_urls: false,//让图片/视频地址转为绝对地址,true为相对地址
+        plugins : ['advlist','autolink','link','code','image','preview','searchreplace','table','wordcount','media','fullscreen','codesample','axupimgs'], //数组方式
+        toolbar: ' undo redo | fontselect styleselect | forecolor bold italic searchreplace |  alignleft aligncenter alignright  | link image axupimgs media table codesample | code preview fullscreen',
+        images_upload_handler: function (blobInfo, succFun, failFun) {
+            var xhr, formData;
+            var file = blobInfo.blob();//转化为易于理解的file对象
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', '{{url("common/upload/upload_one")}}');
+            var token = '{{ csrf_token() }}';
+            xhr.setRequestHeader("X-CSRF-Token", token);
+            xhr.onload = function() {
+                var json;
+                if (xhr.status != 200) {
+                    failFun('HTTP Error: ' + xhr.status);
+                    return;
+                }
+                json = JSON.parse(xhr.responseText);
+                if (!json ||  json.result != '1') {
+                    failFun('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+                succFun(json.msg);
+            };
+            formData = new FormData();
+            formData.append('file', file, file.name );
+            xhr.send(formData);
+        },
+        mobile: {
+            menubar: false
+        },
+        //想要哪一个图标提供本地文件选择功能，参数可为media(媒体)
+        file_picker_types: 'media',
+        //be used to add custom file picker to those dialogs that have it.
+        file_picker_callback: function(cb, value, meta) {
+            if (meta.filetype == 'media'){
+                //创建一个隐藏的type=file的文件选择input
+                let input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.onchange = function(){
+                    let file = this.files[0];//只选取第一个文件。如果要选取全部，后面注意做修改
+                    let xhr, formData;
+                    xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{{url("common/upload/upload_one")}}');
+                    var token = '{{ csrf_token() }}';
+                    xhr.setRequestHeader("X-CSRF-Token", token);
+                    xhr.withCredentials = self.credentials;
+                    xhr.upload.onprogress = function (e) {
+                        // 进度(e.loaded / e.total * 100)
+                    };
+                    xhr.onerror = function () {
+                        //根据自己的需要添加代码
+                        console.log(xhr.status);
+                        return;
+                    };
+                    xhr.onload = function () {
+                        let json;
+                        if (xhr.status < 200 || xhr.status >= 300) {
+                            console.log('HTTP 错误: ' + xhr.status);
+                            return;
+                        }
+                        json = JSON.parse(xhr.responseText);
+                        //假设接口返回JSON数据为{"msg":"http:\/\/zf-laravel.cn\/storage\/common\/images\/2020-01-04\/Uk70nni4KyHuQamPszVVNzCcCxPbkMsK2DN8n0wl.mp4","url":"back","result":"1"}
+                        if(json.result==1){
+                            //接口返回的文件保存地址
+                            let mediaLocation=json.msg;
+                            //cb()回调函数，将mediaLocation显示在弹框输入框中
+                            cb(mediaLocation, { title: file.name });
+                        }else{
+                            console.log(json.msg);
+                            return;
+                        }
+                    };
+                    formData = new FormData();
+                    //假设接口接收参数为file,值为选中的文件
+                    formData.append('file', file);
+                    //正式使用将下面被注释的内容恢复
+                    xhr.send(formData);
+                }
+                //触发点击
+                input.click();
+            }
+        }
+    });
+</script>
