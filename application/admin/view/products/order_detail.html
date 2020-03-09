@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/system/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+ <script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+      <form class="info_tj" method="post"  >
+        <input type="hidden" name="id" value="{$res.id}">
+        <div class="layui-col-sm12">
+          <div class="layui-row layui-col-space15">
+              <div class="layui-col-sm9">
+                <div class="layui-card">
+                  <!-- <div class="layui-card-header">内容信息</div> -->
+                  <br/>
+                  <div class="layui-row layui-col-space10 layui-form-item">
+                    <div class="layui-col-lg10">
+                      <div class="layui-card-header">订单号</div>
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                          {$res.order_sn}
+                        </div>
+                      </div>
+                      <div class="layui-card-header">下单时间</div>
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                        <?php echo date("Y-m-d H:i:s",$res['ctime']); ?>
+                        </div>
+                      </div>
+                      <div class="layui-card-header">产品详情</div>
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <table class="layui-table">
+                              <colgroup>
+                                <col width="100">
+                                <col width="100">
+                                <col width="100">
+                                <col width="100">
+                                <col>
+                              </colgroup>
+                              <thead> 
+                                <tr>
+                                  <th>产品ID</th>
+                                  <th>产品名</th>
+                                  <th>产品图</th>
+                                  <th>价格</th>
+                                  <th>数量</th>
+                                </tr> 
+                              </thead>
+                              <tbody> 
+                                <?php $glist = get_order_goods_list($res['id'],300); foreach($glist as $k1=>$vo1){   ?>
+                                    <?php if($vo1['t']!='0'){  ?>
+                                      <tr style="min-height: 100px">      
+                                        <td><?php echo $vo1['t']=='bn'?'1':'2'; ?></td>
+                                        <td><?php echo $vo1['t']=='bn'?'半年VIP':'一年VIP'; ?> </td>
+                                        <td><img src="<?php echo $vo1['t']=='bn'?'/public/static/index/images/cox36.png':'/public/static/index/images/cox37.png'; ?>" style="width: 100px;height: 100px"></td>
+                                        <td>{$vo1['price']}</td>
+                                        <td>{$vo1['number']}</td>
+                                      </tr>
+                                    <?php }else{ $r = get_post_res($vo1['goods_id']);  ?>
+                                      <tr style="min-height: 100px">
+                                        <td>{$r['id']}</td>
+                                        <td>{$r['title']}</td>
+                                        <td><img src="{$r['pic']}" style="width: 100px;height: 100px"></td>
+                                        <td>{$vo1['price']}</td>
+                                        <td>{$vo1['number']}</td>
+                                      </tr>
+                                    <?php } ?>
+                                <?php }?>
+                                    
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="layui-card-header">状态</div>
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                        支付状态: <?php echo $res['pay_status']==1?'已支付':'未支付'; ?> 
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="layui-card-header">买家备注</div>
+                  <div class="layui-card-body layui-row layui-col-space12">
+                    <div class="layui-col-md12">
+                      <textarea name="summary" placeholder="请输入" class="layui-textarea"><?php echo urldecode($res['summary']); ?></textarea>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              <div class="layui-col-sm3">
+                
+
+                <div class="layui-card">
+                  <div class="layui-card-header">保存</div>
+                  <div class="layui-card-body layui-row layui-col-space10">
+                    
+                    <div class="layui-col-lg12" style="margin-left: -50px;">
+                      <label class="layui-form-label" >数量:</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="number"  autocomplete="off" class="layui-input" value="{$res['number']}" readonly="">
+                      </div>
+                    </div>
+                    <div class="layui-col-lg12" style="margin-left: -50px;">
+                      <label class="layui-form-label" >总价:</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="money"  autocomplete="off" class="layui-input" value="{$res['money']}" readonly="">
+                      </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                      <div class="layui-input-block" style="margin-left: 50px;">
+                        <input class="layui-btn tijiao"  lay-filter="component-form-element" type="button" value="发布" />
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-card">
+                  <div class="layui-card-header">快递</div>
+                  <div class="layui-card-body layui-row layui-col-space10">
+                    
+                    <div class="layui-col-lg12" style="margin-left: -50px;">
+                      <label class="layui-form-label" >快递公司:</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="kd_company"  autocomplete="off" class="layui-input" value="{$res['kd_company']}" >
+                      </div>
+                    </div>
+                    <div class="layui-col-lg12" style="margin-left: -50px;">
+                      <label class="layui-form-label" >快递单号:</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="kd_code"  autocomplete="off" class="layui-input" value="{$res['kd_code']}" >
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </form>
+        
+      </div>
+    </div>
+
+
+    
+  </div>
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+  <script src="__STATIC__/system/layui/layui.js"></script>  
+  <script src="__STATIC__/system/common.js"></script>  
+
+  <script>
+  layui.config({
+    base: '__STATIC__/system/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'useradmin', 'table','element','layer','upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,element = layui.element
+    ,table = layui.table
+    ,layer = layui.layer
+    ,upload = layui.upload;
+
+    $(".tijiao").on("click",function(){
+      var data = $(".info_tj input,.info_tj textarea,.info_tj option,.info_tj select").serialize();   
+      console.log(data)   
+      $.ajax({
+          type:'post',
+          url:"{:url('products/order_detail')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            // console.log(res)
+            if(res.result==1){
+              layer.msg("修改成功", {icon: 1});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }else{
+              layer.msg("修改失败", {icon: 1});
+              
+            }
+            
+          }
+      })
+    })
+
+   
+
+    
+  });
+  </script>
+</body>
+</html>

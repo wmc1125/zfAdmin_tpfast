@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/system/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+   <script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+  <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+          <div class="layui-form-item">
+            <form method="get">
+              <div class="layui-inline">
+                <label class="layui-form-label">订单号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="order_sn" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-inline">
+                  <button class="layui-btn" ><i class="layui-icon layui-icon-search layuiadmin-button-btn"></i></button>
+              </div>
+            </form>
+            <!-- <form onclick="return false;" class="create_info"> -->
+              <div class="layui-inline">
+
+              </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      <div class="layui-card-body">
+        <table class="layui-table">
+            <colgroup>
+              <col width="30">
+              <col width="60">
+              <col width="60">
+              <col width="60">
+              <col width="50">
+              <col width="50">
+              <col width="50">
+              <col width="150">
+              <col width="50">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>订单号</th>
+                <th>用户</th>
+                <th>金额</th>          
+                <th>件数</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo['id']}</td>
+                  <td>{$vo['order_sn']}</td>
+                  <td><?php echo user_name($vo['uid']); ?></td>
+                  <td>{$vo['money']}</td>
+                  <td>{$vo['number']}</td>
+                  <td> 
+                    <div class=" layui-form" lay-filter="component-form-element">   
+                      支付:     
+                     <input type="checkbox" name="pay_status" <?php echo $vo['pay_status']==1?'checked':''; ?> lay-skin="switch" lay-text="已支付|未支付" lay-filter="status_change_order" item="{$vo['id']}" ss="{$vo['pay_status']}" field="pay_status" ><br>
+                     发货:     
+                     <input type="checkbox" name="fh_status" <?php echo $vo['fh_status']==1?'checked':''; ?> lay-skin="switch" lay-text="已发货|未发货" lay-filter="status_change_order" item="{$vo['id']}"  ss="{$vo['fh_status']}" field="fh_status"><br>
+                     交易:     
+                     <input type="checkbox" name="ok" <?php echo $vo['ok']==1?'checked':''; ?> lay-skin="switch" lay-text="已完成|进行中" lay-filter="status_change_order" item="{$vo['id']}"  ss="{$vo['ok']}" field="ok" >
+                    </div>
+                  </td>                
+                  <td> 
+                    <a class="layui-btn btn_del layui-btn-danger" rel="{$vo['id']}" href="#">删除</a> 
+                    <button class="layui-btn" onclick='zfAdminShow("详情","{:url('products/order_detail',['id' => $vo['id']] )}")'>详情</button> 
+                    <!-- <button class="layui-btn" onclick='zfAdminShow("发货","{:url('products/order_fh',['id' => $vo['id']] )}")'>发货</button>  -->
+
+                  </td>
+                </tr>
+              {/volist}         
+            </tbody>
+          </table>
+          {$page|raw}
+
+      </div>
+    </div>
+  </div>
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+  <script src="__STATIC__/system/layui/layui.js"></script>  
+  <script src="__STATIC__/system/common.js"></script>  
+
+  <script>
+  layui.config({
+    base: '__STATIC__/system/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'useradmin', 'table','element','layer','upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,element = layui.element
+    ,table = layui.table
+    ,layer = layui.layer
+    ,upload = layui.upload;
+
+    
+
+    form.on('switch(status_change_order)', function(data){
+      var id = $(this).attr("item")
+      var field = $(this).attr("field")
+      var ss = $(this).attr("ss")
+
+      var dbname = 'post'
+      var status = this.checked ? '1' : '0'
+      console.log(id)
+      $.get("{:url('products/chanage_switch')}",{id:id,status:status,field:field,ss:ss},function(res){
+          if(res.result==1){
+            layer.msg(res.msg, {icon: 1});
+          }else{
+            layer.msg(res.msg, {icon: 1});
+          }
+        },"json");
+    });
+
+    // 删除
+    $(".btn_del").on("click",function(){
+      var id = $(this).attr("rel");
+      layer.confirm('确认删除？', {
+        btn: ['删除','取消'] //按钮
+      }, function(){
+        //执行删除操作
+        $.get("{:url('common/del_post')}",{id:id,db:'order'},function(res){
+          if(res.result==1){
+            layer.msg("删除成功", {icon: 1});
+            setTimeout(function() {
+              location.reload(true);
+            }, 1000);
+          }else{
+            layer.msg("删除失败", {icon: 1});
+            
+          }
+        },"json");
+
+      }, function(){
+          //取消的操作
+      });
+    })
+  });
+  </script>
+</body>
+</html>

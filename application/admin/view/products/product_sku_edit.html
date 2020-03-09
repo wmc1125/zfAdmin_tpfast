@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$web_config.version.ver_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/system/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+  <script type="text/javascript" src="__STATIC__/style/jquery-1.8.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="__STATIC__/style/webuploader/webuploader.css">
+  <script type="text/javascript" src="__STATIC__/style/webuploader/webuploader.js"></script>
+</head>
+<style type="text/css">
+	.upload-drag{ position: relative; padding: 30px; border: 1px dashed #e2e2e2; background-color: #fff; text-align: center; cursor: pointer; color: #999;}
+</style>
+
+<body> 
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+      <form class="info_tj" method="post"  >
+        <input type="hidden" name="gid" value="{$res['id']}" class="gid">
+        <div class="layui-col-sm12">
+          <div class="layui-row layui-col-space15">
+              <div class="layui-col-sm9">
+                <div class="layui-card">
+                  <div class="layui-card-header">规格</div>
+                  <div  class="layui-card-body layui-row layui-col-space12"> 
+                    <div class="layui-form-item">
+                      <div class="layui-inline">
+                        <label class="layui-form-label">规格名</label>
+                        <div class="layui-input-inline">
+                          <select  onchange="sku_name.value=this.value;">
+                          <?php foreach($sku_default as $k=>$vo){ ?>
+                            <option value="{$vo}">{$vo}</option>
+                            <?php } ?>
+                          </select><br>
+                          <input type="text" autocomplete="off" class="layui-input sku_name" id="sku_name">
+                        </div>
+                      </div>
+                      <div class="layui-input-inline">
+                        
+                      </div>
+                      <div class="layui-inline">
+                        <label class="layui-form-label">规格值</label>
+                        <div class="layui-input-inline">
+                          设置规格的值<br>
+                          <input type="text"   autocomplete="off" class="layui-input sku_value">
+                        </div>
+                      </div>
+                      <a class="layui-btn add_sku" href="javascript:;">添加规格</a>
+                    </div>
+                  </div>
+                  <div  class="layui-card-body layui-row layui-col-space12 guige_list"> 
+                    <?php if($sku_parm){ foreach($sku_parm as $k=>$vo){ ?>
+                      <div><span style="color: red">{$vo}</span>: &nbsp &nbsp  
+                        <?php foreach($sku_parm_value[$k] as $k2=>$vo2){ ?>
+                            <span>{$vo2['title']} <i class="layui-icon layui-icon-delete sku_parm_del" item="{$vo2['title']}"></i></span>   &nbsp
+                        <?php } ?>
+                      </div>
+                    <?php }} ?>
+                  </div>
+                  <div  class="layui-card-body layui-row layui-col-space12"> 
+                    <style type="text/css">
+                      table tr td{border:1px solid #000}
+                    </style>
+                    <?php if($sku){ ?>
+                    <table class="layui-table" style="border:1px solid #000">
+                      <thead>
+                        <tr>
+                          <?php foreach($sku_parm as $k2=>$vo2){ ?>
+                            <td>{$vo2}</td>
+                          <?php } ?>
+                          <th >图片</th>
+                          <th >商家编号</th>
+                          <th >销售价</th>
+                          <th >划线价</th>
+                          <th >库存</th>
+                          <th >重量</th>
+                        </tr>
+                      </thead>
+                      <?php foreach($sku as $k=>$vo){ $_info=[]; ?>
+                      <tr rowspan="3">
+                        <?php if(isset($sku_parm[1])){  $_info = get_sku_info($vo['id'],$res['id'],'2');  ?>
+                          <?php foreach($sku_parm as $k2=>$vo2){ ?>
+                          <input class="layui-input" type="hidden" readonly="" name="parm[{$k2}][]" value="{$vo['id'][$k2]}">
+                          <td><input class="layui-input" type="text" readonly=""  value="{$vo['title'][$k2]}"></td>
+                          <?php } ?>
+                        <?php }else{ $_info = get_sku_info($sku[0],$res['id'],1); ?>
+                        <input class="layui-input" type="hidden" readonly="" name="parm[0][]" value="{$sku[0]['id']}">
+                          <td><input class="layui-input" type="text" readonly="" name="parm[0][]" value="{$sku[0]['title']}"></td>
+                        <?php }?>
+                        <!-- 获取当前栏目的信息 -->
+                        <td class="upload-drag" style="width: 100px;height: 100px">
+                        	<input class="layui-input main_pic" type="hidden" name="pic[]" value="{$_info['pic']}">
+                      		<span class="up_img"><img src="<?php echo $_info['pic']==''?'https://mctool.wangmingchang.com/public/static/api/img_upload/up.jpg':$_info['pic']; ?>"></span> 
+                        </td>
+                        <td><input class="layui-input" type="text" name="code[]"  value="{$_info['code']}"></td>
+                        <td><input class="layui-input" type="text" name="price[]"  value="{$_info['price']}"></td>
+                        <td><input class="layui-input" type="text" name="price_line[]"  value="{$_info['price_line']}"></td>
+                        <td><input class="layui-input" type="text" name="stock[]"  value="{$_info['stock']}"></td>
+                        <td><input class="layui-input" type="text" name="kg[]"  value="{$_info['kg']}"></td>
+                      </tr>
+                      <?php } ?>
+                    </table>
+                    <?php } ?>
+
+                  </div>
+                </div>
+              </div>
+              <div class="layui-col-sm3">
+                <div class="layui-card">
+                  <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin-left: 50px;">
+                      <input class="layui-btn tijiao "  lay-filter="component-form-element" type="button" value="发布" />
+                    </div> 
+                  </div>
+                </div>
+                <div class="layui-card">
+                  <div class="layui-card-header">帮助信息</div>
+                  <div  class="layui-card-body layui-row layui-col-space12"> 
+                    <div class="layui-form-item">
+                      <div class="layui-inline">
+                      1.添加规格<br>
+                      2.设置具体指<br>
+                      3.提交保存<br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </form>
+        
+      </div>
+    </div>
+  </div>
+  
+  <script src="__STATIC__/system/layui/layui.js"></script>  
+
+  <script>
+  layui.config({
+    base: '__STATIC__/system/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form','upload','laydate'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,form = layui.form
+    ,laydate = layui.laydate
+    ,upload = layui.upload;
+ 
+    
+    form.render(null, 'component-form-element');
+    element.render('breadcrumb', 'breadcrumb');
+
+    laydate.render({
+      elem: '#LAY-component-form-group-date'
+      ,type: 'datetime'
+    });
+    $('.add_sku').on('click',function(){
+      var sku_name = $('.sku_name').val() 
+      var sku_value = $('.sku_value').val()
+      var gid = $('.gid').val()
+      $.ajax({
+          type:'post',
+          url:"{:url('products/sku_add')}",
+          data:{sku_name:sku_name,sku_value:sku_value,gid:gid},
+          dataType:'json',
+          success:function(res){
+            if(res.result==1){
+              layer.msg("添加成功", {icon: 1});
+              setTimeout(function() {
+                window.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+            }
+          }
+      })  
+    })
+    $('.sku_parm_del').on('click',function(){
+      var sku_value = $(this).attr("item")
+      var gid = $('.gid').val()
+      layer.confirm("确认要删除吗，删除后不能恢复", { title: "删除确认" }, function (index) {
+        $.ajax({
+          type:'post',
+          url:"{:url('products/sku_del')}",
+          data:{sku_value:sku_value,gid:gid},
+          dataType:'json',
+          success:function(res){
+            if(res.result==1){
+              layer.msg("删除成功", {icon: 1});
+              setTimeout(function() {
+                window.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+            }
+          }
+        })  
+
+      })
+    });
+    upload.render({
+      elem: '.up_img'
+      ,url: "{:url('common/upload_one')}"
+      ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+
+	  }
+      ,done: function(res,index){
+      	var dom = this.item[0]; 
+      	console.log($(dom))
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            var up_img = $('.up_img');
+            $(dom).parent().find('.main_pic').val(res.msg);   
+            $(dom).find('img').attr('src',res.msg);   
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      }
+    });
+    // $('.up_img').on("click",function(){
+    // 	console.log(1)
+    // 	var img = 'abc';
+        
+    //     $(this).prev().val(img);            
+
+
+    // })
+
+
+    $(".tijiao").on("click",function(){
+      var index = layer.load(2);
+      var data = $(".info_tj input,.info_tj textarea,.info_tj select").serialize();      
+      $.ajax({
+          type:'post',
+          url:"{:url('products/product_sku_parm_edit')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            layer.close(index);
+            if(res.result==1){
+              layer.msg("成功", {icon: 1});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+              
+            }
+            
+          }
+      })
+    });
+
+  });
+</script>
+</body>
+</html>
