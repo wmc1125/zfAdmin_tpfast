@@ -145,7 +145,7 @@
       var control = data.value
       $.ajax({
         type:'get',
-        url:"{:url('config/get_action')}",
+        url:"/admin/config/get_action.html",
         data:{control:control},
         dataType:'json',
         success:function(res){
@@ -156,7 +156,7 @@
             option='<option value ="'+res[i]+'">'+res[i]+'</option>';
             $("select[name=act]").append(option);
           }
-          form.render('select');//更新数据        
+          form.render('select');//更新数据        
         }
       })
     });

@@ -6,3 +6,6 @@ composer.lock
 参考文档
 .user.ini
 .idea
+runtime/file
+runtime/log
+runtime/temp

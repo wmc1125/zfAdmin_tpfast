@@ -306,7 +306,7 @@ class Config extends Admin
         }else{
             $fin_act = getActions('app\admin\controller' . '\\' . $control);
         }        
-        echo json_encode($fin_act);
+        echo json_encode(array_values($fin_act));
     }
 
     /**

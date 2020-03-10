@@ -112,3 +112,12 @@ function  user_group_name($id){
     return false;
   }
 }
+
+function get_cate_name($cate_tb,$id){
+  $res =Db::name($cate_tb)->where('id',$id)->find();
+  if($res){
+    return $res['name'];
+  }else{
+    return false;
+  }
+}

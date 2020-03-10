@@ -328,6 +328,46 @@ function GetfourStr($len)
   return $outputstr; 
 } 
 
+// 笛卡尔积
+/*
+$arr = array(
+  array(2),
+  array(6,7),
+  array('a','b','c')
+);
+ */ 
+function dikaer($arr){
+   $arr1 = array();
+   $result = array_shift($arr);
+   while($arr2 = array_shift($arr)){
+    $arr1 = $result;
+    $result = array();
+    foreach($arr1 as $v){
+     foreach($arr2 as $v2){
+      if(!is_array($v))$v = array($v);
+      if(!is_array($v2))$v2 = array($v2);
+      $result[] = array_merge_recursive($v,$v2);
+     }
+    }
+   }
+   return $result;
+}
+//dikaerj  以字符串形式输出
+function dikaer_str($arr){
+   $arr1 = array();
+   $result = array_shift($arr);
+   while($arr2 = array_shift($arr)){
+    $arr1 = $result;
+    $result = array();
+    foreach($arr1 as $v){
+     foreach($arr2 as $v2){
+      $result[] = $v.','.$v2;
+     }
+    }
+   }
+   return $result;
+}
+
 
 
 
