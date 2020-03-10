@@ -99,7 +99,7 @@ class Template extends Admin
                         $dir_list[$a]['version'] = $json->version;
                         $dir_list[$a]['pic'] = $json->pic;
                         $dir_list[$a]['ctime'] = $json->ctime;
-                        $dir_list[$a]['summary'] = $json->summary;
+                        // $dir_list[$a]['summary'] = $json->summary;
                         $dir_list[$a]['author'] = $json->author;
                         fclose($fp);
                         $dir_list[$a]['ok'] = 1;
@@ -111,7 +111,7 @@ class Template extends Admin
             closedir($handler);
             $this->assign('list',$dir_list);
 //        }
-//        dd($dir_list);
+       // dd($dir_list);
          return view();
     }
 

@@ -22,15 +22,6 @@ class Cpost extends Admin
     public function __construct()
     {
         parent::__construct();
-        ##########通用#########
-        // $mca = Route::current()->getActionName();
-        // list($class, $method) = explode('@', $mca);
-        // $this->mca = substr(\Request::getRequestUri(), 1);
-        // $this->c = $class;
-        // $this->a = $method;
-        // $_name = explode('/',$this->mca)[1];
-        // $this->tpl = 'admin/'.$_name.'/'.$this->a;
-        #######################
         $_name = $c =  strtolower(request()->controller());
         $this->tpl_config = [
             'cate_tb'=>'pro_'.$_name.'_cate',

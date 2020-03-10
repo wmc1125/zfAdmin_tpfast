@@ -25,6 +25,7 @@
           <thead>
           <tr>
               <th>插件名</th>
+              <th>路径名</th>
               <th>加入时间</th>
               <th>路径</th>
               <th>操作</th>
@@ -33,8 +34,9 @@
           <tbody>
           {volist name='list' id='vo'}
               <tr>
+                  <td>{$vo['name']}</td>
                   <td>{$vo['dir_name']}</td>
-                  <td>2016-11-29</td>
+                  <td>{$vo['ctime']}</td>
                   <td>{$vo['path']}</td>
                   <td>
 
