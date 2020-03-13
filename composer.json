@@ -22,7 +22,7 @@
         "topthink/think-captcha": "^2.0",
         "topthink/think-helper": "^1.0",
         "wmc1125/tpfast-public": "^1.0.1",
-        "aliyuncs/oss-sdk-php": "2.3",
+        "aliyuncs/oss-sdk-php": "^2.3",
         "zz-studio/think-addons": "^1.0"
     },
     "autoload": {

@@ -30,11 +30,7 @@ class Index extends Controller
         }
         return view();
     }
-    public function link()
-    {
-        echo 'hello link';
-        return view();
-    }
+    
     public function setting(){
         echo "无需配置,默认保存在 public/backup/site/年月日/";
         // dd($this->plugin_info);

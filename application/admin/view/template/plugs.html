@@ -58,11 +58,6 @@
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script src="__STATIC__/system/common.js"></script> 
   <script>
-  layui.config({
-    base: '__STATIC__/' //静态资源所在路径
-  }).extend({
-    index: 'lib/index' //主入口模块
-  }).use(['index']);
  layui.use(['layer','upload'], function(){
     var $ = layui.$ 
     ,laypage = layui.laypage

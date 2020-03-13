@@ -1,25 +1,99 @@
 <style type="text/css">
-    .red-envelope {
-        position: fixed;
-        right: 30px;
-        bottom: 40px;
-      /*  width: 150px;
-        height: 104px; */
-        text-align: center;
-        display: inline-block;
-        z-index: 999;
-    }
-    .red-envelope .zf-content {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-    </style>
-    <div class="red-envelope">
-        <div class="zf-content">
-          <a href="javascript:location.reload();">
-            <i class="layui-icon layui-icon-refresh-3"></i>
-          </a>
-        </div>
+.red-envelope {
+    position: fixed;
+    right: 30px;
+    bottom: 40px;
+  /*  width: 150px;
+    height: 104px; */
+    text-align: center;
+    display: inline-block;
+    z-index: 999;
+}
+.red-envelope .zf-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+</style>
+<div class="red-envelope">
+    <div class="zf-content">
+      <a href="javascript:location.reload();">
+        <i class="layui-icon layui-icon-refresh-3"></i>
+      </a>
     </div>
+    <a href="javascript:history.back(-1)">返回上一级</a>
+</div>
 
+<!-- 右键 -->
+<!-- <link rel="stylesheet" href="http://www.jq22.com/demo/jqueryRightMenu201806032254/assets/style.css">
+<link rel="stylesheet" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="http://www.jq22.com/demo/jqueryRightMenu201806032254/assets/script.js"></script> -->
+<!-- 
+<script type="text/javascript">
+$(document).ready(function() {
+    var rcm = window.RMenu;
+    rcm.init({
+        area: 'body',
+        items: {
+            "edit": {
+                name: "编辑",
+                icon: 'edit'
+            },
+            "del": {
+                name: "删除",
+                icon: 'trash-o'
+            },
+            "add": {
+                name: "添加",
+                icon: 'plus',
+                items: {
+                    "new-text": {
+                        name: "添加文件",
+                        icon: 'file-text'
+                    },
+                    "new-zip": {
+                        name: "添加ZIP",
+                        icon: 'file-zip-o'
+                    }
+                }
+            },
+            "refresh": {
+                name: "刷新",
+                icon: 'refresh'
+            },
+            "down": {
+                name: "下载按钮",
+                icon: 'cloud-download'
+            },
+            "zhichi": {
+                name: "支持",
+                icon: 'zhichi',
+                items: {
+                    "zhichi-qq": {
+                        name: "QQ",
+                        icon: 'file-text'
+                    },
+                    "zhichi-email": {
+                        name: "Email",
+                        icon: 'file-zip-o'
+                    }
+                }
+            }
+        },
+        callback: function(res) {
+            if (res.data == 'edit') {
+                console.log('点击了edit');
+            } else if (res.data == 'del') {
+                console.log('点击了del');
+            } else if (res.data == 'add') {
+                console.log('点击了add');
+            } else if (res.data == 'refresh') {
+                window.location.reload();
+            } else if (res.data == 'down') {
+                console.log('点击了download');
+            }
+        }
+    })
+});
+</script> -->

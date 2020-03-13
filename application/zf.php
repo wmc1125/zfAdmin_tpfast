@@ -297,6 +297,14 @@ function saveFileService($url, $save_dir = '', $filename = '', $type = 0) {
     );
 }
 
+// 判断后台权限
+function admin_auth(){
+    if(!session('admin'))
+    {
+        echo "请先登录";die;
+    }
+}
+
 
 
 ?>
