@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>子枫后台管理系统</title>
+  <meta name="csrf-token" content="{{csrf_token()}}">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+  <script src="{{asset('static/style/bootstrap/bootstrap-3.3.4.js')}}"></script>
+  <link rel="stylesheet" href="{{asset('static/style/bootstrap/bootstrap-3.3.4.css')}}">
+  <!--  -->
+   <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.4/css/bootstrap.min.css" /> 
+  <link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css" /> 
+  <link rel="stylesheet" href="http://www.jq22.com/demo/wxmenu201906191035/css/weui.min.css" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/wxmenu201906191035/css/wx-audiocopy.css" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/wxmenu201906191035/css/selfmenu.css" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/wxmenu201906191035/css/bottom.css" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/wxmenu201906191035/css/scroll.css" /> 
+  <link rel="stylesheet" href="http://www.jq22.com/demo/wxmenu201906191035/css/wx-custom.css" /> 
+
+</head>
+<style type="text/css">
+      .smtoolbtn{
+        font-size: 18px;
+        font-weight: normal;
+        padding: 0 4px;
+        cursor: pointer;
+      }
+      .toolbtn > a:hover {
+        text-decoration: none;
+        color: #C9E2EA;
+      }
+      .weui-panel {
+        border: 1px solid #e5e5e5;
+      }
+      .newmodul {
+        margin-top: 10px;
+      }
+      .page-header {
+        padding-bottom: 8px;
+        margin-bottom: 0px;
+      }
+      .label {
+        display: initial;
+        margin-left: 1em;
+      }
+      .newtitle {
+        position: absolute;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.55);
+        text-align: center;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: 400;
+        color: #FFFFFF;
+        width: 100%;
+        left: 0px;
+      }
+      .panel .panel-body{
+        padding: 0 !important;
+      }
+      .weui-media-box__title{
+        font-size: 15px !important;
+      }
+      .newtitle{
+        font-size: 15px !important;
+      }
+      .panel-heading{
+        padding: 0;
+      }
+      .newmodul{
+        margin-top: 0;
+      }
+      .weui-panel{
+        border: 0;
+      }
+      .panel{
+        border: 0;
+      }
+      .weui-panel:after{
+        border-bottom: 0;
+      }
+      .panel-default{
+        border-radius: 5px;
+      }
+      .weui-panel_access{
+        border-radius: 5px;
+      }
+      .panel-heading{
+        border-bottom:0;
+      }
+      .modal-content{
+        background: #f5f5f5;
+      }
+      .msg-panel__context{
+        background: #f5f5f5;
+      }
+      .cm-edit-content-con{
+        background: #f5f5f5;
+      }
+      img{
+        border-radius: 5px;
+      }
+      .wx-audio-content{
+        border-radius: 5px;
+      }
+      .mask-bg{
+        border-radius: 5px;
+      }
+    </style> 
+<body>
+  <div class="layui-fluid">
+    <div class="layui-card">
+       <div class="container"> 
+         <h3 style="text-align: center;margin-top: 20px;">自定义菜单</h3> 
+         <div class="custom-menu-edit-con"> 
+          <div class="hbox"> 
+           <div class="inner-left"> 
+            <div class="custom-menu-view-con"> 
+             <div class="custom-menu-view"> 
+              <div class="custom-menu-view__title">
+               公众号名称
+              </div> 
+              <div class="custom-menu-view__body"> 
+               <div class="weixin-msg-list">
+                <ul class="msg-con"></ul>
+               </div> 
+              </div> 
+              <div id="menuMain" class="custom-menu-view__footer"> 
+               <div class="custom-menu-view__footer__left"></div> 
+               <div class="custom-menu-view__footer__right"></div> 
+              </div> 
+             </div> 
+            </div> 
+           </div> 
+           <div class="inner-right"> 
+            <div class="cm-edit-after"> 
+             <div class="cm-edit-right-header b-b">
+              <span id="cm-tit"></span> 
+              <a id="delMenu" class="pull-right" href="javascript:;">删除菜单</a>
+             </div> 
+             <form class="form-horizontal wrapper-md" name="custom_form"> 
+              <div class="form-group"> 
+               <label class="col-sm-2 control-label">菜单名称:</label>
+               <div class="col-sm-5"> 
+                <input name="custom_input_title" type="text" class="form-control" ng-model="menuname" value="" placeholder="" ng-maxlength="5" />
+               </div>
+               <div class="col-sm-5 help-block"> 
+                <div ng-show="custom_form.custom_input_title.$dirty&amp;&amp;custom_form.custom_input_title.$invalid-maxlength">
+                 字数不超过5个汉字或16个字符
+                </div> 
+                <div class="font_sml" style="display: block;">
+                 若无二级菜单，可输入20个汉字或60个字符
+                </div> 
+               </div> 
+              </div> 
+              <div class="form-group" id="radioGroup"> 
+               <label class="col-sm-2 control-label">菜单内容:</label> 
+               <div class="col-sm-10 LebelRadio"> 
+                <label class="checkbox-inline"><input type="radio" name="radioBtn" value="sendmsg" checked="" /> 发送消息</label> 
+                <label class="checkbox-inline"><input type="radio" name="radioBtn" value="link" /> 跳转网页</label> 
+               </div> 
+              </div> 
+             </form> 
+             <div class="cm-edit-content-con" id="editMsg"> 
+              <div class="editTab"> 
+               <div class="editTab-heading"> 
+                <ul id="clickUl" class="msg-panel__tab"> 
+                 <li id="imgtextLi" class="msg-tab_item on" onclick="imageText()"> <span class="msg-icon msg-icon-tuwen"></span> 图文消息 </li> 
+                 <li id="imgLi" class="msg-tab_item" onclick="picture()"> <span class="msg-icon msg-icon-pic"></span> 图片 </li> 
+                 <li id="voice" class="msg-tab_item" onclick="voice()"> <span class="msg-icon msg-icon-audio"></span> 语音 </li> 
+                 <li id="video" class="msg-tab_item" onclick="video1()"> <span class="msg-icon msg-icon-video"></span> 视频 </li> 
+                </ul> 
+               </div> 
+               <div class="editTab-body"> 
+                <div class="msg-panel__context"> 
+                 <div class="msg-context__item"> 
+                  <div class="msg-panel__center msg-panel_select" data-toggle="modal" data-target="#selectModal">
+                   <span class="message-plus">+</span>
+                   <br />从素材库中选择
+                  </div> 
+                 </div> 
+                 <div class="msg-template"></div> 
+                </div> 
+               </div> 
+              </div> 
+             </div> 
+             <div class="cm-edit-content-con" id="editPage"> 
+              <div class="cm-edit-page"> 
+               <div class="row"> 
+                <label class="col-sm-6 control-label" style="text-align: left;">粉丝点击该菜单会跳转到以下链接: </label> 
+               </div> 
+               <div class="row"> 
+                <label class="col-sm-2 control-label" style="text-align: left;">页面地址: </label> 
+                <div class="col-sm-5"> 
+                 <input type="text" name="url" class="form-control" placeholder="认证号才可手动输入地址" /> 
+                 <span class="help-block">必填,必须是正确的URL格式</span> 
+                </div> 
+               </div> 
+              </div> 
+             </div> 
+            </div> 
+            <div class="cm-edit-before">
+             <h5>点击左侧菜单进行操作</h5>
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="cm-edit-footer"> 
+          <button id="saveBtns" type="button" class="btn btn-info1">保存</button> 
+          <button id="synchroBtns" type="button" class="btn btn-info1">同步</button> 
+          <button id="showPhone" type="button" class="btn btn-info1">预览</button> 
+          <button id="deleteMenu" type="button" class="btn btn-info1" onclick="deleteMenu()">清空菜单</button> 
+         </div> 
+        </div> 
+
+    </div>
+  </div>
+  @include('admin.public.common_tool')
+  <script src="{{asset('static/style/layui/layui.js')}}"></script>
+  <script src="{{asset('static/system/common.js')}}"></script>
+
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script> 
+  <script src="http://www.jq22.com/demo/wxmenu201906191035/js/bootstrap.min.js"></script> 
+  <script src="http://www.jq22.com/demo/wxmenu201906191035/js/layer/layer.js"></script> 
+  <script src="http://www.jq22.com/demo/wxmenu201906191035/js/customMenu.js"></script> 
+  <!-- <script src="{{asset('static/system/wechat/js/customMenu.js')}}"></script> -->
+
+  <div id="selectModal" class="modal fade" tabindex="-1" role="dialog"> 
+   <div class="modal-dialog modal-lg"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button> 
+      <h4 class="modal-title modal-title1"> 选择 </h4> 
+     </div> 
+     <div class="modal-body"> 
+      <div id="imgTextAdd" class="row"> 
+      </div> 
+     </div> 
+     <div class="modal-footer"> 
+      <button type="button" class="btn btn-info ensure">确定</button> 
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="reminderModal" class="modal fade" tabindex="-1" role="dialog"> 
+   <div class="modal-dialog"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button> 
+      <h4 class="modal-title"> 温馨提示 </h4> 
+     </div> 
+     <div class="modal-body"> 
+      <h5>添加子菜单后，一级菜单的内容将被清除。确定添加子菜单？</h5> 
+     </div> 
+     <div class="modal-footer"> 
+      <button type="button" class="btn btn-info reminder">确定</button> 
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="abnormalModal" class="modal fade" tabindex="-1" role="dialog"> 
+   <div class="modal-dialog"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button> 
+      <h4 class="modal-title"> 温馨提示 </h4> 
+     </div> 
+     <div class="modal-body"> 
+      <h5>数据异常</h5> 
+     </div> 
+     <div class="modal-footer"> 
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="mobile_preview" id="mobileDiv" style="display: none;"> 
+   <div class="mobile_preview_hd"> 
+    <strong class="nickname"></strong> 
+   </div> 
+   <div class="mobile_preview_bd"> 
+    <ul id="viewShow" class="show_list"></ul> 
+   </div> 
+   <div class="mobile_preview_ft"> 
+    <ul class="pre_menu_list grid_line" id="viewList"> 
+    </ul> 
+   </div> 
+   <div class="moblie_preview_weapp js_preview_weapp_wrapper" style="display: none"> 
+    <div class="weapp_hd"> 
+     <i class="icon_back_weapp js_preview_weapp_close">返回</i> 
+     <p class="weapp_title js_preview_weapp_title"></p> 
+    </div> 
+    <div class="preview_extra">
+     电脑端暂不支持预览小程序
+    </div> 
+   </div> 
+   <a href="javascript:void(0);" class="mobile_preview_closed btn btn_default" id="viewClose">退出预览</a> 
+  </div> 
+  <div class="mask" style="display:none;"> 
+   <div style="position: relative; left: 957px; top: 468px;"> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -1s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(0deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.916667s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(30deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.833333s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(60deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.75s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(90deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.666667s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(120deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.583333s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(150deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.5s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(180deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.416667s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(210deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.333333s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(240deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.25s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(270deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.166667s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(300deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+    <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.0833333s infinite normal none running opacity-100-25;"> 
+     <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(330deg) translate(10px, 0px); border-radius: 100em;"></div> 
+    </div> 
+   </div> 
+  </div>  
+  <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.333333s infinite normal none running opacity-100-25;"> 
+   <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(240deg) translate(10px, 0px); border-radius: 100em;"></div> 
+  </div> 
+  <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.25s infinite normal none running opacity-100-25;"> 
+   <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(270deg) translate(10px, 0px); border-radius: 100em;"></div> 
+  </div> 
+  <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.166667s infinite normal none running opacity-100-25;"> 
+   <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(300deg) translate(10px, 0px); border-radius: 100em;"></div> 
+  </div> 
+  <div style="position: absolute; top: -2px; transform: translate3d(0px, 0px, 0px); animation: 1s linear -0.0833333s infinite normal none running opacity-100-25;"> 
+   <div style="position: absolute; width: 12px; height: 5px; background: rgb(53, 53, 53); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center; transform: rotate(330deg) translate(10px, 0px); border-radius: 100em;"></div> 
+  </div> 
+
+ <!--  <script>
+ layui.use(['table'], function(){
+      var $ = layui.$
+      ,form = layui.form
+      ,table = layui.table;
+
+      form.on('switch(status_change)', function(data){
+          var id = $(this).attr("item")
+          var dbname = 'user'
+          var status = this.checked ? '1' : '0'
+          console.log(id)
+          $.get("{{url('admin/common/is_switch')}}",{id:id,dbname:dbname,status:status},function(res){
+              if(res.result==1){
+              layer.msg(res.msg, {icon: 1});
+            }else{
+              layer.msg(res.msg, {icon: 2});
+            }
+          },"json");
+      });
+      $(".gzh_act").on("click",function(){
+        var act = $(this).attr("act");
+        var openid = $(this).attr("openid");
+        layer.confirm('确认获取？', {
+          btn: ['获取','取消'] //按钮
+        }, function(){
+          //执行获取操作
+          $.get("{{url('admin/wechat/ajax_action')}}",{openid:openid,type:act},function(res){
+            if(res.result==1){
+              layer.msg("获取成功", {icon: 1});
+              setTimeout(function() {
+                location.reload(true);
+              }, 1000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+
+            }
+          },"json");
+
+        }, function(){
+            //取消的操作
+        });
+      })
+
+  });
+  </script> -->
+</body>
+</html>

@@ -12,23 +12,20 @@
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP5!';
-});
-
-Route::get('hello/:name', 'index/hello');
-
-//增加版本控制
-Route::get('demo/:version/:controller/:function','demo/:version.:controller/:function');
-Route::get('api/:version/:controller/:function','api/:version.:controller/:function');
+include 'web.php';
 
 
+// Route::get('think', function () {
+//     return 'hello,ThinkPHP5!';
+// });
+
+// Route::get('hello/:name', 'index/index/hello');
+
+// //增加版本控制
+// Route::get('demo/:version/:controller/:function','demo/:version.:controller/:function');
+// Route::get('api/:version/:controller/:function','api/:version.:controller/:function');
+
+// http://v1.fast.zf.90ckm.com/api/v1/wxgzh/server?gid=11
 
 
-//demo
-// Route::get('Dtest1', 'demo/test/test1');
-Route::get('Dtest2', 'demo/test/test2');
-
-return [
-
-];
+Route::get('wechat/gzh/server/:gid', 'api/wxgzh/server');

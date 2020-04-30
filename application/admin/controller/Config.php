@@ -44,6 +44,9 @@ class Config extends Admin
                 return jserror('保存失败');die;
             }   
         }
+        $type = input('type','网站设置');
+        $this->assign("type",$type);
+
         $this->assign("config",config()['web']);
         return view();
     }
@@ -325,8 +328,10 @@ class Config extends Admin
         $val = input('post.');
         $value = $val['control'].'/'.$val['act'];
         $res1 = Db::name('admin_role')->where(["value"=> $value])->find();
-        if($res1 && $val['act']!=''){
-            return jserror('已存在该权限');exit;
+        if($res1){
+            if(in_array($val['act'], ['','0/0','/0','0/','/'])){
+                return jserror('已存在该权限');exit;
+            }
         }
         $data = input('post.');
         $data['value'] = $value;
@@ -413,6 +418,38 @@ class Config extends Admin
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
+        return view();
+    }
+    public function pay_setting(){
+        admin_role_check($this->z_role_list,$this->mca,1);
+        if(request()->isPost()){
+            $data = input('post.');
+            $res = extraconfig(input('post.'),'pay_setting');
+            if($res){
+                return jssuccess('保存成功');die;
+            }else{
+                return jserror('保存失败');die;
+            }   
+        }
+        $type = input('type','微信');
+        $this->assign("type",$type);
+        $this->assign("config",config()['pay_setting']);
+        return view();
+    }
+    public function login_setting(){
+        admin_role_check($this->z_role_list,$this->mca,1);
+        if(request()->isPost()){
+            $data = input('post.');
+            $res = extraconfig(input('post.'),'login_setting');
+            if($res){
+                return jssuccess('保存成功');die;
+            }else{
+                return jserror('保存失败');die;
+            }   
+        }
+        $type = input('type','QQ');
+        $this->assign("type",$type);
+        $this->assign("config",config()['login_setting']);
         return view();
     }
     

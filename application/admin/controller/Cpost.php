@@ -107,6 +107,7 @@ class Cpost extends Admin
         }
         $this->assign('plist',$plist);
         $this->assign('res',$res);
+        $this->assign('data_res',$res);
         $this->assign('cid',$res['cid']);
         return view();
 

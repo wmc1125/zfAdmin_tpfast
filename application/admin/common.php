@@ -13,29 +13,7 @@
 // +----------------------------------------------------------------------
 
 use think\Db;
-/**
- * @Notes: 后台权限  0 get ajax 全部验证  1 只验证ajax
- * @Interface admin_role_check
- * @param array $z_role_list
- * @param string $mca
- * @param int $type
- * @author: 子枫
- * @Time: 2019/11/13   11:05 下午
- */
-function admin_role_check($z_role_list=[],$mca='',$type=0){
-  if(session("admin.gid")!=3){
-      if (!in_array($mca, $z_role_list)) {
-          if (request()->isAjax()) {
-              header('Content-Type:application/json');
-              return jserror('没有权限');die;
-          }
-          if($type==0){
-            echo "<script> alert('没有权限')</script>";die;
-          }
 
-      }
-  }
-}
 
 
 /**

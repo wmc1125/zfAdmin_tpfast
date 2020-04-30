@@ -17,7 +17,10 @@
       <div class="layui-card-body">
         <div style="padding-bottom: 10px;">
           <button class="layui-btn layui-btn-sm" onclick="zfAdminShow('添加超链','{:url("rests/link_add")}')"><i class="layui-icon"></i>添加</button>
+                  <a class="layui-btn layui-btn-sm zf_del" >删除</a>
+
         </div>
+        <form class="form_info">
         <table class="layui-table">
             <colgroup>
               <col width="30">
@@ -56,6 +59,7 @@
               {/volist}         
             </tbody>
           </table>
+        </form>
           {$page|raw}
       </div>
     </div>
@@ -110,6 +114,25 @@
           }
         },"json");
     });
+    $('.zf_del').on('click',function(){
+      var data = $('.form_info input').serialize()
+      $.ajax({
+          type:'post',
+          url:"{:url('common/del_post_more')}?tb=link",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            if(res.result==1){
+              layer.msg("删除成功", {icon: 1});
+              setTimeout(function() {
+                location.reload(true);
+              }, 1000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+            }   
+          }
+      })
+    })
    
   });
   </script>

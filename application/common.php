@@ -13,6 +13,7 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+use think\Controller;
 use think\Db;
 use Qiniu\Auth as QAuth;
 use Qiniu\Storage\BucketManager;
@@ -24,6 +25,34 @@ include_once './application/constant.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+
+/**
+ * @Notes: 后台权限  0 get ajax 全部验证  1 只验证ajax
+ * @Interface admin_role_check
+ * @param array $z_role_list
+ * @param string $mca
+ * @param int $type
+ * @author: 子枫
+ * @Time: 2019/11/13   11:05 下午
+ */
+function admin_role_check($z_role_list=[],$mca='',$type=0){
+  if(!session('admin')){
+    echo "<script> alert('请登录')</script>";die;
+  }
+  if(session("admin.gid")!=3){
+      if (!in_array($mca, $z_role_list)) {
+          if (request()->isAjax()) {
+              header('Content-Type:application/json');
+              return jserror('没有权限');die;
+          }
+          if($type==0){
+            echo "<script> alert('没有权限')</script>";die;
+          }
+
+      }
+  }
+}
+
 
 /**
  * 循环删除目录和文件
@@ -427,6 +456,50 @@ function zf_excel_export($head,$keys,$data,$name){
     unset($spreadsheet);
     exit;
 }
+
+// 生成xml
+function makeXML(){
+   $content='<?xml version="1.0" encoding="UTF-8"?>
+   <urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+   ';
+    $list =Db::name('post')->where(['status'=>1])->limit(50)->order('ctime desc')->select();
+    foreach($list as $k=>$vo){
+      $data_array[$k]['loc'] = 'http://'.$_SERVER['HTTP_HOST'].'/index/cate/detail/id/'.$vo['id'].'.html';
+      $data_array[$k]['priority'] = '0.8';
+      $data_array[$k]['lastmod'] = date('Y-m-d H:i:s',$vo['ctime']);
+      $data_array[$k]['changefreq'] = 'changefreq';
+    }
+
+   foreach($data_array as $data){
+    $content.=create_item($data);
+   }
+   $content.='</urlset>';
+   $fp=fopen('sitemap.xml','w+');
+   fwrite($fp,$content);
+   fclose($fp);
+}
+function create_item($data){
+  $item="<url>\n";
+  $item.="<loc>".$data['loc']."</loc>\n";
+  $item.="<priority>".$data['priority']."</priority>\n";
+  $item.="<lastmod>".$data['lastmod']."</lastmod>\n";
+  $item.="<changefreq>".$data['changefreq']."</changefreq>\n";
+  $item.="</url>\n";
+  return $item;
+}
+
+function ZFRetMsg($is,$success_msg,$error_msg){
+    if($is){
+        return jssuccess($success_msg);
+    }else{
+        return jserror($error_msg);
+    }
+
+}
 // 导入
 // function zf_excel_import($head,$keys,$data,$name){
 
@@ -434,35 +507,35 @@ function zf_excel_export($head,$keys,$data,$name){
 
 //form插件
 
-function zf_form($type='layui-input',$vo,$data_res){
-    switch($type) {
-        case "layui-input":
-            $_html='
-            <div class="layui-card-header">'.$vo['name'].'</div>
-            <div class="layui-card-body layui-row layui-col-space12">
-            <div class="layui-col-md12">
-                <input type="text" name="'.$vo['key'].'" placeholder="请输入" autocomplete="off" class="layui-input" value="'.$data_res[$vo['key']].'">
-            </div>
-            </div>';
-            break;
-        case "layui-textarea":
-            $_html='
-            <div class="layui-card-header">'.$vo["name"].'</div>
-            <div class="layui-card-body layui-row layui-col-space12">
-              <div class="layui-col-md12">
-                <textarea name="'.$vo["key"].'" placeholder="请输入" class="layui-textarea">'.$data_res[$vo['key']].'</textarea>
-              </div>
-            </div>
-            ';
-            break;
-        case "1":
-            break;
-        case "2":
-            break;
-        default:
-            break;
-    }
-    print($_html);
+// function zf_form($type='layui-input',$vo,$data_res){
+//     switch($type) {
+//         case "layui-input":
+//             $_html='
+//             <div class="layui-card-header">'.$vo['name'].'</div>
+//             <div class="layui-card-body layui-row layui-col-space12">
+//             <div class="layui-col-md12">
+//                 <input type="text" name="'.$vo['key'].'" placeholder="请输入" autocomplete="off" class="layui-input" value="'.$data_res[$vo['key']].'">
+//             </div>
+//             </div>';
+//             break;
+//         case "layui-textarea":
+//             $_html='
+//             <div class="layui-card-header">'.$vo["name"].'</div>
+//             <div class="layui-card-body layui-row layui-col-space12">
+//               <div class="layui-col-md12">
+//                 <textarea name="'.$vo["key"].'" placeholder="请输入" class="layui-textarea">'.$data_res[$vo['key']].'</textarea>
+//               </div>
+//             </div>
+//             ';
+//             break;
+//         case "1":
+//             break;
+//         case "2":
+//             break;
+//         default:
+//             break;
+//     }
+//     print($_html);
 
-}
+// }
 

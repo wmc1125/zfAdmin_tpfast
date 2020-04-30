@@ -94,9 +94,18 @@
                   <div class="layui-card-header">封面图</div>
                   <div class="layui-card-body layui-row layui-col-space8">
                     <div class="layui-col-md12">
-                      <input  id="main_pic" type="text" name="pic" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="">
+                      <input  id="main_pic" type="text" name="pic" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$res['pic']}">
                     </div>
                       <span type="button" class="layui-btn layui-btn-sm" id="up_img">上传图片</span>
+                  </div>
+                </div>
+                <div class="layui-card">
+                  <div class="layui-card-header">视频</div>
+                  <div class="layui-card-body layui-row layui-col-space8">
+                    <div class="layui-col-md12">
+                      <input  id="main_file" type="text" name="video" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$res['video']}">
+                    </div>
+                      <span type="button" class="layui-btn layui-btn-sm" id="up_file">上传图片</span>
                   </div>
                 </div>
                 

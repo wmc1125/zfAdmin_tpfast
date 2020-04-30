@@ -55,7 +55,7 @@
                             <?php if($data_res['album']!=''){ $pics=explode(',',$data_res['album']);
                                 $count=count($pics);
                                 for($i=0;$i<$count;$i++){?>
-                                  <div id="WU_FILE_{$i}" class="file-item thumbnail layui-col-md3 upload-state-done" style="width:150px;margin-left:10px;"><img src="{$pics[$i]}"><span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span><div class=""><input type="hidden" name="album_list[]" value="{$pics[$i]}"></div></div>
+                                  <div id="WU_FILE_{$i}" class="file-item thumbnail layui-col-md3 upload-state-done" style="width:150px;height:150px ;margin-left:10px;"><img src="{$pics[$i]}" style="width: 100px;height: 100px"><span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span><div class=""><input type="hidden" name="zf_list_album[]" value="{$pics[$i]}"></div></div>
                             <?php }} ?>
                           </div> 
                        </div>
@@ -303,7 +303,7 @@
       if ( !$done.length ) {
       $done = $('<div class=""></div>').appendTo( $li );
       }
-      $done.html('<input type="hidden" name="album_list[]" value="'+response.msg+'" />');
+      $done.html('<input type="hidden" name="zf_list_album[]" value="'+response.msg+'" />');
      });
     // 文件上传失败，显示上传出错。
      uploader.on( 'uploadError', function( file ) {

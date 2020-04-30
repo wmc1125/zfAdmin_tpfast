@@ -23,5 +23,5 @@ return [
     'type'           => '',
     // 是否自动开启 SESSION
     'auto_start'     => true,
-    'expire'         => 3600,//过期时间 60分钟
+    'expire'         => 3600*12,//过期时间 60分钟
 ];

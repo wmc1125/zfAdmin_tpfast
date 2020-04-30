@@ -23,7 +23,10 @@
         "topthink/think-helper": "^1.0",
         "wmc1125/tpfast-public": "^1.0.1",
         "aliyuncs/oss-sdk-php": "^2.3",
-        "zz-studio/think-addons": "^1.0"
+        "zz-studio/think-addons": "^1.0",
+        "overtrue/wechat": "~4.0",
+        "jaeger/querylist": "^4.2"
+        
     },
     "autoload": {
         "psr-4": {
@@ -35,5 +38,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }

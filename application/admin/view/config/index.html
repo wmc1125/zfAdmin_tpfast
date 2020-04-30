@@ -14,91 +14,163 @@
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
       <div class="layui-col-md12">
+
         <div class="layui-card">
-          <div class="layui-card-header">网站设置</div>
+          <div class="layui-card-header layuiadmin-card-header-auto">
+              <a class="layui-btn layui-btn-sm" href='{:url("config/index")}?type=网站设置'><i class="layui-icon"></i>网站设置</a>
+              <a class="layui-btn layui-btn-sm" href='{:url("config/index")}?type=系统设置'><i class="layui-icon"></i>系统设置</a>
+              <a class="layui-btn layui-btn-sm" href='{:url("config/index")}?type=模板设置'><i class="layui-icon"></i>模板设置</a>
+          </div>
+          <div class="layui-card-header">{$type}</div>
           <div class="layui-card-body" pad15>
             <form class="info_tj" onclick="return false" >
               <div class="layui-form" wid100 lay-filter="">
+                <?php if($type=='网站设置'){ ?>
                 <div class="layui-form-item">
                   <label class="layui-form-label">网站名称</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_name" value="{$config['site_name']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['zfb_alipay_root_cert']</span>网站名称</div>
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">网站域名</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_url"  value="{$config['site_url']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_url']</span>网站域名</div>
+
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">管理员邮箱</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_mail"  value="{$config['site_mail']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_mail']</span>管理员邮箱</div>
+                  
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">公司电话</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_hotline"  value="{$config['site_hotline']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_hotline']</span>公司电话</div>
+
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">公司传真</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_fax"  value="{$config['site_fax']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_fax']</span>公司传真</div>
+
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">公司地址</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_address"  value="{$config['site_address']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_address']</span>公司地址</div>
+
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">ICP备案号</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_icp"  value="{$config['site_icp']}" class="layui-input">
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_icp']</span>ICP备案号</div>
+
                 </div>
                 <div class="layui-form-item layui-form-text">
                   <label class="layui-form-label">首页标题</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <textarea name="site_title" class="layui-textarea">{$config['site_title']}</textarea>
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_title']</span>首页标题</div>
+
                 </div>
                 <div class="layui-form-item layui-form-text">
                   <label class="layui-form-label">META关键词</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <textarea name="site_keywords" class="layui-textarea" placeholder="多个关键词用英文状态 , 号分割">{$config['site_keywords']}</textarea>
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_keywords']</span>META关键词</div>
+
                 </div>
                 <div class="layui-form-item layui-form-text">
                   <label class="layui-form-label">META描述</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <textarea name="site_description" class="layui-textarea">{$config['site_description']}</textarea>
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_description']</span>META描述</div>
+
                 </div>
                 <div class="layui-form-item layui-form-text">
                   <label class="layui-form-label">版权信息</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline" style="width: 500px;">
                     <textarea name="site_copyright" class="layui-textarea">{$config['site_copyright']}</textarea>
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_copyright']</span>版权信息</div>
+
                 </div>
+                
+                <?php }elseif($type=='系统设置'){ ?>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">关键词过滤</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                        <textarea name="key_filter" class="layui-textarea">{$config['key_filter']}</textarea>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['key_filter']</span><br>使用说明:$data['content'] = str_replace(explode(',',config('web.key_filter')),'*',$data['content']);
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">图片上传扩展</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                        <textarea name="pic_ext" class="layui-textarea">{$config['pic_ext']}</textarea>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['pic_ext']</span><br>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">文件上传扩展</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                        <textarea name="file_ext" class="layui-textarea">{$config['file_ext']}</textarea>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['file_ext']</span><br>
+                    </div>
+                </div>
+                
                 <div class="layui-form-item">
                   <label class="layui-form-label">开启日志:</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline">
                     <input type="radio" name="is_log" value="0" title="关闭" <?php echo $config['is_log']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
                     <input type="radio" name="is_log" value="1" title="开启" <?php echo $config['is_log']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>                    
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['is_log']</span>开启日志</div>
+
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">站点状态:</label>
-                  <div class="layui-input-block">
+                  <div class="layui-input-inline">
                     <input type="radio" name="site_closed" value="1" title="关闭" <?php echo $config['site_closed']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
                     <input type="radio" name="site_closed" value="0" title="开启" <?php echo $config['site_closed']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
                   </div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_closed']</span>站点状态</div>
+
                 </div>
+
+                <?php }elseif($type=='模板设置'){ ?>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模板名称</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                      <input type="text" name="theme_name"  value="{$config['theme_name']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['theme_name']</span>模板名称</div>
+
+                </div>
+                
+                <?php } ?>
+
 
                 <div class="layui-form-item">
                   <div class="layui-input-block">

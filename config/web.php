@@ -12,7 +12,7 @@
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-// 站点信息最后修改于 2019/11/16 18:12:37  
+// 站点信息最后修改于 2020/04/25 09:26:56  
   
  return [
 	'site_name' => '测试站点',
@@ -27,6 +27,10 @@
 	'site_keywords' => '子枫,测试站点',
 	'site_description' => '子枫 通用后台管理模板系统子枫 通用后台管理模板系统子枫 通用后台管理模板系统子枫 通用后台管理模板系统',
 	'site_closed' => '0',
-	'is_log' => '0',
+	'is_log' => '1',
 	'is' => '0',
+	'key_filter' => '121',
+	'theme_name' => '',
+	'pic_ext' => 'pjpeg,jpeg,jpg,gif,bmp,png',
+	'file_ext' => 'txt,pdf,doc,xls,ppt,mp4',
 ];

@@ -16,12 +16,27 @@ namespace app\index\controller;
 use think\Db;
 use think\facade\Request;
 use Wmc1125\TpFast\GetConfig;
+/**
+ * @title 登录注册
+ * Class Api
+ */
 class Index extends Base
 {
+
 	public function __construct ( Request $request = null ){
         parent::__construct();
     }
-    // 首页
+    /**
+     * @title 用户登录API
+     * @url https://wwww.baidu.com/login
+     * @method POST
+     * @param string username 账号 空 必须
+     * @param string password 密码 空 必须
+     * @code 1 成功
+     * @code 2 失败
+     * @return int code 状态码（具体参见状态码说明）
+     * @return string msg 提示信息
+     */
     public function index(){
         if(input('tpl_id')){
             if(input('tpl_id')=='-1'){
@@ -43,6 +58,9 @@ class Index extends Base
         $this->assign('seo', $seo);
         return view($this->tpl);
     }
+    // public function test(){
+    //     echo phpinfo();
+    // }
 
    
     

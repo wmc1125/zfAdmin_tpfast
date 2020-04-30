@@ -32,6 +32,7 @@
             <div class="layui-input-inline">
                 <select name="pid" lay-verify="required" lay-filter="aihao">
                     <option value="{$res['pid']}">{:get_cate_name($tpl_config['cate_tb'],$res['pid'])}</option>
+                    <option value="0">-顶级-</option>
                     <?php foreach($plist as $k=>$vo){ ?>
                         <option value="{$vo['id']}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</option>
                     <?php } ?>

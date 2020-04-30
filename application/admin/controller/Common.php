@@ -87,6 +87,9 @@ class Common extends Admin
         $id = input('id');
         if($dbname=='category' || $dbname=='product_cate'){
             $res = db($dbname)->where('cid', $id)->update(['status' => 9]);
+            if($dbname=='category'){
+                db('post')->where('cid', $id)->update(['status' => 9]);
+            }
         }else{
             $res = db($dbname)->where('id', $id)->update(['status' => 9]);            
         }
@@ -180,7 +183,7 @@ class Common extends Admin
                 $msg = 'http://'.$_SERVER['SERVER_NAME'].$water_name;
             }else{
                 //不加
-                $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/admin/image');
+                $info = $file->validate(['ext'=>config()['web']['pic_ext']])->move( './public/upload/admin/image');
                 $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
                 $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/image/'.$getSaveName;
             }
@@ -210,7 +213,7 @@ class Common extends Admin
         $img_config = config()['img'];
         if($img_config['file_save_type']==0){
             $file2 = request()->file('file');
-            $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt'])->move('./public/upload/admin/file');
+            $info = $file2->validate(['ext'=>config()['web']['file_ext']])->move('./public/upload/admin/file');
             $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
             $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/file/'.$getSaveName;
         }else{

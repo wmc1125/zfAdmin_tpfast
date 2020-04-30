@@ -24,7 +24,7 @@ class Common extends Base
     public function upload_one(){
         $file = request()->file('file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
+        $info = $file->validate(['ext'=>config()['web']['pic_ext']])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
         $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
@@ -38,7 +38,7 @@ class Common extends Base
         
         $file = request()->file('editormd-image-file');
         //不加
-        $info = $file->validate(['ext'=>'pjpeg,jpeg,jpg,gif,bmp,png'])->move( './public/upload/file');
+        $info = $file->validate(['ext'=>config()['web']['pic_ext']])->move( './public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
         $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
@@ -87,7 +87,7 @@ class Common extends Base
         $file = $_FILES['file'];
         $img_config = config()['img'];
         $file2 = request()->file('file');
-        $info = $file2->validate(['ext'=>'txt,pdf,doc,xls,ppt,mp4,flv,avi,MPEG-4'])->move('./public/upload/file');
+        $info = $file2->validate(['ext'=>config()['web']['file_ext']])->move('./public/upload/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
         $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/file/'.$getSaveName;
         
@@ -307,7 +307,6 @@ class Common extends Base
     }
  
     //评论
-    //
     public function ajax_comment(){
         $data['post_id'] = input('post.post_id',0);
         $data['tb'] = input('post.tb','post');

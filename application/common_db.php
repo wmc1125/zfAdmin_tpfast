@@ -85,6 +85,7 @@ function  p_name($id){
     return false;
   }
 }
+
 //通过模型id查询模型名称
 function  m_name($id){
   $res =Db::name('category_model')->where('id',$id)->find();
@@ -120,4 +121,13 @@ function get_cate_name($cate_tb,$id){
   }else{
     return false;
   }
+}
+
+function get_caiji_log_sum($cid){
+    $sum =  Db::name("caiji_list_log")-> where(["cid"=>$cid] )->count();
+    if($sum){
+        return $sum;
+    }else{
+        return 0;
+    }
 }

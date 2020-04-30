@@ -18,7 +18,7 @@ namespace think;
 // 加载基础文件
 require __DIR__ . '/thinkphp/base.php';
 //安装程序
-!is_file('./public/install.lock')?define('BIND_MODULE','install'):define('BIND_MODULE','index');
+// !is_file('./public/install.lock')?define('BIND_MODULE','install'):define('BIND_MODULE','index');
 // 执行应用并响应
 Container::get('app')->run()->send();
  
