@@ -122,7 +122,14 @@ function get_cate_name($cate_tb,$id){
     return false;
   }
 }
-
+function get_post_number($cate_tb,$id){
+  $res =Db::name($cate_tb)->where([['cid','=',$id],['status','=',1]])->count();
+  if($res){
+    return $res;
+  }else{
+    return 0;
+  }
+}
 function get_caiji_log_sum($cid){
     $sum =  Db::name("caiji_list_log")-> where(["cid"=>$cid] )->count();
     if($sum){

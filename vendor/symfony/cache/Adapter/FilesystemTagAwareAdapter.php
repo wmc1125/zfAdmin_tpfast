@@ -44,7 +44,7 @@ class FilesystemTagAwareAdapter extends AbstractTagAwareAdapter implements Prune
     /**
      * {@inheritdoc}
      */
-    protected function doClear($namespace)
+    protected function doClear(string $namespace)
     {
         $ok = $this->doClearCache($namespace);
 
@@ -93,7 +93,7 @@ class FilesystemTagAwareAdapter extends AbstractTagAwareAdapter implements Prune
     /**
      * {@inheritdoc}
      */
-    protected function doSave(array $values, ?int $lifetime, array $addTagData = [], array $removeTagData = []): array
+    protected function doSave(array $values, int $lifetime, array $addTagData = [], array $removeTagData = []): array
     {
         $failed = $this->doSaveCache($values, $lifetime);
 
@@ -107,7 +107,7 @@ class FilesystemTagAwareAdapter extends AbstractTagAwareAdapter implements Prune
 
                 $file = $this->getFile($id);
 
-                if (!@symlink($file, $this->getFile($id, true, $tagFolder))) {
+                if (!@symlink($file, $tagLink = $this->getFile($id, true, $tagFolder)) && !is_link($tagLink)) {
                     @unlink($file);
                     $failed[] = $id;
                 }

@@ -12,6 +12,7 @@
 namespace EasyWeChat\Work\Media;
 
 use EasyWeChat\Kernel\BaseClient;
+use EasyWeChat\Kernel\Http\StreamResponse;
 
 /**
  * Class Client.
@@ -25,11 +26,24 @@ class Client extends BaseClient
      *
      * @param string $mediaId
      *
-     * @return mixed
+     * @return array|\EasyWeChat\Kernel\Http\Response|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get(string $mediaId)
     {
-        return $this->httpGet('cgi-bin/media/get', ['media_id' => $mediaId]);
+        $response = $this->requestRaw('cgi-bin/media/get', 'GET', [
+            'query' => [
+                'media_id' => $mediaId,
+            ],
+        ]);
+
+        if (false !== stripos($response->getHeaderLine('Content-Type'), 'text/plain')) {
+            return $this->castResponseToType($response, $this->app['config']->get('response_type'));
+        }
+
+        return StreamResponse::buildFromPsrResponse($response);
     }
 
     /**
@@ -87,6 +101,9 @@ class Client extends BaseClient
      * @param string $path
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function upload(string $type, string $path)
     {

@@ -298,6 +298,24 @@ class Client extends BaseClient
     }
 
     /**
+     * 拉取单张会员卡数据接口.
+     *
+     * @param string $from
+     * @param string $to
+     * @param string $cardId
+     *
+     * @return mixed
+     */
+    public function memberCardSummaryById(string $from, string $to, string $cardId)
+    {
+        $ext = [
+            'card_id' => $cardId,
+        ];
+
+        return $this->query('datacube/getcardmembercarddetail', $from, $to, $ext);
+    }
+
+    /**
      * 查询数据.
      *
      * @param string $api
@@ -306,6 +324,9 @@ class Client extends BaseClient
      * @param array  $ext
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function query(string $api, string $from, string $to, array $ext = [])
     {

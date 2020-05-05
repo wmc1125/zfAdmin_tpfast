@@ -11,7 +11,6 @@
 
 namespace EasyWeChat\OfficialAccount\CustomerService;
 
-use EasyWeChat\Kernel\Exceptions\InvalidArgumentException;
 use EasyWeChat\Kernel\Exceptions\RuntimeException;
 use EasyWeChat\Kernel\Messages\Message;
 use EasyWeChat\Kernel\Messages\Raw as RawMessage;
@@ -68,8 +67,6 @@ class Messenger
      * @param string|Message $message
      *
      * @return Messenger
-     *
-     * @throws InvalidArgumentException
      */
     public function message($message)
     {
@@ -125,7 +122,9 @@ class Messenger
      *
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
-     * @throws RuntimeException
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
      */
     public function send()
     {
@@ -151,11 +150,11 @@ class Messenger
     /**
      * Return property.
      *
-     * @param $property
+     * @param string $property
      *
      * @return mixed
      */
-    public function __get($property)
+    public function __get(string $property)
     {
         if (property_exists($this, $property)) {
             return $this->$property;

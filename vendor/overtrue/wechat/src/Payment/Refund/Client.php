@@ -117,7 +117,9 @@ class Client extends BaseClient
      *
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function refund(string $refundNumber, int $totalFee, int $refundFee, $optional = [])
     {
@@ -128,7 +130,9 @@ class Client extends BaseClient
             'appid' => $this->app['config']->app_id,
         ], $optional);
 
-        return $this->safeRequest($this->wrap('secapi/pay/refund'), $params);
+        return $this->safeRequest($this->wrap(
+            $this->app->inSandbox() ? 'pay/refund' : 'secapi/pay/refund'
+        ), $params);
     }
 
     /**
@@ -139,7 +143,9 @@ class Client extends BaseClient
      *
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function query(string $number, string $type)
     {

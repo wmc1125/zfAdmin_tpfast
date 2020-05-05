@@ -36,8 +36,9 @@ abstract class Message implements MessageInterface
     const TEXT_CARD = 2048;
     const TRANSFER = 4096;
     const EVENT = 1048576;
-    const ALL = self::TEXT | self::IMAGE | self::VOICE | self::SHORT_VIDEO | self::LOCATION | self::LINK
-                 | self::DEVICE_EVENT | self::DEVICE_TEXT | self::FILE | self::TEXT_CARD | self::TRANSFER | self::EVENT;
+    const MINIPROGRAM_PAGE = 2097152;
+    const ALL = self::TEXT | self::IMAGE | self::VOICE | self::VIDEO | self::SHORT_VIDEO | self::LOCATION | self::LINK
+                | self::DEVICE_EVENT | self::DEVICE_TEXT | self::FILE | self::TEXT_CARD | self::TRANSFER | self::EVENT | self::MINIPROGRAM_PAGE;
 
     /**
      * @var string
@@ -147,6 +148,8 @@ abstract class Message implements MessageInterface
      * @param bool  $withType
      *
      * @return array
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      */
     public function transformForJsonRequest(array $appends = [], $withType = true): array
     {
@@ -178,7 +181,9 @@ abstract class Message implements MessageInterface
      * @param array $data
      * @param array $aliases
      *
-     * @return array|mixed
+     * @return array
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      */
     protected function propertiesToArray(array $data, array $aliases = []): array
     {

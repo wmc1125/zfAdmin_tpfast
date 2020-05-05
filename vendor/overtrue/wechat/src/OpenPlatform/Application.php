@@ -16,6 +16,7 @@ use EasyWeChat\MiniProgram\Encryptor;
 use EasyWeChat\OpenPlatform\Authorizer\Auth\AccessToken;
 use EasyWeChat\OpenPlatform\Authorizer\MiniProgram\Application as MiniProgram;
 use EasyWeChat\OpenPlatform\Authorizer\MiniProgram\Auth\Client;
+use EasyWeChat\OpenPlatform\Authorizer\OfficialAccount\Account\Client as AccountClient;
 use EasyWeChat\OpenPlatform\Authorizer\OfficialAccount\Application as OfficialAccount;
 use EasyWeChat\OpenPlatform\Authorizer\OfficialAccount\OAuth\ComponentDelegate;
 use EasyWeChat\OpenPlatform\Authorizer\Server\Guard;
@@ -26,6 +27,7 @@ use EasyWeChat\OpenPlatform\Authorizer\Server\Guard;
  * @property \EasyWeChat\OpenPlatform\Server\Guard        $server
  * @property \EasyWeChat\OpenPlatform\Auth\AccessToken    $access_token
  * @property \EasyWeChat\OpenPlatform\CodeTemplate\Client $code_template
+ * @property \EasyWeChat\OpenPlatform\Component\Client    $component
  *
  * @method mixed handleAuthorize(string $authCode = null)
  * @method mixed getAuthorizer(string $appId)
@@ -44,6 +46,7 @@ class Application extends ServiceContainer
         Base\ServiceProvider::class,
         Server\ServiceProvider::class,
         CodeTemplate\ServiceProvider::class,
+        Component\ServiceProvider::class,
     ];
 
     /**
@@ -69,6 +72,10 @@ class Application extends ServiceContainer
     {
         $application = new OfficialAccount($this->getAuthorizerConfig($appId, $refreshToken), $this->getReplaceServices($accessToken) + [
             'encryptor' => $this['encryptor'],
+
+            'account' => function ($app) {
+                return new AccountClient($app, $this);
+            },
         ]);
 
         $application->extend('oauth', function ($socialite) {
@@ -104,20 +111,57 @@ class Application extends ServiceContainer
     /**
      * Return the pre-authorization login page url.
      *
-     * @param string      $callbackUrl
-     * @param string|null $authCode
+     * @param string            $callbackUrl
+     * @param string|array|null $optional
      *
      * @return string
      */
-    public function getPreAuthorizationUrl(string $callbackUrl, string $authCode = null): string
+    public function getPreAuthorizationUrl(string $callbackUrl, $optional = []): string
     {
-        $queries = [
+        // 兼容旧版 API 设计
+        if (\is_string($optional)) {
+            $optional = [
+                'pre_auth_code' => $optional,
+            ];
+        } else {
+            $optional['pre_auth_code'] = $this->createPreAuthorizationCode()['pre_auth_code'];
+        }
+
+        $queries = \array_merge($optional, [
             'component_appid' => $this['config']['app_id'],
-            'pre_auth_code' => $authCode ?: $this->createPreAuthorizationCode()['pre_auth_code'],
             'redirect_uri' => $callbackUrl,
-        ];
+        ]);
 
         return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?'.http_build_query($queries);
+    }
+
+    /**
+     * Return the pre-authorization login page url (mobile).
+     *
+     * @param string            $callbackUrl
+     * @param string|array|null $optional
+     *
+     * @return string
+     */
+    public function getMobilePreAuthorizationUrl(string $callbackUrl, $optional = []): string
+    {
+        // 兼容旧版 API 设计
+        if (\is_string($optional)) {
+            $optional = [
+                'pre_auth_code' => $optional,
+            ];
+        } else {
+            $optional['pre_auth_code'] = $this->createPreAuthorizationCode()['pre_auth_code'];
+        }
+
+        $queries = \array_merge($optional, [
+            'component_appid' => $this['config']['app_id'],
+            'redirect_uri' => $callbackUrl,
+            'action' => 'bindcomponent',
+            'no_scan' => 1,
+        ]);
+
+        return 'https://mp.weixin.qq.com/safe/bindcomponent?'.http_build_query($queries).'#wechat_redirect';
     }
 
     /**
@@ -128,13 +172,11 @@ class Application extends ServiceContainer
      */
     protected function getAuthorizerConfig(string $appId, string $refreshToken = null): array
     {
-        return [
-            'debug' => $this['config']->get('debug', false),
-            'response_type' => $this['config']->get('response_type'),
-            'log' => $this['config']->get('log', []),
+        return $this['config']->merge([
+            'component_app_id' => $this['config']['app_id'],
             'app_id' => $appId,
             'refresh_token' => $refreshToken,
-        ];
+        ])->toArray();
     }
 
     /**
@@ -144,7 +186,7 @@ class Application extends ServiceContainer
      */
     protected function getReplaceServices(AccessToken $accessToken = null): array
     {
-        return [
+        $services = [
             'access_token' => $accessToken ?: function ($app) {
                 return new AccessToken($app, $this);
             },
@@ -153,6 +195,14 @@ class Application extends ServiceContainer
                 return new Guard($app);
             },
         ];
+
+        foreach (['cache', 'http_client', 'log', 'logger', 'request'] as $reuse) {
+            if (isset($this[$reuse])) {
+                $services[$reuse] = $this[$reuse];
+            }
+        }
+
+        return $services;
     }
 
     /**
@@ -165,6 +215,6 @@ class Application extends ServiceContainer
      */
     public function __call($method, $args)
     {
-        return call_user_func_array([$this['base'], $method], $args);
+        return $this->base->$method(...$args);
     }
 }

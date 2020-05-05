@@ -44,12 +44,17 @@
 
                       <!-- <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}配置","/addons/{$vo["plugin_name"]}.index/setting.html")' > 配置</a> -->
 <!--                      关闭-->
-                    <?php if($vo['status']==2){ ?>
-                      <a href="javascript:;" class="plugin_install" item="{$vo['id']}" > 点击激活</a>
-                    <?php }else{ ?>
-                      <a  target="_blank" href="/addons/{$vo["plugin_name"]}.index/index.html" > 进入</a>
-                      <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}说明","/addons/{$vo["plugin_name"]}.index/help.html")' > 使用说明</a>
-                    <?php } ?>
+                      <?php if(is_dir('./addons/'.$vo['plugin_name']) ){ ?>
+                        <?php if($vo['status']==2){ ?>
+                          <a href="javascript:;" class="plugin_install" item="{$vo['id']}" > 点击激活</a>
+                        <?php }else{ ?>
+                          <a  target="_blank" href="/addons/{$vo["plugin_name"]}.index/index.html" > 进入</a>
+                          <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}说明","/addons/{$vo["plugin_name"]}.index/help.html")' > 使用说明</a>
+                        <?php } ?>
+                      <?php }else{ ?>
+                       <span style="color: red">代码缺失</span>
+                      <?php } ?>
+
                   </td>
               </tr>
           {/volist}

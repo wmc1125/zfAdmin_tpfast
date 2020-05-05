@@ -176,13 +176,10 @@ class TraceableAdapter implements AdapterInterface, CacheInterface, PruneableInt
     /**
      * {@inheritdoc}
      *
-     * @param string $prefix
-     *
      * @return bool
      */
-    public function clear(/*string $prefix = ''*/)
+    public function clear(string $prefix = '')
     {
-        $prefix = 0 < \func_num_args() ? (string) func_get_arg(0) : '';
         $event = $this->start(__FUNCTION__);
         try {
             if ($this->pool instanceof AdapterInterface) {
@@ -247,15 +244,11 @@ class TraceableAdapter implements AdapterInterface, CacheInterface, PruneableInt
      */
     public function reset()
     {
-        if (!$this->pool instanceof ResetInterface) {
-            return;
-        }
-        $event = $this->start(__FUNCTION__);
-        try {
+        if ($this->pool instanceof ResetInterface) {
             $this->pool->reset();
-        } finally {
-            $event->end = microtime(true);
         }
+
+        $this->clearCalls();
     }
 
     /**

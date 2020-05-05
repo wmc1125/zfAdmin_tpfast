@@ -11,6 +11,7 @@
 
 namespace EasyWeChat\Kernel\Traits;
 
+use EasyWeChat\Kernel\Clauses\Clause;
 use EasyWeChat\Kernel\Contracts\EventHandlerInterface;
 use EasyWeChat\Kernel\Decorators\FinallyResult;
 use EasyWeChat\Kernel\Decorators\TerminateResult;
@@ -30,10 +31,18 @@ trait Observable
     protected $handlers = [];
 
     /**
-     * @param \Closure|EventHandlerInterface|string $handler
-     * @param \Closure|EventHandlerInterface|string $condition
+     * @var array
+     */
+    protected $clauses = [];
+
+    /**
+     * @param \Closure|EventHandlerInterface|callable|string $handler
+     * @param \Closure|EventHandlerInterface|callable|string $condition
+     *
+     * @return \EasyWeChat\Kernel\Clauses\Clause
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     public function push($handler, $condition = '*')
     {
@@ -44,13 +53,18 @@ trait Observable
         }
 
         array_push($this->handlers[$condition], $handler);
+
+        return $this->newClause($handler);
     }
 
     /**
      * @param \Closure|EventHandlerInterface|string $handler
      * @param \Closure|EventHandlerInterface|string $condition
      *
+     * @return \EasyWeChat\Kernel\Clauses\Clause
+     *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     public function unshift($handler, $condition = '*')
     {
@@ -61,28 +75,36 @@ trait Observable
         }
 
         array_unshift($this->handlers[$condition], $handler);
+
+        return $this->newClause($handler);
     }
 
     /**
      * @param string                                $condition
      * @param \Closure|EventHandlerInterface|string $handler
      *
+     * @return \EasyWeChat\Kernel\Clauses\Clause
+     *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     public function observe($condition, $handler)
     {
-        $this->push($handler, $condition);
+        return $this->push($handler, $condition);
     }
 
     /**
      * @param string                                $condition
      * @param \Closure|EventHandlerInterface|string $handler
      *
+     * @return \EasyWeChat\Kernel\Clauses\Clause
+     *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     public function on($condition, $handler)
     {
-        $this->push($handler, $condition);
+        return $this->push($handler, $condition);
     }
 
     /**
@@ -109,6 +131,12 @@ trait Observable
         foreach ($this->handlers as $condition => $handlers) {
             if ('*' === $condition || ($condition & $event) === $event) {
                 foreach ($handlers as $handler) {
+                    if ($clause = $this->clauses[$this->getHandlerHash($handler)] ?? null) {
+                        if ($clause->intercepted($payload)) {
+                            continue;
+                        }
+                    }
+
                     $response = $this->callHandler($handler, $payload);
 
                     switch (true) {
@@ -137,6 +165,36 @@ trait Observable
     }
 
     /**
+     * @param mixed $handler
+     *
+     * @return \EasyWeChat\Kernel\Clauses\Clause
+     */
+    protected function newClause($handler): Clause
+    {
+        return $this->clauses[$this->getHandlerHash($handler)] = new Clause();
+    }
+
+    /**
+     * @param mixed $handler
+     *
+     * @return string
+     */
+    protected function getHandlerHash($handler)
+    {
+        if (is_string($handler)) {
+            return $handler;
+        }
+
+        if (is_array($handler)) {
+            return is_string($handler[0])
+                ? $handler[0].'::'.$handler[1]
+                : get_class($handler[0]).$handler[1];
+        }
+
+        return spl_object_hash($handler);
+    }
+
+    /**
      * @param callable $handler
      * @param mixed    $payload
      *
@@ -145,7 +203,7 @@ trait Observable
     protected function callHandler(callable $handler, $payload)
     {
         try {
-            return $handler($payload);
+            return call_user_func_array($handler, [$payload]);
         } catch (\Exception $e) {
             if (property_exists($this, 'app') && $this->app instanceof ServiceContainer) {
                 $this->app['logger']->error($e->getCode().': '.$e->getMessage(), [
@@ -159,11 +217,12 @@ trait Observable
     }
 
     /**
-     * @param $handler
+     * @param mixed $handler
      *
      * @return \Closure
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     protected function makeClosure($handler)
     {
@@ -171,7 +230,7 @@ trait Observable
             return $handler;
         }
 
-        if (is_string($handler)) {
+        if (is_string($handler) && '*' !== $handler) {
             if (!class_exists($handler)) {
                 throw new InvalidArgumentException(sprintf('Class "%s" not exists.', $handler));
             }
@@ -195,12 +254,13 @@ trait Observable
     }
 
     /**
-     * @param $handler
-     * @param $condition
+     * @param mixed $handler
+     * @param mixed $condition
      *
      * @return array
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \ReflectionException
      */
     protected function resolveHandlerAndCondition($handler, $condition): array
     {

@@ -84,14 +84,18 @@ trait HasHttpRequests
     }
 
     /**
-     * Return GuzzleHttp\Client instance.
+     * Return GuzzleHttp\ClientInterface instance.
      *
-     * @return \GuzzleHttp\Client
+     * @return ClientInterface
      */
-    public function getHttpClient(): Client
+    public function getHttpClient(): ClientInterface
     {
         if (!($this->httpClient instanceof ClientInterface)) {
-            $this->httpClient = new Client();
+            if (property_exists($this, 'app') && $this->app['http_client']) {
+                $this->httpClient = $this->app['http_client'];
+            } else {
+                $this->httpClient = new Client(['handler' => HandlerStack::create($this->getGuzzleHandler())]);
+            }
         }
 
         return $this->httpClient;
@@ -100,8 +104,8 @@ trait HasHttpRequests
     /**
      * Add a middleware.
      *
-     * @param callable    $middleware
-     * @param null|string $name
+     * @param callable $middleware
+     * @param string   $name
      *
      * @return $this
      */
@@ -133,7 +137,9 @@ trait HasHttpRequests
      * @param string $method
      * @param array  $options
      *
-     * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function request($url, $method = 'GET', $options = []): ResponseInterface
     {
@@ -176,7 +182,7 @@ trait HasHttpRequests
             return $this->handlerStack;
         }
 
-        $this->handlerStack = HandlerStack::create();
+        $this->handlerStack = HandlerStack::create($this->getGuzzleHandler());
 
         foreach ($this->middlewares as $name => $middleware) {
             $this->handlerStack->push($middleware, $name);
@@ -205,5 +211,21 @@ trait HasHttpRequests
         }
 
         return $options;
+    }
+
+    /**
+     * Get guzzle handler.
+     *
+     * @return callable
+     */
+    protected function getGuzzleHandler()
+    {
+        if (property_exists($this, 'app') && isset($this->app['guzzle_handler'])) {
+            return is_string($handler = $this->app->raw('guzzle_handler'))
+                        ? new $handler()
+                        : $handler;
+        }
+
+        return \GuzzleHttp\choose_handler();
     }
 }

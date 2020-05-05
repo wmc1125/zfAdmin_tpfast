@@ -49,6 +49,7 @@ class UserClient extends BaseClient
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function select(array $openids, string $lang = 'zh_CN')
     {
@@ -87,6 +88,7 @@ class UserClient extends BaseClient
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function remark(string $openid, string $remark)
     {
@@ -106,6 +108,7 @@ class UserClient extends BaseClient
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function blacklist(string $beginOpenid = null)
     {
@@ -122,6 +125,7 @@ class UserClient extends BaseClient
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function block($openidList)
     {
@@ -138,11 +142,31 @@ class UserClient extends BaseClient
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function unblock($openidList)
     {
         $params = ['openid_list' => (array) $openidList];
 
         return $this->httpPostJson('cgi-bin/tags/members/batchunblacklist', $params);
+    }
+
+    /**
+     * @param string $oldAppId
+     * @param array  $openidList
+     *
+     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function changeOpenid(string $oldAppId, array $openidList)
+    {
+        $params = [
+            'from_appid' => $oldAppId,
+            'openid_list' => $openidList,
+        ];
+
+        return $this->httpPostJson('cgi-bin/changeopenid', $params);
     }
 }

@@ -24,6 +24,9 @@ class MemberCardClient extends Client
      * @param array $info
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function activate(array $info = [])
     {
@@ -37,6 +40,9 @@ class MemberCardClient extends Client
      * @param array  $settings
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function setActivationForm(string $cardId, array $settings)
     {
@@ -52,6 +58,9 @@ class MemberCardClient extends Client
      * @param string $code
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getUser(string $cardId, string $code)
     {
@@ -69,9 +78,46 @@ class MemberCardClient extends Client
      * @param array $params
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateUser(array $params = [])
     {
         return $this->httpPostJson('card/membercard/updateuser', $params);
+    }
+
+    /**
+     * 获取用户提交资料.
+     *
+     * @param string $activateTicket
+     *
+     * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getActivationForm($activateTicket)
+    {
+        $params = [
+            'activate_ticket' => $activateTicket,
+        ];
+
+        return $this->httpPostJson('card/membercard/activatetempinfo/get', $params);
+    }
+
+    /**
+     * 获取开卡组件链接接口.
+     *
+     * @param array $params 包含会员卡ID和随机字符串
+     *
+     * @return string 开卡组件链接
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getActivateUrl(array $params = [])
+    {
+        return $this->httpPostJson('card/membercard/activate/geturl', $params);
     }
 }

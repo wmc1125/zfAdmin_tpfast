@@ -24,6 +24,9 @@ class Client extends BaseClient
      * 创建开放平台帐号并绑定公众号/小程序.
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create()
     {
@@ -40,6 +43,9 @@ class Client extends BaseClient
      * @param string $openAppId 开放平台帐号appid
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function bindTo(string $openAppId)
     {
@@ -57,6 +63,9 @@ class Client extends BaseClient
      * @param string $openAppId 开放平台帐号appid
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function unbindFrom(string $openAppId)
     {
@@ -72,6 +81,9 @@ class Client extends BaseClient
      * 获取公众号/小程序所绑定的开放平台帐号.
      *
      * @return mixed
+     *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getBinding()
     {

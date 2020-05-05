@@ -162,6 +162,40 @@ class Common extends controller
             return $e->getMessage();
         }
     }
+    public function value_edit(){
+        $dbname = input('dbname');
+        $id = input('id');
+        $field = input('field');
+        $value = input('value');
+        if($dbname=='category' || $dbname=='product_cate'){
+            $res = db($dbname)->where('cid', $id)->update([$field => $value]);
+        }else{
+            $res = db($dbname)->where('id', $id)->update([$field => $value]);
+        }
+        if($res){
+            return jssuccess('更新成功');
+
+        }else{
+            return jserror('更新失败');
+        }
+    }
+    public function del_post(){
+        $dbname = input('db');
+        $id = input('id');
+        if($dbname=='category' || $dbname=='product_cate'){
+            $res = db($dbname)->where('cid', $id)->update(['status' => 9]);
+            if($dbname=='category'){
+                db('post')->where('cid', $id)->update(['status' => 9]);
+            }
+        }else{
+            $res = db($dbname)->where('id', $id)->update(['status' => 9]);
+        }
+        if($res){
+            return jssuccess('删除成功');
+        }else{
+            return jserror('删除失败');
+        }
+    }
 
     
 

@@ -110,6 +110,9 @@
       $.get("{:url('common/is_switch')}",{id:id,dbname:dbname,status:status},function(res){
           if(res.result==1){
             layer.msg(res.msg, {icon: 1});
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
           }else{
             layer.msg(res.msg, {icon: 2});
           }

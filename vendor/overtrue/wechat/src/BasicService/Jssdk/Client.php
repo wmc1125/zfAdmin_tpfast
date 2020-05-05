@@ -12,6 +12,7 @@
 namespace EasyWeChat\BasicService\Jssdk;
 
 use EasyWeChat\Kernel\BaseClient;
+use EasyWeChat\Kernel\Exceptions\RuntimeException;
 use EasyWeChat\Kernel\Support;
 use EasyWeChat\Kernel\Traits\InteractsWithCache;
 
@@ -48,6 +49,7 @@ class Client extends BaseClient
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
      */
     public function buildConfig(array $jsApiList, bool $debug = false, bool $beta = false, bool $json = true)
     {
@@ -67,6 +69,7 @@ class Client extends BaseClient
      *
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
      */
     public function getConfigArray(array $apis, bool $debug = false, bool $beta = false)
     {
@@ -79,9 +82,12 @@ class Client extends BaseClient
      * @param bool   $refresh
      * @param string $type
      *
-     * @return array|null
+     * @return array
      *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function getTicket(bool $refresh = false, string $type = 'jsapi'): array
@@ -92,12 +98,17 @@ class Client extends BaseClient
             return $this->getCache()->get($cacheKey);
         }
 
+        /** @var array<string, mixed> $result */
         $result = $this->castResponseToType(
             $this->requestRaw($this->ticketEndpoint, 'GET', ['query' => ['type' => $type]]),
             'array'
         );
 
         $this->getCache()->set($cacheKey, $result, $result['expires_in'] - 500);
+
+        if (!$this->getCache()->has($cacheKey)) {
+            throw new RuntimeException('Failed to cache jssdk ticket.');
+        }
 
         return $result;
     }
@@ -111,7 +122,9 @@ class Client extends BaseClient
      *
      * @return array
      *
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     protected function configSignature(string $url = null, string $nonce = null, $timestamp = null): array

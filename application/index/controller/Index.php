@@ -58,9 +58,40 @@ class Index extends Base
         $this->assign('seo', $seo);
         return view($this->tpl);
     }
-    // public function test(){
-    //     echo phpinfo();
-    // }
+     public function test(){
+//         echo phpinfo();
+//         $_temp_db_config = [
+//             // 数据库类型
+//            'type'           => '\think\mongo\Connection',
+//
+//            // 服务器地址
+//            'hostname'       => '120.78.193.246',
+//            // 集合名
+//            'database'       => 'v1_fast',
+//            // 用户名
+//            'username'       => '',
+//            // 密码
+//            'password'       => '',
+//            // 端口
+//            'hostport'       => '27012',
+//            ];
+//         $res = Db::connect($_temp_db_config)->table('md5')
+//    ->find();
+//         dd($res);
+
+          $options  =  [
+            'type'    =>   '\think\mongo\Connection',
+              // 设置查询类
+              'query'			 => '\think\mongo\Query',
+            'hostname'    =>   '120.78.193.246',
+            'database'    =>   'v1_fast',
+            'username'    =>   '',
+            'password'     =>   '',
+            'hostport'    =>   27017,
+        ];
+         $test1=Db::connect($options)->name("md5")->select();
+
+     }
 
    
     

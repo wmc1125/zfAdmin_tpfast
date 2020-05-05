@@ -25,7 +25,8 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "zz-studio/think-addons": "^1.0",
         "overtrue/wechat": "~4.0",
-        "jaeger/querylist": "^4.2"
+        "jaeger/querylist": "^4.2",
+        "topthink/think-mongo": "2"
         
     },
     "autoload": {
