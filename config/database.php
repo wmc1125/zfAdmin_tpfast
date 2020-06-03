@@ -57,23 +57,4 @@ return [
     'builder'         => '',
     // Query类
     'query'           => '\think\db\Query',
-
-    'mongodb'=>[
-          // 数据库类型
-        'type'           => '\think\mongo\Connection',
-        // 设置查询类
-        'query'          => '\think\mongo\Query',
-        'hostname' => '127.0.0.1',
-        'database' => 'v1_fast', //数据库名
-        'hostport'    =>   27017,
-        'username'=>'',
-        'password'=>'',
-        'charset' => 'utf8',
-        'prefix'  =>'',
-        // 强制把_id转换为id
-        'pk_convert_id'  => true,
-    ]
-
-
-
 ];

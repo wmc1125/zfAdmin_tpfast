@@ -32,35 +32,18 @@ class Plugins extends Admin
      public function themes()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $dir_list = [];
-        //查询目录
-        $handler = opendir('./application/index/view/');
-        $a = 0;
-        while( ($filename = readdir($handler)) !== false ) {
-            $a++;
-            //略过linux目录的名字为'.'和‘..'的文件
-            if($filename != '.' && $filename != '..' && is_dir('./application/index/view/'.$filename)){
-                $dir_list[$a]['dir_name'] =  $filename;
-                $dir_list[$a]['path'] = '/application/index/view/'.$filename;
-                $_file = '.'.$dir_list[$a]['path'].'/config.php';
-                if(file_exists($_file)){
-                    include $_file;
-                    $dir_list[$a]['name'] = $config['name'];
-                    $dir_list[$a]['version'] = $config['version'];
-                    $dir_list[$a]['pic'] = $config['pic'];
-                    $dir_list[$a]['ctime'] = $config['ctime'];
-                    $dir_list[$a]['summary'] = $config['summary'];
-                    $dir_list[$a]['author'] = $config['author'];
-                    $dir_list[$a]['theme_name'] = $config['theme_name'];
-                    $dir_list[$a]['ok'] = 1;
-                }else{
-                    $dir_list[$a]['pic'] = '';
-                    $dir_list[$a]['ok'] = 0;
-                }
-            }
+        $list = Db::name('plugin')->where([['status','<>',9],['type','=','theme']])->select();
+        foreach ($list as $k => $vo) {
+          $_file = './application/index/view/'.$vo['plugin_name'];
+          if(file_exists($_file.'/config.php')){
+              $list[$k]['ok'] = 1;
+              $list[$k]['path'] = $_file;
+          }else{
+              $list[$k]['ok'] = 0;
+              $list[$k]['path'] = $_file;
+          }
         }
-        closedir($handler);
-        $this->assign('list',$dir_list);
+        $this->assign('list',$list);
         //查询当前的模板
         $this->assign('tpl_name',Db::name('config')->where(['key'=>'zf_tpl_suffix'])->value('value'));
         return view();
@@ -106,7 +89,28 @@ class Plugins extends Admin
                   copydir('./data/themes/temp/controller','./application/index/controller/'.$config['theme_name']); //拷贝到新目录
                   copydir('./data/themes/temp/view','./application/index/view/'.$config['theme_name']); //拷贝到新目录
                   if(file_exists('./application/index/controller/'.$config['theme_name']) && file_exists('./application/index/view/'.$config['theme_name']) ){
-                      return jssuccess('安装成功,请选择模板使用');                    
+
+                      //存入数据库
+                      $data['plugin_name'] = $config['theme_name'];
+                      $data['name'] = $config['name'];
+                      $data['version'] =  $config['version'];
+                      $data['pic'] = $config['pic'];
+                      $data['ctime'] = $config['ctime'];
+                      $data['author'] =$config['author'];
+                      $data['status'] = 1;
+                      $data['type'] = 'theme';
+                      //是否存在
+                      $is_r = Db::name('plugin')->where(['plugin_name'=>$data['plugin_name'],'author'=>$data['author'],'type'=>'theme'])->find();
+                      if(!$is_r){
+                          $r = Db::name('plugin')->insert($data);
+                          if($r){
+                            return jssuccess('安装成功');      
+                          }else{
+                            return jserror('保存失败');
+                          }
+                      }else{
+                        return jserror('已存在该模板,请手动替换');
+                      }              
                   }else{
                       return jserror('移动失败');
 
@@ -122,7 +126,7 @@ class Plugins extends Admin
     }
     public function plugins(){
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('plugin')->where([['status','<>',9]])->select();
+        $list = Db::name('plugin')->where([['status','<>',9],['type','=','plugin']])->select();
         $this->assign('list',$list);
         return view();
     }
@@ -165,8 +169,9 @@ class Plugins extends Admin
                     $data['ctime'] = $json->ctime;
                     $data['author'] = $json->author;
                     $data['status'] = 2;
+                    $data['type'] = 'plugin';
                     //是否存在
-                    $is_r = Db::name('plugin')->where(['plugin_name'=>$data['plugin_name'],'author'=>$data['author']])->find();
+                    $is_r = Db::name('plugin')->where(['plugin_name'=>$data['plugin_name'],'author'=>$data['author'],'type'=>'plugin'])->find();
                     if(!$is_r){
                         $r = Db::name('plugin')->insert($data);
                     }else{

@@ -12,12 +12,12 @@
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
 
-namespace app\install\controller;
+namespace app\index\controller;
 use \think\Controller;
 use think\Db;
 use Env;
 
-class Index extends Controller
+class Install extends Controller
 {
     public function index($step = 0)
     {
@@ -90,7 +90,7 @@ class Index extends Controller
     private function step4()
     {
         if ($this->request->isPost()) {
-            if (!is_writable('./config//database.php')) {
+            if (!is_writable('./config/database.php')) {
                 return $this->error('[app/database.php]无读写权限！');
             }
             $data = input('post.');
@@ -173,7 +173,7 @@ class Index extends Controller
         }
         // 导入系统初始数据库结构
         // 导入SQL
-        $sql_file = './public/backup/install.sql';
+        $sql_file = './import.sql';
         if (file_exists($sql_file)) {
             $sql = file_get_contents($sql_file);
             $sql_list = parse_sql($sql, 0, ['zf_' => $config['prefix']]);
@@ -183,7 +183,7 @@ class Index extends Controller
                     try {
                         Db::execute($v);
                     } catch(\Exception $e) {
-                        return $this->error('导入SQL失败，请检查install.sql的语句是否正确');
+                        return $this->error('导入SQL失败，请检查根目录import.sql的语句是否正确');
                     }
                 }
             }
@@ -200,14 +200,11 @@ class Index extends Controller
         }else{
             $res = Db::name('admin')->insert($map);
         }
-        $res = Db::name('admin')->insert($map);
         if (!$res) {
             return $this->error($user->getError() ? $user->getError() : '管理员账号设置失败！');
         }
         file_put_contents('./public/install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
         
-        //站点密匙
-        $auth = '******';//网站秘钥
         $hs_auth = <<<INFO
 <?php
 // +----------------------------------------------------------------------
@@ -224,7 +221,7 @@ class Index extends Controller
 // +----------------------------------------------------------------------
 // | 秘钥请根据链接进行申请 http://bbs.wangmingchang.com/forum.php?mod=viewthread&tid=1923&extra=
 // +----------------------------------------------------------------------
-return ['key' => '{$auth}'];
+return ['email' => '', 'key'=>'', 'sc'=>'' ];
 INFO;
         file_put_contents('./config/zf_auth.php', $hs_auth);
         // 获取站点根目录
@@ -269,7 +266,7 @@ INFO;
         $items = [
             ['dir', './application', '读写', '读写', 'ok'],
             ['dir', './extend', '读写', '读写', 'ok'],
-            ['dir', './public/backup', '读写', '读写', 'ok'],
+            ['dir', './data', '读写', '读写', 'ok'],
             ['dir', './public/upload', '读写', '读写', 'ok'],
             ['dir', './public/static', '读写', '读写', 'ok'],
             ['dir', './runtime', '读写', '读写', 'ok'],

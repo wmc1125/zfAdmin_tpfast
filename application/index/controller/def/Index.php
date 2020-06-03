@@ -16,7 +16,8 @@ namespace app\index\controller\def;
 use think\Db;
 use think\facade\Request;
 use Wmc1125\TpFast\GetConfig;
-
+use app\common\model\Md5Data;
+use think\facade\Db as Ddb;
 
 /**
  * @title 登录注册
@@ -28,7 +29,17 @@ class Index extends Base
 	public function __construct ( Request $request = null ){
         parent::__construct();
     }
-
+    /**
+     * @title 用户登录API
+     * @url https://wwww.baidu.com/login
+     * @method POST
+     * @param string username 账号 空 必须
+     * @param string password 密码 空 必须
+     * @code 1 成功
+     * @code 2 失败
+     * @return int code 状态码（具体参见状态码说明）
+     * @return string msg 提示信息
+     */
     public function index(){
         if(input('tpl_id')){
             if(input('tpl_id')=='-1'){
@@ -50,11 +61,100 @@ class Index extends Base
         $this->assign('seo', $seo);
         return view($this->tpl);
     }
-    
+     public function test(){
+        dd('test');
+        // 数据库配置信息设置（全局有效）
+        Ddb::setConfig([
+            // 默认数据连接标识
+            'default'     => 'mysql',
+            // 数据库连接信息
+            'connections' => [
+                'mysql' => [
+                    // 数据库类型
+                    'type'     => 'mysql',
+                    // 主机地址
+                    'hostname' => '127.0.0.1',
+                    // 用户名
+                    'username' => 'root',
+                    // 数据库名
+                    'database' => 'demo',
+                    // 数据库编码默认采用utf8
+                    'charset'  => 'utf8',
+                    // 数据库表前缀
+                    'prefix'   => 'think_',
+                    // 数据库调试模式
+                    'debug'    => true,
+                ],
+            ],
+        ]);
+
+
+     }
 
 
 
 
+     //分表测试
+    public function walletSave(){
+        $Md5DataModel = new Md5Data();
+        for($i = 1; $i < 1000; $i++){
+            $str = GetRandStr(10);
+            $data = [
+                'uid' => 0,
+                'status'=>1,
+                'ctime' => date("Y-m-d H:i:s", time()),
+                'str' => $str,
+                'md5_str' => md5($str)
+            ];
+            if(!$Md5DataModel->find_all( ['str'=>$str])){
+                $Md5DataModel->saveData($data, $i);
+            }
+        }
+        echo 'success';die;
+    }
+    public function getWallet(){
+        
+        $Md5DataModel = new Md5Data();
+        // $res = $Md5DataModel->getAll( ['str'=>'11'],'*', 1);
+        // if(isset($res[0])){
+        //     echo 1;
+        // }else{
+        //     echo 0;
+        // }
+        // 判断是否存在
+        // $res = $Md5DataModel->find_all( ['str'=>'DC8OQOIK6K']);
+        // dd($res);
 
 
+
+        //不存在  执行保存
+        $str = 11;
+        $data = [
+            'uid' => 0,
+            'status'=>1,
+            'ctime' => date("Y-m-d H:i:s", time()),
+            'str' => $str,
+            'md5_str' => md5($str)
+        ];
+        if(!$Md5DataModel->find_all( ['str'=>$str])){
+            $Md5DataModel->saveData($data, $i);
+        }else{
+            echo 'cunzai';
+        }
+
+
+    }
+
+
+
+}
+function GetRandStr($length){
+    $str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $len=strlen($str)-1;
+    $randstr='';
+    for($i=0;$i<$length;$i++){
+    $num=mt_rand(0,$len);
+    $randstr .= $str[$num];
+    }
+    return $randstr;
 }

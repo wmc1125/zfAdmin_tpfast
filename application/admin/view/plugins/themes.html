@@ -26,15 +26,15 @@
               <img src="{$vo['pic']}" style="height: 160px">
               <div class="cmdlist-text">
                 <div class="price">
-                  <span>模板名:{$vo['name']} {$vo['version']}</span><br>
+                  <span>模板名:{$vo['plugin_name']} {$vo['version']}</span><br>
                   <span>作者:{$vo['author']}</span><br>
                   <span>创建时间:{$vo['ctime']}</span> <br>
                   <span>路径:{$vo['path']}</span> 
                   <span>
-                    <a class="layui-btn" href="/?theme={$vo['theme_name']}" target="_blank">查看演示</a>                  
+                    <a class="layui-btn" href="/?theme={$vo['plugin_name']}" target="_blank">查看演示</a>                  
                   </span>
                   <span class="flow">
-                    <i class="layui-icon layui-icon-rate btn_edit" item="{$vo['dir_name']}" style="color: <?php echo $tpl_name==$vo['dir_name']?'#1E9FFF':''; ?>;" ></i>
+                    <i class="layui-icon layui-icon-rate btn_edit" item="{$vo['plugin_name']}" style="color: <?php echo $tpl_name==$vo['plugin_name']?'#1E9FFF':''; ?>;" ></i>
                   </span>
                 </div>  
               </div>

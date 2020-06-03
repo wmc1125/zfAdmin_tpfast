@@ -37,10 +37,6 @@ class Login extends Controller
         if(session('admin')){
             $this->error('你已登录,不需要重复登录','index/index'); 
         }else{
-            //判断是否认证
-            if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
-                $this->error('请先认证系统','login/authentication_sys'); 
-            }
             return view();
         }
     }
