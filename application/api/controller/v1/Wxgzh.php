@@ -22,7 +22,7 @@ class Wxgzh
   
     public function __construct (  ){
     }
-   // http://v1.fast.zf.90ckm.com/api/v1.wxgzh/server/gid/1
+   // http://v1.fast.zf.90ckm.com/api/v1.wxgzh/server?gid=1
     public function conf($gid){
       if($gid==''){
         // $this->app = app('wechat.official_account');
@@ -53,7 +53,6 @@ class Wxgzh
      public function server(){
         ob_clean();
         $this->conf(request()->get('gid',0));
-        // dd($this->app);
         
          $this->app->server->push(function ($message) {
              // $message['FromUserName'] // 用户的 openid
@@ -73,13 +72,13 @@ class Wxgzh
 	                    $event_arr = explode('@#@', $event_info);
 	                    if (!empty($event_arr) && $event_arr[0] == 'scanLogin') {
 	                        // 扫码登陆逻辑
-	                          return '欢迎关注,uid参数:'.$event_arr[1];
+                            return $this->scan_auto_msg($event_arr,1);
 
 	                        	// $this->save_udata($message);
 
 	                    }else{
 	                      // 正常点击进入
-	                          return '欢迎关注';
+	                          return $this->g_res['gzh_first_msg'];
 	                    }
 
                     }elseif($message['Event']=='unsubscribe'){
@@ -89,15 +88,17 @@ class Wxgzh
                       // 已经关注  使用扫码进入
                       // scanLogin@#@123  类型@#@参数
                       $event_arr = explode('@#@', $message['EventKey']);
-                      $key = $event_arr[1];
-                        return '参数:'.$key;
-
+                      return $this->scan_auto_msg($event_arr);
+                    }elseif ($message['Event']=='CLICK') {
+                      // return '点击事件  参数:'.$message['EventKey'];
+                      // return '点击事件  用户openid:'.$message['FromUserName'];
+                      $message['Content'] = $message['EventKey'];
+                      return $this->zf_auto_msg($message);
+                      # code...
                     }
                     // ...
-
                       break;
                   case 'text':
-
                     ## 关键词回复  1.在数据库这只关键词 以及回复数据   然后根据查询返回数据
                     return $this->zf_auto_msg($message);
                       // return 'appid:'.$message['FromUserName'];
@@ -122,7 +123,7 @@ class Wxgzh
                       return '收到文件消息';
                   // ... 其它消息
                   case 'transfer':
-                    return "多客服消息转发";
+                      return "多客服消息转发";
                     // return new Transfer();
                   default:
                       return '收到其它消息';
@@ -131,20 +132,43 @@ class Wxgzh
           });
         return $this->app->server->serve()->send();
       }
+      // 处理扫码后的参数处理
+      public function scan_auto_msg($event_arr,$type=0){
+        $key = $event_arr[1];
+        if($type==1){
+
+          //处理首次带参登陆的业务,比如  保存用户数据等逻辑
+            return $this->g_res['gzh_first_msg'].',参数:'.$event_arr[1];
+        }
 
 
+
+        // w_   文字
+        if(strpos($key,'w_') !==false){
+            //处理相关业务
+            return $key;
+            // return '文字参数:'.$key;
+        }
+
+
+
+        //m_  媒体
+        if(strpos($key,'m_') !==false){
+
+            return '媒体参数:'.$key;
+        }
+
+        return $key;
+      }
+
+      //自动回复
       public function zf_auto_msg($message){
-        //发送相关内容
-        // $mm = '我接受到的消息:'.$message['Content'];
-        // // return $message['FromUserName'];
-        // $res = $this->app->customer_service->message($mm)->to($message['FromUserName'])->send();
-        // $mm2 = '我要发送的数据';
-        // $res = $this->app->customer_service->message($mm2)->to($message['FromUserName'])->send();
-
         //查询相关搜索
           $list = Db::name('wx_gzh_automsg')->where([['keyword','like','%'.$message['Content'].'%'],['cuid','=',$this->g_res['uid']],['status','=',1]])->order("sort desc")->limit(5)->select();
+          $arr_ids = [];
           foreach ($list as $k => $vo) {
           	$res = $this->app->customer_service->message($vo['reply_content'])->to($message['FromUserName'])->send();
+            $arr_ids[] = $vo['id'];
           }
         
         //保存用户搜索记录
@@ -153,12 +177,10 @@ class Wxgzh
         $save_res['keyword'] = $message['Content'];
         $save_res['status'] = 1;
         $save_res['ctime'] = time();
-        $save_res['send_ids'] = '1,2,4,2';
+        $save_res['send_ids'] = implode(',', $arr_ids);
         $save_res['gzh_id'] = $message['ToUserName'];
           Db::name('wx_gzh_automsg_send_log')->insert($save_res);
-
           return '--发送完毕ZF--';
-
       }
       // 执行保存用户数据
       public function save_udata($data){

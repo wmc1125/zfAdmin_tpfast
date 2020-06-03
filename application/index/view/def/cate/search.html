@@ -1,0 +1,102 @@
+{include file="def/public/header"}
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="active"><a href="/" title="">网站首页</a> </li>
+        <li class="active">
+            <a href="javascript:;" title="搜索结果">搜索结果</a>
+        </li>
+    </ol>
+</div>
+
+<div class="container">
+    <div class="row" style="margin-top:2px;">
+        <div class="col-sm-6 col-md-8"><!--文章推荐-->
+            <div class="panel panel-default">
+                <div class="panel-heading font-size" >搜索<span style="color: #ff0099;">结果</span></div>
+                <div class="panel-body ul-list">
+                    <ul class="media-list">
+                        <?php foreach($list as $k=>$vo){ ?>
+                        <li class="media">
+                            <a class="pull-left" title="{$vo['title']}" href="{:url('cate/detail',['id'=>$vo['id']])}" >
+                                <img class="img-responsive img-thumbnail" src="<?php  echo $vo['pic']==''?rand_post_first_pic($vo['content']):$vo['pic']; ?>" alt="{$vo['title']}" style="height: 123px;width: 185px;" >
+                            </a>
+                            <h4 class="media-heading">
+                                <a class="a-color" href="{:url('cate/detail',['id'=>$vo['id']])}" title="{$vo['title']}">{$vo['title']}</a>
+                            </h4>
+                            <p></p>
+                            <p>{$vo['summary']}</p>
+                        </li>
+                        <li><p></p></li>
+                        <li>
+                            <ol class="breadcrumb">
+                                <li class="active"><span class="glyphicon glyphicon-time"></span> {$vo['ctime']|date='Y-m-d H:i:s'}</li>
+                                <li class="active">作者：{$vo['author']}</li> 
+                            </ol>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                    <nav aria-label="Page navigation ">
+                        <ul class="pagination">  
+                           {$list->render()|raw }
+                        </ul>
+                    </nav> 
+                </div>
+            </div>
+        </div>
+    <!----最新文章与点击最高的文章------->
+        <div class="col-sm-6 col-md-4">
+            <!--search start-->
+            <div class="panel panel-default">
+               <!-- <div class="panel-heading font-size">搜索<span style="color: #33cc99;">文章</span></div>-->
+                <div class="panel-body">
+                    <form class="form-inline s22" action="{:url('cate/search')}" method="get">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <input type="text" name="keyword" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-info">全站搜索</button>
+                            </div>
+                    </form>
+                </div>
+            </div> 
+            <!--最新文章-->
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">推荐<span style="color: #33cc99;">文章</span></div>
+                <div class="panel-body">
+                    <ul class="ul-li">
+                        <?php foreach($post_sort as $k=>$vo){ ?>
+                        <li><a class="a-color" href="{:url('cate/detail',['id'=>$vo['id']])}"> {$vo['title']}</a></li>
+                        <?php } ?>
+
+                    </ul>
+                </div>
+            </div> 
+            <!--点击排行-->
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">点击<span style="color: #00ccff;">排行</span></div>
+                <div class="panel-body">
+                    <ol class="ul-li">
+                        <?php foreach($post_hits as $k=>$vo){ ?>
+                        <li><a href="{:url('cate/detail',['id'=>$vo['id']])}" class="a-color" title=" {$vo['title']}">  {$vo['title']}</a></li>  
+                        <?php } ?>
+                    </ol>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">友情<span style="color: #ff3300;">链接</span></div>
+                <div class="list-group">
+                    <?php foreach($links as $k=>$vo){ ?>
+                        <a href="{$vo['url']}" class="list-group-item" title="{$vo['name']}" target="_blank">{$vo['name']}</a>
+                    <?php } ?>
+                </div>
+            </div>
+            <!--返回顶部 start-->
+            <div class=" container last">
+                <span> 顶部 </span>
+            </div>
+            <!--返回顶部 end-->
+        </div>
+    </div>
+</div>
+
+{include file="def/public/footer"}

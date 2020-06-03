@@ -84,13 +84,24 @@
                       <?php foreach($sku as $k=>$vo){ $_info=[]; ?>
                       <tr rowspan="3">
                         <?php if(isset($sku_parm[1])){  $_info = get_sku_info($vo['id'],$res['id'],'2');  ?>
-                          <?php foreach($sku_parm as $k2=>$vo2){ ?>
-                          <input class="layui-input" type="hidden" readonly="" name="parm[{$k2}][{$k}]" value="{$vo['id'][$k2]}">
-                          <td><input class="layui-input" type="text" readonly=""  value="{$vo['title'][$k2]}"></td>
-                          <?php } ?>
-                        <?php }else{ $_info = get_sku_info($sku[0],$res['id'],1); ?>
-                        <input class="layui-input" type="hidden" readonly="" name="parm[0][{$k}]" value="{$sku[0]['id']}">
-                          <td><input class="layui-input" type="text" readonly=""  value="{$sku[0]['title']}"></td>
+                              <?php  foreach($sku_parm as $k2=>$vo2){   ?>
+                                <!-- 多个规格 -->
+                                <input class="layui-input" type="hidden" readonly="" name="parm[{$k2}][]" value="{$vo['id'][$k2]}">
+                                <td><input class="layui-input" type="text" readonly=""  value="{$vo['title'][$k2]}"></td>
+                              <?php } ?>
+                        <?php }else{  ?>
+                          <!-- 单个规格 -->
+                                <?php if(isset($sku[1])){ $_info = get_sku_info($sku[$k],$res['id'],3); ?> 
+                                  <!-- 多个 -->
+                                    <input class="layui-input" type="hidden" readonly="" name="parm[{$k}][]" value="{$sku[$k]['id']}">
+                                    <td><input class="layui-input" type="text" readonly=""  value="{$sku[$k]['title']}"></td>
+                                <?php }else{ $_info = get_sku_info($sku[0],$res['id'],1); ?>
+                                  <!-- 单个 -->
+                                    <input class="layui-input" type="hidden" readonly="" name="parm[0][]" value="{$sku[0]['id']}">
+                                    <td><input class="layui-input" type="text" readonly=""  value="{$sku[0]['title']}"></td>
+
+                                <?php } ?>
+                        
                         <?php }?>
                         <!-- 获取当前栏目的信息 -->
                         <td class="upload-drag" style="width: 100px;height: 100px">

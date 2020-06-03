@@ -1,0 +1,92 @@
+<style type="text/css">
+  /* 
+----------------------------------
+- Preloader
+----------------------------------
+*/
+
+.preloader-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 10000;
+    text-align: center;
+    display: table;
+}
+.preloader-inside {
+    position: relative;
+    height: auto;
+    width: 200px;
+    margin-top: 300px;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    color: #fff;
+}
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+}
+.spinner img {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    padding: 5px;
+}
+.spinner:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.spinner:before {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.spinner-1:after {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 4px solid transparent;
+    border-top-color: #08ada7;
+    border-bottom-color: #08ada7;
+    animation: spinny 2s linear infinite;
+}
+@keyframes spinny {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(30deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+</style>
+<!-- Preloader -->
+<div class="preloader-wrap">
+    <div class="preloader-inside">
+        <div class="spinner spinner-1">
+            <!-- <img src="https://i.loli.net/2020/05/22/b7xFrUPE4VW9DAi.png" alt="responsive img"> -->
+        </div>
+    </div>
+</div>
+<!-- End Preloader -->
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+
+<script type="text/javascript">
+      $(window).on('load', function() {
+        $('.preloader-wrap').fadeOut('slow', function() { $(this).remove(); });
+      });
+  // Js Index
+    // Preloader
+</script>

@@ -28,7 +28,7 @@ use think\Db;
  * @Time: 2019/11/13   11:06 下午
  */
 function get_two_menu($id){
-    $menu_r =Db::name('admin_role')->where('pid',$id)->where('menu','1')->order("sort asc")->select();
+    $menu_r =Db::name('admin_role')->where([['pid','=',$id],['menu','=',1],['status','<>','9']])->order("sort asc")->select();
     return $menu_r;
 }
 
@@ -76,41 +76,7 @@ function get_admin_group_name($id){
   return $info['name'];
 }
 
-/**
- * @Notes:读取权限,并组成数组
- * @Interface get_admin_role
- * @param $gid
- * @return mixed
- * @throws \think\db\exception\DataNotFoundException
- * @throws \think\db\exception\ModelNotFoundException
- * @throws \think\exception\DbException
- * @author: 子枫
- * @Time: 2019/11/13   11:07 下午
- */
-function get_admin_role($gid){
-  $info =Db::name('admin_group')->where('id',$gid)->find();
-  $role = explode(',',$info['role']);
-  foreach($role as $k=>$vo){
-    $role_list[$k] = get_role_value($vo);
-  }
-  return $role_list;
-}
 
-/**
- * @Notes:通过id,获取权限value(控制器/方法)
- * @Interface get_role_value
- * @param $id
- * @return mixed
- * @throws \think\db\exception\DataNotFoundException
- * @throws \think\db\exception\ModelNotFoundException
- * @throws \think\exception\DbException
- * @author: 子枫
- * @Time: 2019/11/13   11:07 下午
- */
-function get_role_value($id){
-  $info =Db::name('admin_role')->where('id',$id)->find();
-  return $info['value'];
-}
 
 /**
  * @Notes:判断该栏目是否有子类
@@ -124,7 +90,7 @@ function get_role_value($id){
  * @Time: 2019/11/13   11:07 下午
  */
 function  if_pid($cid){
-  $res =Db::name('category')->where('pid',$cid)->find();
+  $res =Db::name('category')->where([['pid','=',$cid],['status','<>',9]])->find();
   if($res){
     return true;
   }else{

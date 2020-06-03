@@ -1,0 +1,166 @@
+{include file="def/public/header"}
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="active"><a href="/" title="">网站首页</a> </li>
+        <li class="active">
+            <a href="{:url('cate/liuyan')}" title="留言">留言</a>
+        </li>
+    </ol>
+</div>
+<div class="container"><!--内容区-->
+    <div class="row">
+        <div class="col-sm-6 col-md-8"><!--文章内容-->
+            <div class="row">
+                <div class="col-lg-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">请填写留言内容：</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal info_tj" role="form">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Email：</label>
+                                    <div class="col-sm-5">
+                                        <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail4" class="col-sm-2 control-label">留言内容：</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control"  id="inputEmail4"  class="form-control" name="content" rows="5" placeholder="留言内容保持在140字符左右" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="button" class="btn btn-primary sub tijiao" value="提 交" />
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bs-example message">
+                <!------留言列表----->
+                <ul class="media-list">
+                        <!-----分割线---->
+                    <?php foreach($list as $k=>$vo){ ?>
+                    <hr/>
+                    <li class="media">
+                        <a title="回复" class="pull-left" href="javascript:void(0);" >
+                            <p>游客</p>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{$vo['email']}<a href="/cdn-cgi/l/email-protection" class="__cf_email__" ></a></h4>
+                            <p>{$vo['content']}</p>
+                            <!--留言回复--->
+                            <div class="line"></div>
+                            <!-- <div class="media">
+                                <a title="回复" class="pull-left" href="javascript:void(0);"  >
+                                    <p>游客</p>                                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{$vo['email']}<a href="/cdn-cgi/l/email-protection" class="__cf_email__" ></a></h4>
+                                    <p>1</p>
+
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="media">
+                                <a title="回复" class="pull-left" href="javascript:void(0);" onclick="iframe(48,'{$vo['email']}381@163.com')" >
+                                    <p>游客</p>                                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{$vo['email']}<a href="/cdn-cgi/l/email-protection" class="__cf_email__" ></a></h4>
+                                    <p>1</p>
+
+                                </div>
+                            </div> -->
+                        <!--end 留言回复--->
+                        </div>
+                    </li>
+                    <?php } ?>
+                    <!-----分割线---->
+                    <hr/>
+                </ul>
+                <nav aria-label="Page navigation"><!--分页-->
+                           {$list->render()|raw }
+                </nav> <!--分页 end-->
+            </div>
+        </div><!--文章内容 end-->
+        <div class="col-sm-6 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-inline s22" action="{:url('cate/search')}" method="get">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <input type="text" name="keyword" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-info">全站搜索</button>
+                            </div>
+                    </form>
+                </div>
+            </div> 
+            <!--最新文章-->
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">推荐<span style="color: #33cc99;">文章</span></div>
+                <div class="panel-body">
+                    <ul class="ul-li">
+                        <?php foreach($post_sort as $k=>$vo){ ?>
+                        <li><a class="a-color" href="{:url('cate/detail',['id'=>$vo['id']])}"> {$vo['title']}</a></li>
+                        <?php } ?>
+
+                    </ul>
+                </div>
+            </div> 
+            <!--点击排行-->
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">点击<span style="color: #00ccff;">排行</span></div>
+                <div class="panel-body">
+                    <ol class="ul-li">
+                        <?php foreach($post_hits as $k=>$vo){ ?>
+                        <li><a href="{:url('cate/detail',['id'=>$vo['id']])}" class="a-color" title=" {$vo['title']}">  {$vo['title']}</a></li>  
+                        <?php } ?>
+                    </ol>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading font-size">友情<span style="color: #ff3300;">链接</span></div>
+                <div class="list-group">
+                    <?php foreach($links as $k=>$vo){ ?>
+                        <a href="{$vo['url']}" class="list-group-item" title="{$vo['name']}" target="_blank">{$vo['name']}</a>
+                    <?php } ?>
+                </div>
+            </div>
+            <!--返回顶部 start-->
+            <div class=" container last">
+                <span> 顶部 </span>
+            </div>
+            <!--返回顶部 end-->
+        </div>
+    </div>
+</div>
+
+{include file="def/public/footer"}
+<script type="text/javascript">
+    $(".tijiao").on("click",function(){
+      var data = $(".info_tj input,.info_tj textarea,.info_tj radio").serialize();      
+      $.ajax({
+          type:'post',
+          url:"{:url('cate/liuyan')}",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            // console.log(res)
+            if(res.result==1){
+              layer.msg(res.msg, {icon: 1});
+              setTimeout(function() {
+                window.parent.location.reload();
+              }, 2000);
+            }else{
+              layer.msg(res.msg, {icon: 2});
+              
+            }
+            
+          }
+      })
+
+    })
+</script>

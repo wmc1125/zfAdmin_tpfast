@@ -23,6 +23,7 @@ class Common extends Admin
 {
     public function __construct(){
         parent::__construct();
+        
     }
     /**
      * @Notes:显示是与否的转换 (dbname status id )

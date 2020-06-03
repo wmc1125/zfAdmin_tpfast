@@ -1,3 +1,4 @@
+
 <?php
 // +----------------------------------------------------------------------
 // | 子枫后台管理系统(TpFast系列)[基于ThinkPHP5.1开发]
@@ -11,12 +12,15 @@
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-
-return [
-	'ver' => '1.0', //版本号
-    'ver_name' => '子枫(Fast系列)后台系统', //版本名称
-    'ver_date' => '20191001', //版本时间
-    'ver_author' => '子枫',
-    'ver_email' => '287851074@qq.com',
-    'ver_url' => 'http://demo.zf.90ckm.com',
+// 站点信息最后修改于 2020/05/11 11:14:54  
+  
+ return [
+	'version' => 'v1.0.0',
+	'post_id' => '30',
+	'ver_name' => '子枫(Fast系列)后台系统',
+	'ver_date' => '20191001',
+	'ver_author' => '子枫',
+	'ver_email' => '287851074@qq.com',
+	'ver_url' => 'http://demo.zf.90ckm.com',
+	'version_temp' => 'v2.0.0',
 ];

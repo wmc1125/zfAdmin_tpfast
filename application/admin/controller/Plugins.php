@@ -29,7 +29,7 @@ class Plugins extends Admin
      * @author: 子枫
      * @Time: 2019/11/13   11:01 下午
      */
-     public function tpl_list()
+     public function themes()
     {
         admin_role_check($this->z_role_list,$this->mca);
         $dir_list = [];
@@ -42,22 +42,19 @@ class Plugins extends Admin
             if($filename != '.' && $filename != '..' && is_dir('./application/index/view/'.$filename)){
                 $dir_list[$a]['dir_name'] =  $filename;
                 $dir_list[$a]['path'] = '/application/index/view/'.$filename;
-                //打开文件查询json
-                $_file = '.'.$dir_list[$a]['path'].'/config.json';
+                $_file = '.'.$dir_list[$a]['path'].'/config.php';
                 if(file_exists($_file)){
-                    $fp = fopen($_file,"r");
-                    $str = fread($fp,filesize($_file));//指定读取大小，这里把整个文件内容读取出来
-                    $str = str_replace("\r\n","<br />",$str);
-                    $json = json_decode($str);
-                    $dir_list[$a]['name'] = $json->name;
-                    $dir_list[$a]['version'] = $json->version;
-                    $dir_list[$a]['pic'] = $json->pic;
-                    $dir_list[$a]['ctime'] = $json->ctime;
-                    $dir_list[$a]['summary'] = $json->summary;
-                    $dir_list[$a]['author'] = $json->author;
-                    fclose($fp);
+                    include $_file;
+                    $dir_list[$a]['name'] = $config['name'];
+                    $dir_list[$a]['version'] = $config['version'];
+                    $dir_list[$a]['pic'] = $config['pic'];
+                    $dir_list[$a]['ctime'] = $config['ctime'];
+                    $dir_list[$a]['summary'] = $config['summary'];
+                    $dir_list[$a]['author'] = $config['author'];
+                    $dir_list[$a]['theme_name'] = $config['theme_name'];
                     $dir_list[$a]['ok'] = 1;
                 }else{
+                    $dir_list[$a]['pic'] = '';
                     $dir_list[$a]['ok'] = 0;
                 }
             }
@@ -68,9 +65,63 @@ class Plugins extends Admin
         $this->assign('tpl_name',Db::name('config')->where(['key'=>'zf_tpl_suffix'])->value('value'));
         return view();
     }
+    public function themes_upload(){
+        if(request()->isPost()){
+            $file = $_FILES['file'];
+            $file2 = request()->file('file');
+            $save_path = './data/themes/zip';
+            $info = $file2->validate(['ext'=>'zip'])->move($save_path);
+            $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
+            //清空缓存目录
+            if(is_dir('./data/themes/temp')){
+                $r = deldir('./data/themes/temp');
+                if(!$r){
+                 die('删除目录失败,请检查权限(./data/themes/temp)');   
+                }
+            }
+            mkdir('./data/themes/temp');
+            if($getSaveName){
+                $y_path = $save_path.'/'.$getSaveName;
+                //解压
+                $zip = new \ZipArchive();//新建一个对象
+                if ($zip->open($y_path)=== TRUE){
+                    $r = $zip->extractTo('./data/themes/temp');// 假设解压缩到在当前路径下images文件夹的子文件夹php
+                    $zip->close();//关闭处理的zip文件
+                }
+                if(!$r){
+                    return jserror('解压失败');
+                }
+                $dir = './data/themes/temp';
+                $_file = $dir.'/view/config.php';
+                if(file_exists($_file)){
+                  include $_file;
+                  // 当前模板控制器路径  ./application/index/controller/$_config['theme_name']
+                  // 当前模板模板路径  ./application/index/view/$_config['theme_name']
+                  if(file_exists('./application/index/controller/'.$config['theme_name']) || file_exists('./application/index/view/'.$config['theme_name']) ){
+                        return jserror('模板已存在,请手动上传安装 控制器路径 ./application/index/controller/'.$config['theme_name'] .' 模板路径 ./application/index/view/'.$config['theme_name']);
+                  }
+                  mkdir('./application/index/controller/'.$config['theme_name']);
+                  mkdir('./application/index/view/'.$config['theme_name']);
+
+                  copydir('./data/themes/temp/controller','./application/index/controller/'.$config['theme_name']); //拷贝到新目录
+                  copydir('./data/themes/temp/view','./application/index/view/'.$config['theme_name']); //拷贝到新目录
+                  if(file_exists('./application/index/controller/'.$config['theme_name']) && file_exists('./application/index/view/'.$config['theme_name']) ){
+                      return jssuccess('安装成功,请选择模板使用');                    
+                  }else{
+                      return jserror('移动失败');
+
+                  }
+                }else{
+                    return "json文件不存在";
+                }
+            }else{
+                return jserror("上传失败");
+            }
+            die;
+        }
+    }
     public function plugins(){
         admin_role_check($this->z_role_list,$this->mca);
-
         $list = Db::name('plugin')->where([['status','<>',9]])->select();
         $this->assign('list',$list);
         return view();

@@ -17,7 +17,7 @@
  return [
 	'host' => 'smtp.qq.com',
 	'send_email' => '287851074@qq.com1',
-	'password' => 'ukagcolswspzcg1212',
+	'password' => 'ukagcolswspsdszcg1212',
 	'send_nickname' => 'zf',
 	'e_number' => '587',
 	'ee' => '',

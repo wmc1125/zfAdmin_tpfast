@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>子枫后台管理系统</title>
+  <meta name="csrf-token" content="{csrf_token()}">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+</head>
+<body>
+  <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+    <form class="info_tj" onclick="return false">
+      <input type="hidden" name="id" value="{$res['id']}">
+      <div class="layui-col-sm12">
+          <div class="layui-row layui-col-space15">
+              <div class="layui-col-sm9">
+                <div class="layui-card">
+                  <!-- <div class="layui-card-header">内容信息</div> -->
+                  <br/>
+                  <div class="layui-row layui-col-space10 layui-form-item">
+                    
+                    <div class="layui-col-lg10">
+                      <div class="layui-card-header">键</div>
+
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                          <input type="text" name="key" placeholder="" autocomplete="off" class="layui-input" value="{$res.key}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="layui-row layui-col-space10 layui-form-item">
+                    
+                    <div class="layui-col-lg10">
+                      <div class="layui-card-header">值</div>
+
+                      <div class="layui-card-body layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                          <textarea name="value" placeholder="请输入" class="layui-textarea">{$res.value}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   
+                   
+                  <div class="layui-card-header">备注</div>
+                  <div class="layui-card-body layui-row layui-col-space12">
+                    <div class="layui-col-md12">
+                      <textarea name="msg" placeholder="请输入" class="layui-textarea">{$res.msg}</textarea>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="layui-card">
+                  
+                </div>
+                
+              </div>
+              <div class="layui-col-sm3">
+                <div class="layui-row layui-col-space10 layui-form-item">
+                  <div class="layui-col-lg10">
+                    <div class="layui-card-header">父类</div>
+                    <div class="layui-card-body layui-row layui-col-space10">
+                      <div class="layui-col-md12">
+                        <div class="layui-input-inline">
+                            <select name="type" lay-verify="required" lay-filter="aihao">
+                                <option value="{$res['type']}">{$res['type']=='system'?'系统':'用户'}</option>
+                                <option value="user">用户</option>
+                                <option value="system">系统</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-row layui-col-space10 layui-form-item">
+                  <div class="layui-col-lg10">
+                    <div class="layui-card-header">排序</div>
+
+                    <div class="layui-card-body layui-row layui-col-space10">
+                      <div class="layui-col-md12">
+                        <input type="text" name="sort" placeholder="" autocomplete="off" class="layui-input" value="{$res.sort}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 <div class="layui-row layui-col-space10 layui-form-item">
+                  <div class="layui-col-lg10">
+                    <div class="layui-card-header">状态</div>
+
+                    <div class="layui-card-body layui-row layui-col-space10">
+                      <div class="layui-col-md12">
+                        <input type="radio" name="status" value="1" title="开启" <?php echo $res['status']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
+                        <input type="radio" name="status" value="0" title="关闭" <?php echo $res['status']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-form-item" >
+                  <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-sm" onclick="tijiao_data('config/custom_config_edit')"  lay-submit lay-filter="formDemo">立即提交</button>
+                  </div>
+                </div>
+
+
+                
+
+              </div>
+            
+          </div>
+        </div>
+
+
+      
+
+
+
+      
+      
+    </form>
+  </div>
+
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script src="__STATIC__/system/common.js"></script> 
+  <script>
+ layui.use(['form', 'upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,upload = layui.upload ;
+
+
+
+
+  })
+  </script>
+</body>
+</html>

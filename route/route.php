@@ -15,17 +15,7 @@
 include 'web.php';
 
 
-// Route::get('think', function () {
-//     return 'hello,ThinkPHP5!';
-// });
-
-// Route::get('hello/:name', 'index/index/hello');
-
-// //增加版本控制
-// Route::get('demo/:version/:controller/:function','demo/:version.:controller/:function');
-// Route::get('api/:version/:controller/:function','api/:version.:controller/:function');
-
-// http://v1.fast.zf.90ckm.com/api/v1/wxgzh/server?gid=11
-
 
 Route::get('wechat/gzh/server/:gid', 'api/wxgzh/server');
+
+

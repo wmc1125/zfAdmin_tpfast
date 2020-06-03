@@ -32,6 +32,10 @@ return [
     'default'   =>  [
         // 驱动方式
         'type'   => 'file',
+        // 缓存有效期为永久有效
+        'expire'=>  0, 
+        //缓存前缀
+        'prefix'=>  'zf',
         // 缓存保存目录
         'path'   => './runtime/default',
     ],
@@ -39,6 +43,10 @@ return [
     'file'   =>  [
         // 驱动方式
         'type'   => 'file',
+        // 缓存有效期为永久有效
+        'expire'=>  0, 
+        //缓存前缀
+        'prefix'=>  'zf',
         // 设置不同的缓存保存目录
         'path'   => './runtime/file/',
     ],  

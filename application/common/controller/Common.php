@@ -20,10 +20,19 @@ use think\Controller;
 use think\facade\Image;
 use OSS\OssClient as AliOssClient;
 
-class Common extends controller
+class Common extends Controller
 {
     public function __construct(){
         parent::__construct();
+        // 读取权限
+        $this->z_role_list = get_admin_role(session("admin.gid"));
+        // 默认给个权限
+        // $role_list[9999] = 'Index/index'; 
+        $m = strtolower(request()->module());
+        $c = strtolower(request()->controller());
+        $a = strtolower(request()->action());
+        // $nodeStr =  ucwords($c) . '/' . $a;
+        $this->mca =  ucwords($c) . '/' . $a;
     }
 
     /**
@@ -35,6 +44,7 @@ class Common extends controller
      * @Time: 2019/11/13   10:39 下午
      */
     public function is_switch(){
+        admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
         $is_show = input('status');
         $id = input('id');
@@ -59,6 +69,7 @@ class Common extends controller
      * @Time: 2019/11/13   10:43 下午
      */
     public function upload_one(){
+        admin_role_check($this->z_role_list,$this->mca);
         $file = request()->file('file');
         $file_glo = $_FILES['file'];
 
@@ -101,7 +112,6 @@ class Common extends controller
         }
 
     }
-
     /**
      * @Notes:上传文件
      * @Interface upload_one_file
@@ -109,6 +119,7 @@ class Common extends controller
      * @Time: 2019/11/13   10:43 下午
      */
     public function upload_one_file(){
+        admin_role_check($this->z_role_list,$this->mca);
         $file = $_FILES['file'];
         $img_config = config()['img'];
         if($img_config['file_save_type']==0){
@@ -128,6 +139,10 @@ class Common extends controller
             return jserror("error");
         }
     }
+
+
+
+    
 
     /**
      * @Notes:阿里云oss
@@ -163,6 +178,7 @@ class Common extends controller
         }
     }
     public function value_edit(){
+        admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('dbname');
         $id = input('id');
         $field = input('field');
@@ -180,6 +196,7 @@ class Common extends controller
         }
     }
     public function del_post(){
+        admin_role_check($this->z_role_list,$this->mca);
         $dbname = input('db');
         $id = input('id');
         if($dbname=='category' || $dbname=='product_cate'){
@@ -197,6 +214,35 @@ class Common extends controller
         }
     }
 
+    public function meditor_upload_one(){
+        admin_role_check($this->z_role_list,$this->mca);
+        $file = $_FILES['editormd-image-file'];
+        $img_config = config()['img'];
+        if($img_config['file_save_type']==0){
+            $file2 = request()->file('file');
+            $info = $file2->move('./public/upload/common/file');
+            $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
+            $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/common/file/'.$getSaveName;
+        }else{
+            //上传到第三方
+            if($img_config['file_save_type']==3){
+                $msg = $this->aliyunoss($img_config,$file,$file['tmp_name']);
+            }
+        }
+        if($msg){
+             return json_encode(array(
+                        'success'    => 0,
+                        'url'       => '',
+                        'message'    =>  $msg,
+                    ));
+        }else{
+            return json_encode(array(
+                        'success'    => 0,
+                        'url'       => '',
+                        'message'    =>  'error',
+                    ));
+        }
+    }
     
 
      

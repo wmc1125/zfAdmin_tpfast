@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
 </head>
 <body>
+{include file="public/load"}
 
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -23,7 +24,7 @@
           </div>
           <div class="layui-card-header">{$type}</div>
           <div class="layui-card-body" pad15>
-            <form class="info_tj" onclick="return false" >
+            <form class="info_tj" >
               <div class="layui-form" wid100 lay-filter="">
                 <?php if($type=='网站设置'){ ?>
                 <div class="layui-form-item">
@@ -113,6 +114,31 @@
                   <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_copyright']</span>版权信息</div>
 
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">网站logo:</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                      <input type="text" name="site_logo"   id="main_site_logo" placeholder="" autocomplete="off" class="layui-input " value="{$config['site_logo']}">
+                      <span type="button" class="layui-btn  layui-btn-sm" id="up_img_site_logo">上传图片</span>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_logo']</span>网站logo</div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">网站Icon:</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                      <input type="text" name="site_icon"   id="main_site_icon" placeholder="" autocomplete="off" class="layui-input" value="{$config['site_icon']}">
+                      <span type="button" class="layui-btn  layui-btn-sm" id="up_img_site_icon">上传图片</span>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_icon']</span>网站Icon</div>
+                  </div>
+                   <div class="layui-form-item">
+                    <label class="layui-form-label">微信二维码:</label>
+                    <div class="layui-input-inline" style="width: 500px;">
+                      <input type="text" name="site_qrcode"   id="main_site_qrcode" placeholder="" autocomplete="off" class="layui-input" value="{$config['site_qrcode']}">
+                      <span type="button" class="layui-btn  layui-btn-sm" id="up_img_site_qrcode">上传图片</span>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_qrcode']</span>微信二维码</div>
+                  </div>
+
                 
                 <?php }elseif($type=='系统设置'){ ?>
                 <div class="layui-form-item layui-form-text">
@@ -174,7 +200,7 @@
 
                 <div class="layui-form-item">
                   <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-sm" lay-submit onclick="tijiao_data('config/index',0)" >确认保存</button>
+                    <button class="layui-btn layui-btn-sm"  onclick="tijiao_data('config/index',0)" >确认保存</button>
                   </div>
                 </div>
 
@@ -202,6 +228,45 @@
   ,upload = layui.upload;
 
 
+  upload.render({
+      elem: '#up_img_site_icon'
+      ,url: "{:url('common/upload_one')}"
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_site_icon").val(res.msg);
+        }else{
+          layer.msg('上传失败', {icon: 1});
+        }
+      }
+    });
+    upload.render({
+      elem: '#up_img_site_logo'
+      ,url: "{:url('common/upload_one')}"
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_site_logo").val(res.msg);
+        }else{
+          layer.msg('上传失败', {icon: 1});
+        }
+      }
+    });
+    upload.render({
+      elem: '#up_img_site_qrcode'
+      ,url: "{:url('common/upload_one')}"
+      ,done: function(res){
+        console.log(res)
+        if(res.result==1){
+            layer.msg("上传成功", {icon: 1});
+            $("#main_site_qrcode").val(res.msg);
+        }else{
+          layer.msg('上传失败', {icon: 1});
+        }
+      }
+    });
 
  })
   </script>

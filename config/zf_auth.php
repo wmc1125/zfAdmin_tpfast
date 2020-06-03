@@ -1,15 +1,21 @@
-<?php
-// +----------------------------------------------------------------------
-// | 子枫后台管理系统(TpFast系列)[基于ThinkPHP5.1开发]
-// +----------------------------------------------------------------------
-// | Copyright (c)  http://v1.fast.zf.90ckm.com/
-// | 子枫后台管理系统提供免费使用,可使用此框架进行二次开发
-// +----------------------------------------------------------------------
-// | Author: 子枫 <287851074@qq.com>
-// +----------------------------------------------------------------------
-// | github:https://github.com/wmc1125/zfAdmin_tpfast
-// | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
-// | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
-// +----------------------------------------------------------------------
 
-return ['key' => '3lfH0tLHyqJXblScZMfMz5LFop+Ej4Wr3KKeUnNmZYPdm8TH0s/PVm9WmMSn2IPf'];
+  <?php
+  // +----------------------------------------------------------------------
+  // | 子枫后台管理系统(TpFast系列)[基于ThinkPHP5.1开发]
+  // +----------------------------------------------------------------------
+  // | Copyright (c)  http://v1.fast.zf.90ckm.com/
+  // | 子枫后台管理系统提供免费使用,可使用此框架进行二次开发
+  // +----------------------------------------------------------------------
+  // | Author: 子枫 <287851074@qq.com>
+  // +----------------------------------------------------------------------
+  // | github:https://github.com/wmc1125/zfAdmin_tpfast
+  // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
+  // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
+  // +----------------------------------------------------------------------
+  // 站点信息最后修改于 2020/05/18 10:18:40  
+  
+ return [
+	'email' => '2046269887@qq.com',
+	'key' => '459c2e61062d15b8e79cfd8700545bb7231',
+	'sc' => 'roOmm9eVmJ2hzpiZ0VieUnFoxdGllJijpoiShseszqCYg21jmGhycGiZaWiZYoaVrKHPy1qgZmlxn56UmGqdaV+Dp6vTlVtzVMKjnIVihqCqp4SgWpllVmWIy9HFodFVbYNlappobmpimGtw1KeSk6elhJJa0ZqtW6CImJlxyGWYl2RimWKdamfDb5Wab8eWnHCZlmibaWmbyJ2Wl2mHsA==',
+];

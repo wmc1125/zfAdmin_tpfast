@@ -18,13 +18,21 @@ return [
 
 
 
-//laravel
-// * * * * * cd /www/wwwroot/zfAdmin_laravel && /www/server/php/72/bin/php artisan schedule:run >> /dev/null 2>&1
 
-// v1  单命令
+//  单命令
 // * * * * * cd /www/wwwroot/v1.fast.zf.90ckm.com && /www/server/php/72/bin/php ./think task >> /dev/null 2>&1
 
-
 // sh模式 
-// */1 * * * * sh /www/wwwroot/v1.fast.zf.90ckm.com/crontab.sh 2 >>/data/zfv1_log/log.txt   # 结果输出到/data/zfv1_log/log.txt    目录需存在
-// */1 * * * * /bin/bash /www/wwwroot/v1.fast.zf.90ckm.com/crontab.sh   
+// */1 * * * * sh /www/wwwroot/v1.fast.zf.90ckm.com/crontab.sh 2 >>/data/zfv1_log/log.txt   # 结果输出到/data/zfv1_log/log.txt    
+
+
+
+//宝塔模式
+// 1.宝塔计划任务   
+// /bin/bash /www/wwwroot/v1.fast.zf.90ckm.com/crontab.sh 
+// 2. crontab.sh 
+/*
+		#!/bin/bash
+		cd /www/wwwroot/v1.fast.zf.90ckm.com
+		/www/server/php/72/bin/php ./think task
+*/

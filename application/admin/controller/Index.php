@@ -58,8 +58,9 @@ class Index extends Admin
     public function welcome()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        makeXML();
-        
+        $sitemap = new \zf\Sitemap;
+        $sitemap->index();    
+
         //  用户增长曲线
         // $user_nyr_grow = Db::name('user')
         //             ->field("DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d') as date, count(DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d')) as sum")

@@ -1,0 +1,67 @@
+{include file="def/public/header"}
+
+<body>
+  <!-- nav部分 -->
+  <div class="nav">
+{include file="def/public/menu"}
+    
+  </div>
+  <!-- banner部分 -->
+  <div class="banner product">
+    <div class="title">
+      <p>{$cate_res['name']}</p>
+      <p class="en">{$cate_res['ename']}</p>
+    </div>
+  </div>
+  <!-- main部分 -->
+  <div class="main product">
+    <div class="layui-container">
+      <div class="content layui-row">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md7 layui-col-lg6 content-img"><img src="{$tpl_static}/img/Product_img1.jpg"></div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md5 layui-col-lg6 right">
+          <p class="label">JS基础库</p>
+          <p class="detail">从小屏逐步扩展到大屏，最终实现所有屏幕适配，最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。</p>
+          <div><a href="javascript:;">查看产品 ></a></div>
+        </div>
+      </div>
+      <div class="content layui-row">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md7 layui-col-lg6 content-img"><img src="{$tpl_static}/img/Product_img2.jpg"></div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md5 layui-col-lg6 right">
+          <p class="label">CSS处理</p>
+          <p class="detail">从小屏逐步扩展到大屏，最终实现所有屏幕适配，最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。</p>
+          <div><a href="javascript:;">查看产品 ></a></div>
+        </div>
+      </div>
+      <div class="content layui-row">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md7 layui-col-lg6 content-img"><img src="{$tpl_static}/img/Product_img3.jpg"></div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md5 layui-col-lg6 right">
+          <p class="label">兼容性</p>
+          <p class="detail">从小屏逐步扩展到大屏，最终实现所有屏幕适配，最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。</p>
+          <div><a href="javascript:;">查看产品 ></a></div>
+        </div>
+      </div>
+      <div class="content layui-row">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md7 layui-col-lg6 content-img"><img src="{$tpl_static}/img/Product_img4.jpg"></div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md5 layui-col-lg6 right">
+          <p class="label">响应式</p>
+          <p class="detail">从小屏逐步扩展到大屏，最终实现所有屏幕适配，最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。最终实现所有屏幕适配，适应移动互联潮流。</p>
+          <div><a href="javascript:;">查看产品 ></a></div>
+        </div>
+      </div>      
+    </div>
+  </div>
+{include file="def/public/footer"}
+  
+<script src="__STATIC__/style/layui/layui.js"></script>
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+  layui.config({
+    base: '{$tpl_static}/js/' 
+  }).use('firm'); 
+</script>
+
+</body>
+</html>

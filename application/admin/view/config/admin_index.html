@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="__STATIC__/style/bootstrap/bootstrap-3.3.4.css">
 </head>
 <body>
+{include file="public/load"}
   <div class="layui-fluid">
     <div class="layui-card">
       <div class="layui-card-body">
@@ -53,7 +54,13 @@
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
                     </div>
                   </td>
-                  <td> <a class="layui-btn layui-btn-danger layui-btn-sm" onclick="btn_del('common/del_post',{$vo['id']},'admin')"  href="#">删除</a> <button class="layui-btn-sm layui-btn" onclick='zfAdminShow("编辑用户","{:url('config/admin_edit',['id' => $vo['id']] )}")'>编辑</button></td>
+                  <td>
+                      <button class="layui-btn-sm layui-btn" onclick='zfAdminShow("编辑用户","{:url('config/admin_edit',['id' => $vo['id']] )}")'>编辑</button>
+                      <?php if($vo['name']!='admin'){ ?> 
+                          <a class="layui-btn layui-btn-danger layui-btn-sm" onclick="btn_del('common/del_post',{$vo['id']},'admin')"  href="#">删除</a> 
+                      <?php } ?>
+                  </td>
+
                 </tr>
               {/volist}
             </tbody>

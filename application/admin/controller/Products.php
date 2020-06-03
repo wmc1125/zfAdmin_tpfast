@@ -175,16 +175,29 @@ class Products extends Admin
                 $_info['stock'] = $data['stock'][$i];
                 $_info['kg'] = $data['kg'][$i];
                 $_info['uid'] = session('admin')['id'];
-                //插入数据库,获得info_id
                 $info_id = Db::name('product_sku_info')->insertGetId($_info);
-                for($t=0;$t<$parm_num;$t++){
+                //插入数据库,获得info_id
+                // 
+                if(isset($data['parm'][0][1])){
+                    //多参数
+                    for($t=0;$t<$parm_num;$t++){
+                        $_parm_data['info_id'] = $info_id;
+                        $_parm_data['sku_id'] = $data['parm'][$t][$i];
+                        $_parm_data['gid'] = $data['gid'];
+                        $_parm_data['uid'] = session('admin')['id'];
+                        //插入数据库
+                        Db::name('product_sku_info_parm')->insert($_parm_data);
+                    }
+                }else{
                     $_parm_data['info_id'] = $info_id;
-                    $_parm_data['sku_id'] = $data['parm'][$t][$i];
+                    $_parm_data['sku_id'] = $data['parm'][$i][0];
                     $_parm_data['gid'] = $data['gid'];
                     $_parm_data['uid'] = session('admin')['id'];
                     //插入数据库
                     Db::name('product_sku_info_parm')->insert($_parm_data);
                 }
+                // 
+                
             }
             Db::commit();               
            return jssuccess('提交成功');

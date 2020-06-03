@@ -17,8 +17,6 @@ use think\facade\Request;
 use think\Db;
 use think\facade\Config as TConfig;
 use Wmc1125\TpFast\Category;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 class Config extends Admin
 {
     public function __construct (){
@@ -326,14 +324,23 @@ class Config extends Admin
         admin_role_check($this->z_role_list,$this->mca,1);
         //判断是否存在
         $val = input('post.');
-        $value = $val['control'].'/'.$val['act'];
+        if($val['_control']!=''){
+            $val['control'] = $val['_control'];
+        }
+        if($val['_act']!=''){
+            $val['act'] = $val['_act'];
+        }
+        unset($val['_control']);
+        unset($val['_act']);
+
+        $value = $val['module'].'/'.$val['control'].'/'.$val['act'];
         $res1 = Db::name('admin_role')->where(["value"=> $value])->find();
         if($res1){
             if(in_array($val['act'], ['','0/0','/0','0/','/'])){
                 return jserror('已存在该权限');exit;
             }
         }
-        $data = input('post.');
+        $data = $val;
         $data['value'] = $value;
         $data = array_merge($data,$this->common_tag);
         $res =Db::name('admin_role')->insert($data); 
@@ -420,38 +427,88 @@ class Config extends Admin
         $this->assign("page",$page);
         return view();
     }
-    public function pay_setting(){
+
+
+//自定义参数
+    public function custom_config()
+    {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isPost()){
-            $data = input('post.');
-            $res = extraconfig(input('post.'),'pay_setting');
+            $data = input("post.");
+            if($data['key']=='' ){
+                return jserror('key不能为空');exit;
+            }
+            //判断键是否存在
+            $is = Db::name('config')->where([['key','=',$data['key']],['status','<>','9']])->find();
+            if($is){
+                return jserror('该键已存在');exit;
+            }
+            $res =Db::name('config')->insert($data);
             if($res){
-                return jssuccess('保存成功');die;
+                return jssuccess('新增成功');
             }else{
-                return jserror('保存失败');die;
-            }   
+                return jserror('新增失败');exit;
+            }
         }
-        $type = input('type','微信');
-        $this->assign("type",$type);
-        $this->assign("config",config()['pay_setting']);
+
+        $list = Db::name('config')->where([['status','<>',9]])->order("sort desc,id asc")->select();
+        $this->assign('list',$list);
         return view();
     }
-    public function login_setting(){
+
+    public function custom_config_edit($id)
+    {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isPost()){
-            $data = input('post.');
-            $res = extraconfig(input('post.'),'login_setting');
+            $data = input("post.");
+            $res =  Db::name('config')->where(['id'=>$data['id']])->update($data);
             if($res){
-                return jssuccess('保存成功');die;
+                return jssuccess('修改成功');
             }else{
-                return jserror('保存失败');die;
-            }   
+                return jserror('修改失败');
+            }
         }
-        $type = input('type','QQ');
-        $this->assign("type",$type);
-        $this->assign("config",config()['login_setting']);
+        $res = Db::name('config')->where(['id'=>$id])->find();
+        $this->assign('res',$res);
         return view();
     }
+
+
+
+   
+
+    // public function pay_setting(){
+    //     admin_role_check($this->z_role_list,$this->mca,1);
+    //     if(request()->isPost()){
+    //         $data = input('post.');
+    //         $res = extraconfig(input('post.'),'pay_setting');
+    //         if($res){
+    //             return jssuccess('保存成功');die;
+    //         }else{
+    //             return jserror('保存失败');die;
+    //         }   
+    //     }
+    //     $type = input('type','微信');
+    //     $this->assign("type",$type);
+    //     $this->assign("config",config()['pay_setting']);
+    //     return view();
+    // }
+    // public function login_setting(){
+    //     admin_role_check($this->z_role_list,$this->mca,1);
+    //     if(request()->isPost()){
+    //         $data = input('post.');
+    //         $res = extraconfig(input('post.'),'login_setting');
+    //         if($res){
+    //             return jssuccess('保存成功');die;
+    //         }else{
+    //             return jserror('保存失败');die;
+    //         }   
+    //     }
+    //     $type = input('type','QQ');
+    //     $this->assign("type",$type);
+    //     $this->assign("config",config()['login_setting']);
+    //     return view();
+    // }
     
 
     

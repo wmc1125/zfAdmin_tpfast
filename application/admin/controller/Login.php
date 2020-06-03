@@ -37,8 +37,40 @@ class Login extends Controller
         if(session('admin')){
             $this->error('你已登录,不需要重复登录','index/index'); 
         }else{
+            //判断是否认证
+            if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
+                $this->error('请先认证系统','login/authentication_sys'); 
+            }
             return view();
         }
+    }
+    public function authentication_sys(){
+        if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
+                $t = input('t','');
+                if($t=='qrcode'){
+                    $email = input('post.email');
+                    // http://v1.fast.zf.90ckm.com/addons/zf_soft_plugins.api/vfast_create
+                    $this->site_domain = $_SERVER['SERVER_NAME'];//顶级域名
+                    $this->email = $email;
+                    $this->pro = '30';//产品ID
+                    $url = 'http://mctool.wangmingchang.com/api/tool/create_qr_code?msg=site_domain@-'.$this->site_domain.'---email@-'.$this->email.'---pro@-'.$this->pro;
+                    return jssuccess($url);
+                }elseif($t=='save'){
+                    $data = input('post.');
+                    if($data['email']!='' && $data['key']!=''  && $data['sc']!='' )
+                    $res = extraconfig($data,'zf_auth');
+                    if($res){
+                        return jssuccess('保存成功');die;
+                    }else{
+                        return jserror('保存失败');die;
+                    }  
+                }
+
+                
+                return view();
+        }
+        
+
     }
 
     /**

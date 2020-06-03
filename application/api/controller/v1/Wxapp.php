@@ -18,328 +18,420 @@ use think\facade\Request;
 use think\Db;
 use think\Controller;
 use EasyWeChat\Factory;
+use Wmc1125\TpFast\GoogleAuthenticator;
+
 class Wxapp extends Controller
 {
   
+    //验证是否有权限使用
+    public function __construct ( Request $request = null )
+    {
+        // $appkey = Request::instance()->header("appkey");
+        // if($appkey!='zf'){
+        //     return jserror("no appkey");die;  
+        // }
+        $this->config = [
+            'app_id' => 'wx5ee50f540ed88d4c',
+            'secret' => '5eaee25463b70d811bd87b1655ae1579',
+        
+            // 下面为可选项
+            // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+            'response_type' => 'array',
+        
+            'log' => [
+                'level' => 'debug',
+                'file' => __DIR__.'/wechat.log',
+            ],
+        ];
+    }
+    public function get_openid()
+    {
+        // $code = input("code");
+        // $appid = 'wx5ee50f540ed88d4c';
+        // $appsecret = '5eaee25463b70d811bd87b1655ae1579';
+        // $weixin =  file_get_contents("https://api.weixin.qq.com/sns/jscode2session?appid=".$appid."&secret=".$appsecret."&js_code=".$code."&grant_type=authorization_code");//通过code换取网页授权access_token
+        // $jsondecode = json_decode($weixin); //对JSON格式的字符串进行编码
+        // $array = get_object_vars($jsondecode);//转换成数组
+        // return  jssuccess($array['openid']);//输出openid
+        // dump($array);die;
+        
+        $code = input("code");
+        $miniProgram = Factory::miniProgram($this->config);
+        $data = $miniProgram->auth->session($code);
+        $data['token'] = '';
+        return  jssuccess($data);//输出session
+    }
+  // 用户登录
     public function login()
     {
-      $data1 = input('post.');
-      $userinfo = $data1['userinfo'];
-      
-      $data['nickName'] = $userinfo['nickName'];
-      $data['name'] = $userinfo['nickName'];
-      $data['sex'] = $userinfo['gender'];
-      $data['avatarUrl'] = $userinfo['avatarUrl'];
-      $data['pic'] = $userinfo['avatarUrl'];
-      $data['openid'] = $data1['openid'];
+      $userinfo = input("post.");
+      $data['nickName'] = $userinfo['userinfo']['nickName'];
+      $data['name'] = $userinfo['userinfo']['nickName'];
+      $data['sex'] = $userinfo['userinfo']['gender'];
+      $data['avatarUrl'] = $userinfo['userinfo']['avatarUrl'];
+      $data['pic'] = $userinfo['userinfo']['avatarUrl'];
+       $data['openid'] = $userinfo['openid'];
+       $data['api_key'] = zf_encrypt($userinfo['openid']);
+        // $decrypt = zf_decrypt('0ZabjJdln52Kr86Rr31iypuXmKSnZpmam4isow==', $key);//解密
       $data['ctime'] = time();
       if($data['openid']==''){
         return jserror("error");die;
       }
-
       //判断是否已经存在
-      $res_is = Db::name('user')->where("openid='".$data['openid']."'")->find();
+        $res_is = Db::name('user')->where("openid='".$data['openid']."'")->find();
       if(!$res_is){
         $res = Db::name('user')->data($data)->insert();
-        if(!$res){
+          if(!$res){
           return jserror("写入失败");die;
-        }
+          }
       }
-      $suser = Db::name('user')->where("openid='".$data['openid']."'")->find();
-      return jssuccess(['user'=>$suser,'rand'=>time()]);
+        return jssuccess("ok");
     }
-    public function get_openid()
+
+    //获取模板消息formid
+    public function template_get()
     {
-        $code = input("code");
-        $appid = 'wxc14c7d03e7bab5f8';
-        $appsecret = '886a5beab7b4578ea6a20b3d715f7a4d';
-        $weixin =  file_get_contents("https://api.weixin.qq.com/sns/jscode2session?appid=".$appid."&secret=".$appsecret."&js_code=".$code."&grant_type=authorization_code");//通过code换取网页授权access_token
-        $jsondecode = json_decode($weixin); //对JSON格式的字符串进行编码
-        $array = get_object_vars($jsondecode);//转换成数组
-        $data['session_key'] = $array['session_key'];
-        $data['openid'] = $array['openid'];
-        return  jssuccess($data);//输出openid
-    }
-
-    // public function login_pic(){
-    //   $str = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543122506653&di=49264e19f3abe1da5b5c909824f73e5b&imgtype=0&src=http%3A%2F%2Fws3.sinaimg.cn%2Fbmiddle%2F9150e4e5ly1fczhkcvmn5j20d80hstbw.jpg';
-    //     return jssuccess($str);
-    // }
-    public function index(){
-      // $page = input('page',1);
-      // $msg['list'] = Db::name('user_pic')->where(['status'=>1])->page($page,8)->order("id desc")->select();
-      $cid = input('cid','');
-      if($cid!='' && $cid!='{cid'){
-          $where[] = ['cid','=',$cid];
+      $data['formid'] = input("post.formId");
+      $data['openid'] = input("post.openid");
+      $data['create_time'] = time();
+        $data['status'] = 1;
+      $data['end_time'] = time()+ 7*60*60*24;
+        if($data['formid']=='the formId is a mock one'){
+            return jserror("请在真机上使用");die;
+        }
+      $res_is = Db::name('xcx_user_tpl')->where("formid='".$data['formid']."'")->find();
+      if(!$res_is){
+        $res = Db::name('xcx_user_tpl')->data($data)->insert();
+          if(!$res){
+          return jserror("写入失败");die;
+          }
       }
-      // $where[] = [];
-      $where[] = ['status','=',1];
-      $list = Db::name('doutu_post')->where($where)->order("sort desc,id desc")->limit(100)->select();
-        
-
-      return jssuccess($list);
+        return jssuccess("ok");
     }
-    public function user_list_img(){
-      $page = input('page',1);
-      $openid = input('openid',1);
+    public function send_subscribe_message()
+    {
+        $miniProgram = Factory::miniProgram($this->config);
 
-      $msg['list'] = Db::name('user_pic')->where(['status'=>1,'openid'=>$openid])->page($page,8)->order("id desc")->select();
-      
-      return jssuccess($msg);
-    }
-    public function img_detail(){
-      $id = input('id',1);
-      $msg['detail'] = Db::name('user_pic')->where(['id'=>$id,'status'=>1])->find();
-      return jssuccess($msg);
+        $data = [
+            'template_id' => 'pWDZvXInnz-Ma8L97U2l_9y8rfQR20DZK1J4H1LVn6M', // 所需下发的订阅模板id
+            'touser' => 'oefTb4l9ZMmZzG2eg43nn-a9fQxA',     // 接收者（用户）的 openid
+            'page' => '/pages/tool/index',       // 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数,（示例index?foo=bar）。该字段不填则模板无跳转。
+            'data' => [         // 模板内容，格式形如 { "key1": { "value": any }, "key2": { "value": any } }
+                'time2' => [
+                    'value' => date("Y-m-d",time()),
+                ],
+                'thing3' => [
+                    'value' => '呜呜呜呜呜呜呜呜',
+                ],
+            ],
+        ];
+
+
+        $r = $miniProgram->subscribe_message->send($data);
+        dd($r);
     }
 
+
+    // 获取数量
+    public function template_num()
+    {
+      $data['openid'] = input("post.openid");
+      $num = Db::name('xcx_user_tpl')->where("status=1 and openid='".$data['openid']."' and end_time > ".time())->count();
+      return jssuccess($num);
+    } 
+
+    //获取用户key
+    public function get_user_key()
+    {
+        $data['openid'] = input("post.openid");
+        $res = Db::name('user')->field("api_key")->where("openid='".$data['openid']."'")->find();
+        if($res['api_key']==''){
+            //如果不存在,更新
+            $data1['api_key'] = zf_encrypt($data['openid']);
+            Db::name('user')->where("openid='".$data['openid']."'")->data($data1)->update();
+            $res['api_key'] = $data1['api_key'];
+        }
+        return jssuccess($res);
+    } 
+
+    //扫描登陆(ing)
+    public function scan()
+    {
+        $data1['openid'] = input("post.openid");
+        $scene = input("post.scene");// $scene = "pages/index/index?scene=xcx5471543204811";
+
+        //查找是否有该用户
+        $res = Db::name('user')->where("openid='".$data1['openid']."'")->find();
+        if(!$res){
+            return jserror("用户未授权");die;
+        }
+
+        //通过url 点击确认扫描成功
+        $act_code = trim(strrchr($scene, '='),'=');
+        // 更新小程序登陆信息
+        $data['openid'] = $data1['openid'];
+        $data['check_code'] =  $act_code ;
+        $data['check_time'] = time();
+
+
+        $update_is = Db::name('xcx_login')->where("act_code='".$act_code."'")->data($data)->update();
+        // echo $update_is;
+        if($update_is){
+            return jssuccess("ok");
+        }else{
+            return jserror("登陆失败");
+        }
+
+    }
+    //google auth
+    public function get_googleauth()
+    {
+        $data1['openid'] = input("post.openid");
+        $scene = input("post.scene");// 
+        // $data1['openid'] = 'oefTb4l9ZMmZzG2eg43nn-a9fQxA';
+        // $scene='otpauth://totp/zf-1?secret=Y67N442CU2G4CIAG';
+        //查找是否有该用户
+        $res = Db::name('user')->where("openid='".$data1['openid']."'")->find();
+        if(!$res){
+            return jserror("用户未授权");die;
+        }
+
+        $r = explode('otpauth://totp/',$scene)[1];
+        // 更新google信息
+        $data['openid'] = $data1['openid'];
+        $data['secret'] =  explode('=',$r)[1] ;
+        $data['ctime'] = time();
+        $data['append'] = explode('?',$r)[0];
+        $data['name'] = explode('?',$r)[0];
+        $data['url'] = $scene;
+
+        $update_is = Db::name('google_auth')->insert($data);
+        // echo $update_is;
+        if($update_is){
+            return jssuccess("ok");
+        }else{
+            return jserror("error");
+        }
+
+    }
+    public function googleauth()
+    {
+        $openid = input("post.openid");
+        $list = Db::name('google_auth')->field("*,DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d %H:%i:%s') as date")->where(['openid'=>$openid])->select();
+        // echo $update_is;
+        $ga = new GoogleAuthenticator();
+        foreach($list as $k=>$vo){
+            $secret = $vo['secret'];
+            $qrCodeUrl = $ga->getQRCodeGoogleUrl($vo['name'], $secret);
+            $list[$k]['oneCode'] = $ga->getCode($secret);
+        }
+        $getTime = $ga->getTime(2);    // 2 = 2*30sec clock tolerance
+        $r['list'] = $list;
+        $r['djs'] = $getTime;
+
+        if($list){
+            return jssuccess($r);
+        }else{
+            return jserror("error");
+        }
+
+    }
+    public function google_del(){
+        $id = input('id');
+        $res = Db::name('google_auth')->where(['id'=>$id])->delete();
+        if($res){
+            return jssuccess("ok");
+        }else{
+            return jserror("error");
+        }
+    }
+    public function google_edit(){
+        $id = input('post.id','');
+        $append = input('post.append','');
+        $res = Db::name('google_auth')->where(['id'=>$id])->update(['append'=>$append]);
+        if($res){
+            return jssuccess("ok");
+        }else{
+            return jserror("error");
+        }
+    }
+
+    
     // 图床系统
     public function imgup()
     {
-      $file = request()->file('file');
-      $openid = input('openid',0);
-      $info = $file->rule('date')->validate(['size'=>1048576000,'ext'=>'jpg,png,gif,txt,pdf,doc,mp4,mp3'])->move( './upload/filex');//100m
-      if($info){
-          $data['title'] = $info->getFilename();
-          $data['file_url'] = Request::instance()->domain().'/upload/filex/'. $info->getSaveName();
-          $data['path'] = '/upload/filex/'. $info->getSaveName();
-          $data['create_time'] = time();
-          $data['openid'] = $openid;
-          $res =Db::name('file')->insertGetId($data);
-          if($res){
-            // $img = '.'.$data['path'];
-            // $base64_img = base64EncodeImage($img);
-              //进行人脸识别
-              $file_img_url = $data['file_url'];
-              $token = $this->access_token();
-              $url = 'https://aip.baidubce.com/rest/2.0/face/v3/detect?access_token=' . $token;
-              $bodys = '{"image":"'.$file_img_url.'","image_type":"URL","face_field":"beauty,age,expression,gender,emotion,race"}';
-              // $bodys = '{"image":"'.$base64_img.'","image_type":"BASE64","face_field":"beauty,age,expression,gender,emotion,race"}';
-              $res = request_post($url, $bodys);
-              $data = json_decode($res);
-              // echo $file_img_url;
-              // dd($data);
-              if($data->error_code==0){
-                  $ret['beauty'] = $data->result->face_list[0]->beauty;//颜值
-                  $ret['age'] = $data->result->face_list[0]->age;//年龄
-                  $ret['gender'] = $data->result->face_list[0]->gender->type=='female'?'女性':'男性';//性别
-                  $ret['race'] = $data->result->face_list[0]->race->type;//种族
-                  $ret['create_time'] = time();
-                  $ret['url'] = $file_img_url;
-                  $ret['fid'] = $res;
-                  $ret['openid'] = $openid;
-                  $res_ret =Db::name('user_pic')->insertGetId($ret);
-                  if($res_ret){
-                    return jssuccess($res_ret);
-                  }else{
-                    return jserror('写入失败2');
-                  }
-              }else{
-                return jserror('未识别出...');
-              }
-          }else{
-            return jserror('写入失败1');
-          }
-      }else{
-          return jserror($file->getError());
-      }
+        // $upload_file = $_FILES["file"]["tmp_name"];
+        // $json = mc_sinaupload('13170384230','13170384230..','multipart',$upload_file);
+        // // $json = '{"code":"200","width":500,"height":454,"size":15633,"pid":"007goYVsgy1fvflw4foa8j30dw0cm74g","url":"http:\/\/ws3.sinaimg.cn\/thumb150\/007goYVsgy1fvflw4foa8j30dw0cm74g.jpg"}';
+        // $r = json_decode($json,true);
+        // $data['sina_id'] = $r['pid'];
+        // $res = Db::name('file')->insert($data);
+        // if($res)
+        // {
+        //     return "http://ws3.sinaimg.cn/large/".$data['sina_id'].".jpg";
+        // }else{
+        //     return "上传失败";
+        // }  
+        $img_config = config()['img'];
+        $file = $_FILES['file'];
+        $msg = $this->aliyunoss($img_config,$file,$file['tmp_name']);
+        if($msg){
+            return jssuccess($msg);
+        }else{
+            return jserror("error");
+        }
        
     }
-  
-    public function access_token(){
-      // access_token
-      $url = 'https://aip.baidubce.com/oauth/2.0/token';
-      $post_data['grant_type']       = 'client_credentials';
-      $post_data['client_id']      = 'Gfs4GPRlY1WXmi0PMag2hYsz';
-      $post_data['client_secret'] = 'BXGYa98IbiTGyxa0lwIlyBcuSxj1dtYh';
-      $o = "";
-      foreach ( $post_data as $k => $v ) {
-          $o.= "$k=" . urlencode( $v ). "&" ;
-      }
-      $post_data = substr($o,0,-1);
-      $res = request_post($url, $post_data);
-      $refresh_token = json_decode($res)->access_token;
-      // refresh_token;
-      return  $refresh_token;
-  }
-  public function category_detail(){
-    $cid = input('cid',0);
-    $res = Db::name('category')->where(['cid'=>$cid])->find();
-    return jssuccess($res);
+    public function aliyunoss($img_config,$file,$tmp_name){
+        $ossconfig = [
+            'KeyId'      => $img_config['ali_ACCESSKEY'],  //您的Access Key ID
+            'KeySecret'  => $img_config['ali_SECRETKEY'],  //您的Access Key Secret
+            'Endpoint'   => $img_config['ali_DOMAIN'],  //阿里云oss 外网地址endpoint
+            'Bucket'     => $img_config['ali_BUCKET'],  
+        ];
+        //获取文件后缀
+        $file_name = $file['name'];
+        $today = date('Ymd', time());
+        //得到文件名
+        $file_name = 'image/'.$today.'/'.time().'_'.$file_name;
+        //实例化OSS
+        $ossClient = new AliOssClient($ossconfig['KeyId'], $ossconfig['KeySecret'], $ossconfig['Endpoint']);
+        try {
+            //执行阿里云上传
+            $result = $ossClient->uploadFile($ossconfig['Bucket'],'demo_zf_test/public/upload/simple/'. $file_name, $tmp_name);
+            return $result['info']['url'];
+        } catch (OssException $e) {
+            return $e->getMessage();
+        }
+    }
+    public function category_detail(){
+        $cid = input('cid');
+        $res = Db::name('category')->where("cid=".$cid)->find();
+        return jssuccess($res);
 
-  }
-
-
-
-  
-    // public function brand(){
-    //  $brand_list = Db::name('category')->where(['pid'=>1])->order("sort asc,cid asc")->select();
-    //     return jssuccess($brand_list);
-    // }
-
-
-    // public function post_list_c(){
-    //     $cid = input("cid",'0');
-        
-    //    $r['res'] = Db::name('category')->field("cid,name,icon,summary")->where("cid=".$cid)->find();
-    //    $r['child_cate'] = Db::name('category')->field("cid,name,icon")->where(["pid"=>$cid,'status'=>1])->order("sort asc,cid asc")->select();
-    //     foreach($r['child_cate'] as $k=>$vo){
-    //    $r["child_cate"][$k]['list'] = Db::name('post')->field("id,title,pic,summary")->where(["cid"=>$vo['cid'],'status'=>1])->order("sort asc,cid asc")->select();
-    //     }
-    //     return jssuccess($r);
-    // }
-  //详情
-    // public function detail($id){
-    //  if(!$id){
-    //    return jserror();
-    //  }
-    //   $res = Db::name('post p')
-    //           ->field('p.*,c.pid cpid')
-    //           ->where(["p.id"=>$id])
-    //           ->join('zf_category c','c.cid = p.cid')
-    //           ->find();
-    //   $top_name = Db::name('category')->field('ccname,name')->where(['cid'=>$res['cpid']])->find();
-    //   $res['top_name'] = ($top_name['ccname']==''?$top_name['name']:$top_name['ccname']);
-    //   //更新记录
-    //   Db::name('post')->where(["id"=>$id])->setInc('hits');
-
-    //   //评论
-    //   $res['comment'] = Db::name('user_comment c')
-    //                     ->field('c.content,c.ctime,u.name,u.pic')
-    //                     ->where(["c.gid"=>$id,'c.status'=>1])
-    //                     ->join('zf_user u','u.id = c.uid')
-    //                     ->order('c.ctime desc')
-    //                     ->select();
-    //   foreach($res['comment'] as $k=>$vo){
-    //     $res['comment'][$k]['time'] = date("Y-m-d H:i:s",$vo['ctime']);
-    //   }
-
-
-
-    //   return jssuccess($res);
-    // }
-    // public function ceping(){
-    //   $cid = input("cid",'409');
-    //  $list = Db::name('post')->field("id,title,pic,summary")->where(["cid"=>$cid,"status"=>1])->order("sort asc,cid asc")->select();
-    //   return jssuccess($list);
-    // }
-    // public function ajax_comment(){
-    //   $data = input();
-    //   // dd($data);
-    //   $data['ctime'] = time();
-    //   $data['status'] = 1;
-    //   $res = Db::name('user_comment')->insert($data);
-    //   if($res){
-
-    //     $comment = Db::name('user_comment c')
-    //                     ->field('c.content,c.ctime,u.name,u.pic')
-    //                     ->where(["c.gid"=>$data['gid'],'c.status'=>1])
-    //                     ->join('zf_user u','u.id = c.uid')
-    //                     ->order('c.ctime desc')
-    //                     ->select();
-    //     foreach($comment as $k=>$vo){
-    //       $comment[$k]['time'] = date("Y-m-d H:i:s",$vo['ctime']);
-    //     }
-    //     return jssuccess($comment);
-    //   }else{
-    //     return jserror('error');
-    //   }
-    // }
-
-
-
-
-    // public function posts(){
-   //   if(input("keyword")){
-   //        $keyword = input("keyword"); 
-   //        $where = "status=1 and cid !=47 and  (title like '%$keyword%'  or content like '%$keyword%') ";
-   //   }else{
-   //        $where['title'] = '';
-   //      }
-   //      //分页
-   //     if(input("length")){
-   //        $length = input("length");
-   //        $limit= $length .",20";
-   //      }else{
-   //       $limit='20';
-   //      }
-
-   //      if(input('tb')){
-   //        $list = Db::name(input('tb'))->field("id,title,hits,pic")->where($where)->limit($limit)->order("id desc")->select();
-   //      }else{
-   //        $list = Db::name('post')->field("id,title,hits")->where($where)->limit($limit)->order("sort desc,id desc")->select();
-   //      }
-   //  // echo DB('biaoqingbao')->getlastsql();
-   //      return jssuccess($list);
-   //  }
-  
-  //banner
-  //  public function banner(){
-  //    $list = Db::name('advert')->where("pid=5")->order("sort asc,id asc")->select();
-    // $msg['banner'] = $list;
-  //      $z_count = Db::name('post')->where("status=1")->count();
-      
-  //      //$beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));  
-    // //$endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;  
-  //      //$now_count = Db::name('post')->where("status=1 and ".$beginToday."< create_time <".$endToday)->count();
-  //      $msg['pmd'] = '全部话术:780  表情包 10w+';
-  //       return jssuccess($msg);
-  //   }
-  // //专题列表
-  //  public function post_list_zt(){
-  //      $cid = 47;
-  //     //分页
-  //      if(input("length")){
-  //         $length = input("length");
-  //         $limit= $length .",20";
-  //       }else{
-  //        $limit='20';
-  //       }
-  //    $list = Db::name('post')->field("id,title,create_time,pic,hits")->where("cid=".$cid)->limit($limit)->order("sort desc,id desc")->select();
-  //     if(is_array($list)){
-  //       foreach($list as $k=>$vo){
-  //         $list[$k]['create_time'] = date("Y/m/d",$vo['create_time']);
-  //         $list[$k]['author'] ="土味君";
-  //         $list[$k]['author_pic'] = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546696291&di=e9fc4f57ea969267f20fb0c0e05af41c&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201504%2F18%2F20150418H0058_xX2fE.thumb.700_0.jpeg';
-
-  //         $list[$k]['pic'] =  ($vo['pic']==''?'https://image.weilanwl.com/img/4x3-1.jpg':$vo['pic']);
-  //       }
-  //     }
-  //       return jssuccess($list);
-  //   }
-  
-
-    // public function sys_page($k){
-   //   if($k=='contact'){
-   //       $cid = 44;
-   //      }elseif($k=='cjwt'){
-   //       $cid = 45; 
-   //      }elseif($k=='ziliao'){
-   //       $cid = 46;
-   //      }
-   //   $res = Db::name('category')->where("cid=".$cid)->find();
-
-   //      return jssuccess($res);
-   //  }
-
+    }
     //小程序推荐
-//     public function xcxtuijian()
-//     {
-//       //echo input("length");die;
-//         $cid=49;
-//         if(input("length")){
-//           $length = input("length");
-//             $limit= $length .",8";
+    public function xcxtuijian()
+    {
+      //echo input("length");die;
+        $cid=35;
+        if(input("length")){
+          $length = input("length");
+            $limit= $length .",8";
 
-//         }else{
-//             $limit='8';
-//         }
-// //      echo $limit;die;
-//         $list = Db::name('post')->field("id,title,pic,summary,url,append")->where("cid=".$cid)->limit($limit)->order("id desc")->select();
-//         return jssuccess($list);
-//     }
+        }else{
+            $limit='8';
+        }
+//      echo $limit;die;
+        $list = Db::name('post')->field("id,title,pic,summary,url,append")->where("cid=".$cid)->limit($limit)->order("id desc")->select();
+        return jssuccess($list);
+    }
+    //收款多码
+    public function make_pay()
+    {
+
+        $data['wxpay'] = input('post.wx');
+        $data['alipay'] = input('post.zfb');
+        $data['openid'] = input('post.openid');
+
+        $data['status'] = 1;
+        $data['create_time'] = time();
+        //查询是否已经生成
+        $see = Db::name('pay_code')->field("id,wxpay,alipay,create_time,code")->where("alipay='".$data['alipay'] ."' and wxpay = '".$data['wxpay']."'")->find();
+        if($see){
+            return jserror("应经申请过");die;
+        }
+        
+        $id = Db::name('pay_code')->insertGetId($data);
+        $updata['code'] =  qrcode_msg_js('https://tool.wangmingchang.com/api/tool/pay_code.html?id='. $id);
+        $update_is = Db::name('pay_code')->where("id='".$id."'")->data($updata)->update();
+        if($update_is){
+            return jssuccess("已生成");die;
+        }else{
+            return jserror("生成失败");die;
+        }
+    } 
+    public function yhq(){
+        $this->appKey = '5d5b93fcac103';//应用的key
+        $this->appSecret = 'd7fa1e55d2410a4e7e22c799fc0a6015';//应用的Secret
+        //默认必传参数
+        $data = [
+            'appKey' => $this->appKey
+        ];
+        $keyword = input('keyword','');
+        $page = input('page',1);
+        if($keyword==''){
+            //商品列表
+            $this->host = 'https://openapi.dataoke.com/api/goods/get-goods-list';
+            $data['sort'] = 3;
+            $data['version'] = '1';
+            $data['pageSize'] = 100;
+            if($page){
+                $data['pageId'] = $page;
+            }
+        }else{
+            //搜索
+            $this->host = 'https://openapi.dataoke.com/api/goods/list-super-goods';
+            $data['sort'] = 'total_sales';//排序字段信息 销量（total_sales） 价格（price），排序_des（降序），排序_asc（升序）
+            $data['type'] = 0; //0-综合结果，1-大淘客商品，2-联盟商品
+            $data['keyWords'] = $keyword;
+            $data['version'] = 'v1.1.0';
+            if($page){
+                $data['pageId'] = $page;
+            }
+        }
+        //加密的参数
+        $data['sign'] = dtk_makeSign($data,$this->appSecret);
+        //拼接请求地址
+        $url = $this->host .'?'. http_build_query($data);
+        //执行请求获取数据
+        $output = https_get($url);
+        dd(json_decode($output));
+        return $output;die; 
+
+    }
+    public function yhq_change_url(){
+        $this->appKey = '5d5b93fcac103';//应用的key
+        $this->appSecret = 'd7fa1e55d2410a4e7e22c799fc0a6015';//应用的Secret
+        //默认必传参数
+        $data = [
+            'appKey' => $this->appKey,
+            'version'=>'v1.0.5'
+        ];
+        $data['goodsId'] = input('goods_id');
+        $this->host = 'https://openapi.dataoke.com/api/goods/get-privilege-link';
+
+        //加密的参数
+        $data['sign'] = dtk_makeSign($data,$this->appSecret);
+        //拼接请求地址
+        $url = $this->host .'?'. http_build_query($data);
+        //执行请求获取数据
+        $output = https_get($url);
+        dd(json_decode($output));
+        return $output;die; 
+    }
 
 
-   
-    
+    public function create_sq(){
+        $scene = input('post.scene','site_domain@-v1.fast.zf.90ckm.com---email@-287851074@qq.com---pro@-30');
+        $_arr = explode('---', $scene);
+        foreach ($_arr as $key => $value) {
+            $_str = explode('@-', $value);
+            $arr[$_str[0]] = $_str[1];
+        }
+        if(!isset($arr['site_domain']) || !isset($arr['email']) || !isset($arr['pro']) || $arr['pro']=='' || $arr['site_domain']=='' || $arr['email']==''){
+            return jserror('参数不完整');
+        }
+        $data['email'] = $arr['email'];
+        $data['site_domain'] = $arr['site_domain'];
+        $data['pro'] = $arr['pro'];//产品ID
+        $url='http://v1.fast.zf.90ckm.com/addons/zf_soft_plugins.api/vfast_create';
+        $ret_json = https_post($url,$data);
+        $ret = object_to_array(json_decode($ret_json));
+        return jssuccess($ret) ;
+
+
+    }
+
+
 }

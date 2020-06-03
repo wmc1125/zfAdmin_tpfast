@@ -16,13 +16,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '120.78.193.246',
+    'hostname'        => '127.0.0.1',
     // 数据库名
     'database'        => 'v1_fast_zf_90ckm',
     // 用户名
     'username'        => 'v1_fast_zf_90ckm',
     // 密码
-    'password'        => 'krrxReeZKtpzCw6L1',
+    'password'        => 'krrxReeZKtpzCw6L',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
@@ -57,4 +57,23 @@ return [
     'builder'         => '',
     // Query类
     'query'           => '\think\db\Query',
+
+    'mongodb'=>[
+          // 数据库类型
+        'type'           => '\think\mongo\Connection',
+        // 设置查询类
+        'query'          => '\think\mongo\Query',
+        'hostname' => '127.0.0.1',
+        'database' => 'v1_fast', //数据库名
+        'hostport'    =>   27017,
+        'username'=>'',
+        'password'=>'',
+        'charset' => 'utf8',
+        'prefix'  =>'',
+        // 强制把_id转换为id
+        'pk_convert_id'  => true,
+    ]
+
+
+
 ];
