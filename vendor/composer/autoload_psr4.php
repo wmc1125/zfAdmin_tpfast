@@ -9,8 +9,7 @@ return array(
     'think\\helper\\' => array($vendorDir . '/topthink/think-helper/src'),
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
-    'think\\' => array($vendorDir . '/topthink/think-image/src', $vendorDir . '/zz-studio/think-addons/src'),
+    'think\\' => array($vendorDir . '/topthink/think-image/src', $vendorDir . '/wmc1125/think-addons/src'),
     'app\\' => array($baseDir . '/application'),
     'Wmc1125\\TpFast\\' => array($vendorDir . '/wmc1125/tpfast-public/src'),
-    'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
 );

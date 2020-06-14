@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="key" class="zf_key" value="">
-                        <span class="layui-btn layui-btn-fluid scan_btn" >微信扫描获取</span>
+                        <span class="layui-btn layui-btn-fluid scan_btn" >发送到邮箱</span>
                     </form>
                 </div>
             </div>
@@ -54,11 +54,7 @@
 
     
     <div class="layui-trans layadmin-user-login-footer">
-      <!-- <p>© 2018 <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">在线获取</a></p>
-      <p>
-          <span><a href="https://www.wangmingchang.com" target="_blank">王明昌博客</a></span>
-          <span><a href="http://bbs.wangmingchang.com" target="_blank">Mc技术论坛</a></span>
-      </p> -->
+      
     </div>
   </div>
   <script src="__STATIC__/style/layer/layer.js"></script>  
@@ -74,10 +70,10 @@
           success:function(res){
             if(res.result==1){
                 // var qrcode =  "<img src='"+res.msg+"' />"
-                var qrcode = '<div style="padding: 50px 40p;  background-color: #393D49; color: #fff; font-weight: 300; "><img style="width:250px;height:250px;" src="'+res.msg+'" /></div>';
+                var qrcode = res.msg;
                 layer.confirm(qrcode, {
                   btn: ['输入Key/sc','取消'], //按钮
-                  title:'使用小程序 "mctool" 进行扫描'
+                  title:'消息'
                 }, function(){
                   layer.prompt({title: '输入Key，并确认', formType: 1}, function(pass, index){
                     layer.close(index);

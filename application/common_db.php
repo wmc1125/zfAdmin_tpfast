@@ -130,8 +130,8 @@ function get_post_number($cate_tb,$id){
     return 0;
   }
 }
-function get_caiji_log_sum($cid){
-    $sum =  Db::name("caiji_list_log")-> where(["cid"=>$cid] )->count();
+function get_caiji_log_sum($cid,$tb='caiji_list_log'){
+    $sum =  Db::name($tb)-> where(["cid"=>$cid] )->count();
     if($sum){
         return $sum;
     }else{

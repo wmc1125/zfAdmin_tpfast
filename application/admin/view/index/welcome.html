@@ -16,11 +16,49 @@
     <div class="layui-row layui-col-space15">
       <div class="layui-col-md12">
         <blockquote class="layui-elem-quote layui-bg-green">
-          <div id="nowTime">亲爱的{$Think.session.admin.name} 欢迎使用子枫后台管理系统(TpFast系列)模版,在使用过程中有什么问题,可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mc技术论坛</a>留言。当前时间为： <span id="datetime"></span> </div>
+          <div id="nowTime">亲爱的{$Think.session.admin.name} 欢迎使用子枫后台管理系统(Tp5系列)模版,在使用过程中有什么问题,可以在<a class="layui-btn layui-btn-xs" href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank">Mc技术论坛</a>留言。当前时间为： <span id="datetime"></span> </div>
         </blockquote>
       </div>
       
       <div class="layui-col-md8">
+        <div class="layui-card">
+          <div class="layui-card-header">版本信息</div>
+          <div class="layui-card-body layui-text">
+            <table class="layui-table">
+              <colgroup>
+                <col width="100">
+                <col>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>当前版本</td>
+                  <td>
+                    
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(Tp5系列){:config()['version']['version']}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>基于框架</td>
+                  <td>
+                    <a href="http://www.thinkphp.cn"  target="_blank" >Tp5.1</a> + <a href="https://www.layui.com" target="_blank" >layui</a> + <a href="https://gitee.com/yinqi/Light-Year-Admin-Template" target="_blank" >光年后台模板</a>
+                </td>
+                </tr>
+                <tr>
+                  <td>主要特色</td>
+                  <td>零门槛 / 响应式 / 清爽 / 极简 / 快速开发</td>
+                </tr>
+                <tr>
+                  <td>获取渠道</td>
+                  <td style="padding-bottom: 0;">
+                    <div class="layui-btn-container">
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div class="layui-row layui-col-space15">
           
           <div class="layui-col-sm12 layui-col-md12">
@@ -79,106 +117,49 @@
             </div>
           </div>
         </div>
-        <div class="layui-card ">
-          <div class="layui-card-header">更新日志</div>
-          <div class="layui-card-body layui-text">
-            <ul class="layui-timeline">
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                <div class="layui-timeline-content layui-text">
-                  <h3 class="layui-timeline-title">8月18日</h3>
-                  <p>
-                    layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
-                    <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
-                    <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
-                  </p>
-                </div>
-              </li>
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                <div class="layui-timeline-content layui-text">
-                  <h3 class="layui-timeline-title">8月16日</h3>
-                  <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。个人最爱的名篇有：</p>
-                  <ul>
-                    <li>《登高》</li>
-                    <li>《茅屋为秋风所破歌》</li>
-                  </ul>
-                </div>
-              </li>
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                <div class="layui-timeline-content layui-text">
-                  <h3 class="layui-timeline-title">8月15日</h3>
-                  <p>
-                    中国人民抗日战争胜利72周年
-                    <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
-                    <br>铭记、感恩
-                    <br>所有为中华民族浴血奋战的英雄将士
-                    <br>永垂不朽
-                  </p>
-                </div>
-              </li>
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                <div class="layui-timeline-content layui-text">
-                  <div class="layui-timeline-title">过去</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+
+        
       </div>
       
         <div class="layui-col-md4">
-          <div class="layui-card">
-            <div class="layui-card-header">版本信息</div>
-            <div class="layui-card-body layui-text">
-              <table class="layui-table">
-                <colgroup>
-                  <col width="100">
-                  <col>
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <td>当前版本</td>
-                    <td>
-                      
-                        <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(TpFast系列)v1.0.1</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>基于框架</td>
-                    <td>
-                      <a href="http://www.thinkphp.cn">Tp5.1</a> + <a href="https://www.layui.com">layui</a> + <a href="https://gitee.com/yinqi/Light-Year-Admin-Template">光年后台模板</a>
-                  </td>
-                  </tr>
-                  <tr>
-                    <td>主要特色</td>
-                    <td>零门槛 / 响应式 / 清爽 / 极简 / 快速开发</td>
-                  </tr>
-                  <tr>
-                    <td>获取渠道</td>
-                    <td style="padding-bottom: 0;">
-                      <div class="layui-btn-container">
-                        <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" class="layui-btn layui-btn-danger">子枫后台系统</a>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="layui-card ">
+            <div class="layui-tab layui-tab-brief layadmin-latestData">
+              <div class="layui-card-header">后台插件推荐(微信号:zifeng1788)</div>
+              <div class="layui-card-body layui-text">
+    				<div class="layui-row layui-col-space15">
+       					<div class="layui-col-md6">
+            	 			<img style="width:139px;" src="http://oss1.wangmingchang.com/0bd86e854d29ca97c3510e774d9cd4d4/public/admin/images/2020-02-12/24172php7Z6xgm1581496724200212.jpeg">
+       					</div>
+       					<div class="layui-col-md6">
+       						不定期会在朋友圈更新一些使用的插件,添加成功直接查看朋友圈即可<br>
+       						也可以私人订制,网站开发/小程序开发/页面设计
+       					</div>
+
+
+    				</div>
+          	  </div>
+
+              
             </div>
           </div>
 
           <div class="layui-card ">
             <div class="layui-tab layui-tab-brief layadmin-latestData">
-              <ul class="layui-tab-title ">
-                <li class="">打赏列表</li>
-              </ul>
-              <div class="layui-tab-content layui-bg-">
-                <div class="layui-tab-item layui-show">
-                  <iframe src="http://mctool.wangmingchang.com/index/jspay/dashang" width="100%" height="870" ></iframe>
-                </div>
+              <div class="layui-card-header">作者都在用的产品</div>
+              <div class="layui-card-body layui-text">
+              	
+              	<div style="margin-bottom: 10px" >
+              		<a href="https://www.aliyun.com/minisite/goods?userCode=cbkerf3s" target="_blank">
+	            	 	<img style="width: 100%" src="http://oss1.wangmingchang.com/box/2020aliyunshangyun.jpg">
+	            	</a>
+              	</div>
+              	
+            	
+
+
               </div>
+              
+              
             </div>
           </div>
 

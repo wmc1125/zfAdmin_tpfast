@@ -1,4 +1,3 @@
-
 {
   "php_ext":"pathinfo",
   "chmod":[
@@ -8,10 +7,10 @@
   ],
   "success_url":"/index.php",
   "php_versions":"56,70,71,72,73",
-  "db_config":"/config/database.php",
+  "db_config":"",
   "admin_username":"",
   "admin_password":"",
-  "run_path":"/install",
-  "remove_file":["/index.html","/404.html"],
+  "run_path":"/",
+  "remove_file":["/index.html","/404.html","/.user.ini"],
   "enable_functions":[]
 }

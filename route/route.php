@@ -13,14 +13,17 @@
 // +----------------------------------------------------------------------
 use think\Db;
 
-include 'web.php';
 
-
-if (is_file('./public/install.lock')) {
-	//公众号服务
-	Route::get('wechat/gzh/server/:gid', 'api/wxgzh/server');
-
-	//web前端
+if (!is_file('./public/install.lock')) {
+	//安装系统
+	Route::any('install', 'index/install/index');
+	if(strpos(request()->server()['REQUEST_URI'],'/install') === false){ 
+		header('Location: /install'); exit();
+	}
+	
+}else{
+	
+//web前端
 	if(strpos($_SERVER['REQUEST_URI'],'/?theme=') !==false){
 	    $theme = input('theme');
 	    if($theme){
@@ -45,12 +48,9 @@ if (is_file('./public/install.lock')) {
 	        include $_file;
 	    }
 	}
-}else{
-	//安装系统
-	Route::any('install', 'index/install/index');
-	if(strpos(request()->server()['REQUEST_URI'],'/install') === false){ 
-		header('Location: /install'); exit();
-	}
 
+	//公众号服务
+	Route::get('wechat/gzh/server/:gid', 'api/wxgzh/server');
+	Route::get('api/:version/:controller/:function','api/:version.:controller/:function');
 
 }

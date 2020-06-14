@@ -220,7 +220,7 @@ class Plugins extends Admin
                     if(!is_dir('./addons/'.$json->plugin_name)){
                         return jserror('move_error');
                     }else{
-                        return jssuccess('安装成功,请激活后使用');
+                        return jssuccess('安装成功');
                     }
                 }else{
                     return "json文件不存在";
@@ -231,52 +231,24 @@ class Plugins extends Admin
             die;
         }
     }
-    public function plugin_install(){
-      $id = request()->get('id','3');
-      $plugin_info = Db::name('plugin')->where([['id','=',$id]])->find();
-      $controller_plugin =  '\addons\\'.$plugin_info['plugin_name'].'\\controller\\Plugin';
-      $plug = new $controller_plugin();
-      //激活方法
-      $r = $plug->install();
-      if($r['code']==1){
-        // 激活成功,修改数据库
-          Db::name('plugin')->where([['id','=',$id]])->update(['status'=>1]);
-          return jssuccess('ok');
-      }else{
-          return jserror($r['msg']);
-      }
 
-
-    }
     public function plugin_uninstall(){
       $id = request()->get('id','3');
       $plugin_info = Db::name('plugin')->where([['id','=',$id]])->find();
-      // dd($plugin);
-
       $controller_plugin =  '\addons\\'.$plugin_info['plugin_name'].'\\controller\\Plugin';
       $plug = new $controller_plugin();
       //激活方法
       $r = $plug->uninstall();
       if($r['code']==1){
-          Db::name('plugin')->where([['id','=',$id]])->update(['status'=>9]);
-          return jssuccess('ok');
+          Db::name('plugin')->where([['id','=',$id]])->delete();
+          return jssuccess('卸载成功');
       }else{
           return jserror($r['msg']);
       }
 
 
     }
-    public function test(){
-       
-
-
-    }
-
-    public function plug_x_index(){
-        $id = '1';
-       echo hook('testhook', ['id'=>1]);
-
-    }
+   
 
 
     

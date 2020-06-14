@@ -387,28 +387,7 @@ class Config extends Admin
     }
 
     
-    /**
-     * @Notes:图片参数设置
-     * @Interface img_config
-     * @return \think\response\View|void
-     * @author: 子枫
-     * @Time: 2019/11/13   10:54 下午
-     */
-    public function img_config(){
-        $this->assign('res',[]);
-        if(request()->isPost()){
-            admin_role_check($this->z_role_list,$this->mca);
-            $data = input('post.');
-            $res = extraconfig(input('post.'),'img');
-            if($res){
-               return jssuccess('保存成功');die;
-            }else{
-               return jserror('保存失败');die;
-            }   
-        }
-        $this->assign("res",config()['img']);
-        return view();
-    }
+    
 
     /**
      * @Notes:操作日志

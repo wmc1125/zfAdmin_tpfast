@@ -18,9 +18,7 @@ use think\Db;
 use Qiniu\Auth as QAuth;
 use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;
-include_once './application/zf.php';
 include_once './application/common_db.php';
-include_once './application/constant.php';
 // 应用公共文件
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -891,6 +889,67 @@ if (!function_exists('zf_controller_func_fast')) {
     return $ret;
   }
 }
+
+
+//加密
+if (!function_exists('zf_encrypt')) {
+  function zf_encrypt($data, $key='zf'){
+      $key    =    md5($key);
+      $x        =    0;
+      $len    =    strlen($data);
+      $l        =    strlen($key);
+      $char = '';
+      $str = '';
+      for ($i = 0; $i < $len; $i++)
+      {
+          if ($x == $l) 
+          {
+              $x = 0;
+          }
+          $char .= $key{$x};
+          $x++;
+      }
+      for ($i = 0; $i < $len; $i++)
+      {
+          $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+      }
+      return base64_encode($str);
+  }
+}
+//解密
+if (!function_exists('zf_decrypt')) {
+  function zf_decrypt($data, $key='zf'){
+      $key = md5($key);
+      $x = 0;
+      $data = base64_decode($data);
+      $len = strlen($data);
+      $l = strlen($key);
+      $char = '';
+      $str = '';
+      for ($i = 0; $i < $len; $i++)
+      {
+          if ($x == $l) 
+          {
+              $x = 0;
+          }
+          $char .= substr($key, $x, 1);
+          $x++;
+      }
+      for ($i = 0; $i < $len; $i++)
+      {
+          if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
+          {
+              $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+          }
+          else
+          {
+              $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+          }
+      }
+      return $str;
+  }
+}
+
 
 
 

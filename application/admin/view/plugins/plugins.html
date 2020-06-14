@@ -46,12 +46,10 @@
                       <!-- <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}配置","/addons/{$vo["plugin_name"]}.index/setting.html")' > 配置</a> -->
 <!--                      关闭-->
                       <?php if(is_dir('./addons/'.$vo['plugin_name']) ){ ?>
-                        <?php if($vo['status']==2){ ?>
-                          <a href="javascript:;" class="plugin_install" item="{$vo['id']}" > 点击激活</a>
-                        <?php }else{ ?>
                           <a  target="_blank" href="/addons/{$vo["plugin_name"]}.index/index.html" > 进入</a>
                           <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}说明","/addons/{$vo["plugin_name"]}.index/help.html")' > 使用说明</a>
-                        <?php } ?>
+                          <a href="javascript:;" class="plugin_uninstall" item="{$vo['id']}" style="color: red" > 卸载</a>
+
                       <?php }else{ ?>
                        <span style="color: red">代码缺失</span>
                       <?php } ?>
@@ -93,26 +91,36 @@
         }
       }
     });
-   $('.plugin_install').on('click',function(){
+   $('.plugin_uninstall').on('click',function(){
     var id = $(this).attr('item')
-      $.ajax({
-        type:'get',
-        url:"{:url('plugins/plugin_install')}",
-        data:{id},
-        dataType:'json',
-        success:function(res){
-          // layer.close(index);
-          if(res.result==1){
-            layer.msg(res.msg, {icon: 1});
-            setTimeout(function() {
-                location.reload(true);
-            }, 3000);
-          }else{
-            layer.msg(res.msg, {icon: 2});
-          }
-          
-        }
-      })
+     layer.confirm('确认卸载？', {
+        btn: ['卸载','取消'] //按钮
+      }, function(){
+          $.ajax({
+            type:'get',
+            url:"{:url('plugins/plugin_uninstall')}",
+            data:{id},
+            dataType:'json',
+            success:function(res){
+              // layer.close(index);
+              if(res.result==1){
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function() {
+                    location.reload(true);
+                }, 3000);
+              }else{
+                layer.msg(res.msg, {icon: 2});
+              }
+              
+            }
+          })
+
+      }, function(){
+          //取消的操作
+      });
+
+
+      
    })
 });
   </script>

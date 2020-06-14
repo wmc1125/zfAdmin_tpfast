@@ -37,6 +37,7 @@ class Login extends Controller
         if(session('admin')){
             $this->error('你已登录,不需要重复登录','index/index'); 
         }else{
+            
             return view();
         }
     }
@@ -45,12 +46,15 @@ class Login extends Controller
                 $t = input('t','');
                 if($t=='qrcode'){
                     $email = input('post.email');
-                    // http://v1.fast.zf.90ckm.com/addons/zf_soft_plugins.api/vfast_create
-                    $this->site_domain = $_SERVER['SERVER_NAME'];//顶级域名
-                    $this->email = $email;
-                    $this->pro = '30';//产品ID
-                    $url = 'http://mctool.wangmingchang.com/api/tool/create_qr_code?msg=site_domain@-'.$this->site_domain.'---email@-'.$this->email.'---pro@-'.$this->pro;
-                    return jssuccess($url);
+                    $ret_data['site_domain'] = $_SERVER['SERVER_NAME'];//顶级域名
+                    $ret_data['email'] = $email;
+                    $ret_data['pro'] = '30';//产品ID
+                    $res = https_post('http://dev.v1.fast.zf.90ckm.com/addons/zf_soft_plugins.api/vfast_create',$ret_data);
+                    if($res==1){
+                        return jssuccess('已发送到邮箱,请登录查看');
+                    }else{
+                        return jserror($res.' 请联系微信:zifeng1788');                        
+                    }
                 }elseif($t=='save'){
                     $data = input('post.');
                     if($data['email']!='' && $data['key']!=''  && $data['sc']!='' )

@@ -173,7 +173,7 @@ class Install extends Controller
         }
         // 导入系统初始数据库结构
         // 导入SQL
-        $sql_file = './import.sql';
+        $sql_file = './public/import.sql';
         if (file_exists($sql_file)) {
             $sql = file_get_contents($sql_file);
             $sql_list = parse_sql($sql, 0, ['zf_' => $config['prefix']]);
@@ -183,7 +183,7 @@ class Install extends Controller
                     try {
                         Db::execute($v);
                     } catch(\Exception $e) {
-                        return $this->error('导入SQL失败，请检查根目录import.sql的语句是否正确');
+                        return $this->error('导入SQL失败，请检查根目录public/import.sql的语句是否正确');
                     }
                 }
             }
@@ -196,7 +196,11 @@ class Install extends Controller
         //
         $is_admin = Db::name('admin')->where(['name'=>$map['name']])->find();
         if($is_admin){
-            $res = Db::name('admin')->where(['name'=>$map['name']])->update(['pwd'=>$map['pwd']]);
+            if($is_admin['pwd']==$map['pwd']){
+                $res = true;
+            }else{
+                $res = Db::name('admin')->where(['name'=>$map['name']])->update(['pwd'=>$map['pwd']]);
+            }
         }else{
             $res = Db::name('admin')->insert($map);
         }
@@ -204,7 +208,6 @@ class Install extends Controller
             return $this->error($user->getError() ? $user->getError() : '管理员账号设置失败！');
         }
         file_put_contents('./public/install.lock', "如需重新安装，请手动删除此文件\n安装时间：".date('Y-m-d H:i:s'));
-        
         $hs_auth = <<<INFO
 <?php
 // +----------------------------------------------------------------------
