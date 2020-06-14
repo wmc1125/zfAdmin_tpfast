@@ -1,13 +1,13 @@
 # 子枫CMS后台管理系统-tpfast系列
-## 先爆个照
-![](https://i.loli.net/2019/11/20/ImLWKz8apSogZGC.jpg)
+最新版本提供了插件化功能,随用随取,组件化开发
 
-![](https://i.loli.net/2019/11/20/cWHMdTeRrqiZo41.jpg)
+![image-20200614172227974](http://oss1.wangmingchang.com/mac/MdImd/image-20200614172227974.png)
+
 ## 系统要求
  + php5.6+ (推荐使用php7.1+)
  + gd2
  + 伪静态（隐藏入口文件index.php）
- 
+
 ## 安装： 
 GitHub仓库:  https://github.com/wmc1125/zfAdmin_tpfast
 
@@ -23,45 +23,67 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
 步骤二(安装扩展)
 + 执行composer update 下载vendor扩展
 
-步骤三(sql安装)
-+ 直接将sql文件导入数据库,然后修改数据库文件(config/database.php)
-+ 执行安装程序
+步骤三(执行安装程序)
 	1. 将根目录的public/install.lock 删除,之后打开网址,执行安装程序
 	2. 填写数据库名称/密码等执行安装
-+ 选择宝塔方式安装此步骤可省略,直接导入
-+ 后台账号密码(admin/123456) ## 测试账号秘密(test/111111)
++ 选择宝塔方式安装此步骤可省略,直接导入,填写数据库信息执行安装
 
-## 可安装扩展
-+ Excel的导入导出
   
-        "phpoffice/phpspreadsheet": "1.8.0" 需要在大于php7.1版本,如果你要使用,可在composer.json require 中加入"phpoffice/phpspreadsheet": "1.8.0"
 
+## 可安装插件/模块(加微信zifeng1788获取)
+插件可能存在一定的bug,感谢大家提出宝贵意见
 
-+ "phpmailer/phpmailer": "^6.0"
++ 博客模块/内容管理(近期添加...)
 
-        composer require phpmailer/phpmailer 6.0
-+ "aliyuncs/oss-sdk-php": "^2.3"
++ 图片工具(近期添加...)
 
-        composer require aliyuncs/oss-sdk-php 2.3
++ 微信公众号插件(近期添加...)
+
++ 百度站点提交(近期添加...)
+
++ 数据库管理-备份/回复(近期添加...)
+
++ 内容采集(近期添加...)
+
++ 邮件插件(近期添加...)
+
++ 网站备份插件(近期添加...)
+
+    ......
 
 
 
 ## 后台管理模块
- + 内容管理
- + 模板管理
+ + CMS内容管理
+    + 栏目列表
+    + 内容模型
+    + 内容列表
+    + 商品管理
+    + 其他管理
+       + 广告
+       + 超链
+       + 留言
  + 用户管理
- + 其他管理
- + 数据库管理
+    + 用户分组
+    + 用户列表
+ + 应用中心
+    + 模板列表
+    + 插件管理
  + 网站管理
- + 权限管理
+    + 基本设置
+    + 管理员列表
+    + 权限列表
+    + 日志列表
 
 ## 后台使用手册
 编写中...
 
+可以再https://support.qq.com/products/166743中提出使用反馈
+
 ## 交流
 + 论坛: [MC技术论坛](http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77 "MC技术论坛")
 + 博客: [王明昌博客](http://www.wangmingchang.com/ "王明昌博客")
-+ 微信: wmc1125  (备注加好友目的)
++ 微信: wmc1125 或zifeng1788  (备注加好友目的)
 
 ## 测试后台
 + 测试地址: http://demo.fast.zf.90ckm.com/admin
@@ -77,4 +99,3 @@ Gitee仓库:  https://gitee.com/ZF-Box/zfAdmin_tpfast
  ## 捐献列表
 
 http://mctool.wangmingchang.com/index/jspay/dashang
- 
