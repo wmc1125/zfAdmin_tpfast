@@ -32,10 +32,17 @@
         <div class="layui-input-inline">
           <select name="pid">
             <option value="{$res['pid']}"><?php echo r_name($res['pid']);?></option>
+            <option value="0">---顶级目录---</option>
             {volist name='list' id='vo'}
                 <option value="{$vo['id']}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</option>
             {/volist}
           </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">参数</label>
+        <div class="layui-input-inline">
+          <input type="text" name="parm"  placeholder="请输入名称" autocomplete="off" class="layui-input" value="{$res.parm}">
         </div>
       </div>
       <div class="layui-form-item">

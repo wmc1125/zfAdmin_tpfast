@@ -18,7 +18,6 @@ use think\facade\Request;
 use Wmc1125\TpFast\GetConfig;
 use app\common\model\Md5Data;
 use think\facade\Db as Ddb;
-
 /**
  * @title 登录注册
  * Class Api
@@ -28,6 +27,13 @@ class Index extends Base
 
 	public function __construct ( Request $request = null ){
         parent::__construct();
+    }
+    public function test(){
+        //2020年01月党费公示
+        $month = '2020-01';
+         echo str_replace( '-', '年',$month).'月党费公示';
+       
+
     }
     
     public function index(){
@@ -51,100 +57,8 @@ class Index extends Base
         $this->assign('seo', $seo);
         return view($this->tpl);
     }
-     public function test(){
-        dd('test');
-        // 数据库配置信息设置（全局有效）
-        Ddb::setConfig([
-            // 默认数据连接标识
-            'default'     => 'mysql',
-            // 数据库连接信息
-            'connections' => [
-                'mysql' => [
-                    // 数据库类型
-                    'type'     => 'mysql',
-                    // 主机地址
-                    'hostname' => '127.0.0.1',
-                    // 用户名
-                    'username' => 'root',
-                    // 数据库名
-                    'database' => 'demo',
-                    // 数据库编码默认采用utf8
-                    'charset'  => 'utf8',
-                    // 数据库表前缀
-                    'prefix'   => 'think_',
-                    // 数据库调试模式
-                    'debug'    => true,
-                ],
-            ],
-        ]);
-
-
-     }
+   
 
 
 
-
-     //分表测试
-    public function walletSave(){
-        $Md5DataModel = new Md5Data();
-        for($i = 1; $i < 1000; $i++){
-            $str = GetRandStr(10);
-            $data = [
-                'uid' => 0,
-                'status'=>1,
-                'ctime' => date("Y-m-d H:i:s", time()),
-                'str' => $str,
-                'md5_str' => md5($str)
-            ];
-            if(!$Md5DataModel->find_all( ['str'=>$str])){
-                $Md5DataModel->saveData($data, $i);
-            }
-        }
-        echo 'success';die;
-    }
-    public function getWallet(){
-        
-        $Md5DataModel = new Md5Data();
-        // $res = $Md5DataModel->getAll( ['str'=>'11'],'*', 1);
-        // if(isset($res[0])){
-        //     echo 1;
-        // }else{
-        //     echo 0;
-        // }
-        // 判断是否存在
-        // $res = $Md5DataModel->find_all( ['str'=>'DC8OQOIK6K']);
-        // dd($res);
-
-
-
-        //不存在  执行保存
-        $str = 11;
-        $data = [
-            'uid' => 0,
-            'status'=>1,
-            'ctime' => date("Y-m-d H:i:s", time()),
-            'str' => $str,
-            'md5_str' => md5($str)
-        ];
-        if(!$Md5DataModel->find_all( ['str'=>$str])){
-            $Md5DataModel->saveData($data, $i);
-        }else{
-            echo 'cunzai';
-        }
-
-
-    }
-
-
-
-}
-function GetRandStr($length){
-    $str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $len=strlen($str)-1;
-    $randstr='';
-    for($i=0;$i<$length;$i++){
-    $num=mt_rand(0,$len);
-    $randstr .= $str[$num];
-    }
-    return $randstr;
 }

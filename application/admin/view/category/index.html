@@ -43,7 +43,11 @@
               <label class="layui-form-label">父类</label>
               <div class="layui-input-inline">
                 <select name="pid">
+                  <?php if($pid==0){ ?>
                   <option value="0">---顶级目录---</option>
+                  <?php }else{ ?>
+                 <option value="{$pid}"><?php echo p_name($pid); ?></option>
+                  <?php } ?>
                   <?php if(is_array($list)){ ?>
                   <?php foreach($list as $k=>$vo){ ?>
                     <option value="{$vo['cid']}"><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</option>

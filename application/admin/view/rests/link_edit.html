@@ -15,7 +15,7 @@
           <div class="layui-card">
             <div class="layui-card-header">基本信息</div>
             <div class="layui-card-body">
-              <form class="layui-form info_tj" onclick="return false;" >
+              <form class="info_tj" onclick="return false" >
                 <input type="hidden" name="id" value="{$res.id}">
                 <div class="layui-row layui-col-space10 layui-form-item">
                   <div class="layui-col-lg6">
@@ -40,8 +40,8 @@
                 <div class="layui-form-item">
                   <label class="layui-form-label">类别:</label>
                   <div class="layui-input-block">
-                    <input type="radio" name="type" value="1" title="友链" <?php echo $res['type']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>友链</div></div>
-                    <input type="radio" name="type" value="2" title="自用" <?php echo $res['type']==2?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>自用</div></div>
+                    <input type="radio" name="type" value="1" title="友链" <?php echo $res['type']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><div>友链</div></div>
+                    <input type="radio" name="type" value="2" title="自用" <?php echo $res['type']==2?'checked':''; ?>><div class="layui-unselect layui-form-radio"><div>自用</div></div>
 
                   </div>
                 </div>
@@ -49,8 +49,8 @@
                 <div class="layui-form-item">
                   <label class="layui-form-label">状态:</label>
                   <div class="layui-input-block">
-                    <input type="radio" name="status" value="1" title="开启" <?php echo $res['status']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
-                    <input type="radio" name="status" value="0" title="关闭" <?php echo $res['status']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+                    <input type="radio" name="status" value="1" title="开启" <?php echo $res['status']==1?'checked':''; ?> ><div class="layui-unselect layui-form-radio"><div>开启</div></div>
+                    <input type="radio" name="status" value="0" title="关闭" <?php echo $res['status']==0?'checked':''; ?>><div class="layui-unselect layui-form-radio"><div>关闭</div></div>
                     
                   </div>
                 </div>
@@ -58,7 +58,7 @@
                 
                 <div class="layui-form-item">
                   <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-sm" onclick="tijiao_data('rests/link_edit')"  lay-submit="" lay-filter="component-form-element">提交</button>
+                    <button class="layui-btn layui-btn-sm" onclick="tijiao_data('rests/link_edit')"   lay-filter="component-form-element">提交</button>
                   </div>
                 </div>
               </form>
@@ -81,29 +81,7 @@
     ,form = layui.form
     ,upload = layui.upload ;
 
-    $(".tijiao").on("click",function(){
-      var data = $(".info_tj input,.info_tj textarea,.info_tj radio").serialize();      
-      $.ajax({
-          type:'post',
-          url:"{:url('rests/link_edit')}",
-          data:data,
-          dataType:'json',
-          success:function(res){
-            // console.log(res)
-            if(res.result==1){
-              layer.msg("修改成功", {icon: 1});
-              setTimeout(function() {
-                window.parent.location.reload();
-              }, 2000);
-            }else{
-              layer.msg(res.msg, {icon: 2});
-              
-            }
-            
-          }
-      })
-
-    })
+    
     
     
   })

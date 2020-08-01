@@ -25,6 +25,11 @@
                         <div class="pad">
                             <div class="control-group">
                                 <div class="controls">
+                                    <input id="authorize_url" type="text" placeholder="" tabindex="1" autofocus="autofocus" class="form-control input-medium" value="{$authorize_url}" readonly="">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
                                     <input id="email" type="text" name="email" placeholder="输入你的邮箱" tabindex="1" autofocus="autofocus" class="form-control input-medium form_email">
                                 </div>
                             </div>
@@ -59,6 +64,7 @@
   </div>
   <script src="__STATIC__/style/layer/layer.js"></script>  
   <script>
+    layer.tips('这里是授权验证地址,如果访问不了请联系微信zifeng1788替换', '#authorize_url', {guide: 1, time: 10000});
     $('.scan_btn').on('click',function(){
         var email = $(".form_email").val();
         //获取二维码

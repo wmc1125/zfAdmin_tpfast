@@ -67,6 +67,12 @@
               </div>
             </div> 
             <div class="layui-inline">
+              <label class="layui-form-label">参数</label>
+              <div class="layui-input-block">
+                <input type="text" name="parm" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
                 <button class="layui-btn layui-btn-sm" onclick="tijiao_data('config/admin_role_add',0)"  >新增</button>
             </div>
           </div>
@@ -100,7 +106,10 @@
                 <tr>
                   <td>{$vo['id']}</td>
                   <td><?php echo '┃'.str_repeat('━━', substr_count($vo['cname'],'  '));?> {$vo['name']}</td>
-                  <td>{$vo['value']}</td>
+                  <td>
+                    {$vo['value']}
+                    {$vo['parm']!=''?'?'.$vo['parm']:''}
+                  </td>
                   <td>
                     <input type="text" name="sort" autocomplete="off" class="layui-input edit_sort"  value="{$vo['sort']}" item1="{$vo['id']}" >
                   </td>

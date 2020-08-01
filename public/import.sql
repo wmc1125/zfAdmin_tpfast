@@ -11,7 +11,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 14/06/2020 16:56:55
+ Date: 01/08/2020 14:37:38
 */
 
 SET NAMES utf8mb4;
@@ -39,9 +39,9 @@ CREATE TABLE `zf_admin` (
   `sort` tinyint(5) NOT NULL DEFAULT '1',
   `google_secret` varchar(255) DEFAULT NULL,
   `google_is` tinyint(255) NOT NULL DEFAULT '0',
-  `pic` varchar(255) DEFAULT NULL,
+  `pic` varchar(255) NOT NULL DEFAULT 'https://i.loli.net/2019/10/29/9OCU2VXHtAFhzoT.jpg',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of zf_admin
@@ -56,7 +56,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `zf_admin_group`;
 CREATE TABLE `zf_admin_group` (
-  `id` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `ctime` int(11) DEFAULT NULL,
@@ -69,9 +69,9 @@ CREATE TABLE `zf_admin_group` (
 -- Records of zf_admin_group
 -- ----------------------------
 BEGIN;
-INSERT INTO `zf_admin_group` VALUES (00000000001, '普通管理员', 1, 2018, 1, '1,4,10,19,8,9,36,95,15,14,32,24,37,68,40,41,45,46,50,88,54,55,60,64,70,77,79,80,82,83');
-INSERT INTO `zf_admin_group` VALUES (00000000003, '超级管理员', 1, 2018, 1, '8,9,36,95,120,70,71,72,89,90,91,92,117,118,119,40,41,42,43,44,45,116,46,47,48,49,50,51,52,53,87,88,79,80,81,126,15,14,16,17,31,74,32,33,34,35,54,55,57,58,59,60,61,62,63,64,65,66,67,24,25,26,27,28,29,30,37,68,115,121,122,123,124,125,1,2,84,4,5,6,7,19,20,21,22,23,10,11,12,13,18,73,3,93,109,108');
-INSERT INTO `zf_admin_group` VALUES (00000000002, '测试分组', 1, NULL, 0, '8,9,36,95,70,40,41,45,46,50,54,55,60,64,15,14,32,79,80,1,10,108');
+INSERT INTO `zf_admin_group` VALUES (1, '普通管理员', 1, 2018, 1, '1,4,10,19,8,9,36,95,15,14,32,24,37,68,40,41,45,46,50,88,54,55,60,64,70,77,79,80,82,83');
+INSERT INTO `zf_admin_group` VALUES (3, '超级管理员', 1, 2018, 1, '8,9,36,95,120,70,71,72,89,90,91,92,117,118,119,40,41,42,43,44,45,116,46,47,48,49,50,51,52,53,87,88,79,80,81,126,15,14,16,17,31,74,32,33,34,35,54,55,57,58,59,60,61,62,63,64,65,66,67,24,25,26,27,28,29,30,37,68,115,121,122,123,124,125,1,2,84,4,5,6,7,19,20,21,22,23,10,11,12,13,18,73,3,93,109,108');
+INSERT INTO `zf_admin_group` VALUES (2, '测试分组', 1, NULL, 0, '8,9,36,95,70,40,41,45,46,50,54,55,60,64,15,14,32,79,80,1,10,108');
 COMMIT;
 
 -- ----------------------------
@@ -106,6 +106,7 @@ CREATE TABLE `zf_admin_role` (
   `control` varchar(50) NOT NULL,
   `act` varchar(50) NOT NULL,
   `menu` tinyint(1) NOT NULL DEFAULT '1',
+  `parm` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COMMENT='管理员权限表';
 
@@ -113,93 +114,93 @@ CREATE TABLE `zf_admin_role` (
 -- Records of zf_admin_role
 -- ----------------------------
 BEGIN;
-INSERT INTO `zf_admin_role` VALUES (1, '网站管理', 'admin/Config/', 1, 1, '', 99, 0, 'admin', 'Config', '', 1);
-INSERT INTO `zf_admin_role` VALUES (2, '网站设置', 'admin/Config/index', 1, 1, '', 0, 144, 'admin', 'Config', 'index', 1);
-INSERT INTO `zf_admin_role` VALUES (4, '管理员列表', 'admin/Config/admin_index', 1, 1, '', 1, 1, 'admin', 'Config', 'admin_index', 1);
-INSERT INTO `zf_admin_role` VALUES (5, '添加管理员', 'admin/Config/admin_add', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_add', 0);
-INSERT INTO `zf_admin_role` VALUES (6, '编辑管理员', 'admin/Config/admin_edit', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (7, '删除管理员', 'admin/Config/admin_del', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_del', 0);
-INSERT INTO `zf_admin_role` VALUES (8, '后台首页', 'admin/Index/index', 1, 1, '', 0, 0, 'admin', 'Index', 'index', 0);
-INSERT INTO `zf_admin_role` VALUES (9, '欢迎页', 'admin/Index/welcome', 1, 1, '', 0, 8, 'admin', 'Index', 'welcome', 1);
-INSERT INTO `zf_admin_role` VALUES (10, '权限列表', 'admin/Config/admin_role', 1, 1, '', 3, 1, 'admin', 'Config', 'admin_role', 1);
-INSERT INTO `zf_admin_role` VALUES (11, '增加权限', 'admin/Config/admin_role_add', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_add', 0);
-INSERT INTO `zf_admin_role` VALUES (12, '编辑权限', 'admin/Config/admin_role_edit', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (13, '删除权限', 'admin/Config/admin_role_del', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_del', 0);
-INSERT INTO `zf_admin_role` VALUES (14, '用户列表', 'admin/User/index', 1, 1, '', 0, 15, 'admin', 'User', 'index', 1);
-INSERT INTO `zf_admin_role` VALUES (15, '用户管理', 'admin/User/', 1, 1, '', 2, 0, 'admin', 'User', '', 1);
-INSERT INTO `zf_admin_role` VALUES (16, '增加用户', 'admin/User/add', 1, 1, '', 0, 14, 'admin', 'User', 'add', 0);
-INSERT INTO `zf_admin_role` VALUES (17, '编辑用户', 'admin/User/edit', 1, 1, '', 0, 14, 'admin', 'User', 'edit', 0);
-INSERT INTO `zf_admin_role` VALUES (18, '获取方法', 'admin/Config/get_action', 1, 1, '', 0, 10, 'admin', 'Config', 'get_action', 0);
-INSERT INTO `zf_admin_role` VALUES (19, '管理员分组', 'admin/Config/admin_group', 1, 1, '', 2, 1, 'admin', 'Config', 'admin_group', 0);
-INSERT INTO `zf_admin_role` VALUES (20, '管理员分组-添加', 'admin/Config/admin_group_add', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_add', 0);
-INSERT INTO `zf_admin_role` VALUES (21, '管理员分组-修改', 'admin/Config/admin_group_edit', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (22, '管理员分组-删除', 'admin/Config/admin_group_del', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_del', 0);
-INSERT INTO `zf_admin_role` VALUES (23, '管理员分组-权限', 'admin/Config/admin_group_role', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_role', 0);
-INSERT INTO `zf_admin_role` VALUES (31, '删除用户', 'admin/User/del', 1, 1, '', 0, 14, 'admin', 'User', 'del', 0);
-INSERT INTO `zf_admin_role` VALUES (32, '用户分组', 'admin/User/group', 1, 1, '', 0, 15, 'admin', 'User', 'group', 1);
-INSERT INTO `zf_admin_role` VALUES (33, '增加分组', 'admin/User/group_add', 1, 1, '', 0, 32, 'admin', 'User', 'group_add', 0);
-INSERT INTO `zf_admin_role` VALUES (34, '修改分组', 'admin/User/group_edit', 1, 1, '', 0, 32, 'admin', 'User', 'group_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (35, '删除分组', 'admin/User/group_del', 1, 1, '', 0, 32, 'admin', 'User', 'group_del', 0);
-INSERT INTO `zf_admin_role` VALUES (36, '修改密码', 'admin/User/pwd_edit', 1, 1, '', 0, 8, 'admin', 'User', 'pwd_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (40, 'CMS内容管理', 'admin/Category/', 1, 1, '', 1, 0, 'admin', 'Category', '', 1);
-INSERT INTO `zf_admin_role` VALUES (41, '栏目列表', 'admin/Category/index', 1, 1, '', 0, 40, 'admin', 'Category', 'index', 1);
-INSERT INTO `zf_admin_role` VALUES (42, '新增栏目', 'admin/Category/category_add', 1, 1, '', 0, 41, 'admin', 'Category', 'category_add', 0);
-INSERT INTO `zf_admin_role` VALUES (43, '修改栏目', 'admin/Category/category_edit', 1, 1, '', 0, 41, 'admin', 'Category', 'category_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (44, '删除栏目', 'admin/Category/category_del', 1, 1, '', 0, 41, 'admin', 'Category', 'category_del', 0);
-INSERT INTO `zf_admin_role` VALUES (45, '内容列表', 'admin/Category/post_list', 1, 1, '', 0, 41, 'admin', 'Category', 'post_list', 0);
-INSERT INTO `zf_admin_role` VALUES (46, '内容模型', 'admin/Category/category_model', 1, 1, '', 0, 40, 'admin', 'Category', 'category_model', 1);
-INSERT INTO `zf_admin_role` VALUES (47, '新增模型', 'admin/Category/category_model_add', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_add', 0);
-INSERT INTO `zf_admin_role` VALUES (48, '编辑模型', 'admin/Category/category_model_edit', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (49, '删除模型', 'admin/Category/category_model_del', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_del', 0);
-INSERT INTO `zf_admin_role` VALUES (50, '内容列表', 'admin/Category/post_all_list', 1, 1, '', 0, 40, 'admin', 'Category', 'post_all_list', 1);
-INSERT INTO `zf_admin_role` VALUES (51, '内容添加', 'admin/Category/post_add', 1, 1, '', 0, 50, 'admin', 'Category', 'post_add', 0);
-INSERT INTO `zf_admin_role` VALUES (52, '内容编辑', 'admin/Category/post_edit', 1, 1, '', 0, 50, 'admin', 'Category', 'post_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (53, '内容删除', 'admin/Category/post_del', 1, 1, '', 0, 50, 'admin', 'Category', 'post_del', 0);
-INSERT INTO `zf_admin_role` VALUES (54, '其他管理', 'admin/Rests/', 1, 1, '', 4, 40, 'admin', 'Rests', '', 1);
-INSERT INTO `zf_admin_role` VALUES (55, '广告管理', 'admin/Rests/advert', 1, 1, '', 0, 54, 'admin', 'Rests', 'advert', 1);
-INSERT INTO `zf_admin_role` VALUES (57, '增加广告', 'admin/Rests/advert_add', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_add', 0);
-INSERT INTO `zf_admin_role` VALUES (58, '修改广告', 'admin/Rests/advert_edit', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (59, '删除广告', 'admin/Rests/advert_del', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_del', 0);
-INSERT INTO `zf_admin_role` VALUES (60, '超链管理', 'admin/Rests/link', 1, 1, '', 0, 54, 'admin', 'Rests', 'link', 1);
-INSERT INTO `zf_admin_role` VALUES (61, '增加超链', 'admin/Rests/link_add', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_add', 0);
-INSERT INTO `zf_admin_role` VALUES (62, '编辑超链', 'admin/Rests/link_edit', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (63, '删除超链', 'admin/Rests/link_del', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_del', 0);
-INSERT INTO `zf_admin_role` VALUES (64, '留言管理', 'admin/Rests/guessbook', 1, 1, '', 0, 54, 'admin', 'Rests', 'guessbook', 1);
-INSERT INTO `zf_admin_role` VALUES (65, '添加留言', 'admin/Rests/guessbook_add', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_add', 0);
-INSERT INTO `zf_admin_role` VALUES (66, '编辑留言', 'admin/Rests/guessbook_edit', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (67, '删除留言', 'admin/Rests/guessbook_del', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_del', 0);
-INSERT INTO `zf_admin_role` VALUES (70, '公共方法', 'admin/Common/', 1, 1, '', 0, 0, 'admin', 'Common', '', 0);
-INSERT INTO `zf_admin_role` VALUES (71, '上传方法', 'admin/Common/upload_one', 1, 1, '', 0, 70, 'admin', 'Common', 'upload_one', 1);
-INSERT INTO `zf_admin_role` VALUES (72, '状态转换', 'admin/Common/is_switch', 1, 1, '', 0, 70, 'admin', 'Common', 'is_switch', 1);
-INSERT INTO `zf_admin_role` VALUES (73, '获取相似的标题', 'admin/Category/title_get_list', 1, 1, '', 0, 10, 'admin', 'Category', 'title_get_list', 0);
-INSERT INTO `zf_admin_role` VALUES (74, '导出用户', 'admin/User/export', 1, 1, '', 0, 14, 'admin', 'User', 'export', 0);
-INSERT INTO `zf_admin_role` VALUES (79, '应用中心', 'admin/Plugins/', 1, 1, '', 5, 0, 'admin', 'Plugins', '', 1);
-INSERT INTO `zf_admin_role` VALUES (80, '模板列表', 'admin/Plugins/themes', 1, 1, '', 0, 79, 'admin', 'Plugins', 'themes', 1);
-INSERT INTO `zf_admin_role` VALUES (81, '上传模板', 'admin/Plugins/themes_upload', 1, 1, '', 0, 80, 'admin', 'Plugins', 'themes_upload', 0);
-INSERT INTO `zf_admin_role` VALUES (87, '内容导入', 'admin/Category/import', 1, 1, '', 0, 50, 'admin', 'Category', 'import', 0);
-INSERT INTO `zf_admin_role` VALUES (88, '内容页获取标题列表', 'admin/Category/search_post', 1, 1, '', 0, 50, 'admin', 'Category', 'search_post', 0);
-INSERT INTO `zf_admin_role` VALUES (89, '转换菜单', 'admin/Common/is_menu', 1, 1, '', 0, 70, 'admin', 'Common', 'is_menu', 1);
-INSERT INTO `zf_admin_role` VALUES (90, '删除内容', 'admin/Common/del_post', 1, 1, '', 0, 70, 'admin', 'Common', 'del_post', 1);
-INSERT INTO `zf_admin_role` VALUES (91, '批量删除', 'admin/Common/more_del', 1, 1, '', 0, 70, 'admin', 'Common', 'more_del', 1);
-INSERT INTO `zf_admin_role` VALUES (92, '修改字段的值', 'admin/Common/value_edit', 1, 1, '', 0, 70, 'admin', 'Common', 'value_edit', 1);
-INSERT INTO `zf_admin_role` VALUES (95, '修改个人信息', 'admin/User/admin_info', 1, 1, '', 0, 8, 'admin', 'User', 'admin_info', 1);
-INSERT INTO `zf_admin_role` VALUES (120, '数据库清理', 'admin/Index/db_clear', 1, 1, NULL, 0, 8, 'admin', 'Index', 'db_clear', 1);
-INSERT INTO `zf_admin_role` VALUES (119, '网站属性编辑', 'admin/Common/config_edit', 1, 1, NULL, 0, 70, 'admin', 'Common', 'config_edit', 1);
-INSERT INTO `zf_admin_role` VALUES (118, '阿里云oss', 'admin/Common/aliyunoss', 1, 1, NULL, 0, 70, 'admin', 'Common', 'aliyunoss', 1);
-INSERT INTO `zf_admin_role` VALUES (108, '操作日志', 'admin/Config/action_log', 1, 1, '', 15, 1, 'admin', 'Config', 'action_log', 1);
-INSERT INTO `zf_admin_role` VALUES (117, '上传文件', 'admin/Common/upload_one_file', 1, 1, NULL, 0, 70, 'admin', 'Common', 'upload_one_file', 1);
-INSERT INTO `zf_admin_role` VALUES (116, '获取详情中图片', 'admin/Category/get_content_pic_list', 1, 1, NULL, 0, 45, 'admin', 'Category', 'get_content_pic_list', 1);
-INSERT INTO `zf_admin_role` VALUES (126, '插件管理', 'admin/Plugins/plugins', 1, 1, NULL, 0, 79, 'admin', 'Plugins', 'plugins', 1);
-INSERT INTO `zf_admin_role` VALUES (133, '商品管理', 'admin/Products/', 1, 1, NULL, 0, 40, 'admin', 'Products', '', 1);
-INSERT INTO `zf_admin_role` VALUES (134, '商品列表', 'admin/Products/product', 1, 1, NULL, 0, 133, 'admin', 'Products', 'product', 1);
-INSERT INTO `zf_admin_role` VALUES (135, '增加商品', 'admin/Products/product_add', 1, 1, NULL, 0, 134, 'admin', 'Products', 'product_add', 0);
-INSERT INTO `zf_admin_role` VALUES (136, '编辑商品', 'admin/Products/product_edit', 1, 1, NULL, 0, 134, 'admin', 'Products', 'product_edit', 0);
-INSERT INTO `zf_admin_role` VALUES (144, '基本设置', 'admin/0/0', 1, 1, NULL, 0, 1, 'admin', '0', '0', 1);
-INSERT INTO `zf_admin_role` VALUES (146, '自定义参数', 'admin/Config/custom_config', 1, 1, NULL, 0, 144, 'admin', 'Config', 'custom_config', 1);
-INSERT INTO `zf_admin_role` VALUES (145, 'test', 'addons/zf_seo_fanmulu.index/index', 1, 1, NULL, 0, 1, 'addons', 'zf_seo_fanmulu.index', 'index', 0);
-INSERT INTO `zf_admin_role` VALUES (141, '商品分类', 'admin/Products/cate', 1, 1, NULL, 0, 133, 'admin', 'Products', 'cate', 1);
-INSERT INTO `zf_admin_role` VALUES (142, '增加分类', 'admin/Products/cate_add', 1, 1, NULL, 0, 141, 'admin', 'Products', 'cate_add', 0);
-INSERT INTO `zf_admin_role` VALUES (143, '编辑分类', 'admin/Products/cate_edit', 1, 1, NULL, 0, 141, 'admin', 'Products', 'cate_edit', 0);
+INSERT INTO `zf_admin_role` VALUES (1, '网站管理', 'admin/Config/', 1, 1, '', 99, 0, 'admin', 'Config', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (2, '网站设置', 'admin/Config/index', 1, 1, '', 0, 144, 'admin', 'Config', 'index', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (4, '管理员列表', 'admin/Config/admin_index', 1, 1, '', 1, 1, 'admin', 'Config', 'admin_index', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (5, '添加管理员', 'admin/Config/admin_add', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (6, '编辑管理员', 'admin/Config/admin_edit', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (7, '删除管理员', 'admin/Config/admin_del', 1, 1, '', 0, 4, 'admin', 'Config', 'admin_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (8, '后台首页', 'admin/Index/index', 1, 1, '', 0, 0, 'admin', 'Index', 'index', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (9, '欢迎页', 'admin/Index/welcome', 1, 1, '', 0, 8, 'admin', 'Index', 'welcome', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (10, '权限列表', 'admin/Config/admin_role', 1, 1, '', 3, 1, 'admin', 'Config', 'admin_role', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (11, '增加权限', 'admin/Config/admin_role_add', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (12, '编辑权限', 'admin/Config/admin_role_edit', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (13, '删除权限', 'admin/Config/admin_role_del', 1, 1, '', 0, 10, 'admin', 'Config', 'admin_role_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (14, '用户列表', 'admin/User/index', 1, 1, '', 0, 15, 'admin', 'User', 'index', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (15, '用户管理', 'admin/User/', 1, 1, '', 2, 0, 'admin', 'User', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (16, '增加用户', 'admin/User/add', 1, 1, '', 0, 14, 'admin', 'User', 'add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (17, '编辑用户', 'admin/User/edit', 1, 1, '', 0, 14, 'admin', 'User', 'edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (18, '获取方法', 'admin/Config/get_action', 1, 1, '', 0, 10, 'admin', 'Config', 'get_action', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (19, '管理员分组', 'admin/Config/admin_group', 1, 1, '', 2, 1, 'admin', 'Config', 'admin_group', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (20, '管理员分组-添加', 'admin/Config/admin_group_add', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (21, '管理员分组-修改', 'admin/Config/admin_group_edit', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (22, '管理员分组-删除', 'admin/Config/admin_group_del', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (23, '管理员分组-权限', 'admin/Config/admin_group_role', 1, 1, '', 0, 19, 'admin', 'Config', 'admin_group_role', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (31, '删除用户', 'admin/User/del', 1, 1, '', 0, 14, 'admin', 'User', 'del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (32, '用户分组', 'admin/User/group', 1, 1, '', 0, 15, 'admin', 'User', 'group', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (33, '增加分组', 'admin/User/group_add', 1, 1, '', 0, 32, 'admin', 'User', 'group_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (34, '修改分组', 'admin/User/group_edit', 1, 1, '', 0, 32, 'admin', 'User', 'group_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (35, '删除分组', 'admin/User/group_del', 1, 1, '', 0, 32, 'admin', 'User', 'group_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (36, '修改密码', 'admin/User/pwd_edit', 1, 1, '', 0, 8, 'admin', 'User', 'pwd_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (40, 'CMS内容管理', 'admin/Category/', 1, 1, '', 1, 0, 'admin', 'Category', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (41, '栏目列表', 'admin/Category/index', 1, 1, '', 0, 40, 'admin', 'Category', 'index', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (42, '新增栏目', 'admin/Category/category_add', 1, 1, '', 0, 41, 'admin', 'Category', 'category_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (43, '修改栏目', 'admin/Category/category_edit', 1, 1, '', 0, 41, 'admin', 'Category', 'category_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (44, '删除栏目', 'admin/Category/category_del', 1, 1, '', 0, 41, 'admin', 'Category', 'category_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (45, '内容列表', 'admin/Category/post_list', 1, 1, '', 0, 41, 'admin', 'Category', 'post_list', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (46, '内容模型', 'admin/Category/category_model', 1, 1, '', 0, 40, 'admin', 'Category', 'category_model', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (47, '新增模型', 'admin/Category/category_model_add', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (48, '编辑模型', 'admin/Category/category_model_edit', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (49, '删除模型', 'admin/Category/category_model_del', 1, 1, '', 0, 46, 'admin', 'Category', 'category_model_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (50, '内容列表', 'admin/Category/post_all_list', 1, 1, '', 0, 40, 'admin', 'Category', 'post_all_list', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (51, '内容添加', 'admin/Category/post_add', 1, 1, '', 0, 50, 'admin', 'Category', 'post_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (52, '内容编辑', 'admin/Category/post_edit', 1, 1, '', 0, 50, 'admin', 'Category', 'post_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (53, '内容删除', 'admin/Category/post_del', 1, 1, '', 0, 50, 'admin', 'Category', 'post_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (54, '其他管理', 'admin/Rests/', 1, 1, '', 4, 40, 'admin', 'Rests', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (55, '广告管理', 'admin/Rests/advert', 1, 1, '', 0, 54, 'admin', 'Rests', 'advert', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (57, '增加广告', 'admin/Rests/advert_add', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (58, '修改广告', 'admin/Rests/advert_edit', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (59, '删除广告', 'admin/Rests/advert_del', 1, 1, '', 0, 55, 'admin', 'Rests', 'advert_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (60, '超链管理', 'admin/Rests/link', 1, 1, '', 0, 54, 'admin', 'Rests', 'link', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (61, '增加超链', 'admin/Rests/link_add', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (62, '编辑超链', 'admin/Rests/link_edit', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (63, '删除超链', 'admin/Rests/link_del', 1, 1, '', 0, 60, 'admin', 'Rests', 'link_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (64, '留言管理', 'admin/Rests/guessbook', 1, 1, '', 0, 54, 'admin', 'Rests', 'guessbook', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (65, '添加留言', 'admin/Rests/guessbook_add', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (66, '编辑留言', 'admin/Rests/guessbook_edit', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (67, '删除留言', 'admin/Rests/guessbook_del', 1, 1, '', 0, 64, 'admin', 'Rests', 'guessbook_del', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (70, '公共方法', 'admin/Common/', 1, 1, '', 0, 0, 'admin', 'Common', '', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (71, '上传方法', 'admin/Common/upload_one', 1, 1, '', 0, 70, 'admin', 'Common', 'upload_one', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (72, '状态转换', 'admin/Common/is_switch', 1, 1, '', 0, 70, 'admin', 'Common', 'is_switch', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (73, '获取相似的标题', 'admin/Category/title_get_list', 1, 1, '', 0, 10, 'admin', 'Category', 'title_get_list', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (74, '导出用户', 'admin/User/export', 1, 1, '', 0, 14, 'admin', 'User', 'export', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (79, '应用中心', 'admin/Plugins/', 1, 1, '', 5, 0, 'admin', 'Plugins', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (80, '模板列表', 'admin/Plugins/themes', 1, 1, '', 0, 79, 'admin', 'Plugins', 'themes', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (81, '上传模板', 'admin/Plugins/themes_upload', 1, 1, '', 0, 80, 'admin', 'Plugins', 'themes_upload', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (87, '内容导入', 'admin/Category/import', 1, 1, '', 0, 50, 'admin', 'Category', 'import', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (88, '内容页获取标题列表', 'admin/Category/search_post', 1, 1, '', 0, 50, 'admin', 'Category', 'search_post', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (89, '转换菜单', 'admin/Common/is_menu', 1, 1, '', 0, 70, 'admin', 'Common', 'is_menu', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (90, '删除内容', 'admin/Common/del_post', 1, 1, '', 0, 70, 'admin', 'Common', 'del_post', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (91, '批量删除', 'admin/Common/more_del', 1, 1, '', 0, 70, 'admin', 'Common', 'more_del', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (92, '修改字段的值', 'admin/Common/value_edit', 1, 1, '', 0, 70, 'admin', 'Common', 'value_edit', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (95, '修改个人信息', 'admin/User/admin_info', 1, 1, '', 0, 8, 'admin', 'User', 'admin_info', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (120, '数据库清理', 'admin/Index/db_clear', 1, 1, NULL, 0, 8, 'admin', 'Index', 'db_clear', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (119, '网站属性编辑', 'admin/Common/config_edit', 1, 1, NULL, 0, 70, 'admin', 'Common', 'config_edit', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (118, '阿里云oss', 'admin/Common/aliyunoss', 1, 1, NULL, 0, 70, 'admin', 'Common', 'aliyunoss', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (108, '操作日志', 'admin/Config/action_log', 1, 1, '', 15, 1, 'admin', 'Config', 'action_log', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (117, '上传文件', 'admin/Common/upload_one_file', 1, 1, NULL, 0, 70, 'admin', 'Common', 'upload_one_file', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (116, '获取详情中图片', 'admin/Category/get_content_pic_list', 1, 1, NULL, 0, 45, 'admin', 'Category', 'get_content_pic_list', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (126, '插件管理', 'admin/Plugins/plugins', 1, 1, NULL, 0, 79, 'admin', 'Plugins', 'plugins', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (133, '商品管理', 'admin/Products/', 1, 1, NULL, 0, 40, 'admin', 'Products', '', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (134, '商品列表', 'admin/Products/product', 1, 1, NULL, 0, 133, 'admin', 'Products', 'product', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (135, '增加商品', 'admin/Products/product_add', 1, 1, NULL, 0, 134, 'admin', 'Products', 'product_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (136, '编辑商品', 'admin/Products/product_edit', 1, 1, NULL, 0, 134, 'admin', 'Products', 'product_edit', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (144, '基本设置', 'admin/0/0', 1, 1, NULL, 0, 1, 'admin', '0', '0', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (146, '自定义参数', 'admin/Config/custom_config', 1, 1, NULL, 0, 144, 'admin', 'Config', 'custom_config', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (145, 'test', 'addons/zf_seo_fanmulu.index/index', 1, 1, NULL, 0, 1, 'addons', 'zf_seo_fanmulu.index', 'index', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (141, '商品分类', 'admin/Products/cate', 1, 1, NULL, 0, 133, 'admin', 'Products', 'cate', 1, NULL);
+INSERT INTO `zf_admin_role` VALUES (142, '增加分类', 'admin/Products/cate_add', 1, 1, NULL, 0, 141, 'admin', 'Products', 'cate_add', 0, NULL);
+INSERT INTO `zf_admin_role` VALUES (143, '编辑分类', 'admin/Products/cate_edit', 1, 1, NULL, 0, 141, 'admin', 'Products', 'cate_edit', 0, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -402,7 +403,7 @@ CREATE TABLE `zf_link` (
   `sort` int(5) DEFAULT '0',
   `summary` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='超链表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='超链表';
 
 -- ----------------------------
 -- Records of zf_link
@@ -487,7 +488,7 @@ INSERT INTO `zf_post` VALUES (6, 2, '写经验交流材料的技巧全在这了�
 INSERT INTO `zf_post` VALUES (7, 2, '经验分享：我是如何做好每日计划的', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', 1, 1570606623, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 3, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
 INSERT INTO `zf_post` VALUES (8, 2, '经验分享：我是如何做好每日计划的', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', 1, 1570606628, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 6, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
 INSERT INTO `zf_post` VALUES (9, 2, '脾气不好的妈妈好好读读这篇文章，真的是细思极恐', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', 1, 1570606640, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 5, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
-INSERT INTO `zf_post` VALUES (10, 2, '养女儿，一定要让她漂亮！', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', 1, 1570606645, NULL, 2, '<p class=\"introTop\">TA家的珍珠是用黑糖熬制的，要熬整整四个小时才行，每熬一锅黑糖只能做出40杯奶茶，好味，是值得等待的。</p><div><img src=\"{$tpl_static}/img/news_big.jpg\" alt=\"新闻详情图\"/></div><p class=\"introBott\">北极光的制作，需要300g葡萄来完成，要选用最新鲜的葡萄，才能做出最灿烂的北极光。满满一瓶葡萄，看着就让人倍感满足。喝之前，要先摇9下，才能喝出最好的果味。晨曦的寓意是，清晨的阳光。要用到一整颗百香果的晨曦，喝起来酸酸甜甜，果味浓郁。晨曦喝起来果味极浓，不仅仅有百香果，还有芒果、橙汁...的味道，十分清新，彷佛夏日的一抹凉风！</p>', '', '', '', 0.00, 0.00, '0', 38, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
+INSERT INTO `zf_post` VALUES (10, 2, '养女儿，一定要让她漂亮！', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', 1, 1570606645, NULL, 2, '<p class=\"introTop\">TA家的珍珠是用黑糖熬制的，要熬整整四个小时才行，每熬一锅黑糖只能做出40杯奶茶，好味，是值得等待的。</p><div><img src=\"{$tpl_static}/img/news_big.jpg\" alt=\"新闻详情图\"/></div><p class=\"introBott\">北极光的制作，需要300g葡萄来完成，要选用最新鲜的葡萄，才能做出最灿烂的北极光。满满一瓶葡萄，看着就让人倍感满足。喝之前，要先摇9下，才能喝出最好的果味。晨曦的寓意是，清晨的阳光。要用到一整颗百香果的晨曦，喝起来酸酸甜甜，果味浓郁。晨曦喝起来果味极浓，不仅仅有百香果，还有芒果、橙汁...的味道，十分清新，彷佛夏日的一抹凉风！</p>', '', '', '', 0.00, 0.00, '0', 39, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
 INSERT INTO `zf_post` VALUES (11, 3, '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', 1, 1570607284, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 0, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
 INSERT INTO `zf_post` VALUES (12, 4, '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', 1, 1570607289, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 0, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
 INSERT INTO `zf_post` VALUES (13, 4, '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', 1, 1570607294, NULL, 0, NULL, '', '', '', 0.00, 0.00, '0', 0, '', '匿名', '', 0, 0, 0, NULL, 1, 0, 0, 0);
@@ -646,7 +647,7 @@ CREATE TABLE `zf_user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `zf_user_group`;
 CREATE TABLE `zf_user_group` (
-  `id` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `ctime` int(11) NOT NULL DEFAULT '0',
@@ -658,8 +659,8 @@ CREATE TABLE `zf_user_group` (
 -- Records of zf_user_group
 -- ----------------------------
 BEGIN;
-INSERT INTO `zf_user_group` VALUES (00000000001, '高级会员', 1, 1538127552, 0);
-INSERT INTO `zf_user_group` VALUES (00000000002, '普通会员', 1, 1538127552, 0);
+INSERT INTO `zf_user_group` VALUES (1, '高级会员', 1, 1538127552, 0);
+INSERT INTO `zf_user_group` VALUES (2, '普通会员', 1, 1538127552, 0);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

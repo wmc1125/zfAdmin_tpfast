@@ -25,7 +25,7 @@ class Category extends Admin
     public function __construct (){
         parent::__construct();
     }
-
+ 
     /**
      * @Notes:栏目列表
      * @Interface index
@@ -39,18 +39,27 @@ class Category extends Admin
     public function index()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $res = Db::name('category')->field('cid,pid,name,cname,icon,tpl_category,tpl_post,mid,sort,status,menu')->where('status!=9')->order("sort asc,cid asc")->select();
-        $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
-        $list = $cat->getTree($res); //获取分类数据树结构
+        $pid =input('pid','0');
+        $where[] = ['status','<>',9];
+        // if($pid!='0'){
+        //     $where[] = ['pid','=' ,$pid];
+        // }
+        // $pid = 0;
+        $res = Db::name('category')->field('cid,pid,name,cname,icon,tpl_category,tpl_post,mid,sort,status,menu')->where($where)->order("sort asc,cid asc")->select();
+         $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
+        $list = $cat->getTree($res,$pid); //获取分类数据树结构
         if(!$list){
             $list = [];
         }
+        // dd($pid);
+        // dd($list);
         $this->assign("list",$list);
         $mlist = Db::name('category_model')->where(['status'=>1])->order("id asc")->select();
         if(!$mlist){
             $mlist = [];
         }
         $this->assign("mlist",$mlist);
+        $this->assign("pid",$pid);
     	return view();
     }
 

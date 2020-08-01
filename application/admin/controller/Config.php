@@ -334,7 +334,7 @@ class Config extends Admin
         unset($val['_act']);
 
         $value = $val['module'].'/'.$val['control'].'/'.$val['act'];
-        $res1 = Db::name('admin_role')->where(["value"=> $value])->find();
+        $res1 = Db::name('admin_role')->where(["value"=> $value,'parm'=>$val['parm']])->find();
         if($res1){
             if(in_array($val['act'], ['','0/0','/0','0/','/'])){
                 return jserror('已存在该权限');exit;

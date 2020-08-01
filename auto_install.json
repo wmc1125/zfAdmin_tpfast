@@ -11,6 +11,6 @@
   "admin_username":"",
   "admin_password":"",
   "run_path":"/",
-  "remove_file":["/index.html","/404.html","/.user.ini"],
+  "remove_file":["/index.html","/404.html","/.user.ini","/__MACOSX"],
   "enable_functions":[]
 }

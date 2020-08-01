@@ -43,12 +43,12 @@
                   <a href="#!">{$vo1['name']}</a>
                   <ul class="nav nav-subnav">
                     <?php foreach($three_menu as $k2=>$vo2){ ?>
-                    <li> <a class="multitabs" href="/<?php echo $vo2['module'].'/'.$vo2['control'].'/'.$vo2['act']; ?>">{$vo2['name']}</a> </li>
+                    <li> <a class="multitabs" href="/<?php echo $vo2['module'].'/'.$vo2['control'].'/'.$vo2['act']; ?>{$vo2['parm']!=''?'?'.$vo2['parm']:''}">{$vo2['name']}</a> </li>
                     <?php } ?>
                   </ul>
                 </li>
                 <?php }else{ ?>
-                  <li><a class="multitabs" href="/<?php echo $vo1['module'].'/'.$vo1['control'].'/'.$vo1['act']; ?>">{$vo1['name']}</a> </li>
+                  <li><a class="multitabs" href="/<?php echo $vo1['module'].'/'.$vo1['control'].'/'.$vo1['act']; ?>{$vo1['parm']!=''?'?'.$vo1['parm']:''}">{$vo1['name']}</a> </li>
                 <?php }} ?>
               </ul>
               <?php } ?>

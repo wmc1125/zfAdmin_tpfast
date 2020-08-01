@@ -40,16 +40,16 @@
                 <div class="layui-form-item">
                   <label class="layui-form-label">类别:</label>
                   <div class="layui-input-block">
-                    <input type="radio" name="type" value="1" title="友链" checked ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>友链</div></div>
-                    <input type="radio" name="type" value="2" title="自用"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>自用</div></div>
+                    <input type="radio" name="type" value="1" title="友链" checked ><div class="layui-unselect layui-form-radio"><div>友链</div></div>
+                    <input type="radio" name="type" value="2" title="自用"><div class="layui-unselect layui-form-radio"><div>自用</div></div>
                     
                   </div>
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">状态:</label>
                   <div class="layui-input-block">
-                    <input type="radio" name="status" value="1" title="开启" checked ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>开启</div></div>
-                    <input type="radio" name="status" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>关闭</div></div>
+                    <input type="radio" name="status" value="1" title="开启" checked ><div class="layui-unselect layui-form-radio"><div>开启</div></div>
+                    <input type="radio" name="status" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><div>关闭</div></div>
                     
                   </div>
                 </div>
@@ -80,31 +80,7 @@
     ,form = layui.form
     ,upload = layui.upload ;
 
-    $(".tijiao").on("click",function(){
-      var data = $(".info_tj input,.info_tj textarea,.info_tj radio").serialize();      
-      $.ajax({
-          type:'post',
-          url:"{:url('rests/link_add')}",
-          data:data,
-          dataType:'json',
-          success:function(res){
-            // console.log(res)
-            if(res.result==1){
-              layer.msg("添加成功", {icon: 1});
-              setTimeout(function() {
-                window.parent.location.reload();
-              }, 2000);
-            }else{
-              layer.msg(res.msg, {icon: 2});
-              setTimeout(function() {
-                window.parent.location.reload();
-              }, 2000);
-            }
-            
-          }
-      })
-
-    })
+    
     
     
   })

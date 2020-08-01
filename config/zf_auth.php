@@ -12,10 +12,10 @@
   // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
   // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
   // +----------------------------------------------------------------------
-  // 站点信息最后修改于 2020/06/11 11:16:55  
+  // 站点信息最后修改于 2020/08/01 14:25:34  
   
  return [
-	'email' => '2046269887@qq.com',
-	'key' => 'e3db021992ff1affb2974747581d6aa5263',
-	'sc' => '4FOkzKicksnQoZWbolZxh2xixpvOY8Wk01ljWpnazZ\/KU2uUaXBknZVpZ2pmYFnKp5vQlYNvkmGIq7Com4ieVMadnYVgWaPX0FZuVGdkWZFVl9CRyqGEb4hpZ2xsmJprnWloo6WoYcjQoVZeVp+c3lVshZWUmcRlmGhwcWjMymPGl5fFZnBqmZhoa2dsZZublJOYYpdohLI=',
+	'email' => '287851074@qq.com',
+	'key' => '459c2e61062d15b8e79cfd8700545bb7493',
+	'sc' => 'roOmm9eVmJ2hzpiZ0VieUnFoxdGllJijpoiShseszqCYg21jmGlva2iUaGCUYoaVrKHPy1qgZWBb2t/UyVqfVZTNn1SPUqmroYNxUpZmhlxanc/HodJXbluYnpucbZZjapVzo9RenKifg2NSzpvdUnJalptxyWeZb5eWmpaclmiVmZhpnJOfnWqYZ2CYapmSmm+Wn2uIsg==',
 ];

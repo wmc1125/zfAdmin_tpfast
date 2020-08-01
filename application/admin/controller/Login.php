@@ -42,14 +42,18 @@ class Login extends Controller
         }
     }
     public function authentication_sys(){
+        $authorize_url  = config()['version']['authorize_url'];
         if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
                 $t = input('t','');
                 if($t=='qrcode'){
                     $email = input('post.email');
+                    if($email==''){
+                        return jserror('邮箱不能为空');die;
+                    }
                     $ret_data['site_domain'] = $_SERVER['SERVER_NAME'];//顶级域名
                     $ret_data['email'] = $email;
                     $ret_data['pro'] = '30';//产品ID
-                    $res = https_post('http://dev.v1.fast.zf.90ckm.com/addons/zf_soft_plugins.api/vfast_create',$ret_data);
+                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create',$ret_data);
                     if($res==1){
                         return jssuccess('已发送到邮箱,请登录查看');
                     }else{
@@ -65,8 +69,7 @@ class Login extends Controller
                         return jserror('保存失败');die;
                     }  
                 }
-
-                
+                $this->assign('authorize_url',$authorize_url);
                 return view();
         }
         

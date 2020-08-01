@@ -43,7 +43,8 @@ class Admin extends Controller
         $c = strtolower(request()->controller());
         $a = strtolower(request()->action());
         // $nodeStr =  ucwords($c) . '/' . $a;
-        $this->mca =  ucwords($c) . '/' . $a;
+        $this->mca =  $m.'/'.ucwords($c) . '/' . $a;
+        
 
         //插入日志
         if(config('web.is_log')==1){
