@@ -24,7 +24,7 @@
           </div>
           <div class="layui-card-header">{$type}</div>
           <div class="layui-card-body" pad15>
-            <form class="info_tj" >
+            <form class="info_tj" onclick="return false">
               <div class="layui-form" wid100 lay-filter="">
                 <?php if($type=='网站设置'){ ?>
                 <div class="layui-form-item">
@@ -32,7 +32,7 @@
                   <div class="layui-input-inline" style="width: 500px;">
                     <input type="text" name="site_name" value="{$config['site_name']}" class="layui-input">
                   </div>
-                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['zfb_alipay_root_cert']</span>网站名称</div>
+                  <div class="layui-form-mid layui-word-aux"><span class="layui-badge  layui-bg-cyan">config()['web']['site_name']</span>网站名称</div>
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">网站域名</label>

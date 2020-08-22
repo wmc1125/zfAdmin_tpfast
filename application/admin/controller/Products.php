@@ -75,12 +75,8 @@ class Products extends Admin
                 $data['ctime'] =  time();
             }
             $res = Db::name('post')->insert($data);
-            if($res)
-            {
-                 return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');
-            }   
+            return ZFRetMsg($res,'新增成功','新增失败');
+             
         } 
     }
     public function product_sku_edit(){
@@ -129,11 +125,8 @@ class Products extends Admin
             return jserror('请勿重复提交');
         }
         $res = Db::name('product_sku')->insert($data);
-        if($res){            
-            return jssuccess('ok');
-        }else{
-            return jserror('保存失败');
-        }
+        return ZFRetMsg($res,'ok','保存失败');
+
     }
     public function sku_del(){
         $data = input('post.');
@@ -144,11 +137,8 @@ class Products extends Admin
             return jserror('不存在');
         }
         $res = Db::name('product_sku')->where($data)->update(['status'=>9]);
-        if($res){            
-            return jssuccess('ok');
-        }else{
-            return jserror('删除失败');
-        }
+        return ZFRetMsg($res,'ok','删除失败');
+
     }
     //提交商品规格详情
     public function product_sku_parm_edit(){
@@ -177,7 +167,6 @@ class Products extends Admin
                 $_info['uid'] = session('admin')['id'];
                 $info_id = Db::name('product_sku_info')->insertGetId($_info);
                 //插入数据库,获得info_id
-                // 
                 if(isset($data['parm'][0][1])){
                     //多参数
                     for($t=0;$t<$parm_num;$t++){
@@ -196,8 +185,6 @@ class Products extends Admin
                     //插入数据库
                     Db::name('product_sku_info_parm')->insert($_parm_data);
                 }
-                // 
-                
             }
             Db::commit();               
            return jssuccess('提交成功');
@@ -219,7 +206,6 @@ class Products extends Admin
             $cate_where = array_merge($cate_where,$this->common_select_tag);
             $mlist = Db::name('product_cate')->where($cate_where)->order("cid asc")->select();
             $this->assign("mlist",$mlist);
-
             return view();
         } 
         if(request()->isPost()){
@@ -261,11 +247,8 @@ class Products extends Admin
             }
             $data = array_merge($data,$this->common_tag);
             $res =Db::name('product_cate')->insert($data);
-            if($res){
-                return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');exit;
-            } 
+            return ZFRetMsg($res,'新增成功','新增失败');
+            
         }  
         return view();   
     }
@@ -275,11 +258,8 @@ class Products extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res =  Db::name('product_cate')->where(['cid'=>$data['cid']])->update($data);
-            if($res){
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'新增成功','新增失败');
+              
         } 
         $res = Db::name('product_cate')->where(['cid'=>input('cid')])->find();
         $this->assign("res",$res);
@@ -308,11 +288,8 @@ class Products extends Admin
         if($data['field']=='pay_status'){
             db('order_goods')->where('oid', $id)->update([$data['field'] => $is_show]);      
         }      
-        if($res){
-            return jssuccess('更新成功');
-        }else{
-            return jserror('更新失败');
-        }
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
     }
     //订单详情
     public function order_detail(){
@@ -322,15 +299,9 @@ class Products extends Admin
             if($data['kd_company']!='' && $data['kd_code']!='' ){
                 $data['fh_status'] = 1;
             }
-            
             $res =  Db::name('order')->where(['id'=>$data['id']])->update($data);;
-
-            if($res)
-            {
-              return jssuccess('更新');
-            }else{
-              return jserror('失败');
-            }   
+            return ZFRetMsg($res,'更新','失败');
+              
         } 
 
         $id = input("id");
@@ -338,29 +309,14 @@ class Products extends Admin
         $this->assign('res',$res);
         return view();        
     }
-    // public function category_model_add()
-    // {
-    //     if(!request()->isPost()){ 
-    //         return view();   
-    //     }  
-    //     $res = (new categoryModModel())->add(input('post.'));
-    //     if($res['valid'])
-    //     {
-    //         return jssuccess($res['msg']);
-    //     }else{
-    //         return jserror($res['msg']);exit;
-    //     } 
-    // }
+
     //修改
     public function order_edit()
     {
         if(request()->isPost()){
             $res = Db::name('category_model')->where('id='.input('post.id'))->update(input('post.'));
-            if($res){
-                return jssuccess('ok');
-            }else{
-                return jserror('error');
-            }   
+            return ZFRetMsg($res,'ok','err');
+              
         } 
         $id = input("id");
         $res = Db::name('category_model')->where('id='.$id)->find();

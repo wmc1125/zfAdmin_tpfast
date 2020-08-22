@@ -36,15 +36,10 @@ class Config extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = extraconfig(input('post.'),'web');
-            if($res){
-                return jssuccess('保存成功');die;
-            }else{
-                return jserror('保存失败');die;
-            }   
+            return ZFRetMsg($res,'保存成功','保存失败');
         }
         $type = input('type','网站设置');
         $this->assign("type",$type);
-
         $this->assign("config",config()['web']);
         return view();
     }
@@ -60,7 +55,7 @@ class Config extends Admin
     public function admin_index()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $user_list = Db::name('admin')->where("status!=9")->order("id asc")->paginate(6);
+        $user_list = Db::name('admin')->where([['status','<>',9]])->order("id asc")->paginate(6);
         $page = $user_list->render();
         $this->assign("user_list",$user_list);
         $this->assign("page",$page);
@@ -95,11 +90,8 @@ class Config extends Admin
             return jserror('用户名已存在');exit;
         }
         $res =Db::name('admin')->insert($data); 
-        if($res){
-            return jssuccess("新增成功");
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+        
     }
 
     /**
@@ -141,11 +133,8 @@ class Config extends Admin
                 }
             }
             $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
-              if($res){
-                  return jssuccess('更新成功');
-              }else{
-                  return jserror('更新失败');
-              }   
+            return ZFRetMsg($res,'更新成功','更新失败');
+            
         } 
     }
 
@@ -160,7 +149,7 @@ class Config extends Admin
     public function admin_group()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $group_list = Db::name('admin_group')->where("status!=9")->order("id asc")->paginate(10);
+        $group_list = Db::name('admin_group')->where([['status','<>',9]])->order("id asc")->paginate(10);
         $page = $group_list->render();
         $this->assign("group_list",$group_list);
         $this->assign("page",$page);
@@ -184,11 +173,8 @@ class Config extends Admin
         $data = array_merge($data,$this->common_tag);
         $data['ctime'] = time();
         $res =Db::name('admin_group')->insert($data);
-        if($res){
-            return jssuccess("新增成功");
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+        
     }
 
     /**
@@ -214,11 +200,8 @@ class Config extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = Db::name('admin_group')->where(['id'=>$data['id']])->update($data);
-              if($res){
-                  return jssuccess('更新成功');
-              }else{
-                  return jserror('更新失败');
-              }  
+            return ZFRetMsg($res,'更新成功','更新失败');
+            
         } 
     }
 
@@ -252,11 +235,8 @@ class Config extends Admin
             $data = input('post.');
             $data['role'] = implode(',',  $data['role']);
              $res = Db::name('admin_group')->where(['id'=>$data['id']])->update($data);
-              if($res){
-                  return jssuccess('更新成功');
-              }else{
-                  return jserror('更新失败');
-              }    
+            return ZFRetMsg($res,'更新成功','更新失败');
+                
         } 
     }
 
@@ -344,11 +324,8 @@ class Config extends Admin
         $data['value'] = $value;
         $data = array_merge($data,$this->common_tag);
         $res =Db::name('admin_role')->insert($data); 
-        if($res){
-            return jssuccess("新增成功");
-        }else{
-            return jserror('新增失败');exit;
-        }   
+        return ZFRetMsg($res,'新增成功','新增失败');
+         
     }
 
     /**
@@ -378,11 +355,7 @@ class Config extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = Db::name('admin_role')->where(['id'=>$data['id']])->update($data);
-              if($res){
-                  return jssuccess('更新成功');
-              }else{
-                  return jserror('更新失败');
-              }   
+            return ZFRetMsg($res,'更新成功','更新失败');  
         } 
     }
 
@@ -423,11 +396,7 @@ class Config extends Admin
                 return jserror('该键已存在');exit;
             }
             $res =Db::name('config')->insert($data);
-            if($res){
-                return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');exit;
-            }
+            return ZFRetMsg($res,'新增成功','新增失败');
         }
 
         $list = Db::name('config')->where([['status','<>',9]])->order("sort desc,id asc")->select();
@@ -441,11 +410,7 @@ class Config extends Admin
         if(request()->isPost()){
             $data = input("post.");
             $res =  Db::name('config')->where(['id'=>$data['id']])->update($data);
-            if($res){
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }
+            return ZFRetMsg($res,'修改成功','修改失败'); 
         }
         $res = Db::name('config')->where(['id'=>$id])->find();
         $this->assign('res',$res);
@@ -453,42 +418,6 @@ class Config extends Admin
     }
 
 
-
-   
-
-    // public function pay_setting(){
-    //     admin_role_check($this->z_role_list,$this->mca,1);
-    //     if(request()->isPost()){
-    //         $data = input('post.');
-    //         $res = extraconfig(input('post.'),'pay_setting');
-    //         if($res){
-    //             return jssuccess('保存成功');die;
-    //         }else{
-    //             return jserror('保存失败');die;
-    //         }   
-    //     }
-    //     $type = input('type','微信');
-    //     $this->assign("type",$type);
-    //     $this->assign("config",config()['pay_setting']);
-    //     return view();
-    // }
-    // public function login_setting(){
-    //     admin_role_check($this->z_role_list,$this->mca,1);
-    //     if(request()->isPost()){
-    //         $data = input('post.');
-    //         $res = extraconfig(input('post.'),'login_setting');
-    //         if($res){
-    //             return jssuccess('保存成功');die;
-    //         }else{
-    //             return jserror('保存失败');die;
-    //         }   
-    //     }
-    //     $type = input('type','QQ');
-    //     $this->assign("type",$type);
-    //     $this->assign("config",config()['login_setting']);
-    //     return view();
-    // }
-    
 
     
 }

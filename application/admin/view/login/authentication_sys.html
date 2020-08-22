@@ -75,98 +75,35 @@
           type:"POST",
           success:function(res){
             if(res.result==1){
-                // var qrcode =  "<img src='"+res.msg+"' />"
-                var qrcode = res.msg;
-                layer.confirm(qrcode, {
-                  btn: ['输入Key/sc','取消'], //按钮
-                  title:'消息'
-                }, function(){
-                  layer.prompt({title: '输入Key，并确认', formType: 1}, function(pass, index){
-                    layer.close(index);
-                    layer.prompt({title: '输入秘钥Sc，并确认', formType: 2}, function(text, index){
-                      layer.close(index);
-                      //执行保存
-                      var key = pass
-                      var sc = text
-                      $.ajax({
-                        url:"?t=save",
-                        data:{email,key,sc},
-                        dataType:'json',
-                        type:"POST",
-                        success:function(res){
-                          if(res.result==1){
-                              layer.msg(res.msg, {
-                                offset: '15px'
-                                ,icon: 1
-                                ,time: 1000
-                              }, function(){
-                                location.href = "{:url('index/index')}";
-                              });
-                          }else{
-                            layer.msg(res.msg)
-
-                          }
-                          
-                        }
-                      })
-                    });
-                  });
-                }, function(){
-                  layer.msg('你点击了取消')
-                   
+              console.log(res)
+                var qrcode =  "<img src='"+res.msg+"' />"
+                layer.open({
+                  type: 1,
+                  skin: 'layui-layer-rim', //加上边框
+                  area: ['480px', '510px'], //宽高
+                  content: qrcode
                 });
+
             }else{
               layer.msg(res.msg)
-
             }
-            
           }
         })
-
-        
-
-
-        // layer.prompt({title: '请输入邮箱', formType: 1}, function(pass, index){
-        //   layer.close(index);
-
-        //   layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
-        //     layer.close(index);
-        //     layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
-        //   });
-        // });
-
     })
+    function reqs() {
+      $.post("?t=status",function(res){
+        if(res.result==1){
+          layer.msg(res.msg)
+          setTimeout(function(){
+            window.location.href="/admin";
+          },2000);
+        }
+      },'json');
+    }
+    reqs();
+    setInterval(reqs, 3000);
    
-     $("#login_r").on("click",function(){
-        var name = $(".form_name").val();
-        var pwd = $(".form_pwd").val();
-        var google_code = $("#google_code").val();
-
-      //异步获取信息
-        var url = "{:url('login/authentication_sys')}";
-        var data = {name:name,pwd:pwd,google_code:google_code};
-        $.ajax({
-          url:url,
-          data:data,
-          dataType:'json',
-          type:"POST",
-          success:function(res){
-            if(res.result==1){
-              layer.msg('保存成功', {
-                offset: '15px'
-                ,icon: 1
-                ,time: 1000
-              }, function(){
-                location.href = "{:url('login/index')}"; //后台主页
-              });
-            }else{
-              layer.msg(res.msg)
-
-            }
-            
-          }
-        })
-      })
+     
   </script>
 </body>
 </html>

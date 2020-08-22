@@ -952,6 +952,16 @@ if (!function_exists('zf_decrypt')) {
 
 
 
+if (!function_exists('ZFRetMsg')) {
+    function ZFRetMsg($is,$success_msg,$error_msg){
+        if($is){
+            return jssuccess($success_msg);
+        }else{
+            return jserror($error_msg);
+        }
+
+    }
+}
 
 
 

@@ -104,12 +104,8 @@ class User extends Admin
         }
 
         $res = Db::name('user')->insert($data);
-        if($res)
-        {
-            return jssuccess('新增成功');
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+         
     }
 
     /**
@@ -150,12 +146,8 @@ class User extends Admin
             }
 
             $res = Db::name('user')->where(['id'=>$data['id']])->update($data);
-              if($res)
-              {
-                  return jssuccess('修改成功');
-              }else{
-                  return jserror('修改失败');
-              }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+              
         } 
     }
 
@@ -192,12 +184,8 @@ class User extends Admin
             $data['ctime'] = time();
             $data = array_merge($data,$this->common_tag);
             $res =Db::name('user_group')->insert($data);
-            if($res)
-            {
-                return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');exit;
-            } 
+            return ZFRetMsg($res,'新增成功','新增失败');
+           
         }  
             return view();   
 
@@ -222,12 +210,8 @@ class User extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = Db::name('user_group')->where(['id'=>$data['id']])->update($data); 
-              if($res)
-              {
-                  return jssuccess('修改成功');
-              }else{
-                  return jserror('修改失败');
-              }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+             
         } 
         $res =  Db::name('user_group')->where(['id'=>input('id')])->find();
         $this->assign("res",$res);
@@ -279,11 +263,8 @@ class User extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
-              if($res){ 
-                  return jssuccess('修改成功');
-              }else{
-                  return jserror('修改失败');
-              }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+            
         } 
         $id = session('admin.id');
         $res = Db::name('admin')->where(['id'=>$id])->find();

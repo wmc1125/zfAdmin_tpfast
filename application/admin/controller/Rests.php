@@ -36,11 +36,11 @@ class Rests extends Admin
         if(input('type')=='child'){
             $pid = input('id');
             $tpl='rests/advert_child';
-            $list = Db::name('advert')->where('pid',$pid)->where('status!=9')->order("sort asc")->paginate(10);
+            $list = Db::name('advert')->where('pid',$pid)->where([['status','<>',9]])->order("sort asc")->paginate(10);
             $this->assign("pid",$pid);
         }else{
             $tpl='';
-            $list = Db::name('advert')->where('pid',0)->where('status!=9')->order("sort asc")->paginate(10);
+            $list = Db::name('advert')->where('pid',0)->where([['status','<>',9]])->order("sort asc")->paginate(10);
         }
         $page = $list->render();
         $this->assign("list",$list);
@@ -73,11 +73,8 @@ class Rests extends Admin
         }
         $data = array_merge($data,$this->common_tag);
         $res = Db::name('advert')->insert($data);
-        if($res){
-            return jssuccess('新增成功');
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+        
     }
 
     /**
@@ -112,12 +109,8 @@ class Rests extends Admin
                 return jserror('名称不能为空');exit;
             }
             $res = Db::name('advert')->where(['id'=>$data['id']])->update($data);
-            if($res)
-            {
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+             
         } 
     }
 
@@ -132,7 +125,7 @@ class Rests extends Admin
      public function link()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('link')->where('status!=9')->order("sort asc")->paginate(10);
+        $list = Db::name('link')->where([['status','<>',9]])->order("sort asc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -158,11 +151,8 @@ class Rests extends Admin
         }
         $data = array_merge($data,$this->common_tag);
         $res = Db::name('link')->insert($data);
-        if($res){
-            return jssuccess('新增成功');
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+        
     }
 
     /**
@@ -188,12 +178,8 @@ class Rests extends Admin
         if(request()->isPost()){
            $data = input('post.');
             $res = Db::name('link')->where(['id'=>$data['id']])->update($data);
-            if($res)
-            {
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+             
         } 
     }
 
@@ -208,7 +194,7 @@ class Rests extends Admin
      public function guessbook()
     {   
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('guessbook')->where('status!=9')->order("ctime desc,sort asc")->paginate(10);
+        $list = Db::name('guessbook')->where([['status','<>',9]])->order("ctime desc,sort asc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -235,11 +221,8 @@ class Rests extends Admin
         $data['ctime'] = time();
         $data = array_merge($data,$this->common_tag);
         $res = Db::name('guessbook')->insert($data);
-        if($res){
-            return jssuccess('新增成功');
-        }else{
-            return jserror('新增失败');exit;
-        }  
+        return ZFRetMsg($res,'新增成功','新增失败');
+        
     }
 
     /**
@@ -265,12 +248,8 @@ class Rests extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res = Db::name('guessbook')->where(['id'=>$data['id']])->update($data);
-            if($res)
-            {
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+             
         } 
     }
   

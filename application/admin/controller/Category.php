@@ -11,7 +11,6 @@
 // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
 // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
 // +----------------------------------------------------------------------
-
 namespace app\admin\controller;
 use Wmc1125\TpFast\Category as cat; 
 use think\Db;
@@ -46,13 +45,11 @@ class Category extends Admin
         // }
         // $pid = 0;
         $res = Db::name('category')->field('cid,pid,name,cname,icon,tpl_category,tpl_post,mid,sort,status,menu')->where($where)->order("sort asc,cid asc")->select();
-         $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
+        $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
         $list = $cat->getTree($res,$pid); //获取分类数据树结构
         if(!$list){
             $list = [];
         }
-        // dd($pid);
-        // dd($list);
         $this->assign("list",$list);
         $mlist = Db::name('category_model')->where(['status'=>1])->order("id asc")->select();
         if(!$mlist){
@@ -79,11 +76,7 @@ class Category extends Admin
         }
         $data = array_merge($data,$this->common_tag);
         $res = Db::name('category')->insert($data);
-        if($res){
-            return jssuccess('新增成功');
-        }else{
-            return jserror('新增失败');exit;
-        } 
+        return ZFRetMsg($res,'新增成功','新增失败');
     }
 
     /**
@@ -105,7 +98,7 @@ class Category extends Admin
             $res =Db::name('category')->where(['cid'=>input('cid')])->find();
             $this->assign("t",0);
             $this->assign("res",$res);
-            $res = Db::name('category')->where('status!=9')->select();
+            $res = Db::name('category')->where([['status','<>',9]])->select();
             $cat = new cat(array('cid', 'pid', 'name', 'cname')); //初始化无限分类
             $plist = $cat->getTree($res); //获取分类数据树结构
             if(!$plist){
@@ -128,13 +121,8 @@ class Category extends Admin
             }
             unset($data['t']);
             $res = Db::name('category')->where(['cid'=>$data['cid']])->update($data);
-            if($res){
-                $msg['msg'] = '修改成功';
-                return jssuccess($msg);
-            }else{
-                $msg['msg'] = '修改成功';
-                return jserror($msg);
-            }   
+            return ZFRetMsg($res,['msg'=>'修改成功'],['msg'=>'修改失败']);
+
         }
     }
 
@@ -152,7 +140,7 @@ class Category extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca);
          //读取
-        $list = Db::name('category_model')->where('status!=9')->order("id asc")->select();
+        $list = Db::name('category_model')->where([['status','<>',9]])->order("id asc")->select();
         $this->assign("list",$list);
         return view();
 
@@ -176,11 +164,7 @@ class Category extends Admin
             }
             $data = array_merge($data,$this->common_tag);
             $res =Db::name('category_model')->insert($data);
-            if($res){
-                return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');exit;
-            } 
+            return ZFRetMsg($res,'新增成功','新增失败');
         }  
         return view();   
     }
@@ -203,11 +187,8 @@ class Category extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $res =  Db::name('category_model')->where(['id'=>$data['id']])->update($data);
-            if($res){
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');
+              
         } 
         $res = Db::name('category_model')->where(['id'=>input('id')])->find();
         $this->assign("res",$res);
@@ -382,15 +363,9 @@ class Category extends Admin
                         $data[$vo['key']] = '';
                     }
                 }
-
             }
             $res = Db::name('post')->insertGetId($data);
-            // $this->get_content_pic_list($res);
-            if($res){
-                 return jssuccess('新增成功');
-            }else{
-                return jserror('新增失败');
-            }   
+            return ZFRetMsg($res,'新增成功','新增失败'); 
         } 
     }
 
@@ -482,12 +457,7 @@ class Category extends Admin
             }
             
             $res =  Db::name('post')->where(['id'=>$data['id']])->update($data);
-            if($res)
-            {
-                 return jssuccess('修改成功');
-            }else{
-                  return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');  
         } 
     }
 
@@ -581,11 +551,8 @@ class Category extends Admin
             $where[] = ['title','like','%'.$kwd.'%'];
         }
         $list =  Db::name('post')->where($where)->order('id desc')->select();
-        if($list){
-            return jssuccess($list);
-        }else{
-            return jserror('error');
-        }
+        return ZFRetMsg($list,$list,'error');
+
     }
 
     /**
@@ -685,11 +652,8 @@ class Category extends Admin
 
              $data = array_merge($data,$this->common_tag);
              $res =Db::name('category_model_parm')->insert($data);
-             if($res){
-                 return jssuccess('新增成功');
-             }else{
-                 return jserror('新增失败');exit;
-             } 
+            return ZFRetMsg($res,'新增成功','新增失败');
+             
          }  
          return view();   
      }
@@ -712,11 +676,7 @@ class Category extends Admin
          if(request()->isPost()){
             $data = input('post.');
             $res =  Db::name('category_model_parm')->where(['id'=>$data['id']])->update($data);
-            if($res){
-                return jssuccess('修改成功');
-            }else{
-                return jserror('修改失败');
-            }   
+            return ZFRetMsg($res,'修改成功','修改失败');
          } 
          $res = Db::name('category_model_parm')->where(['id'=>input('id')])->find();
          $this->assign("res",$res);

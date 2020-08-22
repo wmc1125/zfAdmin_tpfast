@@ -16,7 +16,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\facade\Request;
 use think\Db;
-use Wmc1125\TpFast\GoogleAuthenticator;
+use Wmc1125\TpFast\GoogleAuthenticator; 
 
 class Login extends Controller
 {
@@ -37,14 +37,13 @@ class Login extends Controller
         if(session('admin')){
             $this->error('你已登录,不需要重复登录','index/index'); 
         }else{
-            
             return view();
         }
     }
     public function authentication_sys(){
         $authorize_url  = config()['version']['authorize_url'];
+        $t = input('t','');
         if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
-                $t = input('t','');
                 if($t=='qrcode'){
                     $email = input('post.email');
                     if($email==''){
@@ -53,28 +52,24 @@ class Login extends Controller
                     $ret_data['site_domain'] = $_SERVER['SERVER_NAME'];//顶级域名
                     $ret_data['email'] = $email;
                     $ret_data['pro'] = '30';//产品ID
-                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create',$ret_data);
-                    if($res==1){
-                        return jssuccess('已发送到邮箱,请登录查看');
+                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create_xcx',$ret_data);
+                    if($res!='0'){
+                        $res = trim($res);
+                        return jssuccess($res);
                     }else{
                         return jserror($res.' 请联系微信:zifeng1788');                        
                     }
-                }elseif($t=='save'){
-                    $data = input('post.');
-                    if($data['email']!='' && $data['key']!=''  && $data['sc']!='' )
-                    $res = extraconfig($data,'zf_auth');
-                    if($res){
-                        return jssuccess('保存成功');die;
-                    }else{
-                        return jserror('保存失败');die;
-                    }  
                 }
                 $this->assign('authorize_url',$authorize_url);
                 return view();
         }
-        
-
+        if($t=='status'){
+            if(config()['zf_auth']['key']!='' &&  config()['zf_auth']['sc']!='' &&  config()['zf_auth']['email']!='' ){
+                return jssuccess('授权成功');
+            }
+        }
     }
+   
 
     /**
      * @Notes:后台登录

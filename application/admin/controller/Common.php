@@ -43,11 +43,8 @@ class Common extends Admin
         }else{
             $res = db($dbname)->where('id', $id)->update(['status' => $is_show]);            
         }
-        if($res){
-            return jssuccess('更新成功');
-        }else{
-            return jserror('更新失败');
-        }
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
     }
 
     /**
@@ -68,11 +65,8 @@ class Common extends Admin
         }else{
             $res = db($dbname)->where('id', $id)->update(['menu' => $is_show]);            
         }     
-        if($res){
-            return jssuccess('更新成功');
-        }else{
-            return jserror('更新失败');
-        }
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
     }
     /**
      * @Notes:删除内容
@@ -94,11 +88,8 @@ class Common extends Admin
         }else{
             $res = db($dbname)->where('id', $id)->update(['status' => 9]);            
         }
-        if($res){
-            return jssuccess('删除成功');
-        }else{
-            return jserror('删除失败');
-        }
+        return ZFRetMsg($res,'删除成功','删除失败');
+
     }
 
     /**
@@ -143,12 +134,8 @@ class Common extends Admin
         }else{
             $res = db($dbname)->where('id', $id)->update([$field => $value]);      
         }
-        if($res){
-            return jssuccess('更新成功');
-            
-        }else{
-            return jserror('更新失败');
-        }
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
     }
 
     /**
@@ -183,11 +170,8 @@ class Common extends Admin
         $info = $file2->validate(['ext'=>config()['web']['file_ext']])->move('./public/upload/admin/file');
         $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
         $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/file/'.$getSaveName;
-        if($msg){
-            return jssuccess($msg);
-        }else{
-            return jserror("error");
-        }
+        return ZFRetMsg($msg,$msg,'error');
+
     }
 
     
@@ -206,11 +190,8 @@ class Common extends Admin
         $value = input('value');
         //执行转换
         $res = db('config')->where(['key'=>$key])->update(['value' => $value]);            
-        if($res){
-            return jssuccess('更新成功');
-        }else{
-            return jserror('更新失败');
-        }
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
     }
 
      
