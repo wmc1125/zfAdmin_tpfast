@@ -17,6 +17,7 @@ use think\Controller;
 use think\facade\Request;
 use think\Db;
 use Wmc1125\TpFast\GoogleAuthenticator; 
+use zf\ZfAuth;
 
 class Login extends Controller
 {
@@ -43,7 +44,7 @@ class Login extends Controller
     public function authentication_sys(){
         $authorize_url  = config()['version']['authorize_url'];
         $t = input('t','');
-        if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
+        // if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
                 if($t=='qrcode'){
                     $email = input('post.email');
                     if($email==''){
@@ -52,7 +53,7 @@ class Login extends Controller
                     $ret_data['site_domain'] = $_SERVER['SERVER_NAME'];//顶级域名
                     $ret_data['email'] = $email;
                     $ret_data['pro'] = '30';//产品ID
-                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create_xcx',$ret_data);
+                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create_wx',$ret_data);
                     if($res!='0'){
                         $res = trim($res);
                         return jssuccess($res);
@@ -60,14 +61,22 @@ class Login extends Controller
                         return jserror($res.' 请联系微信:zifeng1788');                        
                     }
                 }
-                $this->assign('authorize_url',$authorize_url);
-                return view();
-        }
+                
+        // }
         if($t=='status'){
+            // 判断是否正确
+            $auth_info['sc'] = config()['zf_auth']['sc'];
+            $auth_info['key'] = config()['zf_auth']['key'];
+            $auth_info['post_id'] = config()['version']['post_id'];
+            $this->zfauth = new ZfAuth();
+            $this->zfauth->vfast_check($auth_info,'alert');
+            $this->zfauth->plugin_check($auth_info,'alert');
             if(config()['zf_auth']['key']!='' &&  config()['zf_auth']['sc']!='' &&  config()['zf_auth']['email']!='' ){
                 return jssuccess('授权成功');
             }
         }
+        $this->assign('authorize_url',$authorize_url);
+        return view();
     }
    
 

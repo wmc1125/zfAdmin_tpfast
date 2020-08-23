@@ -24,7 +24,6 @@ class Zfyun
         // }
     }
 
-    public function update()
 
 
 

@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="key" class="zf_key" value="">
-                        <span class="layui-btn layui-btn-fluid scan_btn" >发送到邮箱</span>
+                        <span class="layui-btn layui-btn-fluid scan_btn" >微信扫码</span>
                     </form>
                 </div>
             </div>
@@ -95,7 +95,7 @@
         if(res.result==1){
           layer.msg(res.msg)
           setTimeout(function(){
-            window.location.href="/admin";
+            history.back(-1)
           },2000);
         }
       },'json');
