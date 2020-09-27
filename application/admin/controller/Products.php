@@ -34,14 +34,14 @@ class Products extends Admin
         }
         $where = array_merge($where,$this->common_select_tag);
 
-        $list = Db::name('post')->where($where)->order("id desc")->paginate(6);
+        $list = ZFTB('post')->where($where)->order("id desc")->paginate(6);
         if(!$list){
             $List = [];
         }
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
-        $res =  Db::name('product_cate')->where(['cid'=>$cid])->find();
+        $res =  ZFTB('product_cate')->where(['cid'=>$cid])->find();
         $this->assign("res",$res);
         return view();
         
@@ -56,7 +56,7 @@ class Products extends Admin
             }
             $where[] = ['status','=',1];
             $where = array_merge($where,$this->common_select_tag);
-            $mlist = Db::name('product_cate')->where($where)->order("cid asc")->select();
+            $mlist = ZFTB('product_cate')->where($where)->order("cid asc")->select();
             // d('category');
             // dd($mlist);
             $this->assign("mlist",$mlist);
@@ -74,7 +74,7 @@ class Products extends Admin
             }else{
                 $data['ctime'] =  time();
             }
-            $res = Db::name('post')->insert($data);
+            $res = ZFTB('post')->insert($data);
             return ZFRetMsg($res,'新增成功','新增失败');
              
         } 
@@ -88,16 +88,16 @@ class Products extends Admin
         // );
         // $sku = dikaer($arr);
         $id = input('id',0);
-        $res = Db::name('post')->field('id,title')->where(['id'=>input('id')])->find();
+        $res = ZFTB('post')->field('id,title')->where(['id'=>input('id')])->find();
         $this->assign("res",$res);      
-        $sku = Db::name('product_sku')->field("id,sku_name as k,GROUP_CONCAT(sku_value) as v")->where(['gid'=>$id,'status'=>1])->group('sku_name')->select();
+        $sku = ZFTB('product_sku')->field("id,sku_name as k,GROUP_CONCAT(sku_value) as v")->where(['gid'=>$id,'status'=>1])->group('sku_name')->select();
         $_arr = [];
         $sku_parm = [];
         foreach($sku as $k=>$vo){
             $sku_parm[$k] = $vo['k'];
             foreach(explode(',',$vo['v']) as $k2=>$vo2){
                 $_arr[$k][$k2]['title'] = $vo2;
-                $_arr[$k][$k2]['id'] = Db::name('product_sku')->where(['gid'=>$id,'status'=>1,'sku_name'=>$vo['k'],'sku_value'=>$vo2])->value('id');
+                $_arr[$k][$k2]['id'] = ZFTB('product_sku')->where(['gid'=>$id,'status'=>1,'sku_name'=>$vo['k'],'sku_value'=>$vo2])->value('id');
             }
         }
         $sku = dikaer($_arr);
@@ -121,10 +121,10 @@ class Products extends Admin
             return jserror('不能为空');
         }
         //判断是否重复提交
-        if(Db::name('product_sku')->field('id')->where(['gid'=>$data['gid'],'uid'=>$data['uid'],'sku_name'=>$data['sku_name'],'sku_value'=>$data['sku_value']])->find()){
+        if(ZFTB('product_sku')->field('id')->where(['gid'=>$data['gid'],'uid'=>$data['uid'],'sku_name'=>$data['sku_name'],'sku_value'=>$data['sku_value']])->find()){
             return jserror('请勿重复提交');
         }
-        $res = Db::name('product_sku')->insert($data);
+        $res = ZFTB('product_sku')->insert($data);
         return ZFRetMsg($res,'ok','保存失败');
 
     }
@@ -133,10 +133,10 @@ class Products extends Admin
         $data['uid'] = session('admin')['id'];
         
         //判断是否重复提交
-        if(!Db::name('product_sku')->field('id')->where(['gid'=>$data['gid'],'uid'=>$data['uid'],'sku_value'=>$data['sku_value']])->find()){
+        if(!ZFTB('product_sku')->field('id')->where(['gid'=>$data['gid'],'uid'=>$data['uid'],'sku_value'=>$data['sku_value']])->find()){
             return jserror('不存在');
         }
-        $res = Db::name('product_sku')->where($data)->update(['status'=>9]);
+        $res = ZFTB('product_sku')->where($data)->update(['status'=>9]);
         return ZFRetMsg($res,'ok','删除失败');
 
     }
@@ -150,11 +150,11 @@ class Products extends Admin
         try {
             Db::startTrans();
             //判断是否存在,存在则删除
-            if(Db::name('product_sku_info')->where(['gid'=>$data['gid']])->find()){
-                Db::name('product_sku_info')->where(['gid'=>$data['gid']])->update(['status'=>9]);
+            if(ZFTB('product_sku_info')->where(['gid'=>$data['gid']])->find()){
+                ZFTB('product_sku_info')->where(['gid'=>$data['gid']])->update(['status'=>9]);
             }
-            if(Db::name('product_sku_info_parm')->where(['gid'=>$data['gid']])->find()){
-                Db::name('product_sku_info_parm')->where(['gid'=>$data['gid']])->update(['status'=>9]);
+            if(ZFTB('product_sku_info_parm')->where(['gid'=>$data['gid']])->find()){
+                ZFTB('product_sku_info_parm')->where(['gid'=>$data['gid']])->update(['status'=>9]);
             }
             for($i=0;$i<$num;$i++){
                 $_info['gid'] = $data['gid'];
@@ -165,7 +165,7 @@ class Products extends Admin
                 $_info['stock'] = $data['stock'][$i];
                 $_info['kg'] = $data['kg'][$i];
                 $_info['uid'] = session('admin')['id'];
-                $info_id = Db::name('product_sku_info')->insertGetId($_info);
+                $info_id = ZFTB('product_sku_info')->insertGetId($_info);
                 //插入数据库,获得info_id
                 if(isset($data['parm'][0][1])){
                     //多参数
@@ -175,7 +175,7 @@ class Products extends Admin
                         $_parm_data['gid'] = $data['gid'];
                         $_parm_data['uid'] = session('admin')['id'];
                         //插入数据库
-                        Db::name('product_sku_info_parm')->insert($_parm_data);
+                        ZFTB('product_sku_info_parm')->insert($_parm_data);
                     }
                 }else{
                     $_parm_data['info_id'] = $info_id;
@@ -183,7 +183,7 @@ class Products extends Admin
                     $_parm_data['gid'] = $data['gid'];
                     $_parm_data['uid'] = session('admin')['id'];
                     //插入数据库
-                    Db::name('product_sku_info_parm')->insert($_parm_data);
+                    ZFTB('product_sku_info_parm')->insert($_parm_data);
                 }
             }
             Db::commit();               
@@ -199,12 +199,12 @@ class Products extends Admin
     public function product_edit()
     {
         if(request()->isGet()){
-            $res = Db::name('post')->where(['id'=>input('id')])->find();
+            $res = ZFTB('post')->where(['id'=>input('id')])->find();
             $this->assign("res",$res);
 
             $cate_where[] = ['status','=',1];
             $cate_where = array_merge($cate_where,$this->common_select_tag);
-            $mlist = Db::name('product_cate')->where($cate_where)->order("cid asc")->select();
+            $mlist = ZFTB('product_cate')->where($cate_where)->order("cid asc")->select();
             $this->assign("mlist",$mlist);
             return view();
         } 
@@ -222,7 +222,7 @@ class Products extends Admin
             }else{
                 $data['ctime'] =  time();
             }
-            $res =  Db::name('post')->where(['id'=>$data['id']])->update($data); 
+            $res =  ZFTB('post')->where(['id'=>$data['id']])->update($data); 
             if($res)
             {
                  return jssuccess('修改成功');
@@ -234,7 +234,7 @@ class Products extends Admin
     public function cate(){
         $where[] = ['status','<>',9];
         $where = array_merge($where,$this->common_select_tag);
-        $list = Db::name('product_cate')->where($where)->order("cid asc")->select();
+        $list = ZFTB('product_cate')->where($where)->order("cid asc")->select();
         $this->assign("list",$list);
         return view();
     }
@@ -246,7 +246,7 @@ class Products extends Admin
                 return jserror('请填写信息');exit;
             }
             $data = array_merge($data,$this->common_tag);
-            $res =Db::name('product_cate')->insert($data);
+            $res =ZFTB('product_cate')->insert($data);
             return ZFRetMsg($res,'新增成功','新增失败');
             
         }  
@@ -257,11 +257,11 @@ class Products extends Admin
     {
         if(request()->isPost()){
             $data = input('post.');
-            $res =  Db::name('product_cate')->where(['cid'=>$data['cid']])->update($data);
+            $res =  ZFTB('product_cate')->where(['cid'=>$data['cid']])->update($data);
             return ZFRetMsg($res,'新增成功','新增失败');
               
         } 
-        $res = Db::name('product_cate')->where(['cid'=>input('cid')])->find();
+        $res = ZFTB('product_cate')->where(['cid'=>input('cid')])->find();
         $this->assign("res",$res);
         return view();
     }
@@ -273,7 +273,7 @@ class Products extends Admin
             $order_sn = input("get.order_sn");
             $where .= " and order_sn like '%$order_sn%' ";
         }
-        $list = Db::name('order')->where($where)->order("id desc")->paginate(10);
+        $list = ZFTB('order')->where($where)->order("id desc")->paginate(10);
         $this->assign('list',$list);
         $this->assign('page', $list->render());
         return view();
@@ -299,7 +299,7 @@ class Products extends Admin
             if($data['kd_company']!='' && $data['kd_code']!='' ){
                 $data['fh_status'] = 1;
             }
-            $res =  Db::name('order')->where(['id'=>$data['id']])->update($data);;
+            $res =  ZFTB('order')->where(['id'=>$data['id']])->update($data);;
             return ZFRetMsg($res,'更新','失败');
               
         } 
@@ -314,12 +314,12 @@ class Products extends Admin
     public function order_edit()
     {
         if(request()->isPost()){
-            $res = Db::name('category_model')->where('id='.input('post.id'))->update(input('post.'));
+            $res = ZFTB('category_model')->where('id='.input('post.id'))->update(input('post.'));
             return ZFRetMsg($res,'ok','err');
               
         } 
         $id = input("id");
-        $res = Db::name('category_model')->where('id='.$id)->find();
+        $res = ZFTB('category_model')->where('id='.$id)->find();
         $this->assign("res",$res);
         return view();
     }

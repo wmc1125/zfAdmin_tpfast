@@ -285,7 +285,7 @@
     });
     $('.tj_btn').on("click",function(){
         var index = layer.load(2);
-        var data = $(".info_tj input,.info_tj select,.info_tj textarea,.info_tj option,.info_tj radio").serialize();      
+        var data = $(".info_tj input,.info_tj select,.info_tj textarea,.info_tj radio").serialize();      
         $.ajax({
             type:'post',
             url:"{:url('category/category_edit')}",

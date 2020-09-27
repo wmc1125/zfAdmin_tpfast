@@ -18,23 +18,14 @@ use think\facade\Request;
 use Wmc1125\TpFast\GetConfig;
 use app\common\model\Md5Data;
 use think\facade\Db as Ddb;
-/**
- * @title 登录注册
- * Class Api
- */
+
 class Index extends Base
 {
 
 	public function __construct ( Request $request = null ){
         parent::__construct();
     }
-    public function test(){
-        //2020年01月党费公示
-        $month = '2020-01';
-         echo str_replace( '-', '年',$month).'月党费公示';
-       
-
-    }
+   
     
     public function index(){
         if(input('tpl_id')){

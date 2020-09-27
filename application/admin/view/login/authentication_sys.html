@@ -16,26 +16,38 @@
     <div class="layui-row layui-col-space15" style="margin:0;margin-top: -70px" >
       <div class="layui-col-sm3"></div>
       <div class="layui-col-sm6" style="height:358px; ">
-          
-          <!-- 代码 开始 -->
           <div id="login">
             <div class="wrapper">
                 <div class="login">
-                    <form class="container offset1 loginform" >
+                    <form class="container offset1 loginform info_tj" >
                         <div class="pad">
                             <div class="control-group">
-                                <div class="controls">
-                                    <input id="authorize_url" type="text" placeholder="" tabindex="1" autofocus="autofocus" class="form-control input-medium" value="{$authorize_url}" readonly="">
-                                </div>
+                              <div class="controls">
+                                  <input id="domain_auth" type="text"  placeholder="当前授权域名" tabindex="1" autofocus="autofocus" class="form-control input-medium" value="{$_SERVER['SERVER_NAME']}" readonly="">
+                              </div>
                             </div>
                             <div class="control-group">
-                                <div class="controls">
-                                    <input id="email" type="text" name="email" placeholder="输入你的邮箱" tabindex="1" autofocus="autofocus" class="form-control input-medium form_email">
-                                </div>
+                              <div class="controls">
+                                  <input  type="text" name="email" placeholder="请输入你的邮箱" tabindex="1" autofocus="autofocus" class="form-control input-medium" value="{$data['email']}">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <div class="controls">
+                                  <input  type="text" name="key" placeholder="请输入你的key" tabindex="1" autofocus="autofocus" class="form-control input-medium" value="{$data['key']}">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <div class="controls">
+                                  <textarea class="layui-textarea" name="sc" placeholder="请输入你的秘钥sc">{$data['sc']}</textarea>
+                              </div>
                             </div>
                         </div>
-                        <input type="hidden" name="key" class="zf_key" value="">
-                        <span class="layui-btn layui-btn-fluid scan_btn" >微信扫码</span>
+                        <div style="text-align: center;margin-bottom: 20px;">
+                          <span class="layui-btn  scan_btn" >保存</span>
+                          <a href="http://authorize.zf.90ckm.com/" target="_blank" class="layui-btn layui-btn-danger ">点击获取授权</a>
+                        </div>
+                        
+
                     </form>
                 </div>
             </div>
@@ -50,58 +62,36 @@
             });
             </script>
           </div>
-
-          <!--  -->
-      </div>
+      </div> 
       <div class="layui-col-sm3"></div>
-      
     </div>
-
-    
     <div class="layui-trans layadmin-user-login-footer">
-      
     </div>
   </div>
   <script src="__STATIC__/style/layer/layer.js"></script>  
   <script>
-    layer.tips('这里是授权验证地址,如果访问不了请联系微信zifeng1788替换', '#authorize_url', {guide: 1, time: 10000});
+    layer.tips('这是当前授权域名', '#domain_auth', {guide: 1, time: 10000});
     $('.scan_btn').on('click',function(){
-        var email = $(".form_email").val();
-        //获取二维码
+        var data = $(".info_tj input,.info_tj select,.info_tj textarea,.info_tj radio").serialize();      
         $.ajax({
-          url:"?t=qrcode",
-          data:{email},
+          url:"?t=save",
+          data:data,
           dataType:'json',
           type:"POST",
           success:function(res){
             if(res.result==1){
               console.log(res)
-                var qrcode =  "<img src='"+res.msg+"' />"
-                layer.open({
-                  type: 1,
-                  skin: 'layui-layer-rim', //加上边框
-                  area: ['480px', '510px'], //宽高
-                  content: qrcode
-                });
-
+              layer.msg(res.msg)
+              setTimeout(function(){
+                history.back(-1)
+              },2000);
             }else{
               layer.msg(res.msg)
             }
           }
         })
     })
-    function reqs() {
-      $.post("?t=status",function(res){
-        if(res.result==1){
-          layer.msg(res.msg)
-          setTimeout(function(){
-            history.back(-1)
-          },2000);
-        }
-      },'json');
-    }
-    reqs();
-    setInterval(reqs, 3000);
+    
    
      
   </script>

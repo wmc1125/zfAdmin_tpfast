@@ -51,15 +51,15 @@ class User extends Admin
                 $id = input("get.id");
                 $where[] = ['u.id','=',$id];
             }
-            $waiterData = Db::name('user u')
+            $waiterData = ZFTB('user u')
                         ->field('u.*,g.name gname,FROM_UNIXTIME(u.ctime, "%Y-%m-%d %H:%i:%s") AS dat, insert(u.tel, 4, 4, "****") as mobile')
-                        ->join('zf_user_group g','g.id = u.gid')
+                        ->join(ZFJoinStrLang('user_group g'),'g.id = u.gid') 
                         ->where($where)
                         ->order("u.id desc")
                         ->page($page,$limit)
                         ->select();
-            $allcount = Db::name('user u')
-                        ->join('zf_user_group g','g.id = u.gid')
+            $allcount = ZFTB('user u')
+                        ->join(ZFJoinStrLang('user_group g'),'g.id = u.gid')
                         ->where($where)
                         ->count();
             $res = [
@@ -87,7 +87,7 @@ class User extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(!request()->isPost()){ 
-            $glist = Db::name('user_group')->where(['status'=>1])->select();
+            $glist = ZFTB('user_group')->where(['status'=>1])->select();
             $this->assign("glist",$glist);
             return view();   
         }  
@@ -98,12 +98,12 @@ class User extends Admin
         }
         $data = array_merge($data,$this->common_tag);
         //判断是否存在
-        $is_user =  Db::name('user')->where(['name'=>$data['name']])->find();
+        $is_user =  ZFTB('user')->where(['name'=>$data['name']])->find();
         if($is_user){
             return jserror('用户名已存在');exit;
         }
 
-        $res = Db::name('user')->insert($data);
+        $res = ZFTB('user')->insert($data);
         return ZFRetMsg($res,'新增成功','新增失败');
          
     }
@@ -124,9 +124,9 @@ class User extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res =  Db::name('user')->where(['id'=>input('id')])->find();
+            $res =  ZFTB('user')->where(['id'=>input('id')])->find();
             $this->assign("res",$res);
-            $glist =  Db::name('user_group')->where(['status'=>1])->select();
+            $glist =  ZFTB('user_group')->where(['status'=>1])->select();
             $this->assign("glist",$glist);
             return view();
         } 
@@ -138,14 +138,14 @@ class User extends Admin
                 unset($data["pwd"]);
             }
             $data['ctime'] = time();
-            $is_user =  Db::name('user')->where(['name'=>$data['name']])->find();
+            $is_user =  ZFTB('user')->where(['name'=>$data['name']])->find();
             if($is_user){
                 if($is_user['id']!=$data['id']){
                     return jserror('用户名已存在');exit;
                 }
             }
 
-            $res = Db::name('user')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('user')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败');
               
         } 
@@ -162,7 +162,7 @@ class User extends Admin
     public function group()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $group_list = Db::name('user_group')->where('status!=9')->order("id asc")->paginate(10);
+        $group_list = ZFTB('user_group')->where('status!=9')->order("id asc")->paginate(10);
         $page = $group_list->render();
         $this->assign("group_list",$group_list);
         $this->assign("page",$page);
@@ -183,7 +183,7 @@ class User extends Admin
             $data = input('post.');
             $data['ctime'] = time();
             $data = array_merge($data,$this->common_tag);
-            $res =Db::name('user_group')->insert($data);
+            $res =ZFTB('user_group')->insert($data);
             return ZFRetMsg($res,'新增成功','新增失败');
            
         }  
@@ -209,11 +209,11 @@ class User extends Admin
         admin_role_check($this->z_role_list,$this->mca,1);   
         if(request()->isPost()){
             $data = input('post.');
-            $res = Db::name('user_group')->where(['id'=>$data['id']])->update($data); 
+            $res = ZFTB('user_group')->where(['id'=>$data['id']])->update($data); 
             return ZFRetMsg($res,'修改成功','修改失败');
              
         } 
-        $res =  Db::name('user_group')->where(['id'=>input('id')])->find();
+        $res =  ZFTB('user_group')->where(['id'=>input('id')])->find();
         $this->assign("res",$res);
         return view();
     }
@@ -233,7 +233,7 @@ class User extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $data['pwd'] = md5($data['pwd']);
-            $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('admin')->where(['id'=>$data['id']])->update($data);
               if($res){ 
                   session('admin',null);
                   return jssuccess('修改成功');
@@ -262,12 +262,12 @@ class User extends Admin
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isPost()){
             $data = input('post.');
-            $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('admin')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败');
             
         } 
         $id = session('admin.id');
-        $res = Db::name('admin')->where(['id'=>$id])->find();
+        $res = ZFTB('admin')->where(['id'=>$id])->find();
         $this->assign('res',$res);
         $ga = new GoogleAuthenticator();
         if($res['google_secret']!=''){
@@ -297,7 +297,7 @@ class User extends Admin
         }
         $name='用户表'.date("Y-m-d H-i-s",time());
         // $data=[['aa','aa','cc','dd','ee'],['bb','bb','cc','dd','ee']];
-        $data = Db::name('user')->where(['status'=>1])->select();
+        $data = ZFTB('user')->where(['status'=>1])->select();
         //设置表头：
         $head = ['用户ID', '用户名', '性别', '地址', '注册日期']; 
         //数据中对应的字段，用于读取相应数据：

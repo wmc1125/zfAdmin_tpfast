@@ -104,7 +104,7 @@ if(!function_exists('admin_role_check')){
  */
 if(!function_exists('get_admin_role')){
   function get_admin_role($gid){
-    $info =Db::name('admin_group')->where('id',$gid)->find();
+    $info =ZFTB('admin_group')->where('id',$gid)->find();
     $role = explode(',',$info['role']);
     foreach($role as $k=>$vo){
       $role_list[$k] = get_role_value($vo);
@@ -125,7 +125,7 @@ if(!function_exists('get_admin_role')){
  */
 if(!function_exists('get_role_value')){
   function get_role_value($id){
-    $info =Db::name('admin_role')->where('id',$id)->find();
+    $info =ZFTB('admin_role')->where('id',$id)->find();
     return $info['value'];
   }
 }
@@ -528,6 +528,7 @@ if (!function_exists('get_domain')) {
 // excel
 if (!function_exists('zf_excel_export')) {
   function zf_excel_export($head,$keys,$data,$name){
+      ob_end_clean();
       $count = count($head);  //计算表头数量
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
@@ -538,19 +539,27 @@ if (!function_exists('zf_excel_export')) {
       foreach ($data as $key => $item) {             //循环设置单元格：
           //$key+2,因为第一行是表头，所以写到表格时   从第二行开始写 
           for ($i = 65; $i < $count + 65; $i++) {     //数字转字母从65开始：
-              $sheet->setCellValue(strtoupper(chr($i)) . ($key + 2), $item[$keys[$i - 65]]);
-              $spreadsheet->getActiveSheet()->getColumnDimension(strtoupper(chr($i)))->setWidth(20); //固定列宽
+              $z_value = str_replace(['+','\\','/','='],'*',$item[$keys[$i - 65]]);
+              $sheet->setCellValue(strtoupper(chr($i)) . ($key + 2), $z_value);
+              $spreadsheet->getActiveSheet()->getColumnDimension(strtoupper(chr($i)))->setWidth(40); //固定列宽
           }
       } 
-      header('Content-Type: application/vnd.ms-excel');
-      header('Content-Disposition: attachment;filename="' . $name . '.xlsx"');
+      // header('Content-Type: application/vnd.ms-excel');
+      // header('Content-Disposition: attachment;filename="' . $name . '.xlsx"');
+      // header('Cache-Control: max-age=0');
+      // $writer = new Xlsx($spreadsheet);
+      // $writer->save('php://output');
+      // //删除清空：
+      // $spreadsheet->disconnectWorksheets();
+      // unset($spreadsheet);
+      // exit;
+
+      $writer = IOFactory::createWriter($spreadsheet,'Csv');
+      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      header('Content-Disposition: attachment;filename='.$name.'.csv');
       header('Cache-Control: max-age=0');
-      $writer = new Xlsx($spreadsheet);
+      $writer->setUseBOM(true);
       $writer->save('php://output');
-      //删除清空：
-      $spreadsheet->disconnectWorksheets();
-      unset($spreadsheet);
-      exit;
   }
 }
 
@@ -965,3 +974,57 @@ if (!function_exists('ZFRetMsg')) {
 
 
 
+/**
+ * 返回文件格式(附件类型)
+ * @param  string $file 文件名
+ * @return string  文件格式(1：文件、2：压缩包、3：图片、4：视频、5：音频、6、其他)
+ */
+if (!function_exists('file_format_cn')) {
+  function file_format_cn($file){
+      // 取文件后缀名
+      $str = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+      //strtolower 将所有字符转换为小写
+      //pathinfo 获取文件信息，详细用法见下面我的补充
+      // 文档格式
+      $text = array('exe','doc','docx','ppt','xls','xlsx','wps','txt','lrc','wfs','torrent','html','htm','java','js','css','less','php','pdf','pps','host','box','word','perfect','dot','dsf','efe','ini','json','lnk','log','msi','ost','pcs','tmp','xlsb');
+      // 压缩格式
+      $zip = array('rar','zip','tar','cab','uue','jar','iso','z','7-zip','ace','lzh','arj','gzip','bz2','tz');
+      // 图片格式
+      $image = array('webp','jpg','png','ico','bmp','gif','tif','pcx','tga','bmp','pxc','tiff','jpeg','exif','fpx','svg','psd','cdr','pcd','dxf','ufo','eps','ai','hdri');
+      $video = array('mp4','avi','3gp','rmvb','gif','wmv','mkv','mpg','vob','mov','flv','swf','ape','m4a','m4r','ogg','wavpack');
+      //音频格式
+      $audio = array('wav','aif','au','mp3','ram','wma','mmf','amr','aac','flac');
+      // 匹配不同的结果
+      if(in_array($str, $text)){
+          return '文本';
+      }elseif(in_array($str, $zip)){
+          return '压缩'; 
+      }elseif(in_array($str, $image)){
+          return '图片';
+      }elseif(in_array($str, $video)){
+          return '视频';
+      }elseif(in_array($str, $audio)){
+          return '音频';
+      }else{
+          return '其他';
+      }
+  }
+}
+
+//判断是否HTTPS
+if (!function_exists('isHTTPS')) {
+  function isHTTPS()
+  {
+      if (defined('HTTPS') && HTTPS) return true;
+      if (!isset($_SERVER)) return FALSE;
+      if (!isset($_SERVER['HTTPS'])) return FALSE;
+      if ($_SERVER['HTTPS'] === 1) {  //Apache
+          return TRUE;
+      } elseif ($_SERVER['HTTPS'] === 'on') { //IIS
+          return TRUE;
+      } elseif ($_SERVER['SERVER_PORT'] == 443) { //其他
+          return TRUE;
+      }
+      return FALSE;
+  }
+}

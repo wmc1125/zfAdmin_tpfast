@@ -165,7 +165,7 @@
 
     $(".tijiao").on("click",function(){
       var index = layer.load(2);
-      var data = $(".info_tj input,.info_tj textarea,.info_tj option").serialize();      
+      var data = $(".info_tj input,.info_tj textarea,.info_tj select").serialize();      
       $.ajax({
           type:'post',
           url:"{:url('category/post_add')}",

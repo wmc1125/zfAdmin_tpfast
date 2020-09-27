@@ -36,11 +36,11 @@ class Rests extends Admin
         if(input('type')=='child'){
             $pid = input('id');
             $tpl='rests/advert_child';
-            $list = Db::name('advert')->where('pid',$pid)->where([['status','<>',9]])->order("sort asc")->paginate(10);
+            $list = ZFTB('advert')->where('pid',$pid)->where([['status','<>',9]])->order("sort asc")->paginate(10);
             $this->assign("pid",$pid);
         }else{
             $tpl='';
-            $list = Db::name('advert')->where('pid',0)->where([['status','<>',9]])->order("sort asc")->paginate(10);
+            $list = ZFTB('advert')->where('pid',0)->where([['status','<>',9]])->order("sort asc")->paginate(10);
         }
         $page = $list->render();
         $this->assign("list",$list);
@@ -72,7 +72,7 @@ class Rests extends Admin
             return jserror('名称不能为空');exit;
         }
         $data = array_merge($data,$this->common_tag);
-        $res = Db::name('advert')->insert($data);
+        $res = ZFTB('advert')->insert($data);
         return ZFRetMsg($res,'新增成功','新增失败');
         
     }
@@ -93,7 +93,7 @@ class Rests extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res =  Db::name('advert')->where(['id'=>input('id')])->find(); 
+            $res =  ZFTB('advert')->where(['id'=>input('id')])->find(); 
             $this->assign("res",$res);
             if(input('type')=='child'){
                 $tpl="rests/advert_edit_child";   
@@ -108,7 +108,7 @@ class Rests extends Admin
             if($data['name']==''){
                 return jserror('名称不能为空');exit;
             }
-            $res = Db::name('advert')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('advert')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败');
              
         } 
@@ -125,7 +125,7 @@ class Rests extends Admin
      public function link()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('link')->where([['status','<>',9]])->order("sort asc")->paginate(10);
+        $list = ZFTB('link')->where([['status','<>',9]])->order("sort asc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -150,7 +150,7 @@ class Rests extends Admin
             return jserror('请填写信息');exit;
         }
         $data = array_merge($data,$this->common_tag);
-        $res = Db::name('link')->insert($data);
+        $res = ZFTB('link')->insert($data);
         return ZFRetMsg($res,'新增成功','新增失败');
         
     }
@@ -171,13 +171,13 @@ class Rests extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isGet()){
-            $res =  Db::name('link')->where(['id'=>input('id')])->find(); 
+            $res =  ZFTB('link')->where(['id'=>input('id')])->find(); 
             $this->assign("res",$res);
             return view();
         } 
         if(request()->isPost()){
            $data = input('post.');
-            $res = Db::name('link')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('link')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败');
              
         } 
@@ -194,7 +194,7 @@ class Rests extends Admin
      public function guessbook()
     {   
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('guessbook')->where([['status','<>',9]])->order("ctime desc,sort asc")->paginate(10);
+        $list = ZFTB('guessbook')->where([['status','<>',9]])->order("ctime desc,sort asc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -220,7 +220,7 @@ class Rests extends Admin
         }
         $data['ctime'] = time();
         $data = array_merge($data,$this->common_tag);
-        $res = Db::name('guessbook')->insert($data);
+        $res = ZFTB('guessbook')->insert($data);
         return ZFRetMsg($res,'新增成功','新增失败');
         
     }
@@ -241,13 +241,13 @@ class Rests extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isGet()){
-            $res =  Db::name('guessbook')->where(['id'=>input('id')])->find(); 
+            $res =  ZFTB('guessbook')->where(['id'=>input('id')])->find(); 
             $this->assign("res",$res);
             return view();
         } 
         if(request()->isPost()){
             $data = input('post.');
-            $res = Db::name('guessbook')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('guessbook')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败');
              
         } 

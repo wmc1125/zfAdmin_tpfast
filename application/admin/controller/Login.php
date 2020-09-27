@@ -42,27 +42,11 @@ class Login extends Controller
         }
     }
     public function authentication_sys(){
-        $authorize_url  = config()['version']['authorize_url'];
+        if(!session('admin'))
+        {
+            $this->error('请登录','Login/index');die; 
+        }
         $t = input('t','');
-        // if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
-                if($t=='qrcode'){
-                    $email = input('post.email');
-                    if($email==''){
-                        return jserror('邮箱不能为空');die;
-                    }
-                    $ret_data['site_domain'] = $_SERVER['SERVER_NAME'];//顶级域名
-                    $ret_data['email'] = $email;
-                    $ret_data['pro'] = '30';//产品ID
-                    $res = https_post($authorize_url.'/addons/zf_soft_plugins.api/vfast_create_wx',$ret_data);
-                    if($res!='0'){
-                        $res = trim($res);
-                        return jssuccess($res);
-                    }else{
-                        return jserror($res.' 请联系微信:zifeng1788');                        
-                    }
-                }
-                
-        // }
         if($t=='status'){
             // 判断是否正确
             $auth_info['sc'] = config()['zf_auth']['sc'];
@@ -75,7 +59,28 @@ class Login extends Controller
                 return jssuccess('授权成功');
             }
         }
-        $this->assign('authorize_url',$authorize_url);
+         if($t=='save'){
+            $data = input('post.');
+            $res = extraconfig($data,'zf_auth');
+            if($res){
+                $auth_info['sc'] = $data['sc'];
+                $auth_info['key'] = $data['key'];
+                $auth_info['post_id'] = config()['version']['post_id'];
+                $this->zfauth = new ZfAuth();
+                $this->zfauth->vfast_check($auth_info);
+                if(config()['zf_auth']['key']!='' &&  config()['zf_auth']['sc']!='' &&  config()['zf_auth']['email']!='' ){
+                    return jssuccess('授权成功');
+                }else{
+                    return jserror('授权失败,请查看填写内容是否正确');die;
+                }
+            }else{
+                return jserror('保存失败,请查看是config文件夹是否有保存权限');die;
+            }  
+
+
+        }
+        $data =  config()['zf_auth'];
+        $this->assign('data',$data);
         return view();
     }
    
@@ -94,7 +99,8 @@ class Login extends Controller
         if(request()->isPost()){
             if(request()->isPost()){
                 $data = input('post.');
-                $userInfo = Db::name('admin')->where('name', $data['name'])->where('pwd', md5($data['pwd']))->where('status', 1)->where('status', 1)->find();
+                // $lang = session('zf_lang',$data['lang']);
+                $userInfo = ZFTB('admin')->where('name', $data['name'])->where('pwd', md5($data['pwd']))->where('status', 1)->where('status', 1)->find();
                 if (!$userInfo) {
                     //说明在数据库未匹配到相关数据
                     return jserror('用户名或者密码不正确 或没有权限');
@@ -140,5 +146,6 @@ class Login extends Controller
             $this->redirect($url_login,302);
         }
     }
+  
 
 }

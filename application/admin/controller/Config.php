@@ -55,7 +55,7 @@ class Config extends Admin
     public function admin_index()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $user_list = Db::name('admin')->where([['status','<>',9]])->order("id asc")->paginate(6);
+        $user_list = ZFTB('admin')->where([['status','<>',9]])->order("id asc")->paginate(6);
         $page = $user_list->render();
         $this->assign("user_list",$user_list);
         $this->assign("page",$page);
@@ -76,7 +76,7 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
         if(!request()->isPost()){
-            $group_list =  Db::name('admin_group')->where(['status'=>1])->select(); 
+            $group_list =  ZFTB('admin_group')->where(['status'=>1])->select(); 
             $this->assign("group_list",$group_list);
             return view();   
         }  
@@ -85,11 +85,11 @@ class Config extends Admin
         $data['pwd'] = md5($data['pwd']);
         $data['ctime'] = time();
         //判断是否存在
-        $is_user =  Db::name('admin')->where(['name'=>$data['name']])->find();
+        $is_user =  ZFTB('admin')->where(['name'=>$data['name']])->find();
         if($is_user){
             return jserror('用户名已存在');exit;
         }
-        $res =Db::name('admin')->insert($data); 
+        $res =ZFTB('admin')->insert($data); 
         return ZFRetMsg($res,'新增成功','新增失败');
         
     }
@@ -110,9 +110,9 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res = Db::name('admin')->where(['id'=>input('id')])->find();
+            $res = ZFTB('admin')->where(['id'=>input('id')])->find();
             $this->assign("res",$res);
-            $group_list = Db::name('admin_group')->where(['status'=>1])->select();
+            $group_list = ZFTB('admin_group')->where(['status'=>1])->select();
             $this->assign("group_list",$group_list);
             return view();
         } 
@@ -126,13 +126,13 @@ class Config extends Admin
             }else{
                 unset($data['pwd']);
             }
-            $is_user =  Db::name('admin')->where(['name'=>$data['name']])->find();
+            $is_user =  ZFTB('admin')->where(['name'=>$data['name']])->find();
             if($is_user){
                 if($is_user['id']!=$data['id']){
                     return jserror('用户名已存在');exit;
                 }
             }
-            $res = Db::name('admin')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('admin')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'更新成功','更新失败');
             
         } 
@@ -149,7 +149,7 @@ class Config extends Admin
     public function admin_group()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $group_list = Db::name('admin_group')->where([['status','<>',9]])->order("id asc")->paginate(10);
+        $group_list = ZFTB('admin_group')->where([['status','<>',9]])->order("id asc")->paginate(10);
         $page = $group_list->render();
         $this->assign("group_list",$group_list);
         $this->assign("page",$page);
@@ -172,7 +172,7 @@ class Config extends Admin
         $data = input('post.');
         $data = array_merge($data,$this->common_tag);
         $data['ctime'] = time();
-        $res =Db::name('admin_group')->insert($data);
+        $res =ZFTB('admin_group')->insert($data);
         return ZFRetMsg($res,'新增成功','新增失败');
         
     }
@@ -193,13 +193,13 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res = Db::name('admin_group')->where(['id'=>input('id')])->find(); 
+            $res = ZFTB('admin_group')->where(['id'=>input('id')])->find(); 
             $this->assign("res",$res);
             return view();
         } 
         if(request()->isPost()){
             $data = input('post.');
-            $res = Db::name('admin_group')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('admin_group')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'更新成功','更新失败');
             
         } 
@@ -221,11 +221,11 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res = Db::name('admin_role')->where(['status'=>1])->order('sort asc,id asc')->select();
+            $res = ZFTB('admin_role')->where(['status'=>1])->order('sort asc,id asc')->select();
             $cat = new category(array('id', 'pid', 'name', 'value')); //初始化无限分类
             $list = $cat->getTree($res); //获取分类数据树结构
             $this->assign("list",$list);
-            $res = Db::name('admin_group')->where(['id'=>input('id')])->find();
+            $res = ZFTB('admin_group')->where(['id'=>input('id')])->find();
             $this->assign("res",$res);
             $role_list = explode(',',$res['role']);
             $this->assign("role_list",$role_list);
@@ -234,7 +234,7 @@ class Config extends Admin
         if(request()->isPost()){
             $data = input('post.');
             $data['role'] = implode(',',  $data['role']);
-             $res = Db::name('admin_group')->where(['id'=>$data['id']])->update($data);
+             $res = ZFTB('admin_group')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'更新成功','更新失败');
                 
         } 
@@ -254,7 +254,7 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca);
         //读取权限数据
-        $res = Db::name('admin_role')->where(['status'=>1])->order('menu desc,sort asc, id asc')->select(); 
+        $res = ZFTB('admin_role')->where(['status'=>1])->order('menu desc,sort asc, id asc')->select(); 
         $cat = new category(array('id', 'pid', 'name', 'cname')); //初始化无限分类
         $list = $cat->getTree($res); //获取分类数据树结构
         $this->assign("list",$list);
@@ -314,7 +314,7 @@ class Config extends Admin
         unset($val['_act']);
 
         $value = $val['module'].'/'.$val['control'].'/'.$val['act'];
-        $res1 = Db::name('admin_role')->where(["value"=> $value,'parm'=>$val['parm']])->find();
+        $res1 = ZFTB('admin_role')->where(["value"=> $value,'parm'=>$val['parm']])->find();
         if($res1){
             if(in_array($val['act'], ['','0/0','/0','0/','/'])){
                 return jserror('已存在该权限');exit;
@@ -323,7 +323,7 @@ class Config extends Admin
         $data = $val;
         $data['value'] = $value;
         $data = array_merge($data,$this->common_tag);
-        $res =Db::name('admin_role')->insert($data); 
+        $res =ZFTB('admin_role')->insert($data); 
         return ZFRetMsg($res,'新增成功','新增失败');
          
     }
@@ -344,17 +344,17 @@ class Config extends Admin
     {
         admin_role_check($this->z_role_list,$this->mca,1);
     	if(request()->isGet()){
-            $res = Db::name('admin_role')->where(['status'=>1])->select();
+            $res = ZFTB('admin_role')->where(['status'=>1])->select();
             $cat = new category(array('id', 'pid', 'name', 'cname')); //初始化无限分类
             $list = $cat->getTree($res); //获取分类数据树结构
             $this->assign("list",$list);           
-            $info = Db::name('admin_role')->where(["id"=> input('id')])->find();
+            $info = ZFTB('admin_role')->where(["id"=> input('id')])->find();
             $this->assign("res",$info);
             return view();
         } 
         if(request()->isPost()){
             $data = input('post.');
-            $res = Db::name('admin_role')->where(['id'=>$data['id']])->update($data);
+            $res = ZFTB('admin_role')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'更新成功','更新失败');  
         } 
     }
@@ -373,7 +373,7 @@ class Config extends Admin
     public function action_log()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $list = Db::name('admin_log')->where(['status'=>1])->order("id desc")->paginate(10);
+        $list = ZFTB('admin_log')->where(['status'=>1])->order("id desc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -391,15 +391,15 @@ class Config extends Admin
                 return jserror('key不能为空');exit;
             }
             //判断键是否存在
-            $is = Db::name('config')->where([['key','=',$data['key']],['status','<>','9']])->find();
+            $is = ZFTB('config')->where([['key','=',$data['key']],['status','<>','9']])->find();
             if($is){
                 return jserror('该键已存在');exit;
             }
-            $res =Db::name('config')->insert($data);
+            $res =ZFTB('config')->insert($data);
             return ZFRetMsg($res,'新增成功','新增失败');
         }
 
-        $list = Db::name('config')->where([['status','<>',9]])->order("sort desc,id asc")->select();
+        $list = ZFTB('config')->where([['status','<>',9]])->order("sort desc,id asc")->select();
         $this->assign('list',$list);
         return view();
     }
@@ -409,10 +409,10 @@ class Config extends Admin
         admin_role_check($this->z_role_list,$this->mca,1);
         if(request()->isPost()){
             $data = input("post.");
-            $res =  Db::name('config')->where(['id'=>$data['id']])->update($data);
+            $res =  ZFTB('config')->where(['id'=>$data['id']])->update($data);
             return ZFRetMsg($res,'修改成功','修改失败'); 
         }
-        $res = Db::name('config')->where(['id'=>$id])->find();
+        $res = ZFTB('config')->where(['id'=>$id])->find();
         $this->assign('res',$res);
         return view();
     }

@@ -39,9 +39,9 @@ class Common extends Admin
         $is_show = input('status');
         $id = input('id');
         if($dbname=='category' || $dbname=='product_cate'){
-            $res = db($dbname)->where('cid', $id)->update(['status' => $is_show]);
+            $res = ZFTB($dbname)->where('cid', $id)->update(['status' => $is_show]);
         }else{
-            $res = db($dbname)->where('id', $id)->update(['status' => $is_show]);            
+            $res = ZFTB($dbname)->where('id', $id)->update(['status' => $is_show]);            
         }
         return ZFRetMsg($res,'更新成功','更新失败');
         
@@ -61,9 +61,9 @@ class Common extends Admin
         $is_show = input('menu');
         $id = input('id');
         if($dbname=='category' || $dbname=='product_cate'){
-            $res = db($dbname)->where('cid', $id)->update(['menu' => $is_show]);
+            $res = ZFTB($dbname)->where('cid', $id)->update(['menu' => $is_show]);
         }else{
-            $res = db($dbname)->where('id', $id)->update(['menu' => $is_show]);            
+            $res = ZFTB($dbname)->where('id', $id)->update(['menu' => $is_show]);            
         }     
         return ZFRetMsg($res,'更新成功','更新失败');
         
@@ -81,12 +81,12 @@ class Common extends Admin
         $dbname = input('db');
         $id = input('id');
         if($dbname=='category' || $dbname=='product_cate'){
-            $res = db($dbname)->where('cid', $id)->update(['status' => 9]);
+            $res = ZFTB($dbname)->where('cid', $id)->update(['status' => 9]);
             if($dbname=='category'){
-                db('post')->where('cid', $id)->update(['status' => 9]);
+                ZFTB('post')->where('cid', $id)->update(['status' => 9]);
             }
         }else{
-            $res = db($dbname)->where('id', $id)->update(['status' => 9]);            
+            $res = ZFTB($dbname)->where('id', $id)->update(['status' => 9]);            
         }
         return ZFRetMsg($res,'删除成功','删除失败');
 
@@ -107,9 +107,9 @@ class Common extends Admin
         $ids_list = explode(',',$ids);
         foreach($ids_list as $k=>$vo){
             if($dbname=='category' || $dbname=='product_cate'){
-                db($dbname)->where('cid', $vo)->update(['status' => 9]);                
+                ZFTB($dbname)->where('cid', $vo)->update(['status' => 9]);                
             }else{
-                db($dbname)->where('id', $vo)->update(['status' => 9]);            
+                ZFTB($dbname)->where('id', $vo)->update(['status' => 9]);            
             }
         }
         return jssuccess('更新成功');
@@ -130,9 +130,9 @@ class Common extends Admin
         $field = input('field');
         $value = input('value');
         if($dbname=='category' || $dbname=='product_cate'){
-            $res = db($dbname)->where('cid', $id)->update([$field => $value]);      
+            $res = ZFTB($dbname)->where('cid', $id)->update([$field => $value]);      
         }else{
-            $res = db($dbname)->where('id', $id)->update([$field => $value]);      
+            $res = ZFTB($dbname)->where('id', $id)->update([$field => $value]);      
         }
         return ZFRetMsg($res,'更新成功','更新失败');
         
@@ -189,7 +189,7 @@ class Common extends Admin
         $key = input('key');
         $value = input('value');
         //执行转换
-        $res = db('config')->where(['key'=>$key])->update(['value' => $value]);            
+        $res = ZFTB('config')->where(['key'=>$key])->update(['value' => $value]);            
         return ZFRetMsg($res,'更新成功','更新失败');
         
     }

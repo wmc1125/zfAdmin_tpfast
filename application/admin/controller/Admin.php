@@ -53,7 +53,7 @@ class Admin extends Controller
             $log['ip'] = request()->ip();
             $log['uid'] = session('admin')['id'] ;
             $log['post'] = json_encode(input('param.'));
-            Db::name('admin_log')->insert($log);
+            ZFTB('admin_log')->insert($log);
         }
         
     }

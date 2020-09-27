@@ -40,7 +40,7 @@ class Index extends Admin
     public function index()
     {
         //导航的一级菜单
-        $menu = Db::name('admin_role')->order("sort asc")->where("status!=9")->select();
+        $menu = ZFTB('admin_role')->order("sort asc")->where("status!=9")->select();
         $this->assign("menu",$menu);
         return view("index");
     }
@@ -62,7 +62,7 @@ class Index extends Admin
         $sitemap->index();    
 
         //  用户增长曲线
-        // $user_nyr_grow = Db::name('user')
+        // $user_nyr_grow = ZFTB('user')
         //             ->field("DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d') as date, count(DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d')) as sum")
         //             ->group("DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d')")
         //             ->select();
@@ -74,7 +74,7 @@ class Index extends Admin
         // $this->assign('user_nyr_grow',$user_nyr_grow);
 
         // //性别比例
-        // $user_sex = Db::name('user')
+        // $user_sex = ZFTB('user')
         //             ->field("sex, count(sex) as sum")
         //             ->group("sex")
         //             ->select();
@@ -93,22 +93,22 @@ class Index extends Admin
         // }
         // $this->assign('user_sex_chart',$user_sex_chart);
         //用户总数
-        $data['user_total'] = Db::name('user')->where([['status','<>','9']])->count();
+        $data['user_total'] = ZFTB('user')->where([['status','<>','9']])->count();
         //本周用户数 
-        $data['user_week'] = Db::name('user')->where([['status','<>','9']])->whereTime('ctime','week')->count();
+        $data['user_week'] = ZFTB('user')->where([['status','<>','9']])->whereTime('ctime','week')->count();
         //内容总数
-        $data['post_total'] = Db::name('post')->where([['status','<>','9']])->count();
+        $data['post_total'] = ZFTB('post')->where([['status','<>','9']])->count();
         //本周内容
-        $data['post_week'] = Db::name('post')->where([['status','<>','9']])->whereTime('ctime','week')->count();
+        $data['post_week'] = ZFTB('post')->where([['status','<>','9']])->whereTime('ctime','week')->count();
         //留言数
-        $data['guessbook_total'] = Db::name('guessbook')->where([['status','<>','9']])->count();
+        $data['guessbook_total'] = ZFTB('guessbook')->where([['status','<>','9']])->count();
         //本周留言数
-        $data['guessbook_week'] = Db::name('guessbook')->where([['status','<>','9']])->whereTime('ctime','week')->count();
+        $data['guessbook_week'] = ZFTB('guessbook')->where([['status','<>','9']])->whereTime('ctime','week')->count();
 
-        $data['posts'] = Db::name('post')->where([['status','<>','9']])->limit(10)->order('ctime desc')->select();
+        $data['posts'] = ZFTB('post')->where([['status','<>','9']])->limit(10)->order('ctime desc')->select();
 
         $this->assign('data',$data);
-        return view();
+        // return view();
     }
 
     /**
@@ -123,7 +123,7 @@ class Index extends Admin
         admin_role_check($this->z_role_list,$this->mca);
         $t = input('t','');
         if($t=='log'){
-                Db::name('admin_log')->where(['status'=>1])->update(['status'=>9]);
+                ZFTB('admin_log')->where(['status'=>1])->update(['status'=>9]);
                 $this->success('清除完毕');
         }else{
             $config=array(
@@ -137,7 +137,12 @@ class Index extends Admin
             }
             $this->success('清除完毕');
         }
-        
+    }
+    public function change_lang(){
+        admin_role_check($this->z_role_list,$this->mca);
+        $lang = input('lang','');
+        session('zf_lang',$lang);
+        $this->success('切换语言中');
     }
 
 
