@@ -22,6 +22,6 @@
 	'ver_author' => '子枫',
 	'ver_email' => '287851074@qq.com',
 	'ver_url' => 'http://demo.zf.90ckm.com',
-	'authorize_url' => 'http://authorize.90ckm.com/softservice/clientapi2/upg_active',
+	'authorize_url' => 'http://authorize.zf.90ckm.com/softservice/clientapi2/upg_active',
 	'version_temp' => 'v2.0.2',
 ];
