@@ -51,7 +51,7 @@ class Login extends Controller
             // 判断是否正确
             $auth_info['sc'] = config()['zf_auth']['sc'];
             $auth_info['key'] = config()['zf_auth']['key'];
-            $auth_info['post_id'] = config()['version']['post_id'];
+            $auth_info['soft_id'] = config()['version']['soft_id'];
             $this->zfauth = new ZfAuth();
             $this->zfauth->vfast_check($auth_info,'alert');
             $this->zfauth->plugin_check($auth_info,'alert');
@@ -65,7 +65,7 @@ class Login extends Controller
             if($res){
                 $auth_info['sc'] = $data['sc'];
                 $auth_info['key'] = $data['key'];
-                $auth_info['post_id'] = config()['version']['post_id'];
+                $auth_info['soft_id'] = config()['version']['soft_id'];
                 $this->zfauth = new ZfAuth();
                 $this->zfauth->vfast_check($auth_info);
                 if(config()['zf_auth']['key']!='' &&  config()['zf_auth']['sc']!='' &&  config()['zf_auth']['email']!='' ){

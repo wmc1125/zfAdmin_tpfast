@@ -23,6 +23,8 @@ class Category extends Admin
 {
     public function __construct (){
         parent::__construct();
+        $form_widget = new \app\common\widget\Form();
+        $this->assign('form_widget',$form_widget);
     }
  
     /**
@@ -244,7 +246,6 @@ class Category extends Admin
             return view('category/category_edit');
         }else{
             //如果是内容页,加载列表页
-            $tpl = 'category/'.$m_res['model'].'/index';
             $where = "status!=9 and cid=".$cid;
             if(input("get.title")){
                 $title = input("get.title");
@@ -260,6 +261,12 @@ class Category extends Admin
             $res =  ZFTB('category')->where(['cid'=>$cid])->find();
             $this->assign("res",$res);
             $this->assign("mid",$mid);
+
+            if($m_res['is_parm']==1){
+                $tpl = 'category/zf_tpl/list_'.$m_res['model'];
+            }else{
+                $tpl = 'category/'.$m_res['model'].'/index';
+            }
             return view($tpl);
         }
     }
@@ -300,73 +307,148 @@ class Category extends Admin
     public function post_add()
     {
         admin_role_check($this->z_role_list,$this->mca,1);
-        if(request()->isGet()){
-            $cid = input("cid");
-            $mid = input("mid");
-            $m_res =ZFTB('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
-            if($m_res['is_parm']==1){
-                $tpl = 'category/zf_tpl/add';
-                $this->assign('cid',$cid);
-                $this->assign('mid',$mid);
-                $m_list =ZFTB('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
-                $this->assign('m_list',$m_list);
-                $this->assign('m_res',$m_res);
-            }else{
-                $tpl = 'category/'.$m_res['model'].'/add';
-                $this->assign('cid',$cid);
-                $this->assign('mid',$mid);
-                $this->assign('m_res',$m_res);
-            }
-            return view($tpl);
-        } 
+            
         if(request()->isPost()){
             $data = input('post.');
-            $data = array_merge($data,$this->common_tag);
-            if($data['ctime']!=''){
-                $data['ctime'] =  strtotime($data['ctime']);
-            }else{
-                $data['ctime'] =  time();
-            }
-            if($data['pic']=='' && isset($data['content'])){
-                $data['pic'] = GetImgSrc::src($data['content'], 1);
-            }
-            // 关联
-            if(isset($data['relevan_id'])){
-                unset($data['keyword']);
-            }
-            $key_list = array_keys($data);
-            $_temp_list = [];
-            foreach($key_list as $k=>$vo){
-                if(strpos($vo,'zf_list_') === 0){
-                    $_temp_list[] = $vo;  
+            if($data['id']!=''){
+                //编辑
+                if(isset($data['ctime']) && $data['ctime']!=''){
+                    $data['ctime'] =  strtotime($data['ctime']);
+                }else{
+                    $data['ctime'] =  time();
                 }
-            }
-            if($_temp_list){
-                foreach($_temp_list as $k=>$vo){
-                    if(isset($data[$vo]) && is_array($data[$vo])){
-                        $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
-                        unset($data[$vo]);
+                if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
+                    $data['pic'] = GetImgSrc::src($data['content'], 1);
+                }
+                if(isset($data['relevan_id'])){
+                    unset($data['keyword']);
+                }
+                $key_list = array_keys($data);
+                $_temp_list = [];
+                foreach($key_list as $k=>$vo){
+                    if(strpos($vo,'zf_list_') === 0){
+                        $_temp_list[] = $vo;  
                     }
                 }
-            }elseif(count($_temp_list)==0){
-                //数组为空,不做操作
-            }else{
-                //查询字段
-                $mid = ZFTB('post p')
-                    ->where(['p.id'=>$data['id']])
-                    ->join(ZFJoinStrLang('category c'),'c.cid = p.cid')
-                    ->value('c.mid');
-                $tb_parm_list = ZFTB('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
-                // 判断是否含有该字段,没有则为空
-                foreach($tb_parm_list as $k=>$vo){
-                    if(!$data[$vo['name']]){
-                        $data[$vo['key']] = '';
+                if($_temp_list){
+                    foreach($_temp_list as $k=>$vo){
+                        if(isset($data[$vo]) && is_array($data[$vo])){
+                            $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                            unset($data[$vo]);
+                        }
+                    }
+                }else{
+                    //查询字段
+                    $mid = ZFTB('post p')
+                        ->where(['p.id'=>$data['id']])
+                        ->join(ZFJoinStrLang('category c'),'c.cid = p.cid')
+                        ->value('c.mid');
+                    $tb_parm_list = ZFTB('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
+                    // 判断是否含有该字段,没有则为空
+                    foreach($tb_parm_list as $k=>$vo){
+                        if(!isset($data[$vo['key']])){
+                            $data[$vo['key']] = '';
+                        }
                     }
                 }
+                $res =  ZFTB('post')->where(['id'=>$data['id']])->update($data);
+                return ZFRetMsg($res,'修改成功','修改失败');  
+            }else{
+                $data = array_merge($data,$this->common_tag);
+                if(isset($data['ctime']) && $data['ctime']!=''){
+                    $data['ctime'] =  strtotime($data['ctime']);
+                }else{
+                    $data['ctime'] =  time();
+                }
+                if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
+                    $data['pic'] = GetImgSrc::src($data['content'], 1);
+                }
+                // 关联
+                if(isset($data['relevan_id'])){
+                    unset($data['keyword']);
+                }
+                $key_list = array_keys($data);
+                $_temp_list = [];
+                foreach($key_list as $k=>$vo){
+                    if(strpos($vo,'zf_list_') === 0){
+                        $_temp_list[] = $vo;  
+                    }
+                }
+                if($_temp_list){
+                    foreach($_temp_list as $k=>$vo){
+                        if(isset($data[$vo]) && is_array($data[$vo])){
+                            $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+                            unset($data[$vo]);
+                        }
+                    }
+                }elseif(count($_temp_list)==0){
+                    //数组为空,不做操作
+                }else{
+                    //查询字段
+                    $mid = ZFTB('post p')
+                        ->where(['p.id'=>$data['id']])
+                        ->join(ZFJoinStrLang('category c'),'c.cid = p.cid')
+                        ->value('c.mid');
+                    $tb_parm_list = ZFTB('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
+                    // 判断是否含有该字段,没有则为空
+                    foreach($tb_parm_list as $k=>$vo){
+                        if(!$data[$vo['name']]){
+                            $data[$vo['key']] = '';
+                        }
+                    }
+                }
+                $res = ZFTB('post')->insertGetId($data);
+                return ZFRetMsg($res,'新增成功','新增失败'); 
+
             }
-            $res = ZFTB('post')->insertGetId($data);
-            return ZFRetMsg($res,'新增成功','新增失败'); 
+            
         } 
+
+
+
+        $cid = input("cid",'');
+        $mid = ZFTB('category')->where(['cid'=>$cid])->value('mid');
+        $id = input("id",'');
+        if($id!=''){
+            //编辑
+            $data_res = ZFTB('post')->where(['id'=>input('id')])->find();
+            $this->assign("data_res",$data_res);
+            $cid = input("cid",$data_res['cid']);
+            $mid = input("mid",'14');
+            $this->assign("act",'edit');
+        }else{
+            $this->assign("act",'add');
+            $this->assign("data_res",[]);
+        }
+        $m_res =ZFTB('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
+        if($m_res['is_parm']==1){
+            $tpl = 'category/zf_tpl/add';
+            $this->assign('cid',$cid);
+            $this->assign('mid',$mid);
+            $m_list =ZFTB('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
+            $this->assign('m_list',$m_list);
+            $this->assign('m_res',$m_res);
+        }else{
+            $tpl = 'category/'.$m_res['model'].'/add';
+            $this->assign('cid',$cid);
+            $this->assign('mid',$mid);
+            $this->assign('m_res',$m_res);
+        }
+
+        
+        // if($mid==0){
+        //     $mid = ZFTB('category')->where(['cid'=>$cid])->value('mid');
+        // }
+        // $this->assign("cid",$cid);
+        // $m_res =  ZFTB('category_model')->where(['id'=>$mid])->find();;
+        // $tpl = 'category/'.$m_res['model'].'/edit';
+       
+
+
+        return view($tpl);
+
+
+
     }
 
     /**
@@ -381,85 +463,85 @@ class Category extends Admin
      * @author: 子枫
      * @Time: 2019/11/13   10:35 下午
      */
-    public function post_edit()
-    {
-        admin_role_check($this->z_role_list,$this->mca,1);
-        if(request()->isGet()){
-            $data_res = ZFTB('post')->where(['id'=>input('id')])->find();
-            $this->assign("data_res",$data_res);
-            $cid = input("cid",$data_res['cid']);
-            $mid = input("mid",'14');
-            // if($mid==0){
-            //     $mid = ZFTB('category')->where(['cid'=>$cid])->value('mid');
-            // }
-            // $this->assign("cid",$cid);
-            // $m_res =  ZFTB('category_model')->where(['id'=>$mid])->find();;
-            // $tpl = 'category/'.$m_res['model'].'/edit';
-            $m_res =ZFTB('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
-            if($m_res['is_parm']==1){
-                $tpl = 'category/zf_tpl/add';
-                $this->assign('cid',$cid);
-                $this->assign('mid',$mid);
-                $m_list =ZFTB('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
-                $this->assign('m_list',$m_list);
-                $this->assign('m_res',$m_res);
-            }else{
-                $tpl = 'category/'.$m_res['model'].'/edit';
-                $this->assign('cid',$cid);
-                $this->assign('mid',$mid);
-                $this->assign('m_res',$m_res);
-            }
+    // public function post_edit()
+    // {
+    //     admin_role_check($this->z_role_list,$this->mca,1);
+    //     if(request()->isGet()){
+    //         $data_res = ZFTB('post')->where(['id'=>input('id')])->find();
+    //         $this->assign("data_res",$data_res);
+    //         $cid = input("cid",$data_res['cid']);
+    //         $mid = input("mid",'14');
+    //         // if($mid==0){
+    //         //     $mid = ZFTB('category')->where(['cid'=>$cid])->value('mid');
+    //         // }
+    //         // $this->assign("cid",$cid);
+    //         // $m_res =  ZFTB('category_model')->where(['id'=>$mid])->find();;
+    //         // $tpl = 'category/'.$m_res['model'].'/edit';
+    //         $m_res =ZFTB('category_model')->field('model,is_two,is_parm')->where(['id'=>$mid])->find();
+    //         if($m_res['is_parm']==1){
+    //             $tpl = 'category/zf_tpl/add';
+    //             $this->assign('cid',$cid);
+    //             $this->assign('mid',$mid);
+    //             $m_list =ZFTB('category_model_parm')->where(['mid'=>$mid,'status'=>1])->order('sort asc,id asc')->select();
+    //             $this->assign('m_list',$m_list);
+    //             $this->assign('m_res',$m_res);
+    //         }else{
+    //             $tpl = 'category/'.$m_res['model'].'/edit';
+    //             $this->assign('cid',$cid);
+    //             $this->assign('mid',$mid);
+    //             $this->assign('m_res',$m_res);
+    //         }
 
-            return view($tpl);
-        } 
-        if(request()->isPost()){
-            $data = input('post.');
-            if(isset($data['ctime']) && $data['ctime']!=''){
-                $data['ctime'] =  strtotime($data['ctime']);
-            }else{
-                $data['ctime'] =  time();
-            }
-            if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
-                $data['pic'] = GetImgSrc::src($data['content'], 1);
-            }
+    //         return view($tpl);
+    //     } 
+    //     if(request()->isPost()){
+    //         $data = input('post.');
+    //         if(isset($data['ctime']) && $data['ctime']!=''){
+    //             $data['ctime'] =  strtotime($data['ctime']);
+    //         }else{
+    //             $data['ctime'] =  time();
+    //         }
+    //         if(isset($data['pic']) && $data['pic']=='' && isset($data['content'])){
+    //             $data['pic'] = GetImgSrc::src($data['content'], 1);
+    //         }
             
-            if(isset($data['relevan_id'])){
-                unset($data['keyword']);
-            }
-            $key_list = array_keys($data);
-            $_temp_list = [];
-            foreach($key_list as $k=>$vo){
-                if(strpos($vo,'zf_list_') === 0){
-                    $_temp_list[] = $vo;  
-                }
-            }
-            if($_temp_list){
-                foreach($_temp_list as $k=>$vo){
-                    if(isset($data[$vo]) && is_array($data[$vo])){
-                        $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
-                        unset($data[$vo]);
-                    }
-                }
-            }else{
-                //查询字段
-                $mid = ZFTB('post p')
-                    ->where(['p.id'=>$data['id']])
-                    ->join(ZFJoinStrLang('category c'),'c.cid = p.cid')
-                    ->value('c.mid');
-                $tb_parm_list = ZFTB('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
-                // 判断是否含有该字段,没有则为空
-                foreach($tb_parm_list as $k=>$vo){
-                    if(!isset($data[$vo['key']])){
-                        $data[$vo['key']] = '';
-                    }
-                }
+    //         if(isset($data['relevan_id'])){
+    //             unset($data['keyword']);
+    //         }
+    //         $key_list = array_keys($data);
+    //         $_temp_list = [];
+    //         foreach($key_list as $k=>$vo){
+    //             if(strpos($vo,'zf_list_') === 0){
+    //                 $_temp_list[] = $vo;  
+    //             }
+    //         }
+    //         if($_temp_list){
+    //             foreach($_temp_list as $k=>$vo){
+    //                 if(isset($data[$vo]) && is_array($data[$vo])){
+    //                     $data[explode('zf_list_',$vo)[1]] = implode(",", $data[$vo]);
+    //                     unset($data[$vo]);
+    //                 }
+    //             }
+    //         }else{
+    //             //查询字段
+    //             $mid = ZFTB('post p')
+    //                 ->where(['p.id'=>$data['id']])
+    //                 ->join(ZFJoinStrLang('category c'),'c.cid = p.cid')
+    //                 ->value('c.mid');
+    //             $tb_parm_list = ZFTB('category_model_parm')->where([['status','<>',9],['is_multi','=',1],['mid','=',$mid]])->order("position asc,sort asc, id asc")->select();
+    //             // 判断是否含有该字段,没有则为空
+    //             foreach($tb_parm_list as $k=>$vo){
+    //                 if(!isset($data[$vo['key']])){
+    //                     $data[$vo['key']] = '';
+    //                 }
+    //             }
 
-            }
+    //         }
             
-            $res =  ZFTB('post')->where(['id'=>$data['id']])->update($data);
-            return ZFRetMsg($res,'修改成功','修改失败');  
-        } 
-    }
+    //         $res =  ZFTB('post')->where(['id'=>$data['id']])->update($data);
+    //         return ZFRetMsg($res,'修改成功','修改失败');  
+    //     } 
+    // }
 
     /**
      * @Notes:导入内容

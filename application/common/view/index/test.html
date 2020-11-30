@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+  <script src="__STATIC__/style/layui/layui.js"></script>  
+  <script src="__STATIC__/style/echarts.min.js"></script>  
+
+<body>
+{$app->form_input('标题','title','')|raw}
+
+{$app->form_textarea('栏目描述','summary','')|raw}
+
+{$app->upload_pic('封面图','pic','')|raw}
+
+{$app->upload_file('文件','pic','')|raw}
+
+
+{$app->filesystem_pic('封面图2','pic','')|raw}
+
+
+{$app->filesystem_file('文件2','pic','')|raw}
+
+时间选择
+{$app->form_time('时间','ctime','')|raw}
+
+
+{$Echarts->line('用户销量','xl_aa1',$line_data)|raw}
+
+{$Echarts->line_stack('用户销量','xl_aa2',$stack_data)|raw}
+{$Echarts->pie_legend('用户销量','xl_aa3',$pie_data)|raw}
+</body>
+</html>

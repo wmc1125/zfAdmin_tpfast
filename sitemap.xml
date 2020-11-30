@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
      <url>
+<loc>http://v1.fast.zf.90ckm.com/index/cate/detail/id/2.html</loc>
+<priority>0.8</priority>
+<lastmod>2020-11-23 00:00:00</lastmod>
+<changefreq>changefreq</changefreq>
+</url>
+<url>
 <loc>http://v1.fast.zf.90ckm.com/index/cate/detail/id/15.html</loc>
 <priority>0.8</priority>
 <lastmod>2020-06-03 12:00:50</lastmod>
@@ -80,12 +86,6 @@
 <loc>http://v1.fast.zf.90ckm.com/index/cate/detail/id/3.html</loc>
 <priority>0.8</priority>
 <lastmod>2019-10-09 15:36:17</lastmod>
-<changefreq>changefreq</changefreq>
-</url>
-<url>
-<loc>http://v1.fast.zf.90ckm.com/index/cate/detail/id/2.html</loc>
-<priority>0.8</priority>
-<lastmod>2019-09-27 18:13:31</lastmod>
 <changefreq>changefreq</changefreq>
 </url>
 </urlset>

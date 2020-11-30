@@ -39,8 +39,13 @@ class Index extends Admin
      */
     public function index()
     {
-        //导航的一级菜单
         $menu = ZFTB('admin_role')->order("sort asc")->where("status!=9")->select();
+        $role_list =  ZFTB('admin_group')->where(['id'=>session('admin.gid')])->value('role');
+        foreach($menu as $k=>$vo){
+            if(!in_array($vo['id'], explode(',', $role_list))){
+                unset($menu[$k]);
+            }
+        }
         $this->assign("menu",$menu);
         return view("index");
     }
@@ -60,55 +65,17 @@ class Index extends Admin
         admin_role_check($this->z_role_list,$this->mca);
         $sitemap = new \zf\Sitemap;
         $sitemap->index();    
+        
+        //授权查询
+        $ZfAuth = new \zf\ZfAuth;
+        $upg_msg = $ZfAuth->get_location_auth_info();
+        $site_info = $ZfAuth->get_siteplugin_info();
+        // dd($site_info);
+        $this->assign('upg_msg',$upg_msg);
+        $this->assign('site_info',$site_info['msg']);
 
-        //  用户增长曲线
-        // $user_nyr_grow = ZFTB('user')
-        //             ->field("DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d') as date, count(DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d')) as sum")
-        //             ->group("DATE_FORMAT(FROM_UNIXTIME(ctime),'%Y-%m-%d')")
-        //             ->select();
-        // foreach($user_nyr_grow as $k=>$vo){
-        //     $user_nyr_grow_chart['nyr'][$k] = $vo['date'];
-        //     $user_nyr_grow_chart['sum'][$k] = $vo['sum'];
-        // }
-        // $this->assign('user_nyr_grow_chart',$user_nyr_grow_chart);
-        // $this->assign('user_nyr_grow',$user_nyr_grow);
 
-        // //性别比例
-        // $user_sex = ZFTB('user')
-        //             ->field("sex, count(sex) as sum")
-        //             ->group("sex")
-        //             ->select();
-        // foreach($user_sex as $k=>$vo){
-        //     // 0	未知	
-        //     // 1	男性	
-        //     // 2	女性
-        //     if($vo['sex']==1){
-        //         $user_sex_chart[$k]['sex'] = '男';
-        //     }elseif($vo['sex']==2){
-        //         $user_sex_chart[$k]['sex'] = '女';
-        //     }else{
-        //         $user_sex_chart[$k]['sex'] = '未知';
-        //     }
-        //     $user_sex_chart[$k]['sum'] = $vo['sum'];
-        // }
-        // $this->assign('user_sex_chart',$user_sex_chart);
-        //用户总数
-        $data['user_total'] = ZFTB('user')->where([['status','<>','9']])->count();
-        //本周用户数 
-        $data['user_week'] = ZFTB('user')->where([['status','<>','9']])->whereTime('ctime','week')->count();
-        //内容总数
-        $data['post_total'] = ZFTB('post')->where([['status','<>','9']])->count();
-        //本周内容
-        $data['post_week'] = ZFTB('post')->where([['status','<>','9']])->whereTime('ctime','week')->count();
-        //留言数
-        $data['guessbook_total'] = ZFTB('guessbook')->where([['status','<>','9']])->count();
-        //本周留言数
-        $data['guessbook_week'] = ZFTB('guessbook')->where([['status','<>','9']])->whereTime('ctime','week')->count();
-
-        $data['posts'] = ZFTB('post')->where([['status','<>','9']])->limit(10)->order('ctime desc')->select();
-
-        $this->assign('data',$data);
-        // return view();
+        return view();
     }
 
     /**

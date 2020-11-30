@@ -31,15 +31,10 @@
                 <div class="layui-card">
                 <?php if($act=='add'){ ?>
                   {$form_widget->form_input('标题','title','')|raw}
-                  {$form_widget->form_textarea('描述','summary','')|raw}
-                  {$form_widget->upload_album('图集','album[]','')|raw}
-                  {$form_widget->form_ueditor('内容详情','content','')|raw}
+                  {$form_widget->upload_album('图集','zf_list_album[]',[])|raw}
                 <?php }else{ ?>
                   {$form_widget->form_input('标题','title',$data_res['title'])|raw}
-                  {$form_widget->form_textarea('描述','summary',$data_res['summary'])|raw}
-                  {$form_widget->upload_album('图集','album[]',$data_res['album'])|raw}
-                  {$form_widget->form_ueditor('内容详情','content',$data_res['content'])|raw}
-                 <?php } ?> 
+                  {$form_widget->upload_album('图集','zf_list_album[]',$data_res['album'])|raw}
                 </div>
               </div>
               <div class="layui-col-sm3">
@@ -48,16 +43,10 @@
                   {$form_widget->form_input('作者','author','')|raw}
                   {$form_widget->form_time('时间','ctime',date("Y-m-d H:i:s",time()) )|raw}
                   {$form_widget->form_input('排序','sort','')|raw}
-                  {$form_widget->form_textarea('扩展参数','append','')|raw}
-                  {$form_widget->upload_pic('封面图','pic','')|raw}
-                  {$form_widget->upload_file('文件','file','')|raw}
                 <?php }else{ ?>
                   {$form_widget->form_input('作者','author',$data_res['author'])|raw}
                   {$form_widget->form_time('时间','ctime',date("Y-m-d H:i:s",$data_res['ctime']) )|raw}
                   {$form_widget->form_input('排序','sort',$data_res['sort'])|raw}
-                  {$form_widget->form_textarea('扩展参数','append',$data_res['append'])|raw}
-                  {$form_widget->upload_pic('封面图','pic',$data_res['pic'])|raw}
-                  {$form_widget->upload_file('文件','file',$data_res['file'])|raw}
                 <?php } ?>
                 </div>
 

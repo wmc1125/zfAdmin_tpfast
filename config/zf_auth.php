@@ -12,10 +12,10 @@
   // | 码云:  https://gitee.com/wmc1125/zfAdmin_tpfast
   // | Mc技术论坛: http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77
   // +----------------------------------------------------------------------
-  // 站点信息最后修改于 2020/09/23 13:49:36  
+  // 站点信息最后修改于 2020/11/29 22:13:12  
   
  return [
 	'email' => '287851074@qq.com',
-	'key' => '459c2e61062d15b8e79cfd8700545bb7126',
-	'sc' => 'roOmm9eVmJ2hzpiZ0ZXHmKGkxohyiKtlZ8zH19hm35lhmmOVzp1nnKHOWVyFqc2knZfG1aXHnqJboIidlJvQoGHEop+FXFucpsqklYVwlWZoaJqZcZZqZGWIy9jNpcpVbZFfVNepqZ5Um1mjzKPUnJ1ajoio2KRWc4iZlIZkh5igwpyehWpba2qYb2WUZptkeKnTlJvVolZliNHJ3VqfVWeWbJWVlW9qYpdplJRrxmidb5vJnspta2mWm5iZmsdqZJNpVI9SrqKWg3Fnj1jXpJms19laoGax',
+	'key' => '',
+	'sc' => 'a7cebtnQ3Tft8cXPWyJi0zkXv6zYX3KxRo9ScEeJ7FwQTlqGVxHkYSn8iu752zNz-gDF7InrMGad71OE8sv7BXBMMdhNnAc8SWwbeiGlI7eVW3SCS2LhLu7Od-wSC_waNKKPL6sjcLdytC8b6yIhqq_Gk95nRwcAOB7jk_8dEzFVhV9KqK88UKByzhZolU9hyWYsahXsRVQtC0ocXyghbBibiIpedNvL2S83m-tEPkP9lX0c2Ow2uPJJHaLtzDxVO1nvTQGiRzRcTFiLJRWMW5cyrc5JgVbnAo699_03xKlEp25jheDkKhPJdfGCdojVH4KaTim06VT9HQWm68k63uBxqAK-746V7AnuWtW0WzGtAbst61IN00YFgKCNdveuiNPGDhhtM0cKbmwNeMMO2qjlR4KccYe7DtSrtKiOc-tPPsp5-MsDNMzPLzbI7QmjNEIygUv1qZ_oXmrTn4PDAtzOgv4Rwv-urA',
 ];

@@ -34,7 +34,16 @@
                   <td>当前版本</td>
                   <td>
                     
-                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(Tp5系列){:config()['version']['version']}</a>
+                      <a href="http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77" target="_blank" >子枫后台管理系统(Tp5系列)</a>
+                      <?php if($upg_msg['code']==1){ ?>
+                        <i class="layui-icon layui-icon-tips" style="font-size: 20px; color: red;"></i> 
+                        发现新版本:{$upg_msg['msg']} 
+                      <?php }else{ ?>
+                        未发现新版本 当前版本:
+                        {$upg_msg['msg']|raw}
+                      <?php } ?>
+                      <a href="{:url('login/authentication_sys')}">重新授权</a>
+
                   </td>
                 </tr>
                 <tr>
@@ -62,59 +71,31 @@
         <div class="layui-row layui-col-space15">
           
           <div class="layui-col-sm12 layui-col-md12">
-
-            <div class="layui-card">
-              <div class="layui-card-header">服务器信息</div>
-              <div class="layui-card-body layui-text">
-                <table class="layui-table">
-                  <colgroup>
-                    <col width="400">
-                    <col width="300">
-                    <col>
-                  </colgroup>
-                  <tbody>
-                    <tr>
-                      <td>站点信息:</td>
-                      <td>
-                          <?php echo $_SERVER["SERVER_NAME"];?>(IP:<?php echo $_SERVER["SERVER_ADDR"];?>)
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td>服务器：</td>
-                      <td>
-                        <?php echo php_uname('s').' '.php_uname('r');?>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>站点物理路径：</td>
-                      <td>
-                        <?php echo $_SERVER['DOCUMENT_ROOT'];?>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>POST大小：</td>
-                      <td>
-                        <?php echo ini_get('max_execution_time').'M';?>
-                      </td>
-                    </tr>
-                      <tr>
-                      <td>上传大小：</td>
-                      <td>
-                        <?php echo ini_get('upload_max_filesize');?>
-                      </td>
-                    </tr>
-                      <tr>
-                      <td>服务器时间：</td>
-                      <td>
-                        <?php echo date('Y-m-d H:i:s');?>
-                      </td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
+            <div class="layui-card ">
+              <div class="layui-tab layui-tab-brief layadmin-latestData">
+                <div class="layui-card-header">升级动态</div>
+                <div class="layui-card-body layui-text">
+                  <div class="layui-row layui-col-space15">
+                      <ul class="layui-timeline">
+                            <?php if(isset($site_info['version'])){ foreach($site_info['version'] as $k=>$vo){ ?>
+                            <li class="layui-timeline-item">
+                              <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                              <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">{$vo['title']}--{$vo['version']}</h3>
+                                <p>
+                                  {$vo['summary']|raw}
+                                </p>
+                              </div>
+                            </li>
+                            <?php }} ?>
+                          </ul>
+                  </div>
+                </div>
               </div>
             </div>
+
+            
+            
           </div>
         </div>
 
@@ -126,44 +107,34 @@
             <div class="layui-tab layui-tab-brief layadmin-latestData">
               <div class="layui-card-header">后台插件推荐(微信号:zifeng1788)</div>
               <div class="layui-card-body layui-text">
-    				<div class="layui-row layui-col-space15">
-       					<div class="layui-col-md6">
-            	 			<img style="width:139px;" src="http://oss1.wangmingchang.com/0bd86e854d29ca97c3510e774d9cd4d4/public/admin/images/2020-02-12/24172php7Z6xgm1581496724200212.jpeg">
-       					</div>
-       					<div class="layui-col-md6">
-       						不定期会在朋友圈更新一些使用的插件,添加成功直接查看朋友圈即可<br>
-       						也可以私人订制,网站开发/小程序开发/页面设计
-       					</div>
-
-
-    				</div>
+        				<div class="layui-row layui-col-space15">
+           					<div class="layui-col-md6">
+                	 			<img style="width:139px;" src="http://oss1.wangmingchang.com/0bd86e854d29ca97c3510e774d9cd4d4/public/admin/images/2020-02-12/24172php7Z6xgm1581496724200212.jpeg">
+           					</div>
+           					<div class="layui-col-md6">
+           						不定期会在朋友圈更新一些使用的插件,添加成功直接查看朋友圈即可<br>
+           						也可以私人订制,网站开发/小程序开发/页面设计
+           					</div>
+        				</div>
           	  </div>
-
-              
             </div>
           </div>
 
           <div class="layui-card ">
             <div class="layui-tab layui-tab-brief layadmin-latestData">
-              <div class="layui-card-header">作者都在用的产品</div>
+
+              <div class="layui-card-header">推荐</div>
               <div class="layui-card-body layui-text">
-              	
-              	<div style="margin-bottom: 10px" >
-              		<a href="https://www.aliyun.com/minisite/goods?userCode=cbkerf3s" target="_blank">
-	            	 	<img style="width: 100%" src="http://oss1.wangmingchang.com/box/2020aliyunshangyun.jpg">
+                <?php if(isset($site_info['advert'])){ foreach($site_info['advert'] as $k=>$vo){ ?>
+                <div style="margin-bottom: 10px" >
+              		<a href="{$vo['url']}" target="_blank">
+	            	 	<img style="width: 100%" src="{$vo['pic']}" title="{$vo['title']}">
 	            	</a>
               	</div>
-              	
-            	
-
-
+                <?php }} ?>
               </div>
-              
-              
             </div>
           </div>
-
-      
         </div>
       </div>
 

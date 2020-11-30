@@ -50,6 +50,7 @@
               <col width="50">
               <col width="50">
               <col width="50">
+              <col width="50">
               <col>
             </colgroup>
             <thead>
@@ -60,6 +61,7 @@
                 <th>链接</th>          
                 <th>排序</th>
                 <th>点击量</th>
+                <th>推荐</th>
                 <th>状态</th>
                 <th>操作</th>
               </tr> 
@@ -75,10 +77,15 @@
                   <td>{$vo['hits']}</td>
                   <td> 
                     <div class=" layui-form" lay-filter="component-form-element">        
+                       <input type="checkbox" name="recommend" <?php echo $vo['recommend']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="recommend_change" item="{$vo['id']}">
+                    </div>
+                  </td>  
+                  <td> 
+                    <div class=" layui-form" lay-filter="component-form-element">        
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
                     </div>
                   </td>                
-                  <td> <a class="layui-btn btn_del layui-btn-danger layui-btn-sm" rel="{$vo['id']}" href="#">删除</a> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/post_edit',['id' => $vo['id'],'cid' => $vo['cid'],'mid' => $mid] )}")'>编辑</button> </td>
+                  <td> <a class="layui-btn btn_del layui-btn-danger layui-btn-sm" rel="{$vo['id']}" href="#">删除</a> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/post_add',['id' => $vo['id'],'cid' => $vo['cid'],'mid' => $mid] )}")'>编辑</button> </td>
                 </tr>
               {/volist}         
             </tbody>
@@ -128,6 +135,19 @@
       var status = this.checked ? '1' : '0'
       console.log(id)
       $.get("{:url('common/is_switch')}",{id:id,dbname:dbname,status:status},function(res){
+          if(res.result==1){
+            layer.msg(res.msg, {icon: 1});
+          }else{
+            layer.msg(res.msg, {icon: 2});
+          }
+        },"json");
+    });
+     form.on('switch(recommend_change)', function(data){
+      var id = $(this).attr("item")
+      var dbname = 'post'
+      var status = this.checked ? '1' : '0'
+      console.log(id)
+      $.get("{:url('common/is_recommend')}",{id:id,dbname:dbname,status:status},function(res){
           if(res.result==1){
             layer.msg(res.msg, {icon: 1});
           }else{

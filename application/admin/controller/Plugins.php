@@ -20,6 +20,7 @@ class Plugins extends Admin
 {
     public function __construct (){
         parent::__construct();
+        $this->temp_plugin = '';
     }
 
     /**
@@ -97,6 +98,7 @@ class Plugins extends Admin
                       $data['pic'] = $config['pic'];
                       $data['ctime'] = $config['ctime'];
                       $data['author'] =$config['author'];
+                      $data['soft_id'] = $json->soft_id;
                       $data['status'] = 1;
                       $data['type'] = 'theme';
                       //是否存在
@@ -168,6 +170,7 @@ class Plugins extends Admin
                     $data['pic'] = $json->pic;
                     $data['ctime'] = $json->ctime;
                     $data['author'] = $json->author;
+                    $data['soft_id'] = $json->soft_id;
                     $data['status'] = 2;
                     $data['type'] = 'plugin';
                     //是否存在
@@ -248,6 +251,333 @@ class Plugins extends Admin
 
 
     }
+    public function plugin_act(){
+      $type = input('type','');
+      $this->type = $type;
+      $action = input('action','');
+      $id = input('id','');
+      $res = Db::name('plugin')->where([['status','<>',9],['id','=',$id]])->find();
+      if(!$res){
+        $this->error('插件不存在');
+      }
+       
+      //升级
+      if($action=='upgrade'){
+        if($type=='plugin'){
+            //插件操作
+            $this->temp_plugin = $res['plugin_name'];
+            // $this->temp_dir_list = explode(',', $data['temp_dir_list']);
+            $this->temp_dir_list = ['addons/'.$this->temp_plugin];
+            $_bak_path = [];  
+            foreach ($this->temp_dir_list as $k => $vo) {
+                $_bak_path  = array_merge( $_bak_path ,listdir('./'.$vo));
+            }
+            $this->bak_path = array_merge($_bak_path);
+            //检测版本
+            $url = config()['version']['authorize_url'];
+            $data = $res;
+            $data['site_key']= config()['zf_auth']['key'];
+            $data['site_sc']= config()['zf_auth']['sc'];
+            $data['site_email']= config()['zf_auth']['email'];
+            $data['domain']= $_SERVER['HTTP_HOST'];
+            $ret = https_post($url,$data);
+            $rr = json_decode($ret,true);
+            if($rr){
+              if( $rr['result']==1 ){
+                //下载
+                $utoken = $rr['msg']['utoken'];
+                $xz =  $this->ZfUpgrade('ZFUpgradeDownSaveFileService',$utoken);
+                if($xz!='success'){
+                    return jserror($xz);
+                }
+                // 解压
+                $jy = $this->ZfUpgrade('ZFUpgradeZip','jy');
+                if($jy!='success'){
+                    return jserror($jy);
+                }
+                $back = $this->ZfUpgrade('ZFUpgradeZip','back');
+                if($back!='success'){
+                    return jserror($back);
+                }
+                //替换
+                $ret = $this->ZfUpgrade('ZFUpgradeListFile');
+                $list = $ret['update_file_arr'];
+                foreach ($list as $k => $vo) {
+                    @copy($vo['path_old'],$vo['path_new']);
+                }
+                //改变版本号
+                $up_db = Db::name('plugin')->where([['id','=',$id]])->update(['version'=>$rr['msg']['version'],'utime'=>time()]);
+                if($up_db){
+                  return jssuccess('升级成功');
+                }else{
+                  return jserror('升级失败');
+                }
+                return jssuccess($rr['msg']);
+              }else{
+                  return jserror($rr['msg']);
+              }
+            }else{
+                return jserror($rr['msg']);
+            }
+        }elseif($type=='theme'){
+          //模板操作
+          $this->temp_plugin = $res['plugin_name'];
+            // $this->temp_dir_list = explode(',', $data['temp_dir_list']);
+            $this->temp_dir_list = ['application/index/controller/'.$this->temp_plugin,'application/index/view/'.$this->temp_plugin];
+            $_bak_path = [];  
+            foreach ($this->temp_dir_list as $k => $vo) {
+              if(is_array(listdir('./'.$vo))){
+                $_bak_path  = array_merge( $_bak_path ,listdir('./'.$vo));
+              }
+            }
+            $this->bak_path = array_merge($_bak_path);
+            //检测版本
+            $url = config()['version']['authorize_url'];
+            $data = $res;
+            $data['site_key']= config()['zf_auth']['key'];
+            $data['site_sc']= config()['zf_auth']['sc'];
+            $data['site_email']= config()['zf_auth']['email'];
+            $data['domain']= $_SERVER['HTTP_HOST'];
+            $ret = https_post($url,$data);
+            $rr = json_decode($ret,true);
+            if($rr){
+              if( $rr['result']==1 ){
+                //下载
+                $utoken = $rr['msg']['utoken'];
+                $xz =  $this->ZfUpgrade('ZFUpgradeDownSaveFileService',$utoken);
+                if($xz!='success'){
+                    return jserror($xz);
+                }
+                // 解压
+                $jy = $this->ZfUpgrade('ZFUpgradeZip','jy');
+                if($jy!='success'){
+                    return jserror($jy);
+                }
+                $back = $this->ZfUpgrade('ZFUpgradeZip','back');
+                if($back!='success'){
+                    return jserror($back);
+                }
+                //替换
+                $ret = $this->ZfUpgrade('ZFUpgradeListFile');
+                $list = $ret['update_file_arr'];
+                foreach ($list as $k => $vo) {
+                    @copy($vo['path_old'],$vo['path_new']);
+                }
+                //改变版本号
+                $up_db = Db::name('plugin')->where([['id','=',$id]])->update(['version'=>$rr['msg']['version'],'utime'=>time()]);
+                if($up_db){
+                  return jssuccess('升级成功');
+                }else{
+                  return jserror('升级失败');
+                }
+                return jssuccess($rr['msg']);
+              }else{
+                  return jserror($rr['msg']);
+              }
+            }else{
+                return jserror($rr['msg']);
+            }
+
+        }
+      }
+    }
+    public function ZfUpgrade($func,$param=''){
+        switch ($func) {
+            case 'ZFUpgradeDownSaveFileService':
+                $up_url = $param;
+                return $this->ZFUpgradeDownSaveFileService($up_url, './data/plugins/'.$this->temp_plugin, $filename = 'upgrade_up.zip', $type = 0);        
+                break;
+            case 'ZFUpgradeZip':
+                return $this->$func($param);
+                break;
+            default:
+                return $this->$func();
+                break;
+        }
+        
+    }
+    // 保存文件到服务器
+    //链接   保存的路径 名称 类型
+    public function ZFUpgradeDownSaveFileService($url, $save_dir = '', $filename = '', $type = 0) {
+        if (trim($url) == '') {
+            return false;
+        }
+        if (trim($save_dir) == '') {
+            $save_dir = './';
+        }
+        if (0 !== strrpos($save_dir, '/')) {
+            $save_dir.= '/';
+        }
+        //删除目录内容
+        $ff = $save_dir.$filename;
+        if(file_exists($ff)){
+            unlink($ff);
+        }
+        #######
+        //创建保存目录
+        if (!file_exists($save_dir) && !mkdir($save_dir, 0777, true)) {
+            return false;
+        }
+        //获取远程文件所采用的方法
+        if ($type) {
+            $ch = curl_init();
+            $timeout = 5;
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+            $content = curl_exec($ch);
+            curl_close($ch);
+        } else {
+            ob_start();
+            readfile($url);
+            $content = ob_get_contents();
+            ob_end_clean();
+        }
+        $size = strlen($content);
+        //文件大小
+        $fp2 = @fopen($save_dir . $filename, 'a');
+        fwrite($fp2, $content);
+        fclose($fp2);
+        unset($content, $url);
+        if(is_file($save_dir . $filename)){
+            return 'success';
+        }else{
+            return "下载失败";
+        }
+    }
+    //解压
+    public function ZFUpgradeZip($type){
+        if($type=='jy'){
+            //删除目录
+            if(is_dir('./data/plugins/'.$this->temp_plugin.'/new')){
+                $r = deldir('./data/plugins/'.$this->temp_plugin.'/new');
+                if(!$r){
+                 die('删除目录失败,请检查权限$this->pulg_data_path.(/plugins/new)');   
+                }
+            }
+            mkdir('./data/plugins/'.$this->temp_plugin.'/new');
+            $zip = new \ZipArchive();//新建一个对象
+            if ($zip->open('./data/plugins/'.$this->temp_plugin.'/upgrade_up.zip')=== TRUE){
+              if($this->type=='plugin'){
+                  $r = $zip->extractTo('./data/plugins/'.$this->temp_plugin.'/new/addons/'.$this->temp_plugin);
+              }elseif($this->type=='theme'){
+                  $r = $zip->extractTo('./data/plugins/'.$this->temp_plugin.'/new/application/index');
+              }
+                $zip->close();//关闭处理的zip文件
+            }
+            if($r){
+                return 'success';
+            }else{
+                return '解压失败';
+            }
+
+        }elseif($type=='back'){
+            //路径是否存在
+            if (!file_exists('./data/plugins/'.$this->temp_plugin.'/old_bak') && !mkdir('./data/plugins/'.$this->temp_plugin.'/old_bak', 0777, true)) {
+                return false;
+            }
+            //压缩
+            $file = './data/plugins/'.$this->temp_plugin.'/old_bak/'.date("YmdHis",time()).'_bak.zip';
+            // 创建备份
+            $zip = new \ZipArchive();                 
+            if ($zip->open($file, \ZipArchive::CREATE)!==TRUE) {     
+                exit("无法创建 <$filename>\n");     
+            }     
+            $files = $this->bak_path;
+            foreach($files as $path){     
+                $zip->addFile($path,str_replace("./","",str_replace("\\","/",$path)));    
+            }   
+            $zip->close(); 
+            if(file_exists($file)){
+                return 'success';
+            }else{
+                return '备份失败';
+            }
+        }
+    }
+    //更新文件
+    public function ZFUpgradeListFile(){
+        $_list = [];
+        $update_file_arr = [];
+
+        $_temp_dir_list = $this->temp_dir_list;
+        foreach ($_temp_dir_list as $key => $value) {
+            // 原有的
+            $list['old'][$key] = myScanDir("./".$value,'./'.$value,'./');
+            foreach(arrToOne($list['old'][$key]) as $k=>$vo){
+                if(strpos($vo,'{"name":"') !== false){ 
+                    $_temp = json_decode($vo);
+                    $_list['old'][$_temp->key]['name'] = $_temp->name;
+                    $_list['old'][$_temp->key]['path'] = $_temp->path;
+                    $_list['old'][$_temp->key]['name'] = $_temp->path_temp;
+                    $_list['old'][$_temp->key]['md5'] = $_temp->md5;
+                }
+            }
+
+            // 现在的最新的
+            if(is_dir('./data/plugins/'.$this->temp_plugin.'/new/'.$value)){
+                $list['new'][$key] = myScanDir('./data/plugins/'.$this->temp_plugin."/new/".$value,'./data/plugins/'.$this->temp_plugin.'/new/'.$value,'./data/plugins/'.$this->temp_plugin.'/new/','');
+                foreach(arrToOne($list['new'][$key]) as $k=>$vo){
+                  // dd($list['new'][$key]);
+                    if(strpos($vo,'{"name":"') !== false){ 
+                        $_temp = json_decode($vo);
+                        $_list['new'][$_temp->key]['name'] = $_temp;
+                        $_list['new'][$_temp->key]['path'] = $_temp->path;
+                        $_list['new'][$_temp->key]['name'] = $_temp->path_temp;
+                        $_list['new'][$_temp->key]['md5'] = $_temp->md5;
+                    }
+                }
+            }else{
+                $_list['new'][$value] = [];
+            }
+          
+        }
+        // dd($_list);
+        // 重组数据
+        foreach ($_list['new'] as $k => $vo) {
+            if(count($vo)!=0){
+                $ret[1][$k]['name'] = $vo['name'];
+                $ret[1][$k]['path_old'] = $vo['path'];
+                $ret[1][$k]['md5'] = $vo['md5'];
+                if(isset($_list['old'][$k]['path'])){
+                    $ret[1][$k]['path_new'] = $_list['old'][$k]['path'];
+                    if($vo['md5']==$_list['old'][$k]['md5']){
+                        $ret[1][$k]['is_xg'] = '未修改';
+                    }else{
+                        $ret[1][$k]['is_xg'] = "<span class='layui-bg-green'>已修改</span>";
+                        $update_file_arr[] = ['name'=>$vo['name'],'path_old'=>$vo['path'],'md5'=>$vo['md5'],'path_new'=>$_list['old'][$k]['path'],'is_xg'=>'已修改'];
+                    }
+                }else{
+                    $path_new = str_replace('./data/plugins/'.$this->temp_plugin.'/new/', './', $vo['path']);
+                    $ret[1][$k]['path_new'] = $path_new;
+                    $ret[1][$k]['is_xg'] = "<span class='layui-bg-red'>新增文件</span>";
+                    $update_file_arr[] = ['name'=>$vo['name'],'path_old'=>$vo['path'],'md5'=>$vo['md5'],'path_new'=>$path_new,'is_xg'=>'新增文件'];
+                }
+            }
+        }
+
+        foreach ($_list['old'] as $k => $vo) {
+            if(!isset($_list['new'][$k])){
+                $ret[2][$k]['name'] = $vo['name'];
+                $ret[2][$k]['path_old'] = '';
+                $ret[2][$k]['path_new'] = $vo['path'];
+                $ret[2][$k]['md5'] = $vo['md5'];
+                $ret[2][$k]['is_xg'] = '<span class="layui-bg-blue">差异文件(新系统中不含此文件,请酌情删除)</span>';
+            }
+        }
+        if(!isset($ret['1'])){
+            $ret['1'] = [];
+        }
+        if(!isset($ret['2'])){
+            $ret['2'] = [];
+        }
+        if(isset($update_file_arr)){
+            $ret['update_file_arr'] = $update_file_arr;
+        }else{
+            $ret['update_file_arr'] = [];
+        }
+        return $ret;
+    }
    
 
 
@@ -313,4 +643,49 @@ function copydir($source, $dest)
         if (is_dir($_source)) copydir($_source, $_dest);
     }
     closedir($handle);
+}
+function myScanDir($dir,$p_path='',$cj_ico)
+{
+    $file_arr = scandir($dir);
+    $new_arr = [];
+    $all_file = [];
+    foreach($file_arr as $k => $item){
+        $_path = $p_path;
+        if($item!=".." && $item !="."){
+            if(is_dir($dir."/".$item)){
+                $_path = $dir."/".$item;
+                $new_arr[$item] = myScanDir($dir."/".$item,$_path,$cj_ico);
+            }else{
+                $md5 = md5_file($_path.'/'.$item);
+                $path_temp = isset(explode($cj_ico, $_path)[1])?explode($cj_ico, $_path)[1].'/':$cj_ico;
+                $kk = $path_temp.pathinfo($item)['filename'];
+                $new_arr[$kk] = array('name'=>$item,'path'=>$_path.'/'.$item ,'path_temp'=>$path_temp.$item  ,'md5'=>$md5);
+                $new_arr[$kk]['key'] = $kk;
+                $new_arr[$kk]['json'] = json_encode($new_arr[$kk]);
+            } 
+        }
+    }
+    return $new_arr;
+}
+
+function arrToOne($multi) {
+
+  $arr = array();
+
+  foreach ($multi as $key => $val) {
+
+    if( is_array($val) ) {
+
+      $arr = array_merge($arr, arrToOne($val));
+
+    } else {
+
+      $arr[] = $val;
+
+    }
+
+  }
+
+  return $arr;
+
 }

@@ -28,10 +28,13 @@
                 <div class="price">
                   <span>模板名:{$vo['plugin_name']} {$vo['version']}</span><br>
                   <span>作者:{$vo['author']}</span><br>
+                  <span>版本:{$vo['version']}</span><br>
                   <span>创建时间:{$vo['ctime']}</span> <br>
                   <span>路径:{$vo['path']}</span> 
                   <span>
-                    <a class="layui-btn" href="/?theme={$vo['plugin_name']}" target="_blank">查看演示</a>                  
+                    <a class="layui-btn layui-btn-sm" href="/?theme={$vo['plugin_name']}" target="_blank">查看演示</a>    
+                    <a href="javascript:;" class="layui-btn layui-btn-sm plugin_upgrade" item="{$vo['id']}"  > 升级模板</a>
+
                   </span>
                   <span class="flow">
                     <i class="layui-icon layui-icon-rate btn_edit" item="{$vo['plugin_name']}" style="color: <?php echo $tpl_name==$vo['plugin_name']?'#1E9FFF':''; ?>;" ></i>
@@ -108,6 +111,36 @@
         }
       })
    })
+   $('.plugin_upgrade').on('click',function(){
+    var id = $(this).attr('item')
+    layer.load(1)
+     layer.confirm('确认升级？', {
+        btn: ['升级','取消'] //按钮
+      }, function(){
+          $.ajax({
+            type:'get',
+            url:"{:url('plugins/plugin_act',['type'=>'theme','action'=>'upgrade'])}",
+            data:{id},
+            dataType:'json',
+            success:function(res){
+               layer.closeAll();
+              if(res.result==1){
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function() {
+                    location.reload(true);
+                }, 3000);
+              }else{
+                layer.msg(res.msg, {icon: 2});
+              }
+              
+            }
+          })
+
+      }, function(){
+          //取消的操作
+      });
+   })
+
 });
   </script>
 </body>

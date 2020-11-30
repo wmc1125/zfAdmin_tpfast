@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50562
 File Encoding         : 65001
 
-Date: 2020-09-27 10:39:55
+Date: 2020-11-30 17:50:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,13 +39,12 @@ CREATE TABLE `zf_admin` (
   `google_is` tinyint(255) NOT NULL DEFAULT '0',
   `pic` varchar(255) NOT NULL DEFAULT 'https://i.loli.net/2019/10/29/9OCU2VXHtAFhzoT.jpg',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of zf_admin
 -- ----------------------------
-INSERT INTO `zf_admin` VALUES ('1', '3', 'admin', '1213213', '', '', '0', '1', '23', '1', '0', '', '0', '2018', '0', '76DGRK3PKWYNP23Z', '0', 'https://i.loli.net/2019/10/29/9OCU2VXHtAFhzoT.jpg');
-INSERT INTO `zf_admin` VALUES ('2', '2', 'test', '96e79218965eb72c92a549dd5a330112', '', '', '0', '0', '', '1', '0', '', '0', '0', '1', '', '0', '');
+INSERT INTO `zf_admin` VALUES ('1', '3', 'admin', '96e79218965eb72c92a549dd5a330112', '', '', '0', '1', '23', '1', '0', '', '0', '2018', '0', '76DGRK3PKWYNP23Z', '0', 'https://i.loli.net/2019/10/29/9OCU2VXHtAFhzoT.jpg');
 
 -- ----------------------------
 -- Table structure for zf_admin_group
@@ -66,7 +65,7 @@ CREATE TABLE `zf_admin_group` (
 -- ----------------------------
 INSERT INTO `zf_admin_group` VALUES ('1', '普通管理员', '1', '2018', '1', '1,4,10,19,8,9,36,95,15,14,32,24,37,68,40,41,45,46,50,88,54,55,60,64,70,77,79,80,82,83');
 INSERT INTO `zf_admin_group` VALUES ('2', '测试分组', '1', null, '0', '8,9,36,95,70,40,41,45,46,50,54,55,60,64,15,14,32,79,80,1,10,108');
-INSERT INTO `zf_admin_group` VALUES ('3', '超级管理员', '1', '2018', '1', '8,9,36,95,120,70,71,72,89,90,91,92,117,118,119,40,41,42,43,44,45,116,46,47,48,49,50,51,52,53,87,88,79,80,81,126,15,14,16,17,31,74,32,33,34,35,54,55,57,58,59,60,61,62,63,64,65,66,67,24,25,26,27,28,29,30,37,68,115,121,122,123,124,125,1,2,84,4,5,6,7,19,20,21,22,23,10,11,12,13,18,73,3,93,109,108');
+INSERT INTO `zf_admin_group` VALUES ('3', '超级管理员', '1', '2018', '1', '8,9,36,95,120,70,71,72,89,90,91,92,117,118,119,40,41,42,43,44,45,116,46,47,48,49,50,51,52,53,87,88,15,14,16,17,31,74,32,33,34,35,133,134,135,136,141,142,143,54,55,57,58,59,60,61,62,63,64,65,66,67,79,80,81,126,148,149,1,144,2,146,4,5,6,7,19,20,21,22,23,10,11,12,13,18,73,108,150');
 
 -- ----------------------------
 -- Table structure for zf_admin_log
@@ -106,7 +105,7 @@ CREATE TABLE `zf_admin_role` (
   `menu` tinyint(1) NOT NULL DEFAULT '1',
   `parm` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8 COMMENT='管理员权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8 COMMENT='管理员权限表';
 
 -- ----------------------------
 -- Records of zf_admin_role
@@ -199,6 +198,7 @@ INSERT INTO `zf_admin_role` VALUES ('144', '基本设置', 'admin/0/0', '1', '1'
 INSERT INTO `zf_admin_role` VALUES ('146', '自定义参数', 'admin/Config/custom_config', '1', '1', null, '0', '144', 'admin', 'Config', 'custom_config', '1', null);
 INSERT INTO `zf_admin_role` VALUES ('148', '上传插件', 'admin/Plugins/plugin_upload', '1', '1', null, '0', '126', 'admin', 'Plugins', 'plugin_upload', '0', '');
 INSERT INTO `zf_admin_role` VALUES ('149', '插件卸载', 'admin/Plugins/plugin_uninstall', '1', '1', null, '0', '126', 'admin', 'Plugins', 'plugin_uninstall', '0', '');
+INSERT INTO `zf_admin_role` VALUES ('150', '升级管理', 'admin/Zfupgrade/index', '1', '1', null, '99', '0', 'admin', 'Zfupgrade', 'index', '1', '');
 
 -- ----------------------------
 -- Table structure for zf_advert
@@ -259,7 +259,7 @@ CREATE TABLE `zf_category` (
   `append` varchar(255) DEFAULT NULL,
   `file` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of zf_category
@@ -269,7 +269,6 @@ INSERT INTO `zf_category` VALUES ('2', '0', '2', '动态', 'Real-time News', nul
 INSERT INTO `zf_category` VALUES ('3', '0', '3', '案例', 'Successful Case', null, '', '', '', '', '1', '0', '1', '1570590006', null, null, 'tpl_case', '', '10', '', '', '', '', '');
 INSERT INTO `zf_category` VALUES ('4', '0', '1', '关于', 'About Us', null, '', '', '', '', '1', '0', '1', '1570590019', null, null, 'tpl_about', '', '10', '', '', '', '', '');
 INSERT INTO `zf_category` VALUES ('5', '0', '1', '获取地址', '', null, '', '', '', 'http://bbs.wangmingchang.com/forum.php?mod=forumdisplay&fid=77', '1', '0', '1', '1570590036', null, null, '', '', '10', '', '', '', '', '');
-INSERT INTO `zf_category` VALUES ('6', '443', '14', 'cs', '', null, '', '', '', '', '0', '0', '0', '1572253436', null, '<p>dsf</p>', '', '', '10', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for zf_category_model
@@ -284,14 +283,19 @@ CREATE TABLE `zf_category_model` (
   `is_two` tinyint(1) NOT NULL DEFAULT '0',
   `is_parm` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='分类模型表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='分类模型表';
 
 -- ----------------------------
 -- Records of zf_category_model
 -- ----------------------------
 INSERT INTO `zf_category_model` VALUES ('1', '单页模型', 'simple', '2', '1', '1', '0');
-INSERT INTO `zf_category_model` VALUES ('2', '新闻模型', 'news', '0', '1', '0', '0');
+INSERT INTO `zf_category_model` VALUES ('2', '新闻模型', 'news', '0', '1', '1', '0');
 INSERT INTO `zf_category_model` VALUES ('3', 'ZF内容模型', 'zf_tpl', '2', '1', '1', '1');
+INSERT INTO `zf_category_model` VALUES ('4', '标题&图&详情', 'title_pic_content', '0', '1', '1', '1');
+INSERT INTO `zf_category_model` VALUES ('5', '图&标题', 'pic_title', '0', '1', '1', '1');
+INSERT INTO `zf_category_model` VALUES ('6', '标题&图集', 'album_title', '0', '1', '1', '1');
+INSERT INTO `zf_category_model` VALUES ('7', '标题&图&文件', 'title_pic_file', '0', '1', '0', '0');
+INSERT INTO `zf_category_model` VALUES ('8', '测试ZF模型', 'zf_test', '0', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for zf_category_model_parm
@@ -311,7 +315,7 @@ CREATE TABLE `zf_category_model_parm` (
   `sort` tinyint(5) NOT NULL DEFAULT '0',
   `is_multi` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否多选   0 否   1 多选',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='模型参数列表';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='模型参数列表';
 
 -- ----------------------------
 -- Records of zf_category_model_parm
@@ -335,6 +339,16 @@ INSERT INTO `zf_category_model_parm` VALUES ('21', '2', '时间', 'ctime', '', '
 INSERT INTO `zf_category_model_parm` VALUES ('22', '1', '详情', 'content', '', 'ueditor', '1', '0', '0', '2', '4', '0');
 INSERT INTO `zf_category_model_parm` VALUES ('23', '2', '作者', 'author', '', 'layui-input', '1', '0', '0', '2', '1', '0');
 INSERT INTO `zf_category_model_parm` VALUES ('24', '2', '推荐', 'recommend', '', 'layui-switch', '1', '0', '0', '14', '9', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('25', '1', '标题', 'title', '', 'layui-input', '1', '0', '0', '4', '1', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('26', '1', '图片', 'pic', '', 'layui-pic', '1', '0', '0', '4', '2', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('27', '1', '详情', 'content', '', 'ueditor', '1', '0', '0', '4', '3', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('28', '1', '标题', 'title', '', 'layui-input', '1', '0', '0', '5', '1', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('29', '1', '图', 'pic', '', 'layui-pic', '1', '0', '0', '5', '2', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('30', '1', '状态', 'status', '', 'layui-switch', '1', '0', '0', '5', '3', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('31', '1', '标题', 'title', '', 'layui-input', '1', '0', '0', '6', '1', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('32', '1', '图集', 'album', '', 'album', '1', '0', '0', '6', '2', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('33', '1', '标题', 'title', '', 'layui-input', '1', '0', '0', '8', '1', '0');
+INSERT INTO `zf_category_model_parm` VALUES ('34', '1', '多选', 'append', '', 'layui-radio', '1', '0', '0', '8', '2', '0');
 
 -- ----------------------------
 -- Table structure for zf_config
@@ -412,20 +426,23 @@ CREATE TABLE `zf_plugin` (
   `name` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `ctime` varchar(50) DEFAULT NULL,
-  `utime` varchar(50) DEFAULT NULL,
+  `utime` int(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 正常   2 未激活  9 停止使用',
   `sort` varchar(255) DEFAULT NULL,
   `version` varchar(255) DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `source` varchar(255) NOT NULL,
+  `soft_id` varchar(50) NOT NULL,
+  `soft_sc` text NOT NULL,
+  `soft_key` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='插件列表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='插件列表';
 
 -- ----------------------------
 -- Records of zf_plugin
 -- ----------------------------
-INSERT INTO `zf_plugin` VALUES ('1', 'def', '演示站点', '子枫', '2019-7-24', null, '1', null, 'v1.0.0', 'http://oss1.wangmingchang.com/mac/MdImd/20200528081400.png', 'theme', '');
+INSERT INTO `zf_plugin` VALUES ('1', 'def', '演示站点', '子枫', '2019-7-24', '1606478390', '1', null, 'v1.0.1', 'http://oss1.wangmingchang.com/mac/MdImd/20200528081400.png', 'theme', '', '182be0c5cdcd5072bb1864cdee4d3d6e', '2184oLkEEyCJowiZGQCy6QxHKAuoHgVp2VTcAmdwWQuBmXibqqb_UiTqQv2LHRbzfaccUFz_ALEPbYv7YmHVdgU60yJZtEeYXlQSrR_1LCY9PU0_Y75TAi0i38dgeVhb3xfI3E8_Zy9B7-nU5QIyuW-c77G0bInq8vgxTx-XM_IDVepOwv-AY9CntDWBKNk2VQvguxui-nk89EmZlLKGIIazQ_ZmPGaUiv9-oknpJ0CvvLLrFe4-L_PSr0wb-tkKqqvq0J7IGbmT8RGwrLNYHANUElUgEZeVY1Wdl1zEN2Rpimy4KlEZsyhg5f8zy61-eX-onZfFr8kFBNBD4mZP7O5Wz0UoZfdEcEIJzUDSSHVbXsOo3uZ8lec-32JOTo2pWR8rEMVBBnvwQ5dExdHHWb2N1V9eWiHjchYF-gTrxX3UiMpyenlucn2XwqDDbFxj7C_FEkL9eb8fQTCifxTTJOW6C4nc_-P-tcmXco8i8UVjPzYUGIKm9uCQStm0dTpDrPzJF0iLxnAk7vDvBua1czKsssZKqTpH68FkYxJa0tVb_qW7MNs6M3E', '459c2e61062d15b8e79cfd8700545bb7990');
 
 -- ----------------------------
 -- Table structure for zf_post
@@ -461,25 +478,12 @@ CREATE TABLE `zf_post` (
   `recommend` tinyint(1) NOT NULL DEFAULT '0',
   `istop` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='内容表';
 
 -- ----------------------------
 -- Records of zf_post
 -- ----------------------------
-INSERT INTO `zf_post` VALUES ('2', '1', 'hello.world!', '这是第一篇文章', 'http://zf-demo-test.oss-cn-beijing.aliyuncs.com/demo_zf_test/public/upload/simple/image/20190927/1569579364_moren_upload.png', '1', '1569579211', null, '0', '<p>这是第一篇文章</p>', '', '', '', '0.00', '0.00', '0', '15', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('3', '2', '一直在你身边对你好，你却没有发现。', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606577', null, '0', null, '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('4', '2', '一直在你身边对你好，你却没有发现。', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606596', null, '0', null, '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('5', '2', '写经验交流材料的技巧全在这了！', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606608', null, '0', null, '', '', '', '0.00', '0.00', '0', '2', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('6', '2', '写经验交流材料的技巧全在这了！', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606613', null, '0', null, '', '', '', '0.00', '0.00', '0', '11', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('7', '2', '经验分享：我是如何做好每日计划的', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606623', null, '0', null, '', '', '', '0.00', '0.00', '0', '4', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('8', '2', '经验分享：我是如何做好每日计划的', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606628', null, '0', null, '', '', '', '0.00', '0.00', '0', '15', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('9', '2', '脾气不好的妈妈好好读读这篇文章，真的是细思极恐', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606640', null, '0', null, '', '', '', '0.00', '0.00', '0', '15', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('10', '2', '养女儿，一定要让她漂亮！', '找老婆要找爱发脾气的女人。永远不会发脾气的女人就如同一杯白开水，解渴，却无味。而发脾气的女人正如烈酒般，刺激而令人无法忘怀。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/news_img1.jpg', '1', '1570606645', null, '2', '<p class=\"introTop\">TA家的珍珠是用黑糖熬制的，要熬整整四个小时才行，每熬一锅黑糖只能做出40杯奶茶，好味，是值得等待的。</p><div><img src=\"{$tpl_static}/img/news_big.jpg\" alt=\"新闻详情图\"/></div><p class=\"introBott\">北极光的制作，需要300g葡萄来完成，要选用最新鲜的葡萄，才能做出最灿烂的北极光。满满一瓶葡萄，看着就让人倍感满足。喝之前，要先摇9下，才能喝出最好的果味。晨曦的寓意是，清晨的阳光。要用到一整颗百香果的晨曦，喝起来酸酸甜甜，果味浓郁。晨曦喝起来果味极浓，不仅仅有百香果，还有芒果、橙汁...的味道，十分清新，彷佛夏日的一抹凉风！</p>', '', '', '', '0.00', '0.00', '0', '40', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('11', '3', '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', '1', '1570607284', null, '0', null, '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('12', '4', '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', '1', '1570607289', null, '0', null, '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('13', '4', '名牌工厂店', '一家工厂企业的商品展示网站，主要以卖高端服饰为主。主要以卖高端服饰为主。主要以卖高端服饰为主。', 'http://v1.fast.zf.90ckm.com/template/index/a1/style//img/case1.jpg', '1', '1570607294', null, '0', null, '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('14', '445', 'wewew', '', 'http://v1.fast.zf.90ckm.com/public/upload/file/20191118/ad3411963a149e958126056f5f364274.jpg', '1', '1574045581', null, '0', '<p>dsafds</p>', null, '', '', '0.00', '0.00', '0', '0', '', '', '', '0', '0', '0', null, '1', '0', '0', '0');
-INSERT INTO `zf_post` VALUES ('15', '0', 'test', '', '', '1', '1591156850', null, '0', '', '', '', '', '0.00', '0.00', '0', '0', '', '匿名', '', '0', '0', '1', '1', '1', '0', '0', '0');
+INSERT INTO `zf_post` VALUES ('2', '1', 'hello.world!', '这是第一篇文章', 'http://v1.fast.zf.90ckm.com/public/upload/image/20201123/56b67a909943ea0ef8c03879d6f197ba.png', '1', '1606060800', null, '1', '<p>这是第一篇文章</p>', '221', '', 'http://v1.fast.zf.90ckm.com/public/upload/image/20201123/7b719a19d83593fac3dbbd2da12d545d.png,http://v1.fast.zf.90ckm.com/public/upload/image/20201123/b384046f535841d0161c98376252ace0.png', '0.00', '0.00', '0', '15', '', '匿名', '', '0', '0', '0', null, '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for zf_product_cate
@@ -585,6 +589,49 @@ INSERT INTO `zf_product_sku_info_parm` VALUES ('5', '3', '2', '1', '15', '1');
 INSERT INTO `zf_product_sku_info_parm` VALUES ('6', '3', '1', '1', '15', '1');
 INSERT INTO `zf_product_sku_info_parm` VALUES ('7', '4', '2', '1', '15', '1');
 INSERT INTO `zf_product_sku_info_parm` VALUES ('8', '4', '3', '1', '15', '1');
+
+-- ----------------------------
+-- Table structure for zf_upload
+-- ----------------------------
+DROP TABLE IF EXISTS `zf_upload`;
+CREATE TABLE `zf_upload` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `uid` varchar(50) DEFAULT NULL,
+  `ctime` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `cid` int(11) DEFAULT NULL,
+  `mine` varchar(255) DEFAULT NULL,
+  `size` varchar(100) DEFAULT NULL,
+  `ip` varchar(255) DEFAULT NULL,
+  `uniacid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='上传表';
+
+-- ----------------------------
+-- Records of zf_upload
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for zf_upload_cate
+-- ----------------------------
+DROP TABLE IF EXISTS `zf_upload_cate`;
+CREATE TABLE `zf_upload_cate` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `sort` varchar(255) DEFAULT NULL,
+  `ctime` int(11) DEFAULT NULL,
+  `uniacid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='上传分类表';
+
+-- ----------------------------
+-- Records of zf_upload_cate
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for zf_user

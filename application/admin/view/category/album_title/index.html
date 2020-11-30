@@ -13,7 +13,7 @@
 </head>
 <body>
 {include file="public/load"}
-  
+
   <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
@@ -32,8 +32,9 @@
             <!-- <form onclick="return false;" class="create_info"> -->
               <div class="layui-inline">
                   <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("新增内容","{:url('category/post_add',['cid' => $res['cid'],'mid' => $res['mid']] )}")'>新增</button> 
-                  <!-- <a class="layui-btn layui-btn-sm" id="up_file" >导入</a> -->
+<!--                  <a class="layui-btn layui-btn-sm" id="up_file" >导入</a>-->
                   <!-- <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("内容采集","{:url('category/bqb_querylist')}")'>采集</button>  -->
+
               </div>
             <!-- </form> -->
           </div>
@@ -56,7 +57,6 @@
                 <th>ID</th>
                 <th>标题</th>
                 <th>图片</th>
-                <th>链接</th>          
                 <th>排序</th>
                 <th>点击量</th>
                 <th>状态</th>
@@ -69,7 +69,6 @@
                   <td>{$vo['id']}</td>
                   <td>{$vo['title']}</td>
                   <td><img src="{$vo['pic']}" style="width:50px;height:50px"/></td>
-                  <td>{$vo['append']}</td>
                   <td>{$vo['sort']}</td>
                   <td>{$vo['hits']}</td>
                   <td> 
@@ -77,7 +76,7 @@
                        <input type="checkbox" name="status" <?php echo $vo['status']==1?'checked':''; ?> lay-skin="switch" lay-text="开启|关闭" lay-filter="status_change" item="{$vo['id']}">
                     </div>
                   </td>                
-                  <td> <a class="layui-btn btn_del layui-btn-danger layui-btn-sm" rel="{$vo['id']}" href="#">删除</a> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/post_add',['id' => $vo['id'],'cid' => $vo['cid'],'mid' => $mid] )}")'>编辑</button> </td>
+                  <td> <a class="layui-btn btn_del layui-btn-danger layui-btn-sm" rel="{$vo['id']}" href="#">删除</a> <button class="layui-btn layui-btn-sm" onclick='zfAdminShow("编辑","{:url('category/post_edit',['id' => $vo['id'],'cid' => $vo['cid'],'mid' => $mid] )}")'>编辑</button> </td>
                 </tr>
               {/volist}         
             </tbody>
@@ -87,10 +86,11 @@
       </div>
     </div>
   </div>
-{include file="public/common_tool"}
+  {include file="public/common_tool"}
   <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
   <script src="__STATIC__/style/layui/layui.js"></script>    
   <script src="__STATIC__/system/common.js"></script>  
+
   <script>
  layui.use([ 'table','element','layer','upload'], function(){
     var $ = layui.$

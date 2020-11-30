@@ -46,6 +46,22 @@ class Common extends Admin
         return ZFRetMsg($res,'更新成功','更新失败');
         
     }
+    /**
+     * @Notes    是否推荐
+     * @Author   子枫
+     * @DateTime 2020-10-15
+     * @Email    287851074@qq.com
+     * @return   boolean          [description]
+     */
+     public function is_recommend(){
+        admin_role_check($this->z_role_list,$this->mca);
+        $dbname = input('dbname');
+        $is_show = input('status');
+        $id = input('id');
+        $res = ZFTB($dbname)->where('id', $id)->update(['recommend' => $is_show]);            
+        return ZFRetMsg($res,'更新成功','更新失败');
+        
+    }
 
     /**
      * @Notes:菜单的转换
@@ -144,19 +160,19 @@ class Common extends Admin
      * @author: 子枫
      * @Time: 2019/11/13   10:43 下午
      */
-    public function upload_one(){
-        admin_role_check($this->z_role_list,$this->mca);
-        $file = request()->file('file');
-        $info = $file->validate(['ext'=>config()['web']['pic_ext']])->move( './public/upload/admin/image');
-        $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/image/'.$getSaveName;
-        if($msg){
-            return jssuccess($msg);
-        }else{
-            return jserror("error");
-        }
+    // public function upload_one(){
+    //     admin_role_check($this->z_role_list,$this->mca);
+    //     $file = request()->file('file');
+    //     $info = $file->validate(['ext'=>config()['web']['pic_ext']])->move( './public/upload/admin/image');
+    //     $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
+    //     $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/image/'.$getSaveName;
+    //     if($msg){
+    //         return jssuccess($msg);
+    //     }else{
+    //         return jserror("error");
+    //     }
 
-    }
+    // }
 
     /**
      * @Notes:上传文件
@@ -164,15 +180,15 @@ class Common extends Admin
      * @author: 子枫
      * @Time: 2019/11/13   10:43 下午
      */
-    public function upload_one_file(){
-        admin_role_check($this->z_role_list,$this->mca);
-        $file2 = request()->file('file');
-        $info = $file2->validate(['ext'=>config()['web']['file_ext']])->move('./public/upload/admin/file');
-        $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
-        $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/file/'.$getSaveName;
-        return ZFRetMsg($msg,$msg,'error');
+    // public function upload_one_file(){
+    //     admin_role_check($this->z_role_list,$this->mca);
+    //     $file2 = request()->file('file');
+    //     $info = $file2->validate(['ext'=>config()['web']['file_ext']])->move('./public/upload/admin/file');
+    //     $getSaveName = str_replace('\\', '/', $info->getSaveName());//win下反斜杠替换成斜杠
+    //     $msg = 'http://'.$_SERVER['SERVER_NAME'].'/public/upload/admin/file/'.$getSaveName;
+    //     return ZFRetMsg($msg,$msg,'error');
 
-    }
+    // }
 
     
 

@@ -12,16 +12,17 @@
   <link rel="stylesheet" type="text/css" href="__STATIC__/style/webuploader/webuploader.css">
   <script type="text/javascript" src="__STATIC__/style/webuploader/webuploader.js"></script>
   <script src="__STATIC__/style/layui/layui.js"></script>    
+    {js href="__STATIC__/style/ueditor/ueditor.config.js" /}
+  {js href="__STATIC__/style/ueditor/ueditor.all.js" /}
+  {css href="__STATIC__/style/ueditor/themes/default/css/ueditor.css" }
+
 </head>
 <body> 
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
       <form class="layui-form info_tj" method="post"  >
-          <?php if(isset($data_res)){ ?>
-          <input type="hidden" name="id" value="{$data_res['id']}">
-          <?php }else{ ?>
+          <input type="hidden" name="id" value="{$data_res['id']|default=''}">
           <input type="hidden" name="cid" value="{$cid}">
-          <?php } ?>
         <div class="layui-col-sm12">
           <div class="layui-row layui-col-space15">
               <div class="layui-col-sm<?php echo $m_res['is_two']==1?'9':'12'; ?>">
@@ -64,11 +65,7 @@
     $(".tijiao").on("click",function(){
       // var index = layer.load(2);
       var data = $(".info_tj input,.info_tj textarea,.info_tj select").serialize();   
-      <?php if(isset($data_res)){ ?>
-        var url = "{:url('category/post_edit')}"
-      <?php }else{ ?>
-        var url = "{:url('category/post_add')}"
-      <?php } ?>
+      var url = "{:url('category/post_add')}"
       $.ajax({
           type:'post',
           url:url,
@@ -88,11 +85,10 @@
       })
     });
     
-    
-
-  
-
   });
+ function deleteFile(obj) {
+   $(obj).parent().remove();
+  }
 </script>
 
 </body>

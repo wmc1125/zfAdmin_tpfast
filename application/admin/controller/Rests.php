@@ -36,11 +36,11 @@ class Rests extends Admin
         if(input('type')=='child'){
             $pid = input('id');
             $tpl='rests/advert_child';
-            $list = ZFTB('advert')->where('pid',$pid)->where([['status','<>',9]])->order("sort asc")->paginate(10);
+            $list = ZFTB('advert')->where('pid',$pid)->where([['status','<>',9]])->order("sort desc,id desc")->paginate(10);
             $this->assign("pid",$pid);
         }else{
             $tpl='';
-            $list = ZFTB('advert')->where('pid',0)->where([['status','<>',9]])->order("sort asc")->paginate(10);
+            $list = ZFTB('advert')->where('pid',0)->where([['status','<>',9]])->order("sort desc,id desc")->paginate(10);
         }
         $page = $list->render();
         $this->assign("list",$list);
@@ -125,7 +125,7 @@ class Rests extends Admin
      public function link()
     {
         admin_role_check($this->z_role_list,$this->mca);
-        $list = ZFTB('link')->where([['status','<>',9]])->order("sort asc")->paginate(10);
+        $list = ZFTB('link')->where([['status','<>',9]])->order("sort desc,id desc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);
@@ -194,7 +194,7 @@ class Rests extends Admin
      public function guessbook()
     {   
         admin_role_check($this->z_role_list,$this->mca);
-        $list = ZFTB('guessbook')->where([['status','<>',9]])->order("ctime desc,sort asc")->paginate(10);
+        $list = ZFTB('guessbook')->where([['status','<>',9]])->order("ctime desc,sort desc,id desc")->paginate(10);
         $page = $list->render();
         $this->assign("list",$list);
         $this->assign("page",$page);

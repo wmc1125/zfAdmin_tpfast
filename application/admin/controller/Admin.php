@@ -28,6 +28,12 @@ class Admin extends Controller
         {
             $this->error('请登录','Login/index');die; 
         }
+        //判断是否认证
+        if(!isset(config()['zf_auth']['key']) || !isset(config()['zf_auth']['sc']) || !isset(config()['zf_auth']['email']) ||  config()['zf_auth']['key']=='' ||  config()['zf_auth']['sc']=='' ||  config()['zf_auth']['email']=='' ){
+            $this->assign('is_zf_auth','n');
+        }else{
+            $this->assign('is_zf_auth','y');
+        }
         $this->common_tag = [];
         $this->common_select_tag = [];
         /*
@@ -65,7 +71,7 @@ class Admin extends Controller
      * @Time: 2019/11/13   10:38 下午
      */
     public function _empty(){
-        echo "没有此方法";
+        $this->error('没有此方法');
     }
     
     

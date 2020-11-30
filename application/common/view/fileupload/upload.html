@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>上传面板</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/style/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/system/style/admin.css" media="all">
+  <script src="__STATIC__/style/jquery-1.8.3.min.js"></script>  
+  <script src="__STATIC__/style/layui/layui.js"></script>    
+  <script src="__STATIC__/system/common.js"></script>  
+
+</head>
+<style type="text/css">
+  .zf_item_pic{
+ width: 85%;max-height: 80%;padding: 10px;
+  }
+  .click_item{
+height: 200px;width: 95%;margin: 0 auto;text-align: center;
+  }
+</style>
+<body style="background-color: #fff">
+  <div class="layui-row">
+    <div class="layui-col-md3 ">
+      <div class="layui-card">
+        <div class="layui-card-header">分组</div>
+        <div class="layui-card-body">
+          <form onclick="return false;" class="info_tj">
+
+            <div class="layui-input-black">
+              <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+              <button class="layui-btn layui-btn-sm" onclick='tijiao_data("upload/cate_add",0)'  >新增</button>
+            </div>
+          </form>
+          <!-- <div class="layui-col-md12"> -->
+            <div class="layui-card-body">
+              <table class="layui-table">
+                  <colgroup>
+                    <col width="30">
+                    <col width="60">
+                    <col width="60">
+                    <col>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>名称</th>
+                      <th>操作
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" href="{:siteUrl('widget/Fileupload/upload')}&t={$t}&cid=0&zf_class={$zf_class}">查看全部</a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($cate_list as $k=>$vo){ ?>
+                    <tr>
+                      <th>{$vo['id']}</th>
+                      <th>{$vo['name']}</th>
+                      <th>
+                        <a class="ajax_cate_del" item="{$vo['id']}">删除</a> 
+                        <a href="{:siteUrl('widget/Fileupload/upload')}&t={$t}&cid={$vo['id']}&zf_class={$zf_class}">查看</a>
+                      </th>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+              </table>
+            </div>
+          <!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-md9 ">
+      <div class="layui-card">
+        <div class="layui-card-header">列表</div>
+        <div class="layui-card-body">
+            <blockquote class="layui-elem-quote">
+              <a href="javascript:;" class="layui-btn layui-btn-primary " id="up_file">上传</a>
+              <a href="javascript:;" class="layui-btn ajax_file_move">移动</a>
+              <!-- <a href="javascript:;" class="layui-btn layui-btn-normal ajax_file_del">删除</a> -->
+              <a href="javascript:;" class="layui-btn layui-btn-warm zf_xz_click ">选中</a>
+            </blockquote>
+            <div class="layui-row">
+              <form class="zf_clickdata_list">
+                <?php foreach($pic_list as $k=>$vo){ ?>
+                <div class="layui-col-md3" >
+                  <div class="click_item" url="{$vo['url']}">
+                    <?php if($vo['type']=='文本'){ ?>
+                      <img class="zf_item_pic" src="http://oss.wangmingchang.com/box/media/text.png">
+                    <?php }elseif($vo['type']=='压缩'){ ?>
+                      <img class="zf_item_pic" src="http://oss.wangmingchang.com/box/media/archive.png">
+                    <?php }elseif($vo['type']=='图片'){ ?>
+                      <img class="zf_item_pic" src="{$vo['url']}">
+                    <?php }elseif($vo['type']=='视频'){ ?>
+                      <img class="zf_item_pic" src="http://oss.wangmingchang.com/box/media/interactive.png">
+                    <?php }elseif($vo['type']=='音频'){ ?>
+                      <img class="zf_item_pic" src="http://oss.wangmingchang.com/box/media/audio.png">
+                    <?php }elseif($vo['type']=='其他'){ ?>
+                      <img class="zf_item_pic" src="http://oss.wangmingchang.com/box/media/default.png">
+                    <?php } ?>
+                    <input type="hidden" name="files[]" value="">
+                    <!-- <input type="hidden" name="checked[]" value="0"> -->
+                  </div>
+                </div>             
+                <?php } ?>
+              </form>
+            </div>
+          <div id="zfPage"></div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <div class="move_info" style="display: none;" >
+    <form class="layui-form layui-form-pane" >
+      <div class="layui-form-item">
+        <label class="layui-form-label">移动至</label>
+        <div class="layui-input-block">
+          <select class="move_cate_list layui-input-black" name="move_cate_list" lay-filter="move_cate_list">
+            <?php foreach($cate_list as $k=>$vo){ ?>
+              <option value="{$vo['id']}">{$vo['name']}</option>
+            <?php } ?>
+          </select>
+          <br>
+          <br>
+          <br>
+          <br>
+          <a href="javascript:;" class="ajax_file_move_save layui-btn">提交</a>
+          <input type="hidden" class="zf_move_cid" value="0">
+        </div>
+      </div>
+    </form>
+  </div>
+
+<script> 
+  var index = parent.layer.getFrameIndex(window.name); 
+$('.click_item').on('click',function(){
+  if($(this).css('border')=='1px solid rgb(255, 0, 0)'){
+    $(this).css('border','0px none rgb(102, 102, 102)');
+    $(this).children('input').eq(0).val('')
+  }else{
+    $(this).css('border','1px solid red');
+    $(this).children('input').eq(0).val($(this).attr('url'))
+  }
+  var url = $(this).children('input').eq(0).val()
+  var checked = $(this).children('input').eq(1).val()
+  console.log(url)
+})
+// 选中
+$('.zf_xz_click').on('click',function(){
+  var data = $(".zf_clickdata_list input").serializeArray();      
+  console.log(data[0].value)
+  var html = ''
+  var src = ''
+  var num = 0;
+  <?php if($t==2){ ?>
+    for (var i = data.length - 1; i >= 0; i--) {
+      if(data[i].value!=''){
+        html+='<div class> <img src="'+ data[i].value +'" class="layui-upload-img"  style="width:150px;margin-left:10px;" > '
+        html+='<input type="hidden" name="$name" value="'+ data[i].value +'" /><span style="margin-left: 78%;cursor:pointer;" onclick="deleteFile(this)">删除</span>'
+        html+='</div>'
+      }
+    }
+    parent.$("{$zf_class}").append(html)
+  <?php }elseif($t==1){ ?>
+    for (var i = data.length - 1; i >= 0; i--) {
+      if(data[i].value!=''){
+        num++
+        if(num>1){
+          parent.layer.msg('当前只能选择一个', {shade: 0.3})
+          return 
+        }
+        src = data[i].value
+      }
+    }
+    parent.$("{$zf_class}").val(src)
+    parent.$("{$zf_class}").attr('src',src)
+  <?php }elseif($t==3){ ?>
+    for (var i = data.length - 1; i >= 0; i--) {
+      if(data[i].value!=''){
+        src = data[i].value
+      }
+      if(num>1){
+          parent.layer.msg('当前只能选择一个', {shade: 0.3})
+          return 
+        }
+    }
+    parent.$("{$zf_class}").val(src)
+  <?php } ?>
+
+
+  parent.layer.close(index);
+
+})
+
+
+layui.use([ 'table','element','laypage','upload','form'], function(){
+  var $ = layui.$
+  ,form = layui.form
+  ,element = layui.element
+  ,laypage = layui.laypage
+  ,upload = layui.upload
+  ,table = layui.table;
+
+  laypage.render({
+    elem: 'zfPage' 
+    ,count: {$count}
+    ,limit:{$limit}
+    ,limits:[10,15,20]
+    ,curr:{$page}
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      if(!first){
+          window.location.href="{:siteUrl('widget/Fileupload/upload')}&cid={$cid}&t={$t}&zf_class={$zf_class}&page="+obj.curr+"&limit="+obj.limit;
+      }
+
+    }
+  });
+
+
+  upload.render({
+      elem: '#up_file'
+      ,url: "{:siteUrl('common/upload/upload_one_filesystem')}cid={$cid}"
+      ,accept: 'file' 
+      ,before:function(res){
+        layui.layer.load();
+      }
+      ,done: function(res){
+        console.log(res)
+        layui.layer.load();
+        if(res.result==1){
+            layer.msg(res.msg, {icon: 1});
+            setTimeout(function(){
+              window.location.reload()
+            },2000);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      }
+    });
+
+  $('.ajax_cate_del').on('click',function() {
+    var id = $(this).attr('item')
+    layer.confirm('确定删除？', {
+      btn: ['删除','取消'] 
+    }, function(){
+      $.get("{:siteUrl('widget/Fileupload/cate_del')}",{id:id},function(res){
+        if(res.result==1){
+          layer.msg(res.msg, {icon: 1});
+          setTimeout(function() {
+              window.location.reload();
+          }, 2000);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      },"json");
+    });
+  });
+  $('.ajax_file_del').on('click',function() {
+    var id = $(this).attr('item')
+    var data = $(".zf_clickdata_list input").serialize();      
+    layer.confirm('将文件从你的磁盘彻底删除无法恢复,确认删除？', {
+      btn: ['删除','取消'] 
+    }, function(){
+      $.post("{:siteUrl('widget/Fileupload/file_del')}",data,function(res){
+        if(res.result==1){
+          layer.msg(res.msg, {icon: 1});
+          setTimeout(function() {
+              window.location.reload();
+          }, 2000);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      },"json");
+    });
+  });
+  $('.ajax_file_move').on('click',function(){
+    layer.open({
+      type: 1,
+      skin: 'layui-layer-rim', 
+      area: ['420px', '240px'], 
+      content: $('.move_info').html(),
+      success: function(layero, index){
+        console.log(layero, index);
+        form.render('select');
+      }
+
+    });
+  })
+
+  form.on('select(move_cate_list)',function(data){
+    // var move_cid = data.elem[data.elem.selectedIndex].text
+    var move_cid = data.value
+    $('.zf_move_cid').val(move_cid)
+  })
+  $(document).on('click','.ajax_file_move_save',function(){
+    var cid = $('.zf_move_cid').val()
+    console.log(cid)
+    var data = $(".zf_clickdata_list input").serialize();      
+    layer.confirm('确认移动？', {
+      btn: ['确认','取消'] 
+    }, function(){
+      $.post("{:siteUrl('widget/Fileupload/file_move')}&cid="+cid,data,function(res){
+        if(res.result==1){
+          layer.msg(res.msg, {icon: 1});
+          setTimeout(function() {
+              window.location.reload();
+          }, 2000);
+        }else{
+          layer.msg(res.msg, {icon: 2});
+        }
+      },"json");
+    });
+
+  });
+
+
+
+ 
+});
+</script>
+</body>
+</html>

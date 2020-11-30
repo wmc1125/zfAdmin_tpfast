@@ -1028,3 +1028,19 @@ if (!function_exists('isHTTPS')) {
       return FALSE;
   }
 }
+
+
+if (!function_exists('siteUrl')) {
+    /**
+     * 生成url
+     * @param string $url 路由地址,类似于tp5的url()函数的第一个参数 如：index/index/hello
+     * @param string $vars 路由参数
+     * @param string $weDoor 微擎入口 web-Web端入口,app-App端入口
+     * @return array|string
+     */
+    function siteUrl($url = '', $vars = '', $weDoor = '')
+    {
+      return url($url,$vars,$weDoor);
+    }
+}
+

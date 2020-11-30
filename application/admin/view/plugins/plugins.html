@@ -21,14 +21,16 @@
   <div class="layui-row layui-col-space30">
       <table class="layui-table">
           <colgroup>
-              <col width="150">
-              <col width="200">
+              <col width="120">
+              <col width="120">
+              <col width="80">
               <col>
           </colgroup>
           <thead>
           <tr>
               <th>插件名</th>
               <th>路径名</th>
+              <th>版本</th>
               <th>加入时间</th>
               <th>路径</th>
               <th>操作</th>
@@ -39,6 +41,7 @@
               <tr>
                   <td>{$vo['name']}</td>
                   <td>{$vo['plugin_name']}</td>
+                  <td>{$vo['version']}</td>
                   <td>{$vo['ctime']}</td>
                   <td>./addons/{$vo['plugin_name']}</td>
                   <td>
@@ -49,6 +52,7 @@
                           <a  target="_blank" href="/addons/{$vo["plugin_name"]}.index/index.html" > 进入</a>
                           <a href="javascript:;" onclick='zfAdminShow("{$vo['plugin_name']}说明","/addons/{$vo["plugin_name"]}.index/help.html")' > 使用说明</a>
                           <a href="javascript:;" class="plugin_uninstall" item="{$vo['id']}" style="color: red" > 卸载</a>
+                          <a href="javascript:;" class="plugin_upgrade" item="{$vo['id']}" style="color: red" > 升级</a>
 
                       <?php }else{ ?>
                        <span style="color: red">代码缺失</span>
@@ -118,10 +122,39 @@
       }, function(){
           //取消的操作
       });
-
-
-      
    })
+
+   $('.plugin_upgrade').on('click',function(){
+    var id = $(this).attr('item')
+    layer.load(1)
+     layer.confirm('确认升级？', {
+        btn: ['升级','取消'] //按钮
+      }, function(){
+          $.ajax({
+            type:'get',
+            url:"{:url('plugins/plugin_act',['type'=>'plugin','action'=>'upgrade'])}",
+            data:{id},
+            dataType:'json',
+            success:function(res){
+               layer.closeAll();
+              if(res.result==1){
+                layer.msg(res.msg, {icon: 1});
+                setTimeout(function() {
+                    location.reload(true);
+                }, 3000);
+              }else{
+                layer.msg(res.msg, {icon: 2});
+              }
+              
+            }
+          })
+
+      }, function(){
+          //取消的操作
+      });
+   })
+
+
 });
   </script>
 </body>

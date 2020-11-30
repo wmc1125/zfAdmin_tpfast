@@ -37,6 +37,7 @@ class Base extends Controller
         if(cookie('theme')){
           $this->zf_tpl_suffix = cookie('theme');
         }
+
         
         $this->tpl = ($this->zf_tpl_suffix==''?'':$this->zf_tpl_suffix.'/').explode($this->zf_tpl_suffix.'.', strtolower(Request::controller()))[1].'/'.strtolower(Request::action());
         $this->controller = strtolower(Request::controller());
